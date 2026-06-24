@@ -57,8 +57,8 @@ export const caseStudies: CaseStudy[] = [
     color: "#C6F135",
     lightColor: "#2D6A00",
     client: "JPMorgan Chase",
-    role: "UX Designer",
-    duration: "[ Add duration ]",
+    role: "Lead UX Designer",
+    duration: "1 year",
     overview:
       "Chase initiated a strategic modernization effort to migrate Chase First Banking from a third-party platform to an in-house solution. The initiative reduced long-term vendor costs, gave Chase ownership of the customer experience, and laid the foundation for faster product innovation. The migration impacted approximately 1.5 million Chase First Banking accounts and required maintaining customer trust while introducing a redesigned experience.",
     metrics: [
@@ -142,14 +142,14 @@ export const caseStudies: CaseStudy[] = [
     category: "Enterprise UX",
     title: "Centralizing Database Service Creation",
     subtitle: "Creating consistent experiences across relational and non-relational database ecosystems.",
-    year: "",
+    year: "2025-2026",
     tags: ["UX Strategy", "Experience Architecture", "Usability Testing", "Executive Alignment"],
     image: databasesCoverFull,
     color: "#F135C6",
     lightColor: "#9C0068",
     client: "JPMorgan Chase",
     role: "Lead UX Designer",
-    duration: "[ Add duration ]",
+    duration: "1 year",
     overview:
       "JPMorgan Chase's database ecosystem consisted of independently developed control planes across relational and non-relational database technologies. Engineers were often forced to use three or more separate systems to provision services, monitor health, review operational metrics, and access documentation. The Shared Control Planes initiative established a unified experience framework that reduced operational fragmentation through shared workflows, navigation, and reusable UX patterns.",
     metrics: [
@@ -237,14 +237,14 @@ export const caseStudies: CaseStudy[] = [
     category: "Service Design",
     title: "Automating Analyst Resolution Reporting",
     subtitle: "Transforming a fragmented and manual compliance ecosystem into a unified analyst experience supporting 22,000 branch control violations annually.",
-    year: "2023",
+    year: "2022-2025",
     tags: ["UX Strategy", "Service Design", "Workflow Mapping", "Information Architecture"],
     image: arrCoverFull,
     color: "#35C6F1",
     lightColor: "#0071A4",
     client: "JPMorgan Chase",
-    role: "Lead Product Designer",
-    duration: "[ Add duration ]",
+    role: "UX Manager",
+    duration: "3 years",
     overview:
       "The Analyst Resolution Reporting ecosystem supported approximately 22,000 branch control violations annually. Analysts were required to work across three disconnected applications — ARR-T, MCT, and Branch Dashboard — to investigate violations, communicate with field teams, document remediation efforts, and track resolution progress. Compounding the challenge, ARR-T was a Microsoft Access application identified as a high-risk platform scheduled for decommissioning. The organization needed a modernized solution that reduced operational risk while simplifying analyst workflows.",
     metrics: [
@@ -332,14 +332,14 @@ export const caseStudies: CaseStudy[] = [
     category: "Enterprise UX",
     title: "Enhancing Know-Your-Customer Transaction Reporting",
     subtitle: "Modernizing a high-risk branch compliance workflow into a clearer, action-oriented experience for managers and bankers.",
-    year: "2024",
+    year: "2022-2025",
     tags: ["UX Strategy", "Service Design", "Compliance", "Usability Testing"],
     image: kycCoverFull,
     color: "#F1C635",
     lightColor: "#7A5B00",
     client: "JPMorgan Chase",
-    role: "Lead Product Designer / UX Strategist / UI Designer",
-    duration: "12 months",
+    role: "UX Manager",
+    duration: "3 years",
     overview:
       "Branch Dashboard is a branch controls and compliance experience used to monitor operational risk, control tasks, and action items across branch locations. Within that ecosystem, KYC account opening and maintenance work returns were a high-friction workflow. When required customer or account information was missing or invalid, branch teams had to resolve the issue quickly to avoid customer account restrictions or closures. I led the modernization of the KYC Work Returns experience over a 12-month effort — from discovery through delivery — shifting branch teams from a reactive, unclear workflow to a proactive, action-oriented dashboard.",
     metrics: [
@@ -427,19 +427,19 @@ export const caseStudies: CaseStudy[] = [
     category: "Product Design",
     title: "Counterfeit Item Dispute Experience",
     subtitle: "Designed a guided dispute experience that helped customers determine eligibility, provide supporting documentation, and submit counterfeit claims with greater confidence.",
-    year: "2023",
+    year: "2018",
     tags: ["UX Strategy", "Journey Mapping", "Information Architecture", "Prototyping"],
     image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1400&h=800&fit=crop&auto=format",
     color: "#F13560",
     lightColor: "#C0002E",
     client: "KeyBank",
-    role: "Lead UX Designer",
-    duration: "[ Add duration ]",
+    role: "UX Designer",
+    duration: "6 months",
     overview:
       "Customers increasingly purchase products through online marketplaces and third-party sellers. As counterfeit goods became more common, KeyBank's dispute process struggled to help customers determine whether they had a legitimate claim and what evidence was required. The result was confusion, incomplete submissions, avoidable support calls, and higher operational costs. This initiative focused on creating a guided counterfeit dispute experience that helped customers determine eligibility, gather documentation, and submit stronger claims.",
     metrics: [
       { value: "↓", label: "Reduced incomplete dispute submissions" },
-      { value: "↓", label: "Lower contact-center volume" },
+      { value: "12%", label: "Reduction in dispute-related call center volume after redesign" },
       { value: "↑", label: "Improved dispute quality and resolution accuracy" },
       { value: "[ # ]", label: "[ Add metric ]" },
     ],
@@ -507,7 +507,7 @@ export const caseStudies: CaseStudy[] = [
       summary:
         "The guided counterfeit dispute experience reduced friction, improved dispute quality, lowered operational effort, and created a more consistent experience for customers. By validating eligibility and dynamically collecting supporting evidence before submission, the design improved outcomes for both customers and operations teams.",
       impact:
-        "The business impact was felt across multiple dimensions: fewer incomplete submissions reaching the operations queue, reduced contact-center volume from customers seeking guidance on eligibility, and improved claim quality that enabled faster, more accurate investigations. The self-service eligibility model also aligned the customer experience with operational and regulatory requirements — reducing risk while improving satisfaction.",
+        "The business impact was felt across multiple dimensions: fewer incomplete submissions reaching the operations queue, a 12% reduction in dispute-related call center volume after redesign, and improved claim quality that enabled faster, more accurate investigations. The self-service eligibility model also aligned the customer experience with operational and regulatory requirements — reducing risk while improving satisfaction.",
       reflection:
         "This project demonstrated the value of designing around customer decision-making rather than simply digitizing an existing process. By helping customers determine eligibility and gather appropriate evidence before submission, the experience improved outcomes for both customers and operational teams. The key insight was that the problem was not the form — it was everything that needed to happen before the form.",
     },
@@ -518,21 +518,21 @@ export const caseStudies: CaseStudy[] = [
     category: "UX Strategy",
     title: "Transforming Banking Product Discovery",
     subtitle: "Reimagining how customers discover, compare, and purchase financial products online through a retail-inspired digital banking platform.",
-    year: "2022",
+    year: "2018",
     tags: ["UX Strategy", "Customer Research", "Journey Mapping", "Information Architecture"],
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1400&h=800&fit=crop&auto=format",
     color: "#8B35F1",
     lightColor: "#5B21B6",
     client: "First National Bank (FNB)",
-    role: "Senior UX Strategist",
-    duration: "[ Add duration ]",
+    role: "UX Designer",
+    duration: "6 months",
     overview:
       "Traditional banking websites often force customers to navigate complex product structures, disconnected application experiences, and confusing terminology. As part of First National Bank's Clicks-to-Bricks strategy, the organization sought to reimagine how customers discover, compare, evaluate, and purchase financial products online. The initiative evolved into the foundation of FNB's eStore experience — a retail-inspired digital banking platform designed to improve product discovery, customer education, and conversion.",
     metrics: [
       { value: "5", label: "Shopper archetypes identified through research" },
-      { value: "Award", label: "FNB eStore recognized as award-winning platform" },
-      { value: "[ # ]", label: "[ Add metric ]" },
-      { value: "[ # ]", label: "[ Add metric ]" },
+      { value: "41%", label: "Increase in loan applications" },
+      { value: "30%", label: "Increase in deposit applications" },
+      { value: "10% YoY", label: "Increase in digital eStore interactions" },
     ],
     discover: {
       title: "Discover",
@@ -602,7 +602,7 @@ export const caseStudies: CaseStudy[] = [
       summary:
         "The Clicks-to-Bricks initiative established foundational experience patterns that became central to FNB's award-winning eStore platform. The retail-inspired product discovery framework improved discoverability, reduced friction in the evaluation and application process, and created a more seamless connection between digital and branch banking experiences.",
       impact:
-        "The work helped establish FNB's eStore as a leading example of digital banking transformation — earning industry recognition and influencing enterprise-wide customer engagement strategy. By organizing financial products around customer goals rather than internal business structures, the experience reduced cognitive load for customers across five distinct shopping archetypes and supported stronger conversion throughout the product selection journey.",
+        "The work helped establish FNB's eStore as a leading example of digital banking transformation. Results included a 41% increase in loan applications, a 30% increase in deposit applications, and a 10% year-over-year increase in digital eStore interactions. The platform also earned industry recognition when FNB eStore was awarded Best Digital Initiative (2021) at the Banking Tech Awards.",
       reflection:
         "This project reinforced the importance of understanding customer behavior before designing solutions. By approaching banking through the lens of retail shopping behaviors, the team created an experience that better aligned customer expectations with business goals. The initiative remains one of the strongest examples of strategic UX leadership, customer-centered innovation, and experience transformation in my portfolio.",
     },

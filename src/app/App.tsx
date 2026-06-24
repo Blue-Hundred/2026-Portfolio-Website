@@ -5,6 +5,7 @@ import { caseStudies } from "./data/caseStudies";
 import CaseStudyPage from "./CaseStudyPage";
 import { useTheme } from "./hooks/useTheme";
 import { ThemeToggle } from "./components/ThemeToggle";
+import resumePdf from "../assets/Attachments/Tamare_Reese_Resume_2026_Final.pdf";
 
 function Portfolio() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -63,15 +64,18 @@ function Portfolio() {
             <button onClick={scrollToContact} className="text-sm text-muted-foreground hover:text-foreground transition-colors">Contact</button>
             <ThemeToggle isDark={isDark} toggle={toggle} />
             <a
-              href="#"
+              href="https://www.linkedin.com/in/tamarereese/"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="LinkedIn"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               <Linkedin size={16} />
             </a>
             <a
-              href="/resume.pdf"
-              download
+              href={resumePdf}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
               style={{ borderRadius: "var(--radius)" }}
             >
@@ -100,8 +104,9 @@ function Portfolio() {
             <a href="#about" onClick={() => setMenuOpen(false)} className="text-sm text-muted-foreground hover:text-foreground transition-colors py-1">About</a>
             <button onClick={scrollToContact} className="text-sm text-muted-foreground hover:text-foreground transition-colors py-1 text-left">Contact</button>
             <a
-              href="/resume.pdf"
-              download
+              href={resumePdf}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-3 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors w-full justify-center mt-1"
               style={{ borderRadius: "var(--radius)" }}
             >
@@ -146,7 +151,7 @@ function Portfolio() {
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 sm:gap-8 border-t border-border pt-8">
             <p className="text-muted-foreground text-base sm:text-lg max-w-xl leading-relaxed">
-              Lead UX Designer with 10+ years of experience designing enterprise products, platforms, and systems that drive measurable business outcomes.
+              Lead UX Designer with 8+ years of experience designing enterprise products, platforms, and systems that drive measurable business outcomes.
             </p>
             <div className="flex items-center gap-6 shrink-0">
               <button
@@ -238,13 +243,13 @@ function Portfolio() {
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                I&apos;m a Senior Experience Designer based in Columbus, Ohio.
+                I&apos;m a Lead Experience Designer, Strategist, Researcher, and AI Developer based in Columbus, Ohio.
               </p>
               <p>
                 I’m passionate about solving complex problems through design, technology, and the evolving role of AI. My approach is rooted in systems thinking—I believe the best experiences are built around how people naturally think and work.
               </p>
               <p>
-                Over the past 10+ years, including more than six years at JPMorgan Chase and earlier work with KeyBank and First National Bank, I&apos;ve designed customer-facing and enterprise solutions that simplify workflows, improve experiences, and drive measurable business outcomes.
+                Over the past 8+ years, including more than six years at JPMorgan Chase and earlier work with KeyBank and First National Bank, I&apos;ve designed customer-facing and enterprise solutions that simplify workflows, improve experiences, and drive measurable business outcomes.
               </p>
               <p>
                 I&apos;m currently open to new opportunities and connecting with teams that are passionate about building exceptional products.
@@ -254,7 +259,7 @@ function Portfolio() {
 
           <div className="grid grid-cols-2 gap-px bg-border">
             {[
-              { value: "10+", label: "Years in UX Design & Strategy" },
+              { value: "8+", label: "Years in UX Design & Strategy" },
               { value: "2+", label: "Years in AI & Front-End Development" },
               { value: "4+", label: "Years in Product Management" },
               { value: "6+", label: "Years Leading User Research" },
@@ -385,11 +390,14 @@ function Portfolio() {
             Tamare Reese
           </span>
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-            {["Dribbble", "LinkedIn", "Twitter", "GitHub"].map((link) => (
-              <a key={link} href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
-                {link}
-              </a>
-            ))}
+            <a
+              href="https://www.linkedin.com/in/tamarereese/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+            >
+              LinkedIn
+            </a>
           </div>
           <span className="text-xs text-muted-foreground">© 2024 Tamare Reese</span>
         </div>
