@@ -182,10 +182,6 @@ function ArtifactImage({
           <ZoomIn size={16} className="text-foreground" />
         </div>
       </div>
-      {/* Caption bar */}
-      <div className="absolute bottom-0 left-0 right-0 px-3 py-2.5 bg-gradient-to-t from-background/90 to-transparent">
-        <p className="text-xs text-muted-foreground line-clamp-2">{artifact.caption}</p>
-      </div>
     </button>
   );
 }
@@ -204,6 +200,7 @@ function PhaseSection({
   onImageClick: (src: string, caption: string) => void;
 }) {
   const hasThreeArtifacts = phase.artifacts.length === 3;
+  const hasOneArtifact = phase.artifacts.length === 1;
 
   return (
     <section className="border-t border-border py-12 sm:py-20">
@@ -250,6 +247,12 @@ function PhaseSection({
                 ))}
               </div>
             </div>
+          ) : hasOneArtifact ? (
+            <ArtifactImage
+              artifact={phase.artifacts[0]}
+              aspectClass="aspect-[16/9]"
+              onImageClick={onImageClick}
+            />
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {phase.artifacts.map((artifact, i) => (
@@ -275,6 +278,7 @@ export default function CaseStudyPage() {
   const [unlocked, setUnlocked] = useState(
     () => sessionStorage.getItem(SESSION_KEY) === "1"
   );
+  const [lightbox, setLightbox] = useState<{ src: string; caption: string } | null>(null);
   const study = caseStudies.find((s) => s.slug === slug);
 
   if (!study) {
@@ -293,8 +297,6 @@ export default function CaseStudyPage() {
   if (!unlocked) {
     return <PasswordGate onUnlock={() => setUnlocked(true)} />;
   }
-
-  const [lightbox, setLightbox] = useState<{ src: string; caption: string } | null>(null);
 
   const currentIndex = caseStudies.findIndex((s) => s.slug === slug);
   const prev = caseStudies[currentIndex - 1] ?? null;

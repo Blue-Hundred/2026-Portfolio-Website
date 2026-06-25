@@ -1,4 +1,8 @@
-import cs01Document from "@/imports/image.png";
+import familyBankingResearch1 from "@/assets/Project images/Family Banking Research 1.png";
+import familyBankingResearch2 from "@/assets/Project images/Family Banking Research 2.png";
+import familyBankingResearch3 from "@/assets/Project images/Family Banking Research 3.png";
+import familyBankingResearch4 from "@/assets/Project images/Family Banking Research 4.png";
+import createSavingsGoalFlow from "@/assets/Project images/Create Savings Goal flow.png";
 import sparkCoverFull from "@/assets/covers/Spark_Cover_Full.jpg";
 import databasesCoverFull from "@/assets/covers/Databases_Cover_Full.jpg";
 import arrCoverFull from "@/assets/covers/ARR_Cover_Full.jpg";
@@ -72,11 +76,11 @@ export const caseStudies: CaseStudy[] = [
       body: "Research across 62 participants showed that the redesigned dashboard was intuitive and well received, with an overall satisfaction score of 4.77/5. A consistent pattern emerged: users rarely struggled with completing tasks once they located the correct feature. Instead, discoverability and mental models created friction.\n\nFor Savings Goals specifically: 100% task completion and a 4.58/5 ease-of-use score. Many participants initially looked under 'More' before navigating to Savings. Researchers recommended strengthening dashboard signifiers rather than redesigning the workflow.",
       artifacts: [
         {
-          src: cs01Document,
+          src: familyBankingResearch1,
           caption: "Project brief — overview, business challenge, and research insights",
         },
         {
-          src: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=900&h=600&fit=crop&auto=format",
+          src: familyBankingResearch2,
           caption: "Research findings — Task 5 usability slides",
         },
       ],
@@ -86,12 +90,8 @@ export const caseStudies: CaseStudy[] = [
       body: "The existing Chase First Banking experience relied on an external vendor to power core money management capabilities, including spending controls, savings goals, allowances, chores, and transaction history. Moving these capabilities in-house represented a multi-million-dollar strategic investment, but success depended on more than rebuilding features — it required helping over a million customers transition without confusion or increased support calls.\n\nThe redesign also needed to improve engagement with key financial management features while preserving familiar mental models for existing customers.",
       artifacts: [
         {
-          src: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=900&h=600&fit=crop&auto=format",
+          src: familyBankingResearch3,
           caption: "Business problem framing — vendor dependency and migration scope",
-        },
-        {
-          src: "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=900&h=600&fit=crop&auto=format",
-          caption: "Information architecture — how Savings Goals fits the overall dashboard",
         },
       ],
     },
@@ -100,16 +100,8 @@ export const caseStudies: CaseStudy[] = [
       body: "I joined the project during implementation as a UX Designer responsible for translating validated concepts into production-ready experiences. My primary ownership was the Savings Goals workflow, but I first immersed myself in the usability findings to understand the broader product strategy, customer behaviors, and interaction patterns.\n\nRather than simply recreating screens, I reviewed usability findings beyond my assigned feature to understand how Savings Goals fit into the overall information architecture. This systems-level understanding allowed me to preserve research-validated interaction patterns, produce implementation-ready designs with clear specifications, anticipate engineering questions before development, and align the delivered experience with the team's long-term migration strategy.",
       artifacts: [
         {
-          src: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Savings Goals workflow designs",
-        },
-        {
-          src: "https://images.unsplash.com/photo-1576153192396-180ecef2a715?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Final dashboard and Savings Goal designs",
-        },
-        {
-          src: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Implementation specs and engineering handoff",
+          src: createSavingsGoalFlow,
+          caption: "Create Savings Goal flow",
         },
       ],
     },
@@ -118,12 +110,8 @@ export const caseStudies: CaseStudy[] = [
       body: "The final implementation integrated Savings Goals into the redesigned parent dashboard, supporting Chase's broader goal of centralizing money management while maintaining a simple, approachable experience. The design balanced familiarity for existing customers with clearer organization for new users, supporting the transition from the legacy platform.\n\nThe work supported a strategic migration affecting approximately 1.5 million Chase First Banking accounts and contributed to a platform modernization expected to save Chase millions by eliminating third-party vendor dependence.",
       artifacts: [
         {
-          src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&h=600&fit=crop&auto=format",
+          src: familyBankingResearch4,
           caption: "[ Add image ] — Project overview and migration timeline",
-        },
-        {
-          src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Final shipped experience",
         },
       ],
     },
@@ -160,7 +148,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     discover: {
       title: "Discover",
-      body: "Audited 9 control planes, interviewed 11 product teams, mapped workflows, inventoried features, identified pain points, and synthesized recurring patterns across products.\n\nKey research insights: users prioritized operational awareness over aesthetics, expected consistent workflows across database products, relied on search more than navigation, and frequently left the product to find documentation. Two personas emerged — users seeking speed and experts requiring deeper operational visibility.",
+      body: "Built upon foundational research—including audits of 9 control planes, interviews with 11 product teams, workflow mapping, feature inventories, and synthesized pain points—to develop the UX strategy for a unified platform. Facilitated stakeholder alignment workshops, identified common experience patterns across database products, and led the end-to-end design of the shared control planes. Research revealed that users prioritized operational awareness, expected consistent workflows, relied heavily on search, and frequently left the platform to access documentation.",
       artifacts: [
         {
           src: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=900&h=600&fit=crop&auto=format",
@@ -178,7 +166,7 @@ export const caseStudies: CaseStudy[] = [
     },
     define: {
       title: "Define",
-      body: "Operational workflows were fragmented across multiple products. Similar tasks behaved differently depending on the database technology, increasing cognitive load, onboarding effort, and operational inefficiency.\n\nFive strategic goals were defined: reduce operational fragmentation by consolidating common workflows into one platform; create a shared control plane supporting both relational and non-relational database products; standardize navigation, terminology, and interaction patterns; improve operational visibility through centralized dashboards; and build reusable UX patterns for future database products.",
+      body: "Operational workflows were fragmented across multiple products. Similar tasks behaved differently depending on the database technology, increasing cognitive load, onboarding effort, and operational inefficiency.\n\nFive strategic goals were defined: reduce operational fragmentation by consolidating common workflows into shared control planes organized by database type; standardize navigation, terminology, and interaction patterns; improve operational visibility through centralized dashboards; and build reusable UX patterns for future database products. The initiative was organized into Graph, Relational, and Non-Relational control planes, with the initial phase focused on the Graph and Relational experiences.",
       artifacts: [
         {
           src: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=900&h=600&fit=crop&auto=format",

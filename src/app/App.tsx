@@ -151,7 +151,7 @@ function Portfolio() {
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 sm:gap-8 border-t border-border pt-8">
             <p className="text-muted-foreground text-base sm:text-lg max-w-xl leading-relaxed">
-              Lead UX Designer with 8+ years of experience designing enterprise products, platforms, and systems that drive measurable business outcomes.
+              Lead UX Designer with 10+ years of experience designing enterprise products, platforms, and systems that drive measurable business outcomes.
             </p>
             <div className="flex items-center gap-6 shrink-0">
               <button
@@ -249,7 +249,7 @@ function Portfolio() {
                 I’m passionate about solving complex problems through design, technology, and the evolving role of AI. My approach is rooted in systems thinking—I believe the best experiences are built around how people naturally think and work.
               </p>
               <p>
-                Over the past 8+ years, including more than six years at JPMorgan Chase and earlier work with KeyBank and First National Bank, I&apos;ve designed customer-facing and enterprise solutions that simplify workflows, improve experiences, and drive measurable business outcomes.
+                Over the past 10+ years, including more than six years at JPMorgan Chase and earlier work with KeyBank and First National Bank, I&apos;ve designed customer-facing and enterprise solutions that simplify workflows, improve experiences, and drive measurable business outcomes.
               </p>
               <p>
                 I&apos;m currently open to new opportunities and connecting with teams that are passionate about building exceptional products.
@@ -259,7 +259,7 @@ function Portfolio() {
 
           <div className="grid grid-cols-2 gap-px bg-border">
             {[
-              { value: "8+", label: "Years in UX Design & Strategy" },
+              { value: "10+", label: "Years in UX Design & Strategy" },
               { value: "2+", label: "Years in AI & Front-End Development" },
               { value: "4+", label: "Years in Product Management" },
               { value: "6+", label: "Years Leading User Research" },
