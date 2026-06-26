@@ -144,7 +144,7 @@ function Portfolio() {
           >
             Crafting
             <br />
-            <span className="text-primary">interfaces</span>
+            <span className="text-primary">Experiences</span>
             <br />
             that matter.
           </h1>
