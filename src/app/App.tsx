@@ -118,7 +118,7 @@ function Portfolio() {
       </nav>
 
       {/* Hero */}
-      <section className="min-h-screen flex flex-col justify-end pb-16 sm:pb-20 px-5 sm:px-8 pt-32 relative overflow-hidden">
+      <section className="min-h-[290px] sm:min-h-screen flex flex-col justify-start sm:justify-end pb-12 sm:pb-20 px-5 sm:px-8 pt-20 sm:pt-32 relative overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -128,9 +128,9 @@ function Portfolio() {
           }}
         />
         <div className="relative z-10 max-w-7xl mx-auto w-full">
-          <div className="mb-5 sm:mb-6 flex items-center gap-3">
+          <div className="mt-[40px] sm:mt-0 mb-5 sm:mb-6 flex items-center gap-3">
             <span className="text-xs font-medium tracking-widest uppercase text-primary">
-              Manager, Experience Designer & AI Developer
+              Lead UX Designer, UX Strategy, Service Design, and AI Developer
             </span>
             <div className="h-px flex-1 max-w-[60px] bg-primary opacity-60" />
           </div>
@@ -139,7 +139,7 @@ function Portfolio() {
             className="font-extrabold leading-[0.9] tracking-tight mb-8"
             style={{
               fontFamily: "'Bricolage Grotesque', sans-serif",
-              fontSize: "clamp(3rem, 10vw, 9rem)",
+              fontSize: "clamp(3.5rem, 10vw, 9rem)",
             }}
           >
             Crafting
@@ -184,7 +184,7 @@ function Portfolio() {
             <span className="text-muted-foreground text-sm">6 case studies</span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-px bg-transparent sm:bg-border">
             {caseStudies.map((study) => (
               <div
                 key={study.id}
