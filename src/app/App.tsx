@@ -257,7 +257,7 @@ function Portfolio() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-px bg-border">
+          <div className="grid grid-cols-2 gap-px bg-border lg:self-center">
             {[
               { value: "10+", label: "Years in UX Design & Strategy" },
               { value: "2+", label: "Years in AI & Front-End Development" },
