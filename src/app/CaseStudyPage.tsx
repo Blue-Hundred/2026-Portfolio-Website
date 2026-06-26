@@ -25,7 +25,7 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col items-center justify-center px-8"
+    <div className="min-h-screen bg-background text-foreground flex flex-col items-center justify-center px-5 sm:px-8 py-8"
       style={{ fontFamily: "'Instrument Sans', sans-serif" }}
     >
       <div
@@ -56,7 +56,7 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
             onKeyDown={(e) => e.key === "Enter" && attempt()}
             placeholder="Enter password"
             autoFocus
-            className="w-full bg-transparent px-5 py-4 text-sm text-foreground placeholder:text-muted-foreground/40 outline-none"
+            className="w-full bg-transparent px-5 py-4 text-base text-foreground placeholder:text-muted-foreground/40 outline-none"
           />
         </div>
 
