@@ -130,7 +130,7 @@ function Portfolio() {
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <div className="mt-[40px] sm:mt-0 mb-5 sm:mb-6 flex items-center gap-3">
             <span className="text-xs font-medium tracking-widest uppercase text-primary">
-              Lead UX Designer, UX Strategy, Service Design, and AI Developer
+              Lead UX Designer, CX Strategist, Service Designer, and AI Developer
             </span>
             <div className="h-px flex-1 max-w-[60px] bg-primary opacity-60" />
           </div>
