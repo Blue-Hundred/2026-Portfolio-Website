@@ -281,6 +281,10 @@ export default function CaseStudyPage() {
   const [lightbox, setLightbox] = useState<{ src: string; caption: string } | null>(null);
   const study = caseStudies.find((s) => s.slug === slug);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [slug]);
+
   if (!study) {
     return (
       <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
