@@ -1,11 +1,28 @@
 import { useState, useRef } from "react";
 import { Download, ArrowUpRight, Mail, Send, ChevronDown, Menu, X, Linkedin } from "lucide-react";
 import { BrowserRouter, Routes, Route, Link, useNavigate } from "react-router";
+import { motion } from "motion/react";
 import { caseStudies } from "./data/caseStudies";
 import CaseStudyPage from "./CaseStudyPage";
 import { useTheme } from "./hooks/useTheme";
 import { ThemeToggle } from "./components/ThemeToggle";
 import resumePdf from "../assets/Attachments/Tamare_Reese_Resume_2026_Final.pdf";
+
+function scrollToTopInstant() {
+  const html = document.documentElement;
+  const body = document.body;
+  const previousHtmlBehavior = html.style.scrollBehavior;
+  const previousBodyBehavior = body.style.scrollBehavior;
+
+  html.style.scrollBehavior = "auto";
+  body.style.scrollBehavior = "auto";
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+
+  requestAnimationFrame(() => {
+    html.style.scrollBehavior = previousHtmlBehavior;
+    body.style.scrollBehavior = previousBodyBehavior;
+  });
+}
 
 function Portfolio() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -15,6 +32,12 @@ function Portfolio() {
   const contactRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const { isDark, toggle } = useTheme();
+  const revealProps = {
+    initial: { opacity: 0, y: 40 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.2 },
+    transition: { duration: 0.7, ease: "easeOut" },
+  };
 
   const scrollToContact = () => {
     setMenuOpen(false);
@@ -118,7 +141,10 @@ function Portfolio() {
       </nav>
 
       {/* Hero */}
-      <section className="min-h-[290px] sm:min-h-screen flex flex-col justify-start sm:justify-end pb-12 sm:pb-20 px-5 sm:px-8 pt-20 sm:pt-32 relative overflow-hidden">
+      <motion.section
+        className="min-h-[290px] sm:min-h-screen bg-background flex flex-col justify-start sm:justify-end pb-12 sm:pb-20 px-5 sm:px-8 pt-20 sm:pt-32 relative overflow-hidden"
+        {...revealProps}
+      >
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -151,7 +177,9 @@ function Portfolio() {
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 sm:gap-8 border-t border-border pt-8">
             <p className="text-muted-foreground text-base sm:text-lg max-w-xl leading-relaxed">
-              Lead UX Designer with 10+ years of experience designing enterprise products, platforms, and systems that drive measurable business outcomes.
+              Hi, I&apos;m Tamare 👋🏼
+              <br />
+              A Lead UX Designer and strategist with 10+ years of experience designing products, platforms, and systems that delight customers and drive measurable business outcomes.
             </p>
             <div className="flex items-center gap-6 shrink-0">
               <button
@@ -169,10 +197,10 @@ function Portfolio() {
           </div>
         </div>
 
-      </section>
+      </motion.section>
 
       {/* Case Studies */}
-      <section id="work" className="px-5 sm:px-8 py-16 sm:py-24 border-t border-border">
+      <motion.section id="work" className="bg-background px-5 sm:px-8 py-16 sm:py-24 border-t border-border" {...revealProps}>
         <div className="max-w-7xl mx-auto">
           <div className="flex items-end justify-between mb-10 sm:mb-16">
             <h2
@@ -184,14 +212,18 @@ function Portfolio() {
             <span className="text-muted-foreground text-sm">6 case studies</span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-px bg-transparent sm:bg-border">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-px bg-background">
             {caseStudies.map((study) => (
-              <div
+              <motion.div
                 key={study.id}
                 className="bg-background group cursor-pointer relative overflow-hidden"
                 onMouseEnter={() => setHoveredCard(study.id)}
                 onMouseLeave={() => setHoveredCard(null)}
-                onClick={() => navigate(`/work/${study.slug}`)}
+                onClick={() => {
+                  scrollToTopInstant();
+                  navigate(`/work/${study.slug}`);
+                }}
+                {...revealProps}
               >
                 <div className="relative h-48 sm:h-56 overflow-hidden bg-secondary">
                   <img
@@ -222,14 +254,14 @@ function Portfolio() {
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{study.subtitle}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* About */}
-      <section id="about" className="px-5 sm:px-8 py-16 sm:py-24 border-t border-border">
+      <motion.section id="about" className="bg-background px-5 sm:px-8 py-16 sm:py-24 border-t border-border" {...revealProps}>
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <div>
             <span className="text-xs font-medium tracking-widest uppercase text-primary mb-4 block">About</span>
@@ -257,14 +289,14 @@ function Portfolio() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-px bg-border lg:self-center">
+          <div className="grid grid-cols-2 gap-px bg-background lg:self-center">
             {[
               { value: "10+", label: "Years in UX Design & Strategy" },
               { value: "2+", label: "Years in AI & Front-End Development" },
               { value: "4+", label: "Years in Product Management" },
               { value: "6+", label: "Years Leading User Research" },
             ].map((stat) => (
-              <div key={stat.label} className="bg-background p-6 sm:p-8">
+              <motion.div key={stat.label} className="bg-background p-6 sm:p-8" {...revealProps}>
                 <div
                   className="text-4xl sm:text-5xl font-extrabold text-primary mb-2"
                   style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
@@ -272,13 +304,13 @@ function Portfolio() {
                   {stat.value}
                 </div>
                 <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
         <div className="max-w-7xl mx-auto mt-12 sm:mt-16 border-t border-border pt-12 sm:pt-16">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-border">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-background">
             {["Product Strategy", "UX Research", "Interaction Design", "Design Systems", "Prototyping", "Front-End Dev"].map((skill) => (
               <div key={skill} className="bg-background px-4 sm:px-6 py-4 text-sm text-muted-foreground text-center hover:text-foreground transition-colors">
                 {skill}
@@ -286,10 +318,15 @@ function Portfolio() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Contact */}
-      <section ref={contactRef} id="contact" className="px-5 sm:px-8 py-16 sm:py-24 border-t border-border">
+      <motion.section
+        ref={contactRef}
+        id="contact"
+        className="bg-background px-5 sm:px-8 py-16 sm:py-24 border-t border-border"
+        {...revealProps}
+      >
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <div>
             <span className="text-xs font-medium tracking-widest uppercase text-primary mb-4 block">Contact</span>
@@ -378,7 +415,7 @@ function Portfolio() {
             )}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Footer */}
       <footer className="px-5 sm:px-8 py-8 border-t border-border">

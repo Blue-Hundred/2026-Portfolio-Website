@@ -1,11 +1,34 @@
 import { useParams, Link, useNavigate } from "react-router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
+import { motion } from "motion/react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Lock, X, ZoomIn } from "lucide-react";
 import { caseStudies, type Phase } from "./data/caseStudies";
 import { useTheme } from "./hooks/useTheme";
 import { ThemeToggle } from "./components/ThemeToggle";
 
 const SESSION_KEY = "cs_unlocked";
+const revealProps = {
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.2 },
+  transition: { duration: 0.7, ease: "easeOut" },
+};
+
+function scrollToTopInstant() {
+  const html = document.documentElement;
+  const body = document.body;
+  const previousHtmlBehavior = html.style.scrollBehavior;
+  const previousBodyBehavior = body.style.scrollBehavior;
+
+  html.style.scrollBehavior = "auto";
+  body.style.scrollBehavior = "auto";
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+
+  requestAnimationFrame(() => {
+    html.style.scrollBehavior = previousHtmlBehavior;
+    body.style.scrollBehavior = previousBodyBehavior;
+  });
+}
 
 function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
   const [value, setValue] = useState("");
@@ -166,10 +189,11 @@ function ArtifactImage({
   onImageClick: (src: string, caption: string) => void;
 }) {
   return (
-    <button
-      className={`group relative overflow-hidden bg-secondary ${aspectClass} w-full text-left`}
+    <motion.button
+      className={`group relative overflow-hidden bg-background ${aspectClass} w-full text-left`}
       onClick={() => onImageClick(artifact.src, artifact.caption)}
       aria-label={`View full image: ${artifact.caption}`}
+      {...revealProps}
     >
       <img
         src={artifact.src}
@@ -182,7 +206,7 @@ function ArtifactImage({
           <ZoomIn size={16} className="text-foreground" />
         </div>
       </div>
-    </button>
+    </motion.button>
   );
 }
 
@@ -203,7 +227,7 @@ function PhaseSection({
   const hasOneArtifact = phase.artifacts.length === 1;
 
   return (
-    <section className="border-t border-border py-12 sm:py-20">
+    <motion.section className="bg-background border-t border-border py-12 sm:py-20" {...revealProps}>
       {/* Phase header */}
       <div className="flex items-baseline gap-4 sm:gap-6 mb-8 sm:mb-14">
         <span className="text-xs font-mono tracking-widest shrink-0" style={{ color }}>
@@ -267,7 +291,7 @@ function PhaseSection({
           )}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
@@ -281,8 +305,14 @@ export default function CaseStudyPage() {
   const [lightbox, setLightbox] = useState<{ src: string; caption: string } | null>(null);
   const study = caseStudies.find((s) => s.slug === slug);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  useLayoutEffect(() => {
+    const previousRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+    scrollToTopInstant();
+    requestAnimationFrame(() => scrollToTopInstant());
+    return () => {
+      window.history.scrollRestoration = previousRestoration;
+    };
   }, [slug]);
 
   if (!study) {
@@ -313,6 +343,7 @@ export default function CaseStudyPage() {
 
   return (
     <div
+      key={slug}
       className="min-h-screen bg-background text-foreground"
       style={{ fontFamily: "'Instrument Sans', sans-serif" }}
     >
@@ -398,20 +429,20 @@ export default function CaseStudyPage() {
 
       {/* Overview */}
       <div className="px-5 sm:px-8 max-w-7xl mx-auto">
-        <section className="border-t border-border py-12 sm:py-16 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-12">
+        <motion.section className="bg-background border-t border-border py-12 sm:py-16 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-12" {...revealProps}>
           <div className="lg:col-span-3">
             <span className="text-xs text-muted-foreground tracking-widest uppercase">Overview</span>
           </div>
           <div className="lg:col-span-7">
             <p className="text-base sm:text-lg leading-relaxed text-foreground/90">{study.overview}</p>
           </div>
-        </section>
+        </motion.section>
 
         {/* Metrics */}
-        <section className="border-t border-border py-12 sm:py-16">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border">
+        <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-background">
             {study.metrics.map((m) => (
-              <div key={m.label} className="bg-background p-5 sm:p-8">
+              <motion.div key={m.label} className="bg-background p-5 sm:p-8" {...revealProps}>
                 <div
                   className="text-3xl sm:text-4xl font-extrabold mb-2"
                   style={{ fontFamily: "'Bricolage Grotesque', sans-serif", color: accent }}
@@ -419,10 +450,10 @@ export default function CaseStudyPage() {
                   {m.value}
                 </div>
                 <div className="text-xs sm:text-sm text-muted-foreground leading-snug">{m.label}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </section>
+        </motion.section>
 
 
         {/* Four phases */}
@@ -439,7 +470,7 @@ export default function CaseStudyPage() {
         ))}
 
         {/* Outcome */}
-        <section id="phase-outcome" className="border-t border-border py-12 sm:py-20">
+        <motion.section id="phase-outcome" className="bg-background border-t border-border py-12 sm:py-20" {...revealProps}>
           <div className="flex items-baseline gap-4 sm:gap-6 mb-8 sm:mb-14">
             <span className="text-xs font-mono tracking-widest shrink-0" style={{ color: accent }}>05</span>
             <h2
@@ -451,7 +482,7 @@ export default function CaseStudyPage() {
             <div className="flex-1 h-px bg-border ml-2 sm:ml-4 hidden sm:block" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-background">
             {[
               { label: "Summary", body: study.outcome.summary },
               { label: "Business Impact", body: study.outcome.impact },
@@ -465,9 +496,13 @@ export default function CaseStudyPage() {
           </div>
 
           {/* Metrics reprise */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border mt-px">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-background mt-px">
             {study.metrics.map((m) => (
-              <div key={m.label} className="bg-background px-5 sm:px-8 py-5 sm:py-6 flex items-baseline gap-3 sm:gap-4">
+              <motion.div
+                key={m.label}
+                className="bg-background px-5 sm:px-8 py-5 sm:py-6 flex items-baseline gap-3 sm:gap-4"
+                {...revealProps}
+              >
                 <span
                   className="text-xl sm:text-2xl font-extrabold shrink-0"
                   style={{ fontFamily: "'Bricolage Grotesque', sans-serif", color: accent }}
@@ -475,10 +510,10 @@ export default function CaseStudyPage() {
                   {m.value}
                 </span>
                 <span className="text-xs text-muted-foreground leading-snug">{m.label}</span>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </section>
+        </motion.section>
 
       </div>
 
@@ -487,7 +522,10 @@ export default function CaseStudyPage() {
         <div className="max-w-7xl mx-auto grid grid-cols-2 gap-px bg-border">
           {prev ? (
             <button
-              onClick={() => navigate(`/work/${prev.slug}`)}
+              onClick={() => {
+                scrollToTopInstant();
+                navigate(`/work/${prev.slug}`);
+              }}
               className="bg-background px-5 sm:px-8 py-8 sm:py-10 text-left group hover:bg-secondary transition-colors"
             >
               <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
@@ -510,7 +548,10 @@ export default function CaseStudyPage() {
 
           {next ? (
             <button
-              onClick={() => navigate(`/work/${next.slug}`)}
+              onClick={() => {
+                scrollToTopInstant();
+                navigate(`/work/${next.slug}`);
+              }}
               className="bg-background px-5 sm:px-8 py-8 sm:py-10 text-right group hover:bg-secondary transition-colors"
             >
               <div className="flex items-center justify-end gap-2 text-xs text-muted-foreground mb-3">
