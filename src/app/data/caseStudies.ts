@@ -3,6 +3,10 @@ import familyBankingResearch2 from "@/assets/Project images/Family Banking Resea
 import familyBankingResearch3 from "@/assets/Project images/Family Banking Research 3.png";
 import familyBankingResearch4 from "@/assets/Project images/Family Banking Research 4.png";
 import createSavingsGoalFlow from "@/assets/Project images/Create Savings Goal flow.png";
+import databasesUiAudit from "@/assets/Project images/Databases_UI Audit.png";
+import databasesSynthesis from "@/assets/Project images/Databases_Synthesis.png";
+import databasesFrictionPoints from "@/assets/Project images/Databases_Friction Points.png";
+import databasesSolutions from "@/assets/Project images/Databases_Solutions.png";
 import sparkCoverFull from "@/assets/covers/Spark_Cover_Full.jpg";
 import databasesCoverFull from "@/assets/covers/Databases_Cover_Full.jpg";
 import arrCoverFull from "@/assets/covers/ARR_Cover_Full.jpg";
@@ -34,6 +38,7 @@ export type CaseStudy = {
   lightColor?: string;
   client: string;
   role: string;
+  team?: string;
   duration: string;
   overview: string;
   metrics: { value: string; label: string }[];
@@ -129,94 +134,119 @@ export const caseStudies: CaseStudy[] = [
     slug: "shared-control-planes",
     category: "Enterprise UX",
     title: "Centralizing Database Service Creation",
-    subtitle: "Creating consistent experiences across relational and non-relational database ecosystems.",
-    year: "2025-2026",
+    subtitle: "Creating a unified experience strategy for enterprise database management",
+    year: "2025",
     tags: ["UX Strategy", "Experience Architecture", "Usability Testing", "Executive Alignment"],
     image: databasesCoverFull,
     color: "#F135C6",
     lightColor: "#9C0068",
-    client: "JPMorgan Chase",
-    role: "Lead UX Designer",
-    duration: "1 year",
+    client: "JPMorgan Chase & Co.",
+    role: "Lead Experience Designer (VP)",
+    team: "Cross-functional (Product, Engineering, Architecture, Operations)",
+    duration: "1 Year",
     overview:
-      "JPMorgan Chase's database ecosystem consisted of independently developed control planes across relational and non-relational database technologies. Engineers were often forced to use three or more separate systems to provision services, monitor health, review operational metrics, and access documentation. The Shared Control Planes initiative established a unified experience framework that reduced operational fragmentation through shared workflows, navigation, and reusable UX patterns.",
+      "JPMorgan Chase's database ecosystem consisted of independently developed control planes across relational, graph, and non-relational database technologies. Although the underlying infrastructure differed, engineers performed many of the same operational tasks through inconsistent workflows, navigation, terminology, and support models, creating fragmented experiences that slowed service delivery and increased operational complexity.\n\nAs Lead Experience Designer and UX Researcher, I led the end-to-end experience strategy to define a shared operating model across database products. Rather than beginning with interface design, I partnered with Product, Engineering, Enterprise Architecture, Operations, and senior technology leaders to understand customer needs, align stakeholders around a common vision, validate opportunities through research, and translate strategy into scalable product experiences. The result established a shared experience framework that reduced fragmentation, expanded self-service capabilities, and created reusable patterns that continue to support future database products.",
     metrics: [
-      { value: "92%", label: "Task completion rate" },
-      { value: "95", label: "CSAT score" },
-      { value: "95", label: "UMUX-Lite score" },
-      { value: "85%", label: "Preferred the redesigned homepage" },
+      { value: "92%", label: "Task Success Rate" },
+      { value: "95", label: "CSAT" },
+      { value: "95", label: "UMUX-Lite" },
+      { value: "85%", label: "Preferred the proposed experience" },
     ],
     discover: {
-      title: "Discover",
-      body: "Built upon foundational research—including audits of 9 control planes, interviews with 11 product teams, workflow mapping, feature inventories, and synthesized pain points—to develop the UX strategy for a unified platform. Facilitated stakeholder alignment workshops, identified common experience patterns across database products, and led the end-to-end design of the shared control planes. Research revealed that users prioritized operational awareness, expected consistent workflows, relied heavily on search, and frequently left the platform to access documentation.",
+      title: "Framing the Problem",
+      body: "The Shared Control Planes initiative was part of a broader multi-year engineering transformation to simplify how developers managed infrastructure across the enterprise. The long-term vision was to evolve from independently managed database control planes into shared operational platforms that would ultimately integrate into the Integrated Engineer's Portal (IEP)—a centralized destination where engineers could onboard to infrastructure platforms, provision database services, manage resources, access documentation, and monitor operational health through a unified experience.\n\nBefore I joined the initiative, the team had completed a UX audit of nine database control planes that revealed significant fragmentation across onboarding, service provisioning, service management, documentation, and operational workflows. Although each database technology served a different infrastructure need, engineers were trying to accomplish the same operational goals through completely different experiences.\n\nEngineers couldn't independently onboard to the platform, provision database services, or troubleshoot common operational issues. Instead, they relied on a centralized Site Reliability Engineering (SRE) support team that held office hours only one day each week. Routine tasks were delayed, documentation was inconsistent, operational visibility was limited, and Product teams lacked customer experience data needed to understand friction and prioritize improvements.\n\nAs Lead Experience Designer and UX Researcher, I built upon this foundational research to move the strategy forward. Working closely with Product Management, Engineering, Enterprise Architecture, Operations, and senior technology leaders, I translated existing insights into a customer-centered experience strategy aligned with the organization's long-term platform vision.",
       artifacts: [
         {
-          src: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Research Miro board, ecosystem map, personas, journey maps",
+          src: databasesUiAudit,
+          caption: "Stakeholder interview notes",
         },
         {
-          src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Affinity map, personas, insight slides",
+          src: databasesSynthesis,
+          caption: "Journey map",
         },
         {
-          src: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Current state journey showing 3+ systems",
+          src: databasesFrictionPoints,
+          caption: "Research synthesis board",
+        },
+        {
+          src: databasesSolutions,
+          caption: "Existing ecosystem audit",
         },
       ],
     },
     define: {
-      title: "Define",
-      body: "Operational workflows were fragmented across multiple products. Similar tasks behaved differently depending on the database technology, increasing cognitive load, onboarding effort, and operational inefficiency.\n\nFive strategic goals were defined: reduce operational fragmentation by consolidating common workflows into shared control planes organized by database type; standardize navigation, terminology, and interaction patterns; improve operational visibility through centralized dashboards; and build reusable UX patterns for future database products. The initiative was organized into Graph, Relational, and Non-Relational control planes, with the initial phase focused on the Graph and Relational experiences.",
+      title: "Building Alignment Before Design",
+      body: "Rather than redesigning every workflow simultaneously, we intentionally prioritized the experiences that would eliminate the greatest customer pain points while establishing reusable patterns for future database products.\n\nUsing research findings and stakeholder interviews, I facilitated 5–6 design consistency, service blueprint, and stakeholder alignment workshops with Product Managers, Enterprise Architects, Engineering Leads, Technology leaders, and Operations partners. Together we evaluated operational workflows, technical dependencies, and customer pain points to identify the highest-value opportunities for the MVP.\n\nThese collaborative sessions established organizational alignment before design began and resulted in four strategic workstreams.",
       artifacts: [
         {
           src: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Ecosystem diagram and vision slide",
+          caption: "Workshop facilitation",
         },
         {
           src: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Strategic goals and experience principles framework",
+          caption: "Affinity mapping",
+        },
+        {
+          src: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&h=600&fit=crop&auto=format",
+          caption: "Experience principles",
+        },
+        {
+          src: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=900&h=600&fit=crop&auto=format",
+          caption: "Architecture alignment artifacts",
         },
       ],
     },
     design: {
-      title: "Design",
-      body: "Defined experience principles of consistency, efficiency, discoverability, contextual guidance, and scalability. Proposed shared interaction patterns, embedded help, progressive disclosure, and a common information architecture.\n\nThe design solution created a shared homepage, service discovery, service detail, operational dashboards, health monitoring, search, embedded documentation, and reusable patterns applicable across relational and non-relational control planes.",
+      title: "Translating Strategy into Experience",
+      body: "With organizational alignment established, I translated the experience strategy into wireframes and interactive prototypes that demonstrated how a shared operational experience could support multiple database technologies while preserving technology-specific capabilities where they mattered most.\n\nEvery workflow was intentionally designed to address validated customer pain points by simplifying navigation, reducing context switching, improving discoverability, introducing operational dashboards, expanding self-service capabilities, and enabling engineers to complete common infrastructure tasks with greater confidence.\n\nDesign reviews became collaborative working sessions where Product, Engineering, and Enterprise Architecture validated technical feasibility, refined workflows, and ensured proposed solutions balanced customer needs with implementation constraints.\n\nBecause the Shared Control Planes would ultimately integrate into the Integrated Engineer's Portal (IEP), the experience adopted the IEP Design System—a customized implementation built on Material UI. Engineering teams were initially hesitant to adopt a new component library while modernizing the platform. To build confidence, I partnered with the Design Systems team, participated in governance reviews, validated implementation patterns, and educated engineers on how component versioning and design system updates would simplify long-term maintenance while ensuring consistency across the broader engineering ecosystem.",
       artifacts: [
         {
           src: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Design principles, content ramp, interaction framework",
+          caption: "Wireframes",
         },
         {
           src: "https://images.unsplash.com/photo-1576153192396-180ecef2a715?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Final dashboard and Shared Control Planes designs",
+          caption: "Prototype",
         },
         {
           src: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Reusable component patterns across control planes",
+          caption: "Information architecture",
+        },
+        {
+          src: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=900&h=600&fit=crop&auto=format",
+          caption: "Before & After comparisons",
         },
       ],
     },
     deliver: {
-      title: "Deliver",
-      body: "Conducted moderated usability testing with 13 enterprise users across multiple roles. Participants completed task-based scenarios using interactive prototypes. Measured task completion, CES, CSAT, UMUX-Lite, and qualitative feedback.\n\nResults: 92% task completion, 92 CES, 95 CSAT, 95 UMUX-Lite. 85% of users preferred the redesigned homepage. Users highlighted reduced context switching, improved operational visibility, better search, and consistent workflows.",
+      title: "Validate & Drive Execution",
+      body: "I conducted moderated usability testing with enterprise engineers to validate whether the proposed experience successfully resolved the customer pain points identified during discovery. Testing evaluated discoverability, efficiency, learnability, confidence, workflow consistency, and engineers' ability to complete critical tasks independently.\n\nResearch findings were synthesized into executive-ready presentations that helped leadership confidently prioritize the MVP, secure organizational alignment, and move into implementation based on customer evidence rather than assumptions.\n\nFollowing the successful launch of the Graph Shared Control Plane, I conducted 14 post-launch customer interviews to understand how engineers used the platform in production, identify remaining friction points, and determine which enhancements would deliver the greatest customer value. Those insights directly informed roadmap prioritization and influenced the design of the Relational Shared Control Plane.",
       artifacts: [
         {
           src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Usability methodology and participant slides",
+          caption: "Usability testing",
+        },
+        {
+          src: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&h=600&fit=crop&auto=format",
+          caption: "Executive readout",
         },
         {
           src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Results charts and participant quotes",
+          caption: "Metrics dashboard",
+        },
+        {
+          src: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&h=600&fit=crop&auto=format",
+          caption: "Research synthesis",
         },
       ],
     },
     outcome: {
       summary:
-        "The initiative established a scalable Shared Control Plane supporting relational and non-relational database products, reducing operational fragmentation and creating a unified UX foundation through shared navigation, standardized workflows, reusable components, and consistent information architecture. Usability testing with 13 enterprise users validated the approach: 92% task completion, 95 CSAT, 95 UMUX-Lite, and 85% preference for the redesigned homepage.",
+        "The initiative established a scalable experience strategy supporting both Relational and Non-Relational database products while significantly improving the day-to-day experience of engineers responsible for provisioning and managing infrastructure.",
       impact:
-        "Engineers who previously navigated three or more separate systems to complete a single operational workflow now had a single, coherent platform. The shared navigation, standardized terminology, and reusable component patterns reduced onboarding friction and established a foundation for future database products to inherit — meaning the UX investment compounds as the ecosystem grows.",
+        "This initiative required significantly more than interface design. My role was to connect Product, Engineering, Enterprise Architecture, Operations, and customers around a shared vision while ensuring every strategic decision addressed a validated customer need.",
       reflection:
-        "This project shifted my role from designing interfaces to defining enterprise platform strategy. By grounding decisions in research and validating them through usability testing, I helped establish a scalable experience framework capable of evolving with JPMorgan Chase's growing database ecosystem.",
+        "Every recommendation was grounded in customer evidence and validated throughout the engagement.",
     },
   },
   {

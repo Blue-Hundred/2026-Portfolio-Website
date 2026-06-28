@@ -1,7 +1,35 @@
 import { useParams, Link, useNavigate } from "react-router";
 import { useState, useEffect, useLayoutEffect } from "react";
 import { motion } from "motion/react";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Lock, X, ZoomIn } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  ArrowUpRight,
+  Lock,
+  X,
+  ZoomIn,
+  Workflow,
+  Wrench,
+  CircleDashed,
+  BookOpen,
+  Activity,
+  MessageSquareWarning,
+  Sparkles,
+  Bot,
+  UserRoundPlus,
+  BarChart3,
+  Radar,
+  Compass,
+  LayoutGrid,
+  WandSparkles,
+  CheckCircle2,
+  Rocket,
+  Lightbulb,
+  ChevronDown,
+  BriefcaseBusiness,
+  ShieldCheck,
+  type LucideIcon,
+} from "lucide-react";
 import { caseStudies, type Phase } from "./data/caseStudies";
 import { useTheme } from "./hooks/useTheme";
 import { ThemeToggle } from "./components/ThemeToggle";
@@ -119,6 +147,485 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
 
 const PHASES = ["discover", "define", "design", "deliver"] as const;
 
+const SCP_STRATEGY_FLOW = [
+  "Individual Database Control Planes",
+  "Shared Control Planes",
+  "Centralized control plane experience in the Integrated Engineer's Portal application",
+];
+
+const SCP_PAIN_POINTS: { title: string; body: string; icon: LucideIcon }[] = [
+  {
+    title: "Fragmented Operational Workflows",
+    body: "Engineers navigated multiple systems to complete a single operational task, increasing cognitive load and slowing delivery.",
+    icon: Workflow,
+  },
+  {
+    title: "Limited Self-Service",
+    body: "Onboarding, provisioning, and troubleshooting depended heavily on manual support, creating bottlenecks and delaying work.",
+    icon: Wrench,
+  },
+  {
+    title: "Inconsistent Experiences",
+    body: "Common tasks behaved differently depending on database technology, requiring engineers to relearn workflows when switching products.",
+    icon: CircleDashed,
+  },
+  {
+    title: "Documentation & Discoverability",
+    body: "Critical documentation and operational guidance were difficult to locate, inconsistent across products, or unavailable when needed.",
+    icon: BookOpen,
+  },
+  {
+    title: "Limited Operational Visibility",
+    body: "Customers lacked a centralized view of service health, operational status, and lifecycle management.",
+    icon: Activity,
+  },
+  {
+    title: "No Customer Feedback Loop",
+    body: "Without customer experience observability, Product teams struggled to identify friction after launch.",
+    icon: MessageSquareWarning,
+  },
+];
+
+const SCP_STRATEGIC_PRIORITIES: {
+  title: string;
+  painPoint: string;
+  response: string;
+  icon: LucideIcon;
+}[] = [
+  {
+    title: "Create a Service",
+    painPoint:
+      "Provisioning workflows differed across database technologies, increasing onboarding time and creating unnecessary complexity.",
+    response:
+      "Design a standardized provisioning experience that supports both Graph and Relational platforms through a shared operational workflow.",
+    icon: Sparkles,
+  },
+  {
+    title: "Shared Control Plane Onboarding",
+    painPoint:
+      "New engineers struggled to understand prerequisites, locate documentation, and confidently begin using the platform.",
+    response:
+      "Create a guided self-service onboarding experience that reduces dependency on manual assistance while improving discoverability.",
+    icon: UserRoundPlus,
+  },
+  {
+    title: "AI Support Assistant",
+    painPoint:
+      "Engineers depended on weekly SRE office hours for common onboarding, provisioning, and operational questions.",
+    response:
+      "Design an AI-powered support assistant embedded in onboarding and provisioning flows to provide contextual guidance and unblock customers in real time.",
+    icon: Bot,
+  },
+  {
+    title: "Customer Experience Observability",
+    painPoint:
+      "Product teams lacked visibility into customer struggles after launch, making prioritization reactive.",
+    response:
+      "Introduce customer experience observability to continuously measure adoption, identify friction, and guide roadmap investments.",
+    icon: BarChart3,
+  },
+];
+
+const SCP_CONTRIBUTIONS = [
+  "Synthesized existing UX audit findings into a unified experience strategy",
+  "Led stakeholder interviews and qualitative research",
+  "Facilitated service blueprint, design consistency, and stakeholder alignment workshops",
+  "Defined interface capabilities and functionality for high-priority user flows",
+  "Led prototype usability testing and design validation",
+  "Conducted post-launch customer research to prioritize enhancements and roadmap investments",
+];
+
+const SCP_FOCUS_AREAS = [
+  "Create a Service",
+  "Shared Control Plane Onboarding",
+  "AI Support Assistant",
+  "Operational Dashboards",
+  "Navigation",
+  "Search",
+  "Information Architecture",
+  "Shared Interaction Patterns",
+];
+
+const SCP_VALIDATION_ACTIVITIES = [
+  "Moderated usability testing",
+  "Executive research readouts",
+  "MVP prioritization",
+  "Launch support",
+  "Post-launch customer interviews",
+  "Roadmap recommendations",
+];
+
+const SCP_CUSTOMER_OUTCOMES = [
+  "Simplified database provisioning through standardized workflows",
+  "Improved onboarding through guided self-service experiences",
+  "Enabled self-service support through an integrated AI assistant",
+  "Reduced context switching between operational tools",
+  "Increased confidence completing infrastructure tasks independently",
+  "Introduced customer experience observability for continuous improvement",
+];
+
+const SCP_ORG_OUTCOMES = [
+  "Reduced operational fragmentation",
+  "Standardized common workflows across database products",
+  "Improved cross-product consistency",
+  "Established reusable UX standards",
+  "Created a scalable platform foundation for future database products",
+  "Influenced long-term roadmap investments through customer research",
+];
+
+const SCP_DESIGN_OUTCOMES = [
+  "Shared experience architecture",
+  "Reusable interaction patterns",
+  "Standardized navigation framework",
+  "Service blueprint methodology",
+  "Enterprise design system adoption",
+];
+
+const SCP_DESIGN_LEADERSHIP_ACTIONS = [
+  "Leading stakeholder discovery and customer research",
+  "Facilitating 5–6 cross-functional strategy and alignment workshops",
+  "Translating customer insights into enterprise experience strategy",
+  "Defining interface capabilities and functionality for high-priority experiences",
+  "Validating solutions through moderated usability testing",
+  "Presenting executive-ready recommendations to leadership",
+  "Conducting post-launch research that directly influenced roadmap investments",
+];
+
+const SCP_VALIDATION_METHODS = [
+  "Existing UX audit synthesis",
+  "Stakeholder interviews",
+  "Contextual inquiry",
+  "Service blueprint workshops",
+  "Design consistency workshops",
+  "Technical feasibility reviews",
+  "Moderated usability testing",
+  "Executive design reviews",
+  "14 post-launch customer interviews",
+];
+
+function ScpInsightBanner({ text, accent }: { text: string; accent: string }) {
+  return (
+    <motion.section
+      className="bg-background border-t border-border py-10 sm:py-14"
+      {...revealProps}
+    >
+      <div className="rounded-2xl border border-border bg-gradient-to-br from-secondary/70 to-background px-6 sm:px-10 py-8 sm:py-10">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{ backgroundColor: `${accent}22` }}>
+            <Lightbulb size={18} style={{ color: accent }} />
+          </div>
+          <span className="text-xs tracking-widest uppercase text-muted-foreground">Key Insight</span>
+        </div>
+        <p
+          className="text-xl sm:text-2xl font-bold leading-relaxed"
+          style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+        >
+          {text}
+        </p>
+      </div>
+    </motion.section>
+  );
+}
+
+function ScpStrategyFlow({ accent }: { accent: string }) {
+  return (
+    <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
+      <div className="mb-8">
+        <h3
+          className="text-xl sm:text-2xl font-extrabold mb-2"
+          style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+        >
+          Strategy at a Glance
+        </h3>
+        <p className="text-sm text-muted-foreground">Enterprise Vision</p>
+      </div>
+
+      <div className="w-full">
+        <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr] gap-2 sm:gap-3 items-stretch">
+          {SCP_STRATEGY_FLOW.map((step, i) => (
+            <div key={step} className="contents">
+              <div
+                className="h-full rounded-xl border border-border bg-secondary/40 px-3 sm:px-5 py-4 sm:py-5 text-center flex flex-col items-center justify-center"
+              >
+                <span className="text-[10px] sm:text-xs tracking-widest uppercase mb-2" style={{ color: accent }}>
+                  Step {i + 1}
+                </span>
+                <span className="text-xs sm:text-sm font-medium leading-relaxed break-words">{step}</span>
+              </div>
+              {i < SCP_STRATEGY_FLOW.length - 1 && (
+                <div className="flex items-center justify-center">
+                  <ArrowRightFlowIcon color={accent} />
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </motion.section>
+  );
+}
+
+function ArrowRightFlowIcon({ color }: { color: string }) {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M5 12h14M19 12l-5-5M19 12l-5 5" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function ScpIconCardRow({
+  title,
+  items,
+}: {
+  title: string;
+  items: { title: string; body: string; icon: LucideIcon }[];
+}) {
+  return (
+    <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
+      <h3
+        className="text-xl sm:text-2xl font-extrabold mb-8"
+        style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+      >
+        {title}
+      </h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+        {items.map((item) => {
+          const Icon = item.icon;
+          return (
+            <div key={item.title} className="rounded-xl border border-border bg-secondary/40 p-5 transition-all hover:-translate-y-0.5 hover:border-foreground/20">
+              <div className="mb-3 inline-flex w-9 h-9 items-center justify-center rounded-full bg-background border border-border">
+                <Icon size={16} />
+              </div>
+              <h4 className="font-semibold mb-2">{item.title}</h4>
+              <p className="text-sm text-foreground/80 leading-relaxed">{item.body}</p>
+            </div>
+          );
+        })}
+      </div>
+    </motion.section>
+  );
+}
+
+function ScpStrategicPriorities({ accent }: { accent: string }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  return (
+    <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
+      <h3
+        className="text-xl sm:text-2xl font-extrabold mb-8"
+        style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+      >
+        Strategic Priorities
+      </h3>
+
+      <div className="space-y-3">
+        {SCP_STRATEGIC_PRIORITIES.map((priority, i) => {
+          const Icon = priority.icon;
+          const isActive = i === activeIndex;
+          return (
+            <div
+              key={priority.title}
+              className={`rounded-xl border overflow-hidden transition-all ${
+                isActive ? "border-foreground/30 bg-secondary" : "border-border bg-background"
+              }`}
+            >
+              <button
+                type="button"
+                onClick={() => setActiveIndex(isActive ? -1 : i)}
+                className="w-full text-left p-4 sm:p-5"
+                aria-expanded={isActive}
+              >
+                <div className="text-xs text-muted-foreground mb-2">Priority {i + 1}</div>
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <Icon size={16} style={isActive ? { color: accent } : undefined} />
+                    <span className="text-sm sm:text-base font-semibold truncate">{priority.title}</span>
+                  </div>
+                  <ChevronDown
+                    size={16}
+                    className={`shrink-0 transition-transform ${isActive ? "rotate-180" : "rotate-0"}`}
+                  />
+                </div>
+              </button>
+
+              {isActive && (
+                <div className="border-t border-border/60 bg-background/50 px-4 sm:px-5 py-4 sm:py-5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                      <div className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Customer Pain Point</div>
+                      <p className="text-sm leading-relaxed text-foreground/80">{priority.painPoint}</p>
+                    </div>
+                    <div>
+                      <div className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Strategic Response</div>
+                      <p className="text-sm leading-relaxed text-foreground/80">{priority.response}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </motion.section>
+  );
+}
+
+function ScpChipSection({ title, chips, icon: Icon }: { title: string; chips: string[]; icon: LucideIcon }) {
+  return (
+    <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
+      <div className="flex items-center gap-2 mb-6">
+        <Icon size={16} />
+        <h3
+          className="text-xl sm:text-2xl font-extrabold"
+          style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+        >
+          {title}
+        </h3>
+      </div>
+      <div className="flex flex-wrap gap-3">
+        {chips.map((chip) => (
+          <span key={chip} className="px-4 py-2 rounded-full border border-border bg-secondary/40 text-sm">
+            {chip}
+          </span>
+        ))}
+      </div>
+    </motion.section>
+  );
+}
+
+function ScpContributions({ accent }: { accent: string }) {
+  return (
+    <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
+      <div className="rounded-2xl border border-border bg-gradient-to-br from-secondary/70 to-background p-6 sm:p-8">
+        <div className="flex items-center gap-2 mb-6">
+          <WandSparkles size={16} style={{ color: accent }} />
+          <h3
+            className="text-xl sm:text-2xl font-extrabold"
+            style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+          >
+            My Contributions
+          </h3>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {SCP_CONTRIBUTIONS.map((item) => (
+            <div key={item} className="rounded-lg border border-border bg-background/70 p-4 text-sm leading-relaxed text-foreground/85">
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+    </motion.section>
+  );
+}
+
+function ScpOutcomes({
+  accent,
+  summary,
+  leadership,
+  accuracy,
+  metrics,
+}: {
+  accent: string;
+  summary: string;
+  leadership: string;
+  accuracy: string;
+  metrics: { value: string; label: string }[];
+}) {
+  const sections = [
+    { title: "Customer Outcomes", items: SCP_CUSTOMER_OUTCOMES, icon: Radar },
+    { title: "Organizational Outcomes", items: SCP_ORG_OUTCOMES, icon: Rocket },
+    { title: "Design Outcomes", items: SCP_DESIGN_OUTCOMES, icon: LayoutGrid },
+  ];
+
+  return (
+    <motion.section id="phase-outcome" className="bg-background border-t border-border py-12 sm:py-20" {...revealProps}>
+      <div className="flex items-baseline gap-4 sm:gap-6 mb-8 sm:mb-14">
+        <span className="text-xs font-mono tracking-widest shrink-0" style={{ color: accent }}>05</span>
+        <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+          Strategic Outcomes
+        </h2>
+        <div className="flex-1 h-px bg-border ml-2 sm:ml-4 hidden sm:block" />
+      </div>
+
+      <p className="text-base sm:text-lg leading-relaxed text-foreground/90 mb-10">{summary}</p>
+
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-background mb-10">
+        {metrics.map((m) => (
+          <motion.div key={m.label} className="bg-background p-5 sm:p-8" {...revealProps}>
+            <div
+              className="text-3xl sm:text-4xl font-extrabold mb-2"
+              style={{ fontFamily: "'Bricolage Grotesque', sans-serif", color: accent }}
+            >
+              {m.value}
+            </div>
+            <div className="text-xs sm:text-sm text-muted-foreground leading-snug">{m.label}</div>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 mb-4">
+        {sections.map(({ title, items, icon: Icon }) => (
+          <div key={title} className="rounded-xl border border-border bg-secondary/40 p-5 transition-all hover:-translate-y-0.5 hover:border-foreground/20">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="inline-flex w-9 h-9 items-center justify-center rounded-full bg-background border border-border">
+                <Icon size={16} style={{ color: accent }} />
+              </div>
+              <h3 className="font-semibold">{title}</h3>
+            </div>
+            <div className="space-y-2">
+              {items.map((item) => (
+                <div key={item} className="text-sm leading-relaxed text-foreground/80">• {item}</div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mb-4">
+        <div className="rounded-xl border border-border bg-secondary/40 p-5 transition-all hover:-translate-y-0.5 hover:border-foreground/20">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="inline-flex w-9 h-9 items-center justify-center rounded-full bg-background border border-border">
+              <BriefcaseBusiness size={16} style={{ color: accent }} />
+            </div>
+            <h3 className="text-lg font-bold" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+              Design Leadership
+            </h3>
+          </div>
+          <p className="text-sm leading-relaxed text-foreground/80 mb-4">{leadership}</p>
+          <div className="space-y-2 mb-4">
+            {SCP_DESIGN_LEADERSHIP_ACTIONS.map((item) => (
+              <div key={item} className="text-sm text-foreground/80">• {item}</div>
+            ))}
+          </div>
+          <p className="text-sm leading-relaxed text-foreground/80">
+            The project reinforced that successful enterprise transformation begins with deeply understanding customer problems and building organizational alignment around solving them.
+          </p>
+        </div>
+
+        <div className="rounded-xl border border-border bg-secondary/40 p-5 transition-all hover:-translate-y-0.5 hover:border-foreground/20">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="inline-flex w-9 h-9 items-center justify-center rounded-full bg-background border border-border">
+              <ShieldCheck size={16} style={{ color: accent }} />
+            </div>
+            <h3 className="text-lg font-bold" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+              Ensuring Clarity & Accuracy
+            </h3>
+          </div>
+          <p className="text-sm leading-relaxed text-foreground/80 mb-4">{accuracy}</p>
+          <div className="space-y-2 mb-4">
+            {SCP_VALIDATION_METHODS.map((item) => (
+              <div key={item} className="text-sm text-foreground/80">• {item}</div>
+            ))}
+          </div>
+          <p className="text-sm leading-relaxed text-foreground/80">
+            Executive presentations focused on strategic recommendations and outcomes, while Product and Engineering teams received prioritized workflows, implementation guidance, and scalable experience principles.
+          </p>
+        </div>
+      </div>
+    </motion.section>
+  );
+}
+
 function Lightbox({
   src,
   caption,
@@ -215,12 +722,14 @@ function PhaseSection({
   index,
   color,
   isLast,
+  stackOnDesktop = false,
   onImageClick,
 }: {
   phase: Phase;
   index: number;
   color: string;
   isLast: boolean;
+  stackOnDesktop?: boolean;
   onImageClick: (src: string, caption: string) => void;
 }) {
   const hasThreeArtifacts = phase.artifacts.length === 3;
@@ -243,25 +752,44 @@ function PhaseSection({
       </div>
 
       {/* Body + artifacts */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12">
-        <div className="lg:col-span-4 lg:sticky lg:top-28">
-          {phase.body.split("\n\n").map((para, i) => (
-            <p key={i} className={`text-base leading-relaxed text-foreground/80 ${i > 0 ? "mt-4" : ""}`}>
-              {para}
-            </p>
-          ))}
-        </div>
+      {stackOnDesktop ? (
+        <div>
+          <div className="max-w-5xl">
+            {phase.body.split("\n\n").map((para, i) => (
+              <p key={i} className={`text-base leading-relaxed text-foreground/80 ${i > 0 ? "mt-4" : ""}`}>
+                {para}
+              </p>
+            ))}
+          </div>
 
-        <div className="lg:col-span-8">
-          {hasThreeArtifacts ? (
-            <div className="space-y-3">
+          <div className="mt-8 sm:mt-10">
+            {hasThreeArtifacts ? (
+              <div className="space-y-3">
+                <ArtifactImage
+                  artifact={phase.artifacts[0]}
+                  aspectClass="aspect-[16/9]"
+                  onImageClick={onImageClick}
+                />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {phase.artifacts.slice(1).map((artifact, i) => (
+                    <ArtifactImage
+                      key={i}
+                      artifact={artifact}
+                      aspectClass="aspect-[4/3]"
+                      onImageClick={onImageClick}
+                    />
+                  ))}
+                </div>
+              </div>
+            ) : hasOneArtifact ? (
               <ArtifactImage
                 artifact={phase.artifacts[0]}
                 aspectClass="aspect-[16/9]"
                 onImageClick={onImageClick}
               />
+            ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {phase.artifacts.slice(1).map((artifact, i) => (
+                {phase.artifacts.map((artifact, i) => (
                   <ArtifactImage
                     key={i}
                     artifact={artifact}
@@ -270,27 +798,59 @@ function PhaseSection({
                   />
                 ))}
               </div>
-            </div>
-          ) : hasOneArtifact ? (
-            <ArtifactImage
-              artifact={phase.artifacts[0]}
-              aspectClass="aspect-[16/9]"
-              onImageClick={onImageClick}
-            />
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {phase.artifacts.map((artifact, i) => (
+            )}
+          </div>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12">
+          <div className="lg:col-span-4 lg:sticky lg:top-28">
+            {phase.body.split("\n\n").map((para, i) => (
+              <p key={i} className={`text-base leading-relaxed text-foreground/80 ${i > 0 ? "mt-4" : ""}`}>
+                {para}
+              </p>
+            ))}
+          </div>
+
+          <div className="lg:col-span-8">
+            {hasThreeArtifacts ? (
+              <div className="space-y-3">
                 <ArtifactImage
-                  key={i}
-                  artifact={artifact}
-                  aspectClass="aspect-[4/3]"
+                  artifact={phase.artifacts[0]}
+                  aspectClass="aspect-[16/9]"
                   onImageClick={onImageClick}
                 />
-              ))}
-            </div>
-          )}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {phase.artifacts.slice(1).map((artifact, i) => (
+                    <ArtifactImage
+                      key={i}
+                      artifact={artifact}
+                      aspectClass="aspect-[4/3]"
+                      onImageClick={onImageClick}
+                    />
+                  ))}
+                </div>
+              </div>
+            ) : hasOneArtifact ? (
+              <ArtifactImage
+                artifact={phase.artifacts[0]}
+                aspectClass="aspect-[16/9]"
+                onImageClick={onImageClick}
+              />
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {phase.artifacts.map((artifact, i) => (
+                  <ArtifactImage
+                    key={i}
+                    artifact={artifact}
+                    aspectClass="aspect-[4/3]"
+                    onImageClick={onImageClick}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </motion.section>
   );
 }
@@ -337,6 +897,7 @@ export default function CaseStudyPage() {
   const next = caseStudies[currentIndex + 1] ?? null;
 
   const phases = [study.discover, study.define, study.design, study.deliver];
+  const isSharedControlPlanes = study.slug === "shared-control-planes";
 
   // Resolved accent: swap to lightColor in light mode when provided, guaranteeing ≥4.5:1
   const accent = !isDark && study.lightColor ? study.lightColor : study.color;
@@ -417,6 +978,7 @@ export default function CaseStudyPage() {
               { label: "Role", value: study.role },
               { label: "Duration", value: study.duration },
               { label: "Year", value: study.year },
+              ...(study.team ? [{ label: "Team", value: study.team }] : []),
             ].map((item) => (
               <div key={item.label}>
                 <div className="text-xs text-muted-foreground tracking-widest uppercase mb-1">{item.label}</div>
@@ -431,14 +993,23 @@ export default function CaseStudyPage() {
       <div className="px-5 sm:px-8 max-w-7xl mx-auto">
         <motion.section className="bg-background border-t border-border py-12 sm:py-16 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-12" {...revealProps}>
           <div className="lg:col-span-3">
-            <span className="text-xs text-muted-foreground tracking-widest uppercase">Overview</span>
+            <span className="text-xs text-muted-foreground tracking-widest uppercase">
+              {isSharedControlPlanes ? "Executive Summary" : "Overview"}
+            </span>
           </div>
           <div className="lg:col-span-7">
-            <p className="text-base sm:text-lg leading-relaxed text-foreground/90">{study.overview}</p>
+            {study.overview.split("\n\n").map((paragraph, i) => (
+              <p key={i} className={`text-base sm:text-lg leading-relaxed text-foreground/90 ${i > 0 ? "mt-4" : ""}`}>
+                {paragraph}
+              </p>
+            ))}
           </div>
         </motion.section>
 
+        {isSharedControlPlanes && <ScpStrategyFlow accent={accent} />}
+
         {/* Metrics */}
+        {!isSharedControlPlanes && (
         <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-background">
             {study.metrics.map((m) => (
@@ -454,6 +1025,7 @@ export default function CaseStudyPage() {
             ))}
           </div>
         </motion.section>
+        )}
 
 
         {/* Four phases */}
@@ -464,12 +1036,55 @@ export default function CaseStudyPage() {
               index={i}
               color={accent}
               isLast={i === phases.length - 1}
+              stackOnDesktop={
+                isSharedControlPlanes &&
+                (phase.title === "Framing the Problem" ||
+                  phase.title === "Translating Strategy into Experience")
+              }
               onImageClick={(src, caption) => setLightbox({ src, caption })}
             />
+
+            {isSharedControlPlanes && i === 0 && (
+              <>
+                <ScpIconCardRow title="Customer Pain Points" items={SCP_PAIN_POINTS} />
+                <ScpInsightBanner
+                  accent={accent}
+                  text="Engineers weren't asking for new features—they wanted a simpler, more consistent way to accomplish the same operational goals."
+                />
+              </>
+            )}
+
+            {isSharedControlPlanes && i === 1 && (
+              <>
+                <ScpStrategicPriorities accent={accent} />
+                <ScpContributions accent={accent} />
+                <ScpInsightBanner
+                  accent={accent}
+                  text="The challenge wasn't simply redesigning database interfaces—it was establishing a scalable operational model. By resolving the most significant customer pain points first, we created a reusable experience foundation that reduced operational complexity while supporting the organization's long-term platform vision."
+                />
+              </>
+            )}
+
+            {isSharedControlPlanes && i === 2 && (
+              <ScpChipSection title="Focus Areas" chips={SCP_FOCUS_AREAS} icon={Compass} />
+            )}
+
+            {isSharedControlPlanes && i === 3 && (
+              <ScpChipSection title="Validation Activities" chips={SCP_VALIDATION_ACTIVITIES} icon={CheckCircle2} />
+            )}
           </div>
         ))}
 
         {/* Outcome */}
+        {isSharedControlPlanes ? (
+          <ScpOutcomes
+            accent={accent}
+            summary={study.outcome.summary}
+            leadership={study.outcome.impact}
+            accuracy={study.outcome.reflection}
+            metrics={study.metrics}
+          />
+        ) : (
         <motion.section id="phase-outcome" className="bg-background border-t border-border py-12 sm:py-20" {...revealProps}>
           <div className="flex items-baseline gap-4 sm:gap-6 mb-8 sm:mb-14">
             <span className="text-xs font-mono tracking-widest shrink-0" style={{ color: accent }}>05</span>
@@ -514,6 +1129,7 @@ export default function CaseStudyPage() {
             ))}
           </div>
         </motion.section>
+        )}
 
       </div>
 
