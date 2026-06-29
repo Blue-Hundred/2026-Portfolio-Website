@@ -176,7 +176,7 @@ export const caseStudies: CaseStudy[] = [
     },
     define: {
       title: "Building Alignment Before Design",
-      body: "Rather than redesigning every workflow simultaneously, we intentionally prioritized the experiences that would eliminate the greatest customer pain points while establishing reusable patterns for future database products.\n\nUsing research findings and stakeholder interviews, I facilitated 5–6 design consistency, service blueprint, and stakeholder alignment workshops with Product Managers, Enterprise Architects, Engineering Leads, Technology leaders, and Operations partners. Together we evaluated operational workflows, technical dependencies, and customer pain points to identify the highest-value opportunities for the MVP.\n\nThese collaborative sessions established organizational alignment before design began and resulted in four strategic workstreams.",
+      body: "Rather than redesigning every workflow at once, we prioritized the experiences that addressed the greatest customer pain points while establishing reusable patterns for future database products.\n\nTo guide decision-making, I synthesized research into two primary personas—Application Owners and Software Engineers—creating a shared understanding of user goals, pain points, and operational needs.\n\nUsing these insights, I facilitated 5–6 design consistency, service blueprint, and stakeholder alignment workshops with Product, Engineering, Enterprise Architecture, Technology, and Operations leaders. Together, we evaluated workflows, technical dependencies, and customer needs to identify the highest-value opportunities for the MVP.\n\nThese sessions aligned stakeholders around shared experience principles, standardized workflows, and four strategic workstreams that guided the Graph Shared Control Plane MVP and the future Relational Shared Control Plane.",
       artifacts: [
         {
           src: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=900&h=600&fit=crop&auto=format",
@@ -253,95 +253,96 @@ export const caseStudies: CaseStudy[] = [
     id: 3,
     slug: "arrt-modernization",
     category: "Service Design",
-    title: "Automating Analyst Resolution Reporting",
-    subtitle: "Transforming a fragmented and manual compliance ecosystem into a unified analyst experience supporting 22,000 branch control violations annually.",
+    title: "Enterprise Branch Resolution Platform",
+    subtitle: "Modernizing branch operations through workflow automation, service design, and enterprise platform strategy.",
     year: "2022-2025",
-    tags: ["UX Strategy", "Service Design", "Workflow Mapping", "Information Architecture"],
+    tags: ["UX Strategy", "Service Design", "Workflow Automation", "Enterprise Platform"],
     image: arrCoverFull,
     color: "#35C6F1",
     lightColor: "#0071A4",
-    client: "JPMorgan Chase",
-    role: "UX Manager",
+    client: "JPMorgan Chase & Co.",
+    role: "Lead UX Designer (Vice President)",
+    team: "Product Management • Engineering • Enterprise Architecture • Operations • UX Research • UX Design • Compliance",
     duration: "3 years",
     overview:
-      "The Analyst Resolution Reporting ecosystem supported approximately 22,000 branch control violations annually. Analysts were required to work across three disconnected applications — ARR-T, MCT, and Branch Dashboard — to investigate violations, communicate with field teams, document remediation efforts, and track resolution progress. Compounding the challenge, ARR-T was a Microsoft Access application identified as a high-risk platform scheduled for decommissioning. The organization needed a modernized solution that reduced operational risk while simplifying analyst workflows.",
+      "Branch Operations relied on multiple legacy applications, spreadsheets, SharePoint sites, SAS reports, email notifications, and MS Access tools to manage branch operational issues, compliance violations, and regulatory reporting.\n\nAnalysts manually reviewed more than fifty operational reports spanning account opening, cash audits, teller transactions, safe deposit operations, wires, physical security, and additional operational controls. Resolving a single issue often required switching between several disconnected systems while coordinating communication between analysts, branch managers, and operational leaders.\n\nAs part of a broader modernization initiative, our team defined the future experience strategy for a unified Branch Resolution Platform that consolidated fragmented workflows into a scalable case management ecosystem. The initiative focused on simplifying operations, automating manual work, improving collaboration, and establishing a cloud-ready architecture capable of supporting future operational growth.",
     metrics: [
-      { value: "3 → 1", label: "Applications consolidated into a single platform" },
-      { value: "22K", label: "Branch control violations supported annually" },
-      { value: "[ # ]", label: "[ Add metric 1 ]" },
-      { value: "[ # ]", label: "[ Add metric 2 ]" },
+      { value: "50+", label: "Operational reports manually reviewed" },
+      { value: "7", label: "Legacy channels consolidated into strategy" },
+      { value: "4", label: "Strategic experience principles defined" },
+      { value: "3", label: "Primary user groups aligned" },
     ],
     discover: {
-      title: "Discover",
-      body: "To understand the ecosystem, I conducted stakeholder interviews, user interviews, workflow analysis, UI audits, service blueprinting exercises, and collaborative workshops. The goal was to understand how work moved through the organization, identify inefficiencies, uncover dependencies between systems, and establish a shared understanding of the future-state experience.\n\nWorking closely with analysts and business stakeholders, I facilitated workflow mapping sessions that documented end-to-end remediation processes, escalation paths, decision points, and exception handling scenarios. These exercises revealed numerous manual handoffs, duplicated activities, fragmented workflows, and excessive application switching.\n\nTo fully understand the operational model, I created service blueprints for ARR-T, MCT, and Branch Dashboard. These blueprints exposed user actions, supporting processes, system interactions, manual activities, and opportunities for automation — providing visibility into both front-stage user experiences and the back-stage operational processes supporting them.",
+      title: "Discovery",
+      body: "Discovery focused on understanding how analysts, branch managers, and operational teams managed branch violations across multiple disconnected systems.\n\nResearch activities included stakeholder interviews, workflow analysis, operational process mapping, current-state ecosystem mapping, persona development, requirements workshops, and service blueprinting.\n\nCurrent-state architecture revealed an ecosystem spanning SAS Reporting, MS Access, SharePoint, MFT, email notifications, Excel reports, and internal databases. The resulting experience created excessive context switching, duplicated effort, and inconsistent operational processes.\n\nResearch insights consistently surfaced five recurring challenges: fragmented operational workflows, manual case management, inconsistent user experiences, limited workflow visibility, and collaboration gaps driven by email-heavy coordination.\n\nThree primary user groups emerged during discovery: Branch Administrators, Analysts, and Branch Managers.",
       artifacts: [
         {
           src: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Workflow mapping sessions and service blueprints",
+          caption: "[ Insert ] Current-State Architecture Diagram",
         },
         {
           src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — UI audits across ARR-T, MCT, and Branch Dashboard",
+          caption: "[ Insert ] Current Service Blueprint",
         },
         {
           src: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Stakeholder interviews and collaborative workshops",
+          caption: "[ Insert ] Persona Summary and Use Cases",
         },
       ],
     },
     define: {
-      title: "Define",
-      body: "The ecosystem involved multiple stakeholder groups with different responsibilities, goals, and reporting structures. I facilitated collaborative workshops to define user roles, identify core capabilities, prioritize enhancements, establish success measures, and create alignment around a shared modernization strategy.\n\nResearch findings informed a future-state vision focused on four strategic objectives: retire high-risk Microsoft Access applications; consolidate ARR-T, MCT, and Branch Dashboard into one experience; introduce data visibility, reporting, and operational awareness; and simplify research, communication, and remediation workflows. The vision emphasized reducing workflow fragmentation while improving operational efficiency and compliance outcomes.\n\nResearch also revealed that analysts and administrators had very different needs. Analysts needed faster access to records, improved prioritization, and simpler communication tools. Administrators needed self-service configuration capabilities and greater control over content management.",
+      title: "Executive Alignment",
+      body: "Rather than modernizing individual applications independently, we aligned Product, Engineering, Operations, and Enterprise Architecture around a shared platform strategy.\n\nTogether, we defined a modernization roadmap that balanced immediate business needs with long-term scalability by establishing reusable workflow patterns, standardized case management, and common interaction models capable of supporting future operational controls.\n\nBusiness goals centered on replacing legacy MS Access applications, consolidating fragmented workflows, reducing manual analyst effort, improving collaboration, standardizing case management, enabling workflow automation and integrations, strengthening reporting and auditability, and establishing a scalable architecture for future modernization initiatives.\n\nAs Lead UX Designer, I partnered with Product, Engineering, Enterprise Architecture, Operations, and UX Research to define the experience strategy and future-state platform direction.",
       artifacts: [
         {
           src: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Future-state vision and strategic objectives",
+          caption: "[ Insert ] Executive Alignment Workshops",
         },
         {
           src: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Analyst vs. administrator needs mapping",
+          caption: "[ Insert ] Experience Strategy Principles",
         },
       ],
     },
     design: {
-      title: "Design",
-      body: "After establishing the vision, I partnered with stakeholders to redesign key workflows and identify opportunities to automate manual processes. Enhancements included automated communications, integrated activity tracking, dynamic filtering, SLA monitoring, personalized work queues, and streamlined escalation workflows.\n\nThe resulting solution introduced dedicated administrative experiences that reduced reliance on engineering teams for routine updates. The final concept unified capabilities from ARR-T, MCT, and Branch Dashboard into a single role-based experience with personalized work queues, dynamic filtering and search, integrated communications, automated outreach logging, SLA monitoring and prioritization, administrative content management, and improved visibility into case status and ownership.",
+      title: "Defining the Future State",
+      body: "Using research insights and stakeholder collaboration, I designed a future-state platform centered around standardized case management.\n\nThe experience strategy was grounded in four principles: Unified Platform, Workflow Automation, Collaborative Case Management, and Scalable Architecture.\n\nThe future-state experience focused on unified dashboards, consistent navigation, shared workflow patterns, automated routing, search and filtering, collaboration tools, operational reporting, and enterprise scalability.\n\nEach workflow was redesigned around a standardized case lifecycle: case creation, case assignment, analyst investigation, branch outreach, resolution management, and workflow completion. These standardized flows reduced variability while improving operational consistency across business processes.",
       artifacts: [
         {
           src: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Unified platform concept and role-based experience design",
+          caption: "[ Insert ] User Flow Diagrams",
         },
         {
           src: "https://images.unsplash.com/photo-1576153192396-180ecef2a715?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Workflow redesigns and automation opportunities",
+          caption: "[ Insert ] Workflow Modernization Diagram",
         },
         {
           src: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Administrative self-service experience designs",
+          caption: "[ Insert ] Future-State Platform Navigation",
         },
       ],
     },
     deliver: {
-      title: "Deliver",
-      body: "The design reduced context switching and enabled analysts to complete critical tasks within a single application. The modernization strategy established a clear path for retiring high-risk legacy technology while delivering meaningful improvements to analyst productivity and operational visibility.\n\nKey outcomes: consolidated three disconnected applications into a unified analyst platform; reduced workflow fragmentation and manual coordination; increased analyst productivity through automation and prioritization; enabled business self-service administration; established a modernization strategy supporting retirement of high-risk legacy technology; and improved visibility into operational performance and case management workflows.",
+      title: "Future-State Platform",
+      body: "Working alongside Enterprise Architecture and Engineering, we defined a scalable platform capable of supporting future operational modernization efforts.\n\nThe proposed architecture introduced centralized workflow management, cloud-ready services, case orchestration, shared operational data, integrated reporting, and enterprise workflow automation.\n\nOne of the largest opportunities involved replacing fragmented operational processes with standardized workflow orchestration. The redesigned platform introduced automated assignments, standardized workflow states, integrated communication, resolution tracking, case ownership, audit history, and configurable engagement models.\n\nThis foundation positioned the organization to retire legacy applications while supporting future operational capabilities.",
       artifacts: [
         {
           src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Final unified analyst platform",
+          caption: "[ Insert ] Future-State Architecture",
         },
         {
           src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Operational dashboards and case management views",
+          caption: "[ Insert ] Hero Vision and Platform Outcomes",
         },
       ],
     },
     outcome: {
       summary:
-        "Three disconnected applications — ARR-T, MCT, and Branch Dashboard — were consolidated into a single role-based analyst platform. The design reduced context switching, eliminated manual handoffs between systems, and enabled analysts to complete critical compliance tasks within one application. The modernization strategy also established a clear path for retiring a high-risk Microsoft Access platform.",
+        "The initiative established a strategic foundation for modernizing branch operations by transforming fragmented operational workflows into a unified enterprise platform.",
       impact:
-        "The initiative reduced workflow fragmentation and manual coordination across the ecosystem supporting 22,000 branch control violations annually. Analysts gained faster access to records, improved prioritization tools, and integrated communications. Administrators gained self-service configuration capabilities, reducing reliance on engineering teams for routine updates. The work improved visibility into operational performance and case management workflows across the organization.",
+        "The experience strategy simplified analyst workflows, reduced manual operational effort, improved collaboration across business teams, standardized case management, increased operational transparency, established reusable workflow patterns, and enabled future cloud modernization efforts. Rather than solving a single operational problem, the project created a scalable experience framework capable of supporting future branch operations initiatives across the enterprise.",
       reflection:
-        "This project demonstrated that modernization is rarely just a technology challenge. Success required understanding a complex ecosystem of users, systems, processes, and controls while aligning stakeholders around a shared future-state vision. Through service design, workflow engineering, product strategy, and user-centered design, I helped create a foundation for transforming a fragmented compliance ecosystem into a unified operational experience.",
+        "This project reinforced that successful enterprise modernization begins long before interface design. By collaborating closely with research, operations, product, engineering, and enterprise architecture teams, we aligned business objectives, operational workflows, and technical capabilities into a unified experience strategy. Service blueprints, workflow mapping, and future-state architecture became primary design artifacts that guided decision-making, reduced organizational complexity, and established a scalable foundation for future platform modernization.",
     },
   },
   {

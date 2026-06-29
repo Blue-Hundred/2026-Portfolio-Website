@@ -303,6 +303,8 @@ const SCP_VALIDATION_METHODS = [
   "14 post-launch customer interviews",
 ];
 
+const SHOW_SCP_CONTRIBUTIONS = false;
+
 function ScpInsightBanner({ text, accent }: { text: string; accent: string }) {
   return (
     <motion.section
@@ -337,7 +339,6 @@ function ScpStrategyFlow({ accent }: { accent: string }) {
         >
           Strategy at a Glance
         </h3>
-        <p className="text-sm text-muted-foreground">Enterprise Vision</p>
       </div>
 
       <div className="w-full">
@@ -417,6 +418,9 @@ function ScpStrategicPriorities({ accent }: { accent: string }) {
       >
         Strategic Priorities
       </h3>
+      <p className="text-sm sm:text-base text-foreground/80 leading-relaxed mb-6">
+        We aligned stakeholders on a shared set of strategic priorities that could be consistently applied across both the Graph and Relational control planes while accommodating technology-specific requirements.
+      </p>
 
       <div className="space-y-3">
         {SCP_STRATEGIC_PRIORITIES.map((priority, i) => {
@@ -568,7 +572,7 @@ function ScpOutcomes({
           <div key={title} className="rounded-xl border border-border bg-secondary/40 p-5 transition-all hover:-translate-y-0.5 hover:border-foreground/20">
             <div className="flex items-center gap-2 mb-4">
               <div className="inline-flex w-9 h-9 items-center justify-center rounded-full bg-background border border-border">
-                <Icon size={16} style={{ color: accent }} />
+                <Icon size={16} />
               </div>
               <h3 className="font-semibold">{title}</h3>
             </div>
@@ -585,7 +589,7 @@ function ScpOutcomes({
         <div className="rounded-xl border border-border bg-secondary/40 p-5 transition-all hover:-translate-y-0.5 hover:border-foreground/20">
           <div className="flex items-center gap-2 mb-4">
             <div className="inline-flex w-9 h-9 items-center justify-center rounded-full bg-background border border-border">
-              <BriefcaseBusiness size={16} style={{ color: accent }} />
+              <BriefcaseBusiness size={16} />
             </div>
             <h3 className="text-lg font-bold" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
               Design Leadership
@@ -605,7 +609,7 @@ function ScpOutcomes({
         <div className="rounded-xl border border-border bg-secondary/40 p-5 transition-all hover:-translate-y-0.5 hover:border-foreground/20">
           <div className="flex items-center gap-2 mb-4">
             <div className="inline-flex w-9 h-9 items-center justify-center rounded-full bg-background border border-border">
-              <ShieldCheck size={16} style={{ color: accent }} />
+              <ShieldCheck size={16} />
             </div>
             <h3 className="text-lg font-bold" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
               Ensuring Clarity & Accuracy
@@ -673,15 +677,6 @@ function Lightbox({
         />
       </div>
 
-      {/* Caption */}
-      {caption && (
-        <p
-          className="mt-5 text-xs text-muted-foreground text-center max-w-xl"
-          onClick={(e) => e.stopPropagation()}
-        >
-          {caption}
-        </p>
-      )}
     </div>
   );
 }
@@ -1057,7 +1052,7 @@ export default function CaseStudyPage() {
             {isSharedControlPlanes && i === 1 && (
               <>
                 <ScpStrategicPriorities accent={accent} />
-                <ScpContributions accent={accent} />
+                {SHOW_SCP_CONTRIBUTIONS && <ScpContributions accent={accent} />}
                 <ScpInsightBanner
                   accent={accent}
                   text="The challenge wasn't simply redesigning database interfaces—it was establishing a scalable operational model. By resolving the most significant customer pain points first, we created a reusable experience foundation that reduced operational complexity while supporting the organization's long-term platform vision."
