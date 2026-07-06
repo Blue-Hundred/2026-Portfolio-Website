@@ -155,7 +155,7 @@ function Portfolio() {
 
       {/* Hero */}
       <motion.section
-        className="min-h-[290px] sm:min-h-screen bg-background flex flex-col justify-start sm:justify-end pb-12 sm:pb-20 px-5 sm:px-8 pt-20 sm:pt-32 relative overflow-hidden"
+        className="min-h-[290px] lg:min-h-screen bg-background flex flex-col justify-start lg:justify-end pb-12 md:pb-16 lg:pb-20 px-5 sm:px-8 pt-24 md:pt-28 lg:pt-32 relative overflow-hidden"
         {...revealProps}
       >
         <div
@@ -167,7 +167,7 @@ function Portfolio() {
           }}
         />
         <div className="relative z-10 max-w-7xl mx-auto w-full">
-          <div className="mt-[40px] sm:mt-0 mb-5 sm:mb-6 flex items-center gap-3">
+          <div className="mt-6 md:mt-8 lg:mt-0 mb-5 sm:mb-6 flex items-center gap-3">
             <span className="text-xs font-medium tracking-widest uppercase text-primary">
               Lead UX Designer, CX Strategist, Service Designer, and AI Developer
             </span>
