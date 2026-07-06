@@ -1,6 +1,6 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Download, ArrowUpRight, Mail, Send, ChevronDown, Menu, X, Linkedin } from "lucide-react";
-import { BrowserRouter, Routes, Route, Link, useNavigate } from "react-router";
+import { BrowserRouter, Routes, Route, Link, useNavigate, useLocation } from "react-router";
 import { motion } from "motion/react";
 import { caseStudies } from "./data/caseStudies";
 import CaseStudyPage from "./CaseStudyPage";
@@ -31,6 +31,7 @@ function Portfolio() {
   const [menuOpen, setMenuOpen] = useState(false);
   const contactRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const location = useLocation();
   const { isDark, toggle } = useTheme();
   const revealProps = {
     initial: { opacity: 0, y: 40 },
@@ -64,6 +65,18 @@ function Portfolio() {
     setFormStatus("sent");
     setFormData({ name: "", email: "", message: "" });
   };
+
+  useEffect(() => {
+    if (!location.hash) return;
+
+    const targetId = location.hash.slice(1);
+    const target = document.getElementById(targetId);
+    if (!target) return;
+
+    requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "auto", block: "start" });
+    });
+  }, [location.pathname, location.hash]);
 
   return (
     <div

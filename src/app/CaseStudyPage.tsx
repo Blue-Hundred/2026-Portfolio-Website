@@ -30,7 +30,7 @@ import {
   ShieldCheck,
   type LucideIcon,
 } from "lucide-react";
-import { caseStudies, type Phase } from "./data/caseStudies";
+import { caseStudies, type Phase, type CaseStudy } from "./data/caseStudies";
 import { useTheme } from "./hooks/useTheme";
 import { ThemeToggle } from "./components/ThemeToggle";
 
@@ -124,7 +124,7 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
 
         <div className="mt-8 text-center">
           <Link
-            to="/"
+            to="/#work"
             className="text-xs text-muted-foreground hover:text-foreground transition-colors"
           >
             ← Back to portfolio
@@ -148,42 +148,20 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
 const PHASES = ["discover", "define", "design", "deliver"] as const;
 
 const SCP_STRATEGY_FLOW = [
-  "Individual Database Control Planes",
-  "Shared Control Planes",
-  "Centralized control plane experience in the Integrated Engineer's Portal application",
+  "Learn",
+  "Complete Prerequisites",
+  "Provision Database",
+  "Configure Service",
+  "Monitor Health",
+  "Manage Lifecycle",
 ];
 
-const SCP_PAIN_POINTS: { title: string; body: string; icon: LucideIcon }[] = [
-  {
-    title: "Fragmented Operational Workflows",
-    body: "Engineers navigated multiple systems to complete a single operational task, increasing cognitive load and slowing delivery.",
-    icon: Workflow,
-  },
-  {
-    title: "Limited Self-Service",
-    body: "Onboarding, provisioning, and troubleshooting depended heavily on manual support, creating bottlenecks and delaying work.",
-    icon: Wrench,
-  },
-  {
-    title: "Inconsistent Experiences",
-    body: "Common tasks behaved differently depending on database technology, requiring engineers to relearn workflows when switching products.",
-    icon: CircleDashed,
-  },
-  {
-    title: "Documentation & Discoverability",
-    body: "Critical documentation and operational guidance were difficult to locate, inconsistent across products, or unavailable when needed.",
-    icon: BookOpen,
-  },
-  {
-    title: "Limited Operational Visibility",
-    body: "Customers lacked a centralized view of service health, operational status, and lifecycle management.",
-    icon: Activity,
-  },
-  {
-    title: "No Customer Feedback Loop",
-    body: "Without customer experience observability, Product teams struggled to identify friction after launch.",
-    icon: MessageSquareWarning,
-  },
+const SCP_PAIN_POINTS: { label: string; icon: LucideIcon }[] = [
+  { label: "Different navigation structures", icon: Compass },
+  { label: "Different provisioning workflows", icon: Workflow },
+  { label: "Different terminology", icon: CircleDashed },
+  { label: "Different approval processes", icon: ShieldCheck },
+  { label: "Different operational experiences", icon: Activity },
 ];
 
 const SCP_STRATEGIC_PRIORITIES: {
@@ -193,36 +171,44 @@ const SCP_STRATEGIC_PRIORITIES: {
   icon: LucideIcon;
 }[] = [
   {
-    title: "Create a Service",
+    title: "Standardize Provisioning",
     painPoint:
-      "Provisioning workflows differed across database technologies, increasing onboarding time and creating unnecessary complexity.",
+      "Every database product followed a different provisioning model.",
     response:
-      "Design a standardized provisioning experience that supports both Graph and Relational platforms through a shared operational workflow.",
+      "Every database product followed one consistent provisioning model.",
     icon: Sparkles,
   },
   {
-    title: "Shared Control Plane Onboarding",
+    title: "Separate Governance from Provisioning",
     painPoint:
-      "New engineers struggled to understand prerequisites, locate documentation, and confidently begin using the platform.",
+      "Customers confused onboarding requirements with provisioning tasks.",
     response:
-      "Create a guided self-service onboarding experience that reduces dependency on manual assistance while improving discoverability.",
+      "Separating these workflows reduced cognitive load.",
     icon: UserRoundPlus,
   },
   {
-    title: "AI Support Assistant",
+    title: "Surface Operational Health",
     painPoint:
-      "Engineers depended on weekly SRE office hours for common onboarding, provisioning, and operational questions.",
+      "Provisioning isn't complete when infrastructure is created.",
     response:
-      "Design an AI-powered support assistant embedded in onboarding and provisioning flows to provide contextual guidance and unblock customers in real time.",
+      "Customers need confidence that services remain healthy.",
     icon: Bot,
   },
   {
-    title: "Customer Experience Observability",
+    title: "Embed Documentation",
     painPoint:
-      "Product teams lacked visibility into customer struggles after launch, making prioritization reactive.",
+      "Documentation was outside the workflow.",
     response:
-      "Introduce customer experience observability to continuously measure adoption, identify friction, and guide roadmap investments.",
+      "Documentation became part of the workflow rather than a separate destination.",
     icon: BarChart3,
+  },
+  {
+    title: "Build for Scale",
+    painPoint:
+      "Patterns needed to scale beyond a single use case.",
+    response:
+      "Evaluate every interaction pattern for reuse across additional database products and workflows.",
+    icon: MessageSquareWarning,
   },
 ];
 
@@ -235,75 +221,435 @@ const SCP_CONTRIBUTIONS = [
   "Conducted post-launch customer research to prioritize enhancements and roadmap investments",
 ];
 
-const SCP_FOCUS_AREAS = [
-  "Create a Service",
-  "Shared Control Plane Onboarding",
-  "AI Support Assistant",
-  "Operational Dashboards",
-  "Navigation",
-  "Search",
-  "Information Architecture",
-  "Shared Interaction Patterns",
+const SCP_RESEARCH_METHODS = [
+  "Stakeholder Interviews",
+  "UX Audit",
+  "Customer Journey Mapping",
+  "Service Blueprinting",
+  "Workflow Analysis",
+  "Persona Development",
+  "Usability Testing",
 ];
 
 const SCP_VALIDATION_ACTIVITIES = [
-  "Moderated usability testing",
-  "Executive research readouts",
-  "MVP prioritization",
-  "Launch support",
-  "Post-launch customer interviews",
-  "Roadmap recommendations",
+  "Discoverability",
+  "Navigation",
+  "Onboarding",
+  "Provisioning",
+  "Service Management",
+  "Iterative Validation",
 ];
 
 const SCP_CUSTOMER_OUTCOMES = [
-  "Simplified database provisioning through standardized workflows",
-  "Improved onboarding through guided self-service experiences",
-  "Enabled self-service support through an integrated AI assistant",
-  "Reduced context switching between operational tools",
-  "Increased confidence completing infrastructure tasks independently",
-  "Introduced customer experience observability for continuous improvement",
+  "Unified experience strategy across multiple database products",
+  "Standardized onboarding and provisioning workflows",
+  "Shared navigation and interaction patterns",
+  "Improved usability through iterative validation",
 ];
 
 const SCP_ORG_OUTCOMES = [
-  "Reduced operational fragmentation",
-  "Standardized common workflows across database products",
-  "Improved cross-product consistency",
-  "Established reusable UX standards",
-  "Created a scalable platform foundation for future database products",
-  "Influenced long-term roadmap investments through customer research",
+  "Reusable design patterns for future database products",
+  "Foundation for Integrated Engineers Portal",
+  "Reduced onboarding time and provisioning friction",
+  "Scalable platform model for future capabilities",
 ];
 
 const SCP_DESIGN_OUTCOMES = [
-  "Shared experience architecture",
-  "Reusable interaction patterns",
-  "Standardized navigation framework",
-  "Service blueprint methodology",
-  "Enterprise design system adoption",
+  "Design once, scale everywhere",
+  "Progressive disclosure",
+  "Context-first guidance",
+  "Operational transparency",
+  "Consistency across products",
 ];
 
 const SCP_DESIGN_LEADERSHIP_ACTIONS = [
-  "Leading stakeholder discovery and customer research",
-  "Facilitating 5–6 cross-functional strategy and alignment workshops",
-  "Translating customer insights into enterprise experience strategy",
-  "Defining interface capabilities and functionality for high-priority experiences",
-  "Validating solutions through moderated usability testing",
-  "Presenting executive-ready recommendations to leadership",
-  "Conducting post-launch research that directly influenced roadmap investments",
+  "Experience Strategy",
+  "Product Design",
+  "UX Research",
+  "Service Design",
+  "Information Architecture",
+  "Design Systems",
+  "Executive Storytelling",
+  "Cross-functional Leadership",
 ];
 
 const SCP_VALIDATION_METHODS = [
-  "Existing UX audit synthesis",
-  "Stakeholder interviews",
-  "Contextual inquiry",
-  "Service blueprint workshops",
-  "Design consistency workshops",
-  "Technical feasibility reviews",
-  "Moderated usability testing",
-  "Executive design reviews",
-  "14 post-launch customer interviews",
+  "92% task completion",
+  "95 CSAT",
+  "95 UMUX-Lite",
+  "85% preferred the redesigned homepage",
+  "Moderated validation with enterprise engineers",
+  "Iterative concept testing through design process",
 ];
 
 const SHOW_SCP_CONTRIBUTIONS = false;
+
+const SCP_RESPONSIBILITIES = [
+  "Experience Strategy",
+  "Product Design",
+  "UX Research & Synthesis",
+  "Service Design",
+  "Information Architecture",
+  "Interaction Design",
+  "Design Systems",
+  "Usability Testing",
+  "Cross-functional Leadership",
+  "Executive Storytelling",
+];
+
+const SCP_PERSONAS = [
+  {
+    name: "Application Owner",
+    description:
+      "Responsible for preparing applications, coordinating prerequisites, managing approvals, and enabling engineering teams.",
+    goals: ["Complete onboarding efficiently", "Maintain compliance", "Reduce engineering blockers"],
+    painPoints: [
+      "Fragmented onboarding",
+      "Multiple disconnected systems",
+      "Poor visibility into approvals",
+      "Confusing ownership",
+    ],
+  },
+  {
+    name: "Engineer",
+    description:
+      "Responsible for provisioning, configuring, monitoring, and maintaining database services.",
+    goals: ["Provision services quickly", "Configure correctly", "Resolve issues independently"],
+    painPoints: [
+      "Inconsistent provisioning",
+      "Technical complexity",
+      "Limited operational visibility",
+      "Difficult troubleshooting",
+    ],
+  },
+];
+
+const SCP_DESIGN_PRINCIPLES = [
+  {
+    title: "Design Once, Scale Everywhere",
+    body: "Create reusable interaction patterns across products.",
+  },
+  {
+    title: "Progressive Disclosure",
+    body: "Reduce complexity by revealing information when needed.",
+  },
+  {
+    title: "Context First",
+    body: "Provide documentation and guidance within the workflow.",
+  },
+  {
+    title: "Operational Transparency",
+    body: "Expose system status, health, and progress throughout provisioning.",
+  },
+  {
+    title: "Consistency Builds Confidence",
+    body: "Standardize terminology, navigation, and workflows regardless of database technology.",
+  },
+];
+
+function ScpSectionTitle({ title }: { title: string }) {
+  return (
+    <h3
+      className="text-xl sm:text-2xl font-extrabold mb-5"
+      style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+    >
+      {title}
+    </h3>
+  );
+}
+
+function ScpArtifactPlaceholders({
+  title,
+  artifacts,
+  intro,
+  outro,
+  showArtifactsLabel = true,
+  onImageClick,
+}: {
+  title: string;
+  artifacts: { src: string; caption: string }[];
+  intro?: string[];
+  outro?: string[];
+  showArtifactsLabel?: boolean;
+  onImageClick: (src: string, caption: string) => void;
+}) {
+  return (
+    <section className="bg-background border-t border-border py-12 sm:py-14">
+      {showArtifactsLabel && (
+        <div className="flex items-center gap-2 mb-6">
+          <span className="text-xs tracking-widest uppercase text-muted-foreground">Artifacts</span>
+        </div>
+      )}
+      <ScpSectionTitle title={title} />
+      {intro && intro.length > 0 && (
+        <div className="max-w-4xl mb-6">
+          {intro.map((paragraph) => (
+            <p key={paragraph} className="text-base sm:text-lg text-foreground/90 leading-relaxed mb-4 last:mb-0">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+      )}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {artifacts.map((artifact) => (
+          <button
+            key={artifact.caption}
+            type="button"
+            onClick={() => onImageClick(artifact.src, artifact.caption)}
+            aria-label={`Open image: ${artifact.caption}`}
+            className="rounded-2xl border border-border bg-secondary/20 overflow-hidden text-left transition-all hover:-translate-y-0.5 hover:border-foreground/20"
+          >
+            <div className="aspect-[16/9] bg-background/50">
+              <img
+                src={artifact.src}
+                alt={artifact.caption}
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="p-4">
+              <p className="text-sm text-foreground/85 leading-relaxed">{artifact.caption}</p>
+            </div>
+          </button>
+        ))}
+      </div>
+      {outro && outro.length > 0 && (
+        <div className="max-w-4xl mt-6">
+          {outro.map((paragraph) => (
+            <p key={paragraph} className="text-base sm:text-lg text-foreground/90 leading-relaxed mb-4 last:mb-0">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}
+
+function ScpModernLayout({
+  study,
+  accent,
+  onImageClick,
+}: {
+  study: CaseStudy;
+  accent: string;
+  onImageClick: (src: string, caption: string) => void;
+}) {
+  const appOwnerArtifact = study.define.artifacts.find((artifact) =>
+    artifact.caption.toLowerCase().includes("application owner")
+  );
+  const engineerArtifact = study.define.artifacts.find((artifact) =>
+    artifact.caption.toLowerCase().includes("engineer")
+  );
+  const researchArtifacts = study.define.artifacts.filter(
+    (artifact) => artifact !== appOwnerArtifact && artifact !== engineerArtifact
+  );
+
+  return (
+    <>
+      <section className="bg-background border-t border-border py-12 sm:py-14">
+        <ScpSectionTitle title="My Role" />
+        <div className="max-w-4xl">
+          <p className="text-base sm:text-lg text-foreground/90 leading-relaxed mb-6">
+            As the Lead Product Designer, I partnered with product managers, engineers, architects, and UX researchers to define the experience strategy for a unified database management platform. My work spanned the full product design lifecycle—from synthesizing research and mapping complex service ecosystems to establishing information architecture, interaction patterns, and scalable design principles. While the platform encompassed numerous database products and workflows, I led the design of the onboarding and provisioning experience as a representative use case, creating reusable patterns that informed the broader platform strategy. Through iterative design, usability testing, and cross-functional collaboration, I helped align teams around a shared vision that balanced customer needs, technical feasibility, and long-term scalability.
+          </p>
+
+          <p className="text-base text-foreground/90 leading-relaxed mb-3">Responsibilities</p>
+
+          <div className="flex flex-wrap gap-2.5">
+            {SCP_RESPONSIBILITIES.map((item) => (
+              <span
+                key={item}
+                className="px-3 py-1.5 rounded-full border border-border bg-secondary/25 text-sm sm:text-[15px] text-foreground/90"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-background border-t border-border py-12 sm:py-14">
+        <ScpSectionTitle title="The Challenge" />
+        <div className="max-w-4xl">
+          <p className="text-base sm:text-lg text-foreground/90 leading-relaxed mb-5">
+            Although every database product supported similar customer goals, each control plane exposed those capabilities differently.
+          </p>
+
+          <p className="text-base text-foreground/90 leading-relaxed mb-3">Customers encountered:</p>
+
+          <div className="mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
+              {SCP_PAIN_POINTS.map((item) => {
+                const Icon = item.icon;
+                return (
+                <div
+                  key={item.label}
+                  className="rounded-xl border border-border bg-secondary/25 px-4 py-5 text-center"
+                >
+                  <div className="flex justify-center mb-3">
+                    <div className="inline-flex w-9 h-9 items-center justify-center rounded-full border border-border bg-background">
+                      <Icon size={16} style={{ color: accent }} />
+                    </div>
+                  </div>
+                  <p className="text-sm sm:text-[15px] leading-relaxed text-foreground/90">{item.label}</p>
+                </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <p className="text-base sm:text-lg text-foreground/90 leading-relaxed mb-4">
+            The inconsistency increased onboarding time, slowed provisioning, and made the platform difficult to scale.
+          </p>
+
+          <p className="text-base sm:text-lg text-foreground/90 leading-relaxed">
+            Rather than redesigning a single interface, our challenge was to define a reusable experience strategy that every database product could adopt.
+          </p>
+        </div>
+      </section>
+
+      <ScpArtifactPlaceholders
+        title="Understanding the Ecosystem"
+        artifacts={study.discover.artifacts}
+        showArtifactsLabel={false}
+        onImageClick={onImageClick}
+        intro={[
+          "Before designing solutions, I needed to understand how customers, internal teams, enterprise systems, and infrastructure interacted throughout the service lifecycle.",
+          "Working closely with stakeholders, I mapped the complete ecosystem—from initial learning and onboarding through provisioning, operations, and ongoing service management.",
+          "This systems-level perspective revealed organizational, technical, and process challenges that individual interface designs alone could not solve.",
+        ]}
+        outro={[
+          "The service blueprint documented multiple customer journeys across the platform.",
+          "From this analysis, onboarding and provisioning emerged as the highest-impact workflow to redesign first because it represented the greatest concentration of customer friction while establishing reusable patterns for future experiences.",
+        ]}
+      />
+
+      <section className="bg-background border-t border-border py-12 sm:py-14">
+        <ScpSectionTitle title="Research" />
+        <div className="max-w-4xl mb-8">
+          <p className="text-base sm:text-lg text-foreground/90 leading-relaxed">
+            To understand the complexity of the database management experience, I conducted a comprehensive discovery effort that combined existing platform knowledge with new qualitative research. Working closely with product managers, engineers, architects, and UX researchers, I analyzed how customers navigated onboarding, provisioning, and service management across multiple database control planes. Through stakeholder interviews, journey mapping, service blueprinting, workflow analysis, persona development, and usability testing, I identified recurring patterns that extended beyond individual products. Rather than isolated usability issues, the research revealed systemic challenges—including fragmented workflows, inconsistent terminology, unclear ownership, and limited visibility into provisioning status. These insights became the foundation for a scalable experience strategy that could be applied consistently across the broader platform.
+          </p>
+        </div>
+
+        <ScpSectionTitle title="Research Methods" />
+        <div className="max-w-4xl">
+          <div className="flex flex-wrap gap-2.5">
+            {SCP_RESEARCH_METHODS.map((item) => (
+              <span key={item} className="px-3 py-1.5 rounded-full border border-border bg-secondary/25 text-sm sm:text-[15px]">
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <ScpArtifactPlaceholders
+        title="Research Artifacts"
+        artifacts={researchArtifacts}
+        onImageClick={onImageClick}
+        showArtifactsLabel={false}
+      />
+
+      <section className="bg-background border-t border-border py-12 sm:py-14">
+        <ScpSectionTitle title="Primary Personas" />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {SCP_PERSONAS.map((persona) => {
+            const personaArtifact =
+              persona.name === "Application Owner" ? appOwnerArtifact : engineerArtifact;
+
+            return (
+            <div key={persona.name} className="rounded-2xl border border-border bg-secondary/25 p-6">
+              <h4 className="text-lg font-bold mb-2" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+                {persona.name}
+              </h4>
+              <p className="text-sm text-foreground/80 mb-4">{persona.description}</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <div className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Goals</div>
+                  <div className="space-y-1.5 text-sm text-foreground/85">
+                    {persona.goals.map((goal) => (
+                      <div key={goal}>• {goal}</div>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <div className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Pain Points</div>
+                  <div className="space-y-1.5 text-sm text-foreground/85">
+                    {persona.painPoints.map((pain) => (
+                      <div key={pain}>• {pain}</div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {personaArtifact && (
+                <button
+                  type="button"
+                  onClick={() => onImageClick(personaArtifact.src, personaArtifact.caption)}
+                  aria-label={`Open image: ${personaArtifact.caption}`}
+                  className="mt-5 w-full rounded-xl border border-border bg-background/60 overflow-hidden text-left transition-all hover:-translate-y-0.5 hover:border-foreground/20"
+                >
+                  <div className="aspect-[16/10] bg-background">
+                    <img
+                      src={personaArtifact.src}
+                      alt={personaArtifact.caption}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div className="px-4 py-3 text-sm text-foreground/85">{personaArtifact.caption}</div>
+                </button>
+              )}
+            </div>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="bg-background border-t border-border py-12 sm:py-14">
+        <ScpSectionTitle title="Defining the Experience Strategy" />
+        <div className="max-w-4xl mb-8">
+          <p className="text-base sm:text-lg text-foreground/90 leading-relaxed">
+            Rather than redesigning individual interfaces, I focused on defining a scalable experience strategy that could be applied consistently across every database product. Guided by research insights, I established a set of experience principles that standardized navigation, workflows, terminology, and interaction patterns—creating a flexible foundation that improved consistency while supporting future platform growth.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-8">
+          {SCP_DESIGN_PRINCIPLES.map((principle) => (
+            <div key={principle.title} className="rounded-xl border border-border bg-secondary/25 p-5">
+              <h4 className="font-semibold mb-2">{principle.title}</h4>
+              <p className="text-sm text-foreground/80 leading-relaxed">{principle.body}</p>
+            </div>
+          ))}
+        </div>
+
+      </section>
+
+      <ScpArtifactPlaceholders
+        title="Strategy Artifacts"
+        artifacts={study.design.artifacts}
+        onImageClick={onImageClick}
+        showArtifactsLabel={false}
+      />
+
+      <ScpArtifactPlaceholders
+        title="Design Exploration & Validation Artifacts"
+        artifacts={study.deliver.artifacts}
+        onImageClick={onImageClick}
+        intro={[
+          "With the platform strategy established, I translated research insights into a series of design concepts focused on the onboarding and provisioning experience. Through iterative sketching, wireframing, and high-fidelity prototyping, I explored ways to simplify complex workflows, standardize interactions, and improve visibility throughout the customer journey. I conducted usability testing with enterprise users to evaluate key workflows, identify usability issues, and validate design decisions before implementation. Insights from testing, combined with ongoing collaboration with product managers, engineers, and architects, informed multiple iterations, ensuring the final experience was intuitive, scalable, and aligned with both customer needs and technical constraints.",
+        ]}
+      />
+
+      <ScpOutcomes
+        accent={accent}
+        summary={study.outcome.summary}
+        leadership={study.outcome.impact}
+        accuracy={study.outcome.reflection}
+        metrics={study.metrics}
+      />
+    </>
+  );
+}
 
 function ScpInsightBanner({ text, accent }: { text: string; accent: string }) {
   return (
@@ -337,16 +683,16 @@ function ScpStrategyFlow({ accent }: { accent: string }) {
           className="text-xl sm:text-2xl font-extrabold mb-2"
           style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
         >
-          Strategy at a Glance
+          Representative Workflow
         </h3>
       </div>
 
       <div className="w-full">
-        <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr] gap-2 sm:gap-3 items-stretch">
+        <div className="space-y-2 sm:space-y-3">
           {SCP_STRATEGY_FLOW.map((step, i) => (
             <div key={step} className="contents">
               <div
-                className="h-full rounded-xl border border-border bg-secondary/40 px-3 sm:px-5 py-4 sm:py-5 text-center flex flex-col items-center justify-center"
+                className="rounded-xl border border-border bg-secondary/40 px-3 sm:px-5 py-4 sm:py-5 text-center flex flex-col items-center justify-center"
               >
                 <span className="text-[10px] sm:text-xs tracking-widest uppercase mb-2" style={{ color: accent }}>
                   Step {i + 1}
@@ -354,8 +700,8 @@ function ScpStrategyFlow({ accent }: { accent: string }) {
                 <span className="text-xs sm:text-sm font-medium leading-relaxed break-words">{step}</span>
               </div>
               {i < SCP_STRATEGY_FLOW.length - 1 && (
-                <div className="flex items-center justify-center">
-                  <ArrowRightFlowIcon color={accent} />
+                <div className="flex items-center justify-center py-1">
+                  <ArrowDownFlowIcon color={accent} />
                 </div>
               )}
             </div>
@@ -363,6 +709,14 @@ function ScpStrategyFlow({ accent }: { accent: string }) {
         </div>
       </div>
     </motion.section>
+  );
+}
+
+function ArrowDownFlowIcon({ color }: { color: string }) {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 5v14M12 19l-5-5M12 19l5-5" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   );
 }
 
@@ -416,10 +770,10 @@ function ScpStrategicPriorities({ accent }: { accent: string }) {
         className="text-xl sm:text-2xl font-extrabold mb-8"
         style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
       >
-        Strategic Priorities
+        Product Decisions
       </h3>
       <p className="text-sm sm:text-base text-foreground/80 leading-relaxed mb-6">
-        We aligned stakeholders on a shared set of strategic priorities that could be consistently applied across both the Graph and Relational control planes while accommodating technology-specific requirements.
+        Research continuously informed product decisions throughout the project.
       </p>
 
       <div className="space-y-3">
@@ -456,11 +810,11 @@ function ScpStrategicPriorities({ accent }: { accent: string }) {
                 <div className="border-t border-border/60 bg-background/50 px-4 sm:px-5 py-4 sm:py-5">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
-                      <div className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Customer Pain Point</div>
+                      <div className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Why this mattered</div>
                       <p className="text-sm leading-relaxed text-foreground/80">{priority.painPoint}</p>
                     </div>
                     <div>
-                      <div className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Strategic Response</div>
+                      <div className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Product decision</div>
                       <p className="text-sm leading-relaxed text-foreground/80">{priority.response}</p>
                     </div>
                   </div>
@@ -700,7 +1054,7 @@ function ArtifactImage({
       <img
         src={artifact.src}
         alt={artifact.caption}
-        className="w-full h-full object-cover opacity-75 transition-all duration-500 group-hover:opacity-95 group-hover:scale-[1.02]"
+        className="w-full h-full object-contain opacity-90 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.02]"
       />
       {/* Zoom hint */}
       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -875,7 +1229,7 @@ export default function CaseStudyPage() {
       <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
         <div className="text-center">
           <p className="text-muted-foreground mb-4">Case study not found.</p>
-          <Link to="/" className="text-primary underline text-sm">
+          <Link to="/#work" className="text-primary underline text-sm">
             Back to portfolio
           </Link>
         </div>
@@ -913,7 +1267,7 @@ export default function CaseStudyPage() {
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 sm:px-8 py-5 border-b border-border backdrop-blur-md bg-background/80">
         <Link
-          to="/"
+          to="/#work"
           className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group shrink-0"
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
@@ -953,7 +1307,7 @@ export default function CaseStudyPage() {
       </div>
 
       {/* Header */}
-      <div className="px-5 sm:px-8 pb-12 sm:pb-16 -mt-16 relative z-10 max-w-7xl mx-auto">
+      <div className="px-5 sm:px-8 pb-12 sm:pb-16 -mt-16 relative z-10 max-w-6xl mx-auto">
         <div className="max-w-3xl">
           <h1
             className="font-extrabold leading-tight mb-4"
@@ -985,7 +1339,7 @@ export default function CaseStudyPage() {
       </div>
 
       {/* Overview */}
-      <div className="px-5 sm:px-8 max-w-7xl mx-auto">
+      <div className="px-5 sm:px-8 max-w-6xl mx-auto">
         <motion.section className="bg-background border-t border-border py-12 sm:py-16 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-12" {...revealProps}>
           <div className="lg:col-span-3">
             <span className="text-xs text-muted-foreground tracking-widest uppercase">
@@ -1001,85 +1355,42 @@ export default function CaseStudyPage() {
           </div>
         </motion.section>
 
-        {isSharedControlPlanes && <ScpStrategyFlow accent={accent} />}
-
-        {/* Metrics */}
-        {!isSharedControlPlanes && (
-        <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-background">
-            {study.metrics.map((m) => (
-              <motion.div key={m.label} className="bg-background p-5 sm:p-8" {...revealProps}>
-                <div
-                  className="text-3xl sm:text-4xl font-extrabold mb-2"
-                  style={{ fontFamily: "'Bricolage Grotesque', sans-serif", color: accent }}
-                >
-                  {m.value}
-                </div>
-                <div className="text-xs sm:text-sm text-muted-foreground leading-snug">{m.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-        )}
-
-
-        {/* Four phases */}
-        {phases.map((phase, i) => (
-          <div key={phase.title} id={`phase-${phase.title.toLowerCase()}`}>
-            <PhaseSection
-              phase={phase}
-              index={i}
-              color={accent}
-              isLast={i === phases.length - 1}
-              stackOnDesktop={
-                isSharedControlPlanes &&
-                (phase.title === "Framing the Problem" ||
-                  phase.title === "Translating Strategy into Experience")
-              }
-              onImageClick={(src, caption) => setLightbox({ src, caption })}
-            />
-
-            {isSharedControlPlanes && i === 0 && (
-              <>
-                <ScpIconCardRow title="Customer Pain Points" items={SCP_PAIN_POINTS} />
-                <ScpInsightBanner
-                  accent={accent}
-                  text="Engineers weren't asking for new features—they wanted a simpler, more consistent way to accomplish the same operational goals."
-                />
-              </>
-            )}
-
-            {isSharedControlPlanes && i === 1 && (
-              <>
-                <ScpStrategicPriorities accent={accent} />
-                {SHOW_SCP_CONTRIBUTIONS && <ScpContributions accent={accent} />}
-                <ScpInsightBanner
-                  accent={accent}
-                  text="The challenge wasn't simply redesigning database interfaces—it was establishing a scalable operational model. By resolving the most significant customer pain points first, we created a reusable experience foundation that reduced operational complexity while supporting the organization's long-term platform vision."
-                />
-              </>
-            )}
-
-            {isSharedControlPlanes && i === 2 && (
-              <ScpChipSection title="Focus Areas" chips={SCP_FOCUS_AREAS} icon={Compass} />
-            )}
-
-            {isSharedControlPlanes && i === 3 && (
-              <ScpChipSection title="Validation Activities" chips={SCP_VALIDATION_ACTIVITIES} icon={CheckCircle2} />
-            )}
-          </div>
-        ))}
-
-        {/* Outcome */}
         {isSharedControlPlanes ? (
-          <ScpOutcomes
+          <ScpModernLayout
+            study={study}
             accent={accent}
-            summary={study.outcome.summary}
-            leadership={study.outcome.impact}
-            accuracy={study.outcome.reflection}
-            metrics={study.metrics}
+            onImageClick={(src, caption) => setLightbox({ src, caption })}
           />
         ) : (
+          <>
+            <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-background">
+                {study.metrics.map((m) => (
+                  <motion.div key={m.label} className="bg-background p-5 sm:p-8" {...revealProps}>
+                    <div
+                      className="text-3xl sm:text-4xl font-extrabold mb-2"
+                      style={{ fontFamily: "'Bricolage Grotesque', sans-serif", color: accent }}
+                    >
+                      {m.value}
+                    </div>
+                    <div className="text-xs sm:text-sm text-muted-foreground leading-snug">{m.label}</div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.section>
+
+            {phases.map((phase, i) => (
+              <div key={phase.title} id={`phase-${phase.title.toLowerCase()}`}>
+                <PhaseSection
+                  phase={phase}
+                  index={i}
+                  color={accent}
+                  isLast={i === phases.length - 1}
+                  onImageClick={(src, caption) => setLightbox({ src, caption })}
+                />
+              </div>
+            ))}
+
         <motion.section id="phase-outcome" className="bg-background border-t border-border py-12 sm:py-20" {...revealProps}>
           <div className="flex items-baseline gap-4 sm:gap-6 mb-8 sm:mb-14">
             <span className="text-xs font-mono tracking-widest shrink-0" style={{ color: accent }}>05</span>
@@ -1124,13 +1435,14 @@ export default function CaseStudyPage() {
             ))}
           </div>
         </motion.section>
+          </>
         )}
 
       </div>
 
       {/* Prev / Next */}
       <div className="border-t border-border mt-8">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 gap-px bg-border">
+        <div className="max-w-6xl mx-auto grid grid-cols-2 gap-px bg-border">
           {prev ? (
             <button
               onClick={() => {
@@ -1187,7 +1499,7 @@ export default function CaseStudyPage() {
 
       {/* Footer */}
       <footer className="px-5 sm:px-8 py-8 border-t border-border">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <span
             className="text-sm font-bold text-foreground"
             style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
