@@ -46,6 +46,7 @@ import key10 from "@/assets/Project images/Key_10.png";
 import key11 from "@/assets/Project images/Key_11.png";
 import key12 from "@/assets/Project images/Key_12.png";
 import key13 from "@/assets/Project images/Key_13.png";
+import key14 from "@/assets/Project images/Key_14.png";
 import sparkCoverFull from "@/assets/covers/Spark_Cover_Full.jpg";
 import databasesCoverFull from "@/assets/covers/Databases_Cover_Full.jpg";
 import arrCoverFull from "@/assets/covers/ARR_Cover_Full.jpg";
@@ -583,6 +584,10 @@ export const caseStudies: CaseStudy[] = [
         {
           src: key13,
           caption: "Key 13",
+        },
+        {
+          src: key14,
+          caption: "Key 14",
         },
       ],
     },
