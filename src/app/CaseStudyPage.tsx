@@ -1000,10 +1000,12 @@ function ArtifactImage({
   artifact,
   aspectClass,
   onImageClick,
+  imageClassName,
 }: {
   artifact: { src: string; caption: string };
   aspectClass: string;
   onImageClick: (src: string, caption: string) => void;
+  imageClassName?: string;
 }) {
   return (
     <motion.button
@@ -1015,7 +1017,7 @@ function ArtifactImage({
       <img
         src={artifact.src}
         alt={artifact.caption}
-        className="w-full h-full object-contain opacity-90 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.02]"
+        className={`w-full h-full opacity-90 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.02] ${imageClassName ?? "object-contain"}`}
       />
       {/* Zoom hint */}
       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -1253,6 +1255,8 @@ function KeybankDesignTextOnly({
   phase: Phase;
   onImageClick: (src: string, caption: string) => void;
 }) {
+  const isDeliverPhase = phase.title === "Deliver";
+
   return (
     <motion.section className="bg-background border-t border-border py-12 sm:py-20" {...revealProps}>
       <div className="flex items-baseline gap-4 sm:gap-6 mb-8 sm:mb-14">
@@ -1276,6 +1280,7 @@ function KeybankDesignTextOnly({
               artifact={phase.artifacts[0]}
               aspectClass="aspect-[16/9]"
               onImageClick={onImageClick}
+              imageClassName={isDeliverPhase ? "object-cover scale-[1.01]" : "object-contain"}
             />
 
             {phase.artifacts.length > 1 && (
@@ -1286,6 +1291,7 @@ function KeybankDesignTextOnly({
                     artifact={artifact}
                     aspectClass="aspect-square"
                     onImageClick={onImageClick}
+                    imageClassName={isDeliverPhase ? "object-cover scale-[1.01]" : "object-contain"}
                   />
                 ))}
               </div>
