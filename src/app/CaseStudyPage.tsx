@@ -71,7 +71,7 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
   const [shaking, setShaking] = useState(false);
 
   const attempt = () => {
-    if (value === "Prosp3r7") {
+    if (value === "tamare2026") {
       sessionStorage.setItem(SESSION_KEY, "1");
       onUnlock();
     } else {
@@ -999,15 +999,17 @@ function Lightbox({
 function ArtifactImage({
   artifact,
   aspectClass,
+  frameClass,
   onImageClick,
 }: {
   artifact: { src: string; caption: string };
   aspectClass: string;
+  frameClass?: string;
   onImageClick: (src: string, caption: string) => void;
 }) {
   return (
     <motion.button
-      className={`group relative overflow-hidden bg-background ${aspectClass} w-full text-left`}
+      className={`group relative overflow-hidden bg-background ${aspectClass} w-full text-left ${frameClass ?? ""}`}
       onClick={() => onImageClick(artifact.src, artifact.caption)}
       aria-label={`View full image: ${artifact.caption}`}
       {...revealProps}
@@ -1253,6 +1255,8 @@ function KeybankDesignTextOnly({
   phase: Phase;
   onImageClick: (src: string, caption: string) => void;
 }) {
+  const deliverImageFrameClass = phase.title === "Deliver" ? "border border-[#D3D3D3]" : "";
+
   return (
     <motion.section className="bg-background border-t border-border py-12 sm:py-20" {...revealProps}>
       <div className="flex items-baseline gap-4 sm:gap-6 mb-8 sm:mb-14">
@@ -1275,6 +1279,7 @@ function KeybankDesignTextOnly({
               key={`${phase.artifacts[0].caption}-lead`}
               artifact={phase.artifacts[0]}
               aspectClass="aspect-[16/9]"
+              frameClass={deliverImageFrameClass}
               onImageClick={onImageClick}
             />
 
@@ -1285,6 +1290,7 @@ function KeybankDesignTextOnly({
                     key={`${artifact.caption}-${index}`}
                     artifact={artifact}
                     aspectClass="aspect-square"
+                    frameClass={deliverImageFrameClass}
                     onImageClick={onImageClick}
                   />
                 ))}
