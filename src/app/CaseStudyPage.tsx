@@ -26,7 +26,6 @@ import {
   Rocket,
   Lightbulb,
   ChevronDown,
-  BriefcaseBusiness,
   ShieldCheck,
   type LucideIcon,
 } from "lucide-react";
@@ -260,26 +259,6 @@ const SCP_DESIGN_OUTCOMES = [
   "Context-first guidance",
   "Operational transparency",
   "Consistency across products",
-];
-
-const SCP_DESIGN_LEADERSHIP_ACTIONS = [
-  "Experience Strategy",
-  "Product Design",
-  "UX Research",
-  "Service Design",
-  "Information Architecture",
-  "Design Systems",
-  "Executive Storytelling",
-  "Cross-functional Leadership",
-];
-
-const SCP_VALIDATION_METHODS = [
-  "92% task completion",
-  "95 CSAT",
-  "95 UMUX-Lite",
-  "85% preferred the redesigned homepage",
-  "Moderated validation with enterprise engineers",
-  "Iterative concept testing through design process",
 ];
 
 const SHOW_SCP_CONTRIBUTIONS = false;
@@ -632,9 +611,10 @@ function ScpModernLayout({
       />
 
       <ScpArtifactPlaceholders
-        title="Design Exploration & Validation Artifacts"
+        title="Design Exploration & Validation"
         artifacts={study.deliver.artifacts}
         onImageClick={onImageClick}
+        showArtifactsLabel={false}
         intro={[
           "With the platform strategy established, I translated research insights into a series of design concepts focused on the onboarding and provisioning experience. Through iterative sketching, wireframing, and high-fidelity prototyping, I explored ways to simplify complex workflows, standardize interactions, and improve visibility throughout the customer journey. I conducted usability testing with enterprise users to evaluate key workflows, identify usability issues, and validate design decisions before implementation. Insights from testing, combined with ongoing collaboration with product managers, engineers, and architects, informed multiple iterations, ensuring the final experience was intuitive, scalable, and aligned with both customer needs and technical constraints.",
         ]}
@@ -643,8 +623,6 @@ function ScpModernLayout({
       <ScpOutcomes
         accent={accent}
         summary={study.outcome.summary}
-        leadership={study.outcome.impact}
-        accuracy={study.outcome.reflection}
         metrics={study.metrics}
       />
     </>
@@ -879,14 +857,10 @@ function ScpContributions({ accent }: { accent: string }) {
 function ScpOutcomes({
   accent,
   summary,
-  leadership,
-  accuracy,
   metrics,
 }: {
   accent: string;
   summary: string;
-  leadership: string;
-  accuracy: string;
   metrics: { value: string; label: string }[];
 }) {
   const sections = [
@@ -897,13 +871,7 @@ function ScpOutcomes({
 
   return (
     <motion.section id="phase-outcome" className="bg-background border-t border-border py-12 sm:py-20" {...revealProps}>
-      <div className="flex items-baseline gap-4 sm:gap-6 mb-8 sm:mb-14">
-        <span className="text-xs font-mono tracking-widest shrink-0" style={{ color: accent }}>05</span>
-        <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-          Strategic Outcomes
-        </h2>
-        <div className="flex-1 h-px bg-border ml-2 sm:ml-4 hidden sm:block" />
-      </div>
+      <ScpSectionTitle title="Strategic Outcomes" />
 
       <p className="text-base sm:text-lg leading-relaxed text-foreground/90 mb-10">{summary}</p>
 
@@ -939,47 +907,6 @@ function ScpOutcomes({
         ))}
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mb-4">
-        <div className="rounded-xl border border-border bg-secondary/40 p-5 transition-all hover:-translate-y-0.5 hover:border-foreground/20">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="inline-flex w-9 h-9 items-center justify-center rounded-full bg-background border border-border">
-              <BriefcaseBusiness size={16} />
-            </div>
-            <h3 className="text-lg font-bold" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-              Design Leadership
-            </h3>
-          </div>
-          <p className="text-sm leading-relaxed text-foreground/80 mb-4">{leadership}</p>
-          <div className="space-y-2 mb-4">
-            {SCP_DESIGN_LEADERSHIP_ACTIONS.map((item) => (
-              <div key={item} className="text-sm text-foreground/80">• {item}</div>
-            ))}
-          </div>
-          <p className="text-sm leading-relaxed text-foreground/80">
-            The project reinforced that successful enterprise transformation begins with deeply understanding customer problems and building organizational alignment around solving them.
-          </p>
-        </div>
-
-        <div className="rounded-xl border border-border bg-secondary/40 p-5 transition-all hover:-translate-y-0.5 hover:border-foreground/20">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="inline-flex w-9 h-9 items-center justify-center rounded-full bg-background border border-border">
-              <ShieldCheck size={16} />
-            </div>
-            <h3 className="text-lg font-bold" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-              Ensuring Clarity & Accuracy
-            </h3>
-          </div>
-          <p className="text-sm leading-relaxed text-foreground/80 mb-4">{accuracy}</p>
-          <div className="space-y-2 mb-4">
-            {SCP_VALIDATION_METHODS.map((item) => (
-              <div key={item} className="text-sm text-foreground/80">• {item}</div>
-            ))}
-          </div>
-          <p className="text-sm leading-relaxed text-foreground/80">
-            Executive presentations focused on strategic recommendations and outcomes, while Product and Engineering teams received prioritized workflows, implementation guidance, and scalable experience principles.
-          </p>
-        </div>
-      </div>
     </motion.section>
   );
 }

@@ -10,7 +10,9 @@ import databasesJourneyMap from "@/assets/Project images/Databases_Journey Map.p
 import databasesPersonaAppOwner from "@/assets/Project images/Databases_Persona_AppOwner.png";
 import databasesPersonasEngineer from "@/assets/Project images/Databases_Personas_Engineer.png";
 import databaseExperiencePrinciples from "@/assets/Project images/Database_Experience Principles.png";
+import databasesIA from "@/assets/Project images/Databases_IA.png";
 import databasesUserFlow from "@/assets/Project images/Databases_User Flow.png";
+import databasesDashboard from "@/assets/Project images/Databases_Dashboard.png";
 import sparkCoverFull from "@/assets/covers/Spark_Cover_Full.jpg";
 import databasesCoverFull from "@/assets/covers/Databases_Cover_Full.jpg";
 import arrCoverFull from "@/assets/covers/ARR_Cover_Full.jpg";
@@ -146,7 +148,6 @@ export const caseStudies: CaseStudy[] = [
     lightColor: "#9C0068",
     client: "JPMorgan Chase & Co.",
     role: "Lead Product Designer (Vice President)",
-    team: "Product Management • Software Engineering • Architecture • UX Research • Content Design • Design Systems",
     duration: "2025–2026",
     overview:
       "Enterprise engineers relied on more than ten independent database control planes to provision and manage database services. Each product had evolved independently, resulting in inconsistent workflows, terminology, navigation patterns, and operational experiences. Engineers frequently switched between systems, searched multiple documentation sources, and relied on tribal knowledge to complete routine tasks.\n\nThe long-term vision was to create a shared experience that could scale across database products while providing a consistent foundation for the Integrated Engineers Portal (IEP).\n\nThis case study focuses on one representative workflow—database onboarding and provisioning—to illustrate the broader experience strategy developed for the platform. Although the platform supports many database management capabilities, this workflow best demonstrates the research, systems thinking, and product design decisions that established reusable patterns across the ecosystem.",
@@ -201,8 +202,8 @@ export const caseStudies: CaseStudy[] = [
           caption: "Experience Principles — (Insert design principles graphic.)",
         },
         {
-          src: "https://via.placeholder.com/1600x900.png?text=Information+Architecture",
-          caption: "Information Architecture — (Insert IA diagram.)",
+          src: databasesIA,
+          caption: "Information Architecture",
         },
       ],
     },
@@ -215,24 +216,8 @@ export const caseStudies: CaseStudy[] = [
           caption: "User Flow — (Insert user flow.)",
         },
         {
-          src: "https://via.placeholder.com/1600x900.png?text=Sketches",
-          caption: "Sketches — (Insert sketches.)",
-        },
-        {
-          src: "https://via.placeholder.com/1600x900.png?text=Wireframes",
-          caption: "Wireframes — (Insert low-fidelity wireframes.)",
-        },
-        {
-          src: "https://via.placeholder.com/1600x900.png?text=Mid-Fidelity+Designs",
-          caption: "Mid-Fidelity Designs — (Insert mid-fidelity screens.)",
-        },
-        {
-          src: "https://via.placeholder.com/1600x900.png?text=High-Fidelity+Designs",
-          caption: "High-Fidelity Designs — (Insert final interface.)",
-        },
-        {
-          src: "https://via.placeholder.com/1600x900.png?text=Usability+Testing",
-          caption: "Usability Testing — (Insert usability report.)",
+          src: databasesDashboard,
+          caption: "High-Fidelity Designs",
         },
       ],
     },
