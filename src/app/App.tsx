@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Download, ArrowUpRight, Mail, Send, ChevronDown, Menu, X, Linkedin } from "lucide-react";
 import { BrowserRouter, Routes, Route, Link, useNavigate, useLocation } from "react-router";
 import { motion } from "motion/react";
-import { caseStudies } from "./data/caseStudies";
+import { caseStudies, visibleCaseStudySlugs } from "./data/caseStudies";
 import CaseStudyPage from "./CaseStudyPage";
 import { useTheme } from "./hooks/useTheme";
 import { ThemeToggle } from "./components/ThemeToggle";
@@ -33,6 +33,7 @@ function Portfolio() {
   const navigate = useNavigate();
   const location = useLocation();
   const { isDark, toggle } = useTheme();
+  const homepageCaseStudies = caseStudies.filter((study) => visibleCaseStudySlugs.includes(study.slug));
   const revealProps = {
     initial: { opacity: 0, y: 40 },
     whileInView: { opacity: 1, y: 0 },
@@ -222,11 +223,11 @@ function Portfolio() {
             >
               Selected Work
             </h2>
-            <span className="text-muted-foreground text-sm">6 case studies</span>
+            <span className="text-muted-foreground text-sm">{homepageCaseStudies.length} case studies</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-px bg-background">
-            {caseStudies.map((study) => (
+            {homepageCaseStudies.map((study) => (
               <motion.div
                 key={study.id}
                 className="bg-background group cursor-pointer relative overflow-hidden"
@@ -323,9 +324,12 @@ function Portfolio() {
         </div>
 
         <div className="max-w-7xl mx-auto mt-12 sm:mt-16 border-t border-border pt-12 sm:pt-16">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-background">
+          <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3">
             {["Product Strategy", "UX Research", "Interaction Design", "Design Systems", "Prototyping", "Front-End Dev"].map((skill) => (
-              <div key={skill} className="bg-background px-4 sm:px-6 py-4 text-sm text-muted-foreground text-center hover:text-foreground transition-colors">
+              <div
+                key={skill}
+                className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-border bg-secondary/25 text-sm text-muted-foreground text-center hover:text-foreground transition-colors"
+              >
                 {skill}
               </div>
             ))}

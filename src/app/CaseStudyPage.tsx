@@ -29,7 +29,7 @@ import {
   ShieldCheck,
   type LucideIcon,
 } from "lucide-react";
-import { caseStudies, type Phase, type CaseStudy } from "./data/caseStudies";
+import { caseStudies, visibleCaseStudySlugs, type Phase, type CaseStudy } from "./data/caseStudies";
 import { useTheme } from "./hooks/useTheme";
 import { ThemeToggle } from "./components/ThemeToggle";
 
@@ -40,6 +40,14 @@ const revealProps = {
   viewport: { once: true, amount: 0.2 },
   transition: { duration: 0.7, ease: "easeOut" },
 };
+
+const CASE_STUDY_HEADING_FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
+const CASE_STUDY_HEADING_CLASSES = {
+  h1: "font-extrabold leading-tight tracking-tight",
+  h2: "text-2xl sm:text-3xl font-extrabold tracking-tight",
+  h3: "text-xl sm:text-2xl font-extrabold",
+  h4: "text-base sm:text-lg font-bold tracking-tight",
+} as const;
 
 function scrollToTopInstant() {
   const html = document.documentElement;
@@ -143,8 +151,6 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
     </div>
   );
 }
-
-const PHASES = ["discover", "define", "design", "deliver"] as const;
 
 const SCP_STRATEGY_FLOW = [
   "Learn",
@@ -328,12 +334,15 @@ const SCP_DESIGN_PRINCIPLES = [
 
 function ScpSectionTitle({ title }: { title: string }) {
   return (
-    <h3
-      className="text-xl sm:text-2xl font-extrabold mb-5"
-      style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-    >
-      {title}
-    </h3>
+    <div className="flex items-baseline gap-4 sm:gap-6 mb-5">
+      <h2
+        className={CASE_STUDY_HEADING_CLASSES.h2}
+        style={CASE_STUDY_HEADING_FONT}
+      >
+        {title}
+      </h2>
+      <div className="flex-1 h-px bg-border ml-2 sm:ml-4 hidden sm:block" />
+    </div>
   );
 }
 
@@ -363,7 +372,7 @@ function ScpArtifactPlaceholders({
       {intro && intro.length > 0 && (
         <div className="max-w-4xl mb-6">
           {intro.map((paragraph) => (
-            <p key={paragraph} className="text-base sm:text-lg text-foreground/90 leading-relaxed mb-4 last:mb-0">
+            <p key={paragraph} className="text-base text-foreground/90 leading-relaxed mb-4 last:mb-0">
               {paragraph}
             </p>
           ))}
@@ -394,7 +403,7 @@ function ScpArtifactPlaceholders({
       {outro && outro.length > 0 && (
         <div className="max-w-4xl mt-6">
           {outro.map((paragraph) => (
-            <p key={paragraph} className="text-base sm:text-lg text-foreground/90 leading-relaxed mb-4 last:mb-0">
+            <p key={paragraph} className="text-base text-foreground/90 leading-relaxed mb-4 last:mb-0">
               {paragraph}
             </p>
           ))}
@@ -428,11 +437,11 @@ function ScpModernLayout({
       <section className="bg-background border-t border-border py-12 sm:py-14">
         <ScpSectionTitle title="My Role" />
         <div className="max-w-4xl">
-          <p className="text-base sm:text-lg text-foreground/90 leading-relaxed mb-6">
+          <p className="text-base text-foreground/90 leading-relaxed mb-6">
             As the Lead Product Designer, I partnered with product managers, engineers, architects, and UX researchers to define the experience strategy for a unified database management platform. My work spanned the full product design lifecycle—from synthesizing research and mapping complex service ecosystems to establishing information architecture, interaction patterns, and scalable design principles. While the platform encompassed numerous database products and workflows, I led the design of the onboarding and provisioning experience as a representative use case, creating reusable patterns that informed the broader platform strategy. Through iterative design, usability testing, and cross-functional collaboration, I helped align teams around a shared vision that balanced customer needs, technical feasibility, and long-term scalability.
           </p>
 
-          <p className="text-base text-foreground/90 leading-relaxed mb-3">Responsibilities</p>
+          <p className="text-base font-semibold text-foreground/90 leading-relaxed mb-3">Responsibilities</p>
 
           <div className="flex flex-wrap gap-2.5">
             {SCP_RESPONSIBILITIES.map((item) => (
@@ -450,7 +459,7 @@ function ScpModernLayout({
       <section className="bg-background border-t border-border py-12 sm:py-14">
         <ScpSectionTitle title="The Challenge" />
         <div className="max-w-4xl">
-          <p className="text-base sm:text-lg text-foreground/90 leading-relaxed mb-5">
+          <p className="text-base text-foreground/90 leading-relaxed mb-5">
             Although every database product supported similar customer goals, each control plane exposed those capabilities differently.
           </p>
 
@@ -477,11 +486,11 @@ function ScpModernLayout({
             </div>
           </div>
 
-          <p className="text-base sm:text-lg text-foreground/90 leading-relaxed mb-4">
+          <p className="text-base text-foreground/90 leading-relaxed mb-4">
             The inconsistency increased onboarding time, slowed provisioning, and made the platform difficult to scale.
           </p>
 
-          <p className="text-base sm:text-lg text-foreground/90 leading-relaxed">
+          <p className="text-base text-foreground/90 leading-relaxed">
             Rather than redesigning a single interface, our challenge was to define a reusable experience strategy that every database product could adopt.
           </p>
         </div>
@@ -506,12 +515,12 @@ function ScpModernLayout({
       <section className="bg-background border-t border-border py-12 sm:py-14">
         <ScpSectionTitle title="Research" />
         <div className="max-w-4xl mb-8">
-          <p className="text-base sm:text-lg text-foreground/90 leading-relaxed">
+          <p className="text-base text-foreground/90 leading-relaxed">
             To understand the complexity of the database management experience, I conducted a comprehensive discovery effort that combined existing platform knowledge with new qualitative research. Working closely with product managers, engineers, architects, and UX researchers, I analyzed how customers navigated onboarding, provisioning, and service management across multiple database control planes. Through stakeholder interviews, journey mapping, service blueprinting, workflow analysis, persona development, and usability testing, I identified recurring patterns that extended beyond individual products. Rather than isolated usability issues, the research revealed systemic challenges—including fragmented workflows, inconsistent terminology, unclear ownership, and limited visibility into provisioning status. These insights became the foundation for a scalable experience strategy that could be applied consistently across the broader platform.
           </p>
         </div>
 
-        <ScpSectionTitle title="Research Methods" />
+        <p className="text-base font-semibold text-foreground/90 leading-relaxed mb-3">Research Methods</p>
         <div className="max-w-4xl">
           <div className="flex flex-wrap gap-2.5">
             {SCP_RESEARCH_METHODS.map((item) => (
@@ -539,7 +548,7 @@ function ScpModernLayout({
 
             return (
             <div key={persona.name} className="rounded-2xl border border-border bg-secondary/25 p-6">
-              <h4 className="text-lg font-bold mb-2" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+              <h4 className={`${CASE_STUDY_HEADING_CLASSES.h4} mb-2`} style={CASE_STUDY_HEADING_FONT}>
                 {persona.name}
               </h4>
               <p className="text-sm text-foreground/80 mb-4">{persona.description}</p>
@@ -588,14 +597,14 @@ function ScpModernLayout({
       <section className="bg-background border-t border-border py-12 sm:py-14">
         <ScpSectionTitle title="Defining the Experience Strategy" />
         <div className="max-w-4xl mb-8">
-          <p className="text-base sm:text-lg text-foreground/90 leading-relaxed">
+          <p className="text-base text-foreground/90 leading-relaxed">
             Rather than redesigning individual interfaces, I focused on defining a scalable experience strategy that could be applied consistently across every database product. Guided by research insights, I established a set of experience principles that standardized navigation, workflows, terminology, and interaction patterns—creating a flexible foundation that improved consistency while supporting future platform growth.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-8">
           {SCP_DESIGN_PRINCIPLES.map((principle) => (
             <div key={principle.title} className="rounded-xl border border-border bg-secondary/25 p-5">
-              <h4 className="font-semibold mb-2">{principle.title}</h4>
+              <h4 className={`${CASE_STUDY_HEADING_CLASSES.h4} mb-2`} style={CASE_STUDY_HEADING_FONT}>{principle.title}</h4>
               <p className="text-sm text-foreground/80 leading-relaxed">{principle.body}</p>
             </div>
           ))}
@@ -620,6 +629,31 @@ function ScpModernLayout({
         ]}
       />
 
+      {study.deliverDirectImages && study.deliverDirectImages.length > 0 && (
+        <section className="bg-background border-t border-border py-12 sm:py-14">
+          <div className="grid grid-cols-2 gap-4">
+            {study.deliverDirectImages.map((imageSrc, index) => (
+              <img
+                key={`${imageSrc}-${index}`}
+                src={imageSrc}
+                alt={`Database ${index + 1}`}
+                className="w-full h-auto border border-[#D9D9D9]"
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {study.deliverFinalImage && (
+        <section className="bg-background border-t border-border py-12 sm:py-14">
+          <img
+            src={study.deliverFinalImage}
+            alt="Databases final image"
+            className="w-full h-auto"
+          />
+        </section>
+      )}
+
       <ScpOutcomes
         accent={accent}
         summary={study.outcome.summary}
@@ -643,8 +677,8 @@ function ScpInsightBanner({ text, accent }: { text: string; accent: string }) {
           <span className="text-xs tracking-widest uppercase text-muted-foreground">Key Insight</span>
         </div>
         <p
-          className="text-xl sm:text-2xl font-bold leading-relaxed"
-          style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+          className={`${CASE_STUDY_HEADING_CLASSES.h3} leading-relaxed`}
+          style={CASE_STUDY_HEADING_FONT}
         >
           {text}
         </p>
@@ -658,8 +692,8 @@ function ScpStrategyFlow({ accent }: { accent: string }) {
     <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
       <div className="mb-8">
         <h3
-          className="text-xl sm:text-2xl font-extrabold mb-2"
-          style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+          className={`${CASE_STUDY_HEADING_CLASSES.h3} mb-2`}
+          style={CASE_STUDY_HEADING_FONT}
         >
           Representative Workflow
         </h3>
@@ -716,8 +750,8 @@ function ScpIconCardRow({
   return (
     <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
       <h3
-        className="text-xl sm:text-2xl font-extrabold mb-8"
-        style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+        className={`${CASE_STUDY_HEADING_CLASSES.h3} mb-8`}
+        style={CASE_STUDY_HEADING_FONT}
       >
         {title}
       </h3>
@@ -729,7 +763,7 @@ function ScpIconCardRow({
               <div className="mb-3 inline-flex w-9 h-9 items-center justify-center rounded-full bg-background border border-border">
                 <Icon size={16} />
               </div>
-              <h4 className="font-semibold mb-2">{item.title}</h4>
+              <h4 className={`${CASE_STUDY_HEADING_CLASSES.h4} mb-2`} style={CASE_STUDY_HEADING_FONT}>{item.title}</h4>
               <p className="text-sm text-foreground/80 leading-relaxed">{item.body}</p>
             </div>
           );
@@ -745,12 +779,12 @@ function ScpStrategicPriorities({ accent }: { accent: string }) {
   return (
     <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
       <h3
-        className="text-xl sm:text-2xl font-extrabold mb-8"
-        style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+        className={`${CASE_STUDY_HEADING_CLASSES.h3} mb-8`}
+        style={CASE_STUDY_HEADING_FONT}
       >
         Product Decisions
       </h3>
-      <p className="text-sm sm:text-base text-foreground/80 leading-relaxed mb-6">
+      <p className="text-base text-foreground/80 leading-relaxed mb-6">
         Research continuously informed product decisions throughout the project.
       </p>
 
@@ -812,8 +846,8 @@ function ScpChipSection({ title, chips, icon: Icon }: { title: string; chips: st
       <div className="flex items-center gap-2 mb-6">
         <Icon size={16} />
         <h3
-          className="text-xl sm:text-2xl font-extrabold"
-          style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+          className={CASE_STUDY_HEADING_CLASSES.h3}
+          style={CASE_STUDY_HEADING_FONT}
         >
           {title}
         </h3>
@@ -836,8 +870,8 @@ function ScpContributions({ accent }: { accent: string }) {
         <div className="flex items-center gap-2 mb-6">
           <WandSparkles size={16} style={{ color: accent }} />
           <h3
-            className="text-xl sm:text-2xl font-extrabold"
-            style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+            className={CASE_STUDY_HEADING_CLASSES.h3}
+            style={CASE_STUDY_HEADING_FONT}
           >
             My Contributions
           </h3>
@@ -873,7 +907,7 @@ function ScpOutcomes({
     <motion.section id="phase-outcome" className="bg-background border-t border-border py-12 sm:py-20" {...revealProps}>
       <ScpSectionTitle title="Strategic Outcomes" />
 
-      <p className="text-base sm:text-lg leading-relaxed text-foreground/90 mb-10">{summary}</p>
+      <p className="text-base leading-relaxed text-foreground/90 mb-10">{summary}</p>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-background mb-10">
         {metrics.map((m) => (
@@ -896,7 +930,7 @@ function ScpOutcomes({
               <div className="inline-flex w-9 h-9 items-center justify-center rounded-full bg-background border border-border">
                 <Icon size={16} />
               </div>
-              <h3 className="font-semibold">{title}</h3>
+              <h4 className={CASE_STUDY_HEADING_CLASSES.h4} style={CASE_STUDY_HEADING_FONT}>{title}</h4>
             </div>
             <div className="space-y-2">
               {items.map((item) => (
@@ -1015,12 +1049,9 @@ function PhaseSection({
     <motion.section className="bg-background border-t border-border py-12 sm:py-20" {...revealProps}>
       {/* Phase header */}
       <div className="flex items-baseline gap-4 sm:gap-6 mb-8 sm:mb-14">
-        <span className="text-xs font-mono tracking-widest shrink-0" style={{ color }}>
-          0{index + 1}
-        </span>
         <h2
-          className="text-2xl sm:text-3xl font-extrabold tracking-tight"
-          style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+          className={CASE_STUDY_HEADING_CLASSES.h2}
+          style={CASE_STUDY_HEADING_FONT}
         >
           {phase.title}
         </h2>
@@ -1131,6 +1162,141 @@ function PhaseSection({
   );
 }
 
+function KeybankDefineCoreProblems({
+  phase,
+  color,
+}: {
+  phase: Phase;
+  color: string;
+}) {
+  const problemAreas: Array<{ title: string; detail: string; icon: LucideIcon }> = [
+    {
+      title: "Reduce Processing Cost",
+      detail: "Eliminate unnecessary reviews and manual interventions across dispute operations.",
+      icon: Wrench,
+    },
+    {
+      title: "Lower Contact-Center Volume",
+      detail: "Improve guidance and self-service to reduce avoidable support dependency.",
+      icon: MessageSquareWarning,
+    },
+    {
+      title: "Improve Dispute Quality",
+      detail: "Increase resolution accuracy through clearer requirements and stronger submissions.",
+      icon: CheckCircle2,
+    },
+    {
+      title: "Align Experience + Compliance",
+      detail: "Create a consistent customer journey aligned with operational and regulatory requirements.",
+      icon: ShieldCheck,
+    },
+  ];
+
+  return (
+    <motion.section className="bg-background border-t border-border py-12 sm:py-20" {...revealProps}>
+      <div className="flex items-baseline gap-4 sm:gap-6 mb-8 sm:mb-14">
+        <h2 className={CASE_STUDY_HEADING_CLASSES.h2} style={CASE_STUDY_HEADING_FONT}>
+          {phase.title}
+        </h2>
+        <div className="flex-1 h-px bg-border ml-2 sm:ml-4 hidden sm:block" />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12">
+        <div className="lg:col-span-4 lg:sticky lg:top-28">
+          {phase.body.split("\n\n").map((para, i) => (
+            <p key={i} className={`text-base leading-relaxed text-foreground/80 ${i > 0 ? "mt-4" : ""}`}>
+              {para}
+            </p>
+          ))}
+        </div>
+
+        <div className="lg:col-span-8">
+          <div className="rounded-xl border border-border bg-secondary/25 p-5 sm:p-6 mb-4">
+            <p className="text-xs tracking-widest uppercase text-muted-foreground mb-2">Core Problem Areas</p>
+            <p className="text-base text-foreground/85 leading-relaxed">
+              Strategic focus centered on cost efficiency, self-service guidance, dispute quality, and compliance-aligned consistency.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {problemAreas.map(({ title, detail, icon: Icon }) => (
+              <motion.div
+                key={title}
+                className="rounded-xl border border-border bg-background p-5 sm:p-6 transition-all hover:-translate-y-0.5 hover:border-foreground/20"
+                {...revealProps}
+              >
+                <div className="flex items-start gap-3 mb-3">
+                  <div
+                    className="inline-flex w-9 h-9 items-center justify-center rounded-full border border-border shrink-0"
+                    style={{ backgroundColor: `${color}1A` }}
+                  >
+                    <Icon size={16} style={{ color }} />
+                  </div>
+                  <h3 className="text-base font-semibold leading-tight text-foreground" style={CASE_STUDY_HEADING_FONT}>
+                    {title}
+                  </h3>
+                </div>
+                <p className="text-sm leading-relaxed text-foreground/80">{detail}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </motion.section>
+  );
+}
+
+function KeybankDesignTextOnly({
+  phase,
+  onImageClick,
+}: {
+  phase: Phase;
+  onImageClick: (src: string, caption: string) => void;
+}) {
+  return (
+    <motion.section className="bg-background border-t border-border py-12 sm:py-20" {...revealProps}>
+      <div className="flex items-baseline gap-4 sm:gap-6 mb-8 sm:mb-14">
+        <h2 className={CASE_STUDY_HEADING_CLASSES.h2} style={CASE_STUDY_HEADING_FONT}>
+          {phase.title}
+        </h2>
+        <div className="flex-1 h-px bg-border ml-2 sm:ml-4 hidden sm:block" />
+      </div>
+
+      <div className="w-full max-w-5xl">
+        {phase.body.split("\n\n").map((para, i) => (
+          <p key={i} className={`text-base leading-relaxed text-foreground/85 ${i > 0 ? "mt-4" : ""}`}>
+            {para}
+          </p>
+        ))}
+
+        {phase.artifacts.length > 0 && (
+          <div className="mt-8 sm:mt-10 space-y-3">
+            <ArtifactImage
+              key={`${phase.artifacts[0].caption}-lead`}
+              artifact={phase.artifacts[0]}
+              aspectClass="aspect-[16/9]"
+              onImageClick={onImageClick}
+            />
+
+            {phase.artifacts.length > 1 && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {phase.artifacts.slice(1).map((artifact, index) => (
+                  <ArtifactImage
+                    key={`${artifact.caption}-${index}`}
+                    artifact={artifact}
+                    aspectClass="aspect-square"
+                    onImageClick={onImageClick}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </motion.section>
+  );
+}
+
 export default function CaseStudyPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
@@ -1139,7 +1305,8 @@ export default function CaseStudyPage() {
     () => sessionStorage.getItem(SESSION_KEY) === "1"
   );
   const [lightbox, setLightbox] = useState<{ src: string; caption: string } | null>(null);
-  const study = caseStudies.find((s) => s.slug === slug);
+  const visibleCaseStudies = caseStudies.filter((item) => visibleCaseStudySlugs.includes(item.slug));
+  const study = visibleCaseStudies.find((s) => s.slug === slug);
 
   useLayoutEffect(() => {
     const previousRestoration = window.history.scrollRestoration;
@@ -1168,12 +1335,15 @@ export default function CaseStudyPage() {
     return <PasswordGate onUnlock={() => setUnlocked(true)} />;
   }
 
-  const currentIndex = caseStudies.findIndex((s) => s.slug === slug);
-  const prev = caseStudies[currentIndex - 1] ?? null;
-  const next = caseStudies[currentIndex + 1] ?? null;
+  const currentIndex = visibleCaseStudies.findIndex((s) => s.slug === slug);
+  const prev = visibleCaseStudies[currentIndex - 1] ?? null;
+  const next = visibleCaseStudies[currentIndex + 1] ?? null;
 
   const phases = [study.discover, study.define, study.design, study.deliver];
   const isSharedControlPlanes = study.slug === "shared-control-planes";
+  const usesExecutiveSummaryTitle =
+    isSharedControlPlanes || study.slug === "chase-first-banking" || study.slug === "keybank-counterfeit-disputes";
+  const showOverviewMetrics = study.slug !== "keybank-counterfeit-disputes";
 
   // Resolved accent: swap to lightColor in light mode when provided, guaranteeing ≥4.5:1
   const accent = !isDark && study.lightColor ? study.lightColor : study.color;
@@ -1208,17 +1378,6 @@ export default function CaseStudyPage() {
           Tamare Reese
         </span>
         <div className="flex items-center gap-1 sm:gap-2">
-          <div className="hidden md:flex items-center gap-1">
-            {PHASES.map((p) => (
-              <a
-                key={p}
-                href={`#phase-${p}`}
-                className="text-xs text-muted-foreground hover:text-foreground capitalize px-2 sm:px-3 py-1 transition-colors"
-              >
-                {p}
-              </a>
-            ))}
-          </div>
           <ThemeToggle isDark={isDark} toggle={toggle} />
         </div>
       </nav>
@@ -1237,9 +1396,9 @@ export default function CaseStudyPage() {
       <div className="px-5 sm:px-8 pb-12 sm:pb-16 -mt-16 relative z-10 max-w-6xl mx-auto">
         <div className="max-w-3xl">
           <h1
-            className="font-extrabold leading-tight mb-4"
+            className={`${CASE_STUDY_HEADING_CLASSES.h1} mb-4`}
             style={{
-              fontFamily: "'Bricolage Grotesque', sans-serif",
+              ...CASE_STUDY_HEADING_FONT,
               fontSize: "clamp(2rem, 5vw, 4.5rem)",
             }}
           >
@@ -1270,12 +1429,12 @@ export default function CaseStudyPage() {
         <motion.section className="bg-background border-t border-border py-12 sm:py-16 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-12" {...revealProps}>
           <div className="lg:col-span-3">
             <span className="text-xs text-muted-foreground tracking-widest uppercase">
-              {isSharedControlPlanes ? "Executive Summary" : "Overview"}
+              {usesExecutiveSummaryTitle ? "Executive Summary" : "Overview"}
             </span>
           </div>
           <div className="lg:col-span-7">
             {study.overview.split("\n\n").map((paragraph, i) => (
-              <p key={i} className={`text-base sm:text-lg leading-relaxed text-foreground/90 ${i > 0 ? "mt-4" : ""}`}>
+              <p key={i} className={`text-base leading-relaxed text-foreground/90 ${i > 0 ? "mt-4" : ""}`}>
                 {paragraph}
               </p>
             ))}
@@ -1290,40 +1449,58 @@ export default function CaseStudyPage() {
           />
         ) : (
           <>
-            <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-background">
-                {study.metrics.map((m) => (
-                  <motion.div key={m.label} className="bg-background p-5 sm:p-8" {...revealProps}>
-                    <div
-                      className="text-3xl sm:text-4xl font-extrabold mb-2"
-                      style={{ fontFamily: "'Bricolage Grotesque', sans-serif", color: accent }}
-                    >
-                      {m.value}
-                    </div>
-                    <div className="text-xs sm:text-sm text-muted-foreground leading-snug">{m.label}</div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.section>
+            {showOverviewMetrics && (
+              <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-background">
+                  {study.metrics.map((m) => (
+                    <motion.div key={m.label} className="bg-background p-5 sm:p-8" {...revealProps}>
+                      <div
+                        className="text-3xl sm:text-4xl font-extrabold mb-2"
+                        style={{ fontFamily: "'Bricolage Grotesque', sans-serif", color: accent }}
+                      >
+                        {m.value}
+                      </div>
+                      <div className="text-xs sm:text-sm text-muted-foreground leading-snug">{m.label}</div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.section>
+            )}
 
             {phases.map((phase, i) => (
               <div key={phase.title} id={`phase-${phase.title.toLowerCase()}`}>
-                <PhaseSection
-                  phase={phase}
-                  index={i}
-                  color={accent}
-                  isLast={i === phases.length - 1}
-                  onImageClick={(src, caption) => setLightbox({ src, caption })}
-                />
+                {study.slug === "keybank-counterfeit-disputes" && phase.title === "Define" ? (
+                  <KeybankDefineCoreProblems
+                    phase={phase}
+                    color={accent}
+                  />
+                ) : study.slug === "keybank-counterfeit-disputes" && phase.title === "Design" ? (
+                  <KeybankDesignTextOnly
+                    phase={phase}
+                    onImageClick={(src, caption) => setLightbox({ src, caption })}
+                  />
+                ) : study.slug === "keybank-counterfeit-disputes" && phase.title === "Deliver" ? (
+                  <KeybankDesignTextOnly
+                    phase={phase}
+                    onImageClick={(src, caption) => setLightbox({ src, caption })}
+                  />
+                ) : (
+                  <PhaseSection
+                    phase={phase}
+                    index={i}
+                    color={accent}
+                    isLast={i === phases.length - 1}
+                    onImageClick={(src, caption) => setLightbox({ src, caption })}
+                  />
+                )}
               </div>
             ))}
 
         <motion.section id="phase-outcome" className="bg-background border-t border-border py-12 sm:py-20" {...revealProps}>
           <div className="flex items-baseline gap-4 sm:gap-6 mb-8 sm:mb-14">
-            <span className="text-xs font-mono tracking-widest shrink-0" style={{ color: accent }}>05</span>
             <h2
-              className="text-2xl sm:text-3xl font-extrabold tracking-tight"
-              style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+              className={CASE_STUDY_HEADING_CLASSES.h2}
+              style={CASE_STUDY_HEADING_FONT}
             >
               Outcome
             </h2>

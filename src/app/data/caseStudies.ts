@@ -12,7 +12,40 @@ import databasesPersonasEngineer from "@/assets/Project images/Databases_Persona
 import databaseExperiencePrinciples from "@/assets/Project images/Database_Experience Principles.png";
 import databasesIA from "@/assets/Project images/Databases_IA.png";
 import databasesUserFlow from "@/assets/Project images/Databases_User Flow.png";
-import databasesDashboard from "@/assets/Project images/Databases_Dashboard.png";
+import databasesWireframe from "@/assets/Project images/Databases_Wireframe.png";
+import databases1 from "@/assets/Project images/Databases_1.png";
+import databases2 from "@/assets/Project images/Databases_2.png";
+import databases3 from "@/assets/Project images/Databases_3.png";
+import databases4 from "@/assets/Project images/Databases_4.png";
+import databases5 from "@/assets/Project images/Databases_5.png";
+import databases6 from "@/assets/Project images/Databases_6.png";
+import databases7 from "@/assets/Project images/Databases_7.png";
+import databases8 from "@/assets/Project images/Databases_8.png";
+import databasesFinalImage from "@/assets/Project images/Databases_Final Image.png";
+import fnbResearch1 from "@/assets/Project images/FNB_Research 1.png";
+import fnbResearch2 from "@/assets/Project images/FNB_Research 2.png";
+import fnbResearch3 from "@/assets/Project images/FNB_Research 3.png";
+import fnbDesign1 from "@/assets/Project images/FNB_Design 1.png";
+import fnbDesign2 from "@/assets/Project images/FNB_Design 2.png";
+import fnbDesign3 from "@/assets/Project images/FNB_Design 3.png";
+import fnbDesign4 from "@/assets/Project images/FNB_Design 4.png";
+import fnbDesign5 from "@/assets/Project images/FNB_Design 5.png";
+import fnbDesign6 from "@/assets/Project images/FNB_Design 6.png";
+import keyAffinity from "@/assets/Project images/Key_Affinity.png";
+import keyTechStrategyAndPlan from "@/assets/Project images/Key_Tech strategy and plan.png";
+import keyDisputesFlow from "@/assets/Project images/Key_Disputes Flow.png";
+import keyLowFidelityWires from "@/assets/Project images/Key_Low-fidelity wires.png";
+import keyWireFlow from "@/assets/Project images/Key_Wire Flow.png";
+import key4 from "@/assets/Project images/Key_4.png";
+import key5 from "@/assets/Project images/Key_5.png";
+import key6 from "@/assets/Project images/Key_6.png";
+import key7 from "@/assets/Project images/Key_7.png";
+import key8 from "@/assets/Project images/Key_8.png";
+import key9 from "@/assets/Project images/Key_9.png";
+import key10 from "@/assets/Project images/Key_10.png";
+import key11 from "@/assets/Project images/Key_11.png";
+import key12 from "@/assets/Project images/Key_12.png";
+import key13 from "@/assets/Project images/Key_13.png";
 import sparkCoverFull from "@/assets/covers/Spark_Cover_Full.jpg";
 import databasesCoverFull from "@/assets/covers/Databases_Cover_Full.jpg";
 import arrCoverFull from "@/assets/covers/ARR_Cover_Full.jpg";
@@ -52,12 +85,20 @@ export type CaseStudy = {
   define: Phase;
   design: Phase;
   deliver: Phase;
+  deliverDirectImages?: string[];
+  deliverFinalImage?: string;
   outcome: {
     summary: string;
     impact: string;
     reflection: string;
   };
 };
+
+export const visibleCaseStudySlugs = [
+  "chase-first-banking",
+  "shared-control-planes",
+  "keybank-counterfeit-disputes",
+] as const;
 
 export const caseStudies: CaseStudy[] = [
   {
@@ -216,11 +257,22 @@ export const caseStudies: CaseStudy[] = [
           caption: "User Flow — (Insert user flow.)",
         },
         {
-          src: databasesDashboard,
-          caption: "High-Fidelity Designs",
+          src: databasesWireframe,
+          caption: "Wireframes",
         },
       ],
     },
+    deliverDirectImages: [
+      databases1,
+      databases2,
+      databases3,
+      databases4,
+      databases5,
+      databases6,
+      databases7,
+      databases8,
+    ],
+    deliverFinalImage: databasesFinalImage,
     outcome: {
       summary:
         "Unified experience strategy across multiple database products\nStandardized onboarding and provisioning workflows\nShared navigation and interaction patterns\nReusable design patterns for future database products\nFoundation for Integrated Engineers Portal\nImproved usability through iterative validation",
@@ -441,19 +493,14 @@ export const caseStudies: CaseStudy[] = [
       { value: "↓", label: "Reduced incomplete dispute submissions" },
       { value: "12%", label: "Reduction in dispute-related call center volume after redesign" },
       { value: "↑", label: "Improved dispute quality and resolution accuracy" },
-      { value: "[ # ]", label: "[ Add metric ]" },
     ],
     discover: {
       title: "Discover",
       body: "Research revealed that customers often misunderstood counterfeit eligibility requirements, documentation expectations, and dispute outcomes. Internal teams spent significant time requesting additional evidence and educating customers after submission.\n\nCustomers frequently confused counterfeit merchandise claims with other dispute types — defective merchandise, items not received, quality concerns, or seller misrepresentation. Many claims were submitted without the evidence required to support investigations, creating rework for both customers and operations teams.",
       artifacts: [
         {
-          src: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Journey mapping and current-state dispute workflow",
-        },
-        {
-          src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Research findings: eligibility confusion and evidence gaps",
+          src: keyAffinity,
+          caption: "[ Add image ] — Affinity mapping and current-state dispute workflow",
         },
       ],
     },
@@ -476,16 +523,20 @@ export const caseStudies: CaseStudy[] = [
       body: "The experience was redesigned around three core questions: Is this a counterfeit claim? Do I have the required evidence? Am I prepared to proceed? Rather than immediately presenting a form, the workflow guided customers through an eligibility assessment before allowing them to submit a dispute.\n\nThe solution introduced guided eligibility validation, contextual education, progressive disclosure, and dynamic evidence collection. Customers received information at the moment it was needed, reducing confusion and improving completion quality.\n\nKey design decisions: stop invalid claims earlier in the process; educate customers before submission; collect stronger evidence upfront; increase confidence through clear expectations and guidance.\n\nLow-fidelity concepts explored decision logic, information architecture, and workflow sequencing. High-fidelity prototypes simulated real-world dispute scenarios and enabled stakeholder review before implementation.",
       artifacts: [
         {
-          src: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Eligibility assessment flow and decision logic",
+          src: keyTechStrategyAndPlan,
+          caption: "Key Tech strategy and plan",
         },
         {
-          src: "https://images.unsplash.com/photo-1576153192396-180ecef2a715?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — High-fidelity prototype: guided evidence collection",
+          src: keyDisputesFlow,
+          caption: "Key Disputes Flow",
         },
         {
-          src: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Progressive disclosure and contextual education design",
+          src: keyLowFidelityWires,
+          caption: "Key Low-fidelity wires",
+        },
+        {
+          src: keyWireFlow,
+          caption: "Key Wire Flow",
         },
       ],
     },
@@ -494,12 +545,44 @@ export const caseStudies: CaseStudy[] = [
       body: "The redesigned experience delivered measurable improvements for both customers and the business. Customer benefits included improved understanding of eligibility requirements, reduced frustration from incomplete or rejected submissions, and increased confidence throughout the dispute process.\n\nBusiness benefits included lower support volume, reduced operational costs from unnecessary reviews and manual interventions, improved claim quality, and more efficient investigations. The guided eligibility model meant that claims reaching the operations team were better prepared and required less back-and-forth.",
       artifacts: [
         {
-          src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Final dispute experience: guided eligibility and evidence collection",
+          src: key4,
+          caption: "Key 4",
         },
         {
-          src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=600&fit=crop&auto=format",
-          caption: "[ Add image ] — Outcome metrics and validation results",
+          src: key5,
+          caption: "Key 5",
+        },
+        {
+          src: key6,
+          caption: "Key 6",
+        },
+        {
+          src: key7,
+          caption: "Key 7",
+        },
+        {
+          src: key8,
+          caption: "Key 8",
+        },
+        {
+          src: key9,
+          caption: "Key 9",
+        },
+        {
+          src: key10,
+          caption: "Key 10",
+        },
+        {
+          src: key11,
+          caption: "Key 11",
+        },
+        {
+          src: key12,
+          caption: "Key 12",
+        },
+        {
+          src: key13,
+          caption: "Key 13",
         },
       ],
     },
@@ -539,15 +622,15 @@ export const caseStudies: CaseStudy[] = [
       body: "A comprehensive discovery effort was conducted using moderated customer interviews, field research, usability testing, and collaborative synthesis workshops. Research participants represented a variety of financial backgrounds, product needs, and banking behaviors. Findings were synthesized through affinity mapping exercises to uncover patterns in customer decision-making and product selection behaviors.\n\nThe core finding: customers consistently behaved more like retail shoppers than traditional banking customers. They wanted to compare options, understand differences between products, and build confidence before committing. Research also revealed significant variation in financial literacy levels, highlighting the need for both educational content and simplified decision support throughout the experience.",
       artifacts: [
         {
-          src: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=900&h=600&fit=crop&auto=format",
+          src: fnbResearch1,
           caption: "[ Add image ] — Moderated customer interviews and field research",
         },
         {
-          src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=900&h=600&fit=crop&auto=format",
+          src: fnbResearch2,
           caption: "[ Add image ] — Affinity mapping and synthesis workshops",
         },
         {
-          src: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=900&h=600&fit=crop&auto=format",
+          src: fnbResearch3,
           caption: "[ Add image ] — Customer decision-making and product selection behavior patterns",
         },
       ],
@@ -557,12 +640,28 @@ export const caseStudies: CaseStudy[] = [
       body: "Financial institutions frequently organize products around internal business structures rather than customer goals. Customers struggled to identify the right products, compare options, understand features, and confidently complete applications. The challenge was not simply redesigning pages — it was rethinking how banking products are discovered and purchased through digital channels.\n\nResearch identified five distinct shopper archetypes: Browsers, Researchers, Product-Focused Shoppers, Bargain Hunters, and Emerging Customers. Each demonstrated unique behaviors, motivations, and information needs. These insights informed navigation, content strategy, product organization, and conversion pathways.\n\nFour business objectives shaped the strategy: increase product discoverability; improve conversion by reducing friction; support omnichannel banking through seamless digital-to-branch connections; and modernize the perception of banking through a retail-inspired experience.",
       artifacts: [
         {
-          src: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=900&h=600&fit=crop&auto=format",
+          src: fnbDesign1,
           caption: "[ Add image ] — Five shopper archetypes: Browsers, Researchers, Product-Focused, Bargain Hunters, Emerging Customers",
         },
         {
-          src: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&h=600&fit=crop&auto=format",
+          src: fnbDesign2,
           caption: "[ Add image ] — Journey maps and persona-driven navigation framework",
+        },
+        {
+          src: fnbDesign3,
+          caption: "[ Add image ] — Shopper archetype comparison matrix",
+        },
+        {
+          src: fnbDesign4,
+          caption: "[ Add image ] — Problem framing workshop outputs",
+        },
+        {
+          src: fnbDesign5,
+          caption: "[ Add image ] — Content strategy and information hierarchy",
+        },
+        {
+          src: fnbDesign6,
+          caption: "[ Add image ] — Conversion pathway and channel handoff model",
         },
       ],
     },
