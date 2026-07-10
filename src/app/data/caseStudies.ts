@@ -5,7 +5,7 @@ import familyBankingResearch4 from "@/assets/Project images/Family Banking Resea
 import createSavingsGoalFlow from "@/assets/Project images/Create Savings Goal flow.png";
 import databasesPlatformEcosystem from "@/assets/Project images/Databases_Platform Ecosystem.png";
 import databasesServiceBlueprintFinal from "@/assets/Project images/Databases_serviceblueprint_Final.png";
-import databasesAffinityMap from "@/assets/Project images/Databases_Affinity Map.png";
+import databasesUiAudit from "@/assets/Project images/Databases_UI Audit.png";
 import databasesJourneyMap from "@/assets/Project images/Databases_Journey Map.png";
 import databasesPersonaAppOwner from "@/assets/Project images/Databases_Persona_AppOwner.png";
 import databasesPersonasEngineer from "@/assets/Project images/Databases_Personas_Engineer.png";
@@ -218,7 +218,7 @@ export const caseStudies: CaseStudy[] = [
       body: "Research combined existing platform audits with qualitative discovery to understand customer goals, organizational constraints, and technical dependencies.\n\nResearch Activities\nUX Audit\nStakeholder Interviews\nJourney Mapping\nService Blueprinting\nPersona Development\nCompetitive Analysis\nWorkflow Analysis\nUsability Testing\n\nResearch Insights\n\nFragmented Experiences\nDatabase products solved similar problems through entirely different experiences.\n\nUnclear Ownership\nApplication Owners and Engineers shared responsibilities but lacked visibility into progress and ownership.\n\nHidden System Status\nCustomers often didn't understand what was happening during provisioning or why requests failed.\n\nDocumentation Outside the Workflow\nCritical guidance required leaving the platform to search documentation and internal resources.\n\nPrimary Personas\n\nAlthough several internal stakeholders influenced the broader platform, research identified two primary customer groups responsible for database onboarding and provisioning.\n\nThese personas became the focus of the initial design effort while informing reusable patterns that could scale across additional workflows.\n\nApplication Owner\nResponsible for preparing applications, coordinating prerequisites, managing approvals, and enabling engineering teams.\n\nGoals\nComplete onboarding efficiently\nMaintain compliance\nReduce engineering blockers\n\nPain Points\nFragmented onboarding\nMultiple disconnected systems\nPoor visibility into approvals\nConfusing ownership\n\nEngineer\nResponsible for provisioning, configuring, monitoring, and maintaining database services.\n\nGoals\nProvision services quickly\nConfigure correctly\nResolve issues independently\n\nPain Points\nInconsistent provisioning\nTechnical complexity\nLimited operational visibility\nDifficult troubleshooting",
       artifacts: [
         {
-          src: databasesAffinityMap,
+          src: databasesUiAudit,
           caption: "Research Synthesis",
         },
         {

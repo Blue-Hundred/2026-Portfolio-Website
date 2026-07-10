@@ -1001,11 +1001,13 @@ function ArtifactImage({
   aspectClass,
   onImageClick,
   imageClassName,
+  disableHoverScale,
 }: {
   artifact: { src: string; caption: string };
   aspectClass: string;
   onImageClick: (src: string, caption: string) => void;
   imageClassName?: string;
+  disableHoverScale?: boolean;
 }) {
   return (
     <motion.button
@@ -1017,7 +1019,7 @@ function ArtifactImage({
       <img
         src={artifact.src}
         alt={artifact.caption}
-        className={`w-full h-full opacity-90 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.02] ${imageClassName ?? "object-contain"}`}
+        className={`w-full h-full opacity-90 transition-all duration-500 group-hover:opacity-100 ${disableHoverScale ? "" : "group-hover:scale-[1.02]"} ${imageClassName ?? "object-contain"}`}
       />
       {/* Zoom hint */}
       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -1275,25 +1277,44 @@ function KeybankDesignTextOnly({
 
         {phase.artifacts.length > 0 && (
           <div className="mt-8 sm:mt-10 space-y-3">
-            <ArtifactImage
-              key={`${phase.artifacts[0].caption}-lead`}
-              artifact={phase.artifacts[0]}
-              aspectClass="aspect-[16/9]"
-              onImageClick={onImageClick}
-              imageClassName={isDeliverPhase ? "object-cover scale-[1.01]" : "object-contain"}
-            />
+            {isDeliverPhase ? (
+              <img
+                src={phase.artifacts[0].src}
+                alt={phase.artifacts[0].caption}
+                className="w-full h-auto block border border-border"
+              />
+            ) : (
+              <ArtifactImage
+                key={`${phase.artifacts[0].caption}-lead`}
+                artifact={phase.artifacts[0]}
+                aspectClass="aspect-[16/9]"
+                onImageClick={onImageClick}
+                imageClassName="object-contain"
+                disableHoverScale
+              />
+            )}
 
             {phase.artifacts.length > 1 && (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {phase.artifacts.slice(1).map((artifact, index) => (
-                  <ArtifactImage
-                    key={`${artifact.caption}-${index}`}
-                    artifact={artifact}
-                    aspectClass="aspect-square"
-                    onImageClick={onImageClick}
-                    imageClassName={isDeliverPhase ? "object-cover scale-[1.01]" : "object-contain"}
-                  />
-                ))}
+                {phase.artifacts.slice(1).map((artifact, index) =>
+                  isDeliverPhase ? (
+                    <img
+                      key={`${artifact.caption}-${index}`}
+                      src={artifact.src}
+                      alt={artifact.caption}
+                      className="w-full h-auto block border border-border"
+                    />
+                  ) : (
+                    <ArtifactImage
+                      key={`${artifact.caption}-${index}`}
+                      artifact={artifact}
+                      aspectClass="aspect-square"
+                      onImageClick={onImageClick}
+                      imageClassName="object-contain"
+                      disableHoverScale
+                    />
+                  )
+                )}
               </div>
             )}
           </div>
