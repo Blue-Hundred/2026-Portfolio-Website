@@ -7,7 +7,7 @@ import CaseStudyPage from "./CaseStudyPage";
 import DesignSystemShowcase from "./design-system/DesignSystemShowcase";
 import { useTheme } from "./hooks/useTheme";
 import { ThemeToggle } from "./components/ThemeToggle";
-import { DSButton, DSChip, DSContainer, DSSectionHeader } from "./design-system";
+import { DSButton, DSContainer, DSSectionHeader } from "./design-system";
 import resumePdf from "../assets/Attachments/Tamare_Reese_Resume_2026_Final.pdf";
 
 function scrollToTopInstant() {
@@ -304,14 +304,18 @@ function Portfolio() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-px bg-border lg:self-center">
+          <div className="grid grid-cols-2 lg:self-center">
             {[
               { value: "10+", label: "Years in UX Design & Strategy" },
               { value: "2+", label: "Years in AI & Front-End Development" },
               { value: "4+", label: "Years in Product Management" },
               { value: "6+", label: "Years Leading User Research" },
-            ].map((stat) => (
-              <motion.div key={stat.label} className="bg-background p-6 sm:p-8 h-full" {...revealProps}>
+            ].map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                className={`p-6 sm:p-8 h-full ${index % 2 === 0 ? "border-r" : ""} ${index < 2 ? "border-b" : ""} border-border`}
+                {...revealProps}
+              >
                 <div
                   className="text-4xl sm:text-5xl font-extrabold text-primary mb-2"
                   style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
@@ -324,15 +328,6 @@ function Portfolio() {
           </div>
         </DSContainer>
 
-        <DSContainer className="mt-12 sm:mt-16 border-t border-border pt-12 sm:pt-16">
-          <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3">
-            {["Product Strategy", "UX Research", "Interaction Design", "Design Systems", "Prototyping", "Front-End Dev"].map((skill) => (
-              <DSChip key={skill} className="text-center hover:text-foreground transition-colors">
-                {skill}
-              </DSChip>
-            ))}
-          </div>
-        </DSContainer>
       </motion.section>
 
       {/* Contact */}
