@@ -4,8 +4,10 @@ import { BrowserRouter, Routes, Route, Link, useNavigate, useLocation } from "re
 import { motion } from "motion/react";
 import { caseStudies, visibleCaseStudySlugs } from "./data/caseStudies";
 import CaseStudyPage from "./CaseStudyPage";
+import DesignSystemShowcase from "./design-system/DesignSystemShowcase";
 import { useTheme } from "./hooks/useTheme";
 import { ThemeToggle } from "./components/ThemeToggle";
+import { DSButton, DSCard, DSChip, DSContainer, DSSectionHeader } from "./design-system";
 import resumePdf from "../assets/Attachments/Tamare_Reese_Resume_2026_Final.pdf";
 
 function scrollToTopInstant() {
@@ -215,16 +217,12 @@ function Portfolio() {
 
       {/* Case Studies */}
       <motion.section id="work" className="bg-background px-5 sm:px-8 py-16 sm:py-24 border-t border-border" {...revealProps}>
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-end justify-between mb-10 sm:mb-16">
-            <h2
-              className="text-3xl sm:text-4xl font-bold leading-tight"
-              style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-            >
-              Selected Work
-            </h2>
-            <span className="text-muted-foreground text-sm">{homepageCaseStudies.length} case studies</span>
-          </div>
+        <DSContainer>
+          <DSSectionHeader
+            title="Selected Work"
+            right={<span>{homepageCaseStudies.length} case studies</span>}
+            className="mb-10 sm:mb-16"
+          />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-px bg-background">
             {homepageCaseStudies.map((study) => (
@@ -243,6 +241,9 @@ function Portfolio() {
                   <img
                     src={study.image}
                     alt={study.title}
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
                     className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105 opacity-70 group-hover:opacity-90"
                   />
                   <div
@@ -271,12 +272,12 @@ function Portfolio() {
               </motion.div>
             ))}
           </div>
-        </div>
+        </DSContainer>
       </motion.section>
 
       {/* About */}
       <motion.section id="about" className="bg-background px-5 sm:px-8 py-16 sm:py-24 border-t border-border" {...revealProps}>
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <DSContainer className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <div>
             <span className="text-xs font-medium tracking-widest uppercase text-primary mb-4 block">About</span>
             <h2
@@ -310,31 +311,30 @@ function Portfolio() {
               { value: "4+", label: "Years in Product Management" },
               { value: "6+", label: "Years Leading User Research" },
             ].map((stat) => (
-              <motion.div key={stat.label} className="bg-background p-6 sm:p-8" {...revealProps}>
-                <div
-                  className="text-4xl sm:text-5xl font-extrabold text-primary mb-2"
-                  style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-                >
-                  {stat.value}
-                </div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
+              <motion.div key={stat.label} {...revealProps}>
+                <DSCard className="bg-background p-6 sm:p-8 h-full">
+                  <div
+                    className="text-4xl sm:text-5xl font-extrabold text-primary mb-2"
+                    style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+                  >
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                </DSCard>
               </motion.div>
             ))}
           </div>
-        </div>
+        </DSContainer>
 
-        <div className="max-w-7xl mx-auto mt-12 sm:mt-16 border-t border-border pt-12 sm:pt-16">
+        <DSContainer className="mt-12 sm:mt-16 border-t border-border pt-12 sm:pt-16">
           <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3">
             {["Product Strategy", "UX Research", "Interaction Design", "Design Systems", "Prototyping", "Front-End Dev"].map((skill) => (
-              <div
-                key={skill}
-                className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-border bg-secondary/25 text-sm text-muted-foreground text-center hover:text-foreground transition-colors"
-              >
+              <DSChip key={skill} className="text-center hover:text-foreground transition-colors">
                 {skill}
-              </div>
+              </DSChip>
             ))}
           </div>
-        </div>
+        </DSContainer>
       </motion.section>
 
       {/* Contact */}
@@ -344,7 +344,7 @@ function Portfolio() {
         className="bg-background px-5 sm:px-8 py-16 sm:py-24 border-t border-border"
         {...revealProps}
       >
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <DSContainer className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <div>
             <span className="text-xs font-medium tracking-widest uppercase text-primary mb-4 block">Contact</span>
             <h2
@@ -421,17 +421,19 @@ function Portfolio() {
                     className="w-full bg-transparent text-foreground placeholder:text-muted-foreground/40 text-sm outline-none resize-none"
                   />
                 </div>
-                <button
+                <DSButton
                   type="submit"
                   disabled={formStatus === "sending"}
-                  className="w-full flex items-center justify-center gap-2 py-4 font-semibold text-sm bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-60 transition-all"
+                  fullWidth
+                  size="lg"
+                  className="py-4"
                 >
                   {formStatus === "sending" ? "Sending..." : <><Send size={14} />Send Message</>}
-                </button>
+                </DSButton>
               </form>
             )}
           </div>
-        </div>
+        </DSContainer>
       </motion.section>
 
       {/* Footer */}
@@ -465,6 +467,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Portfolio />} />
+        <Route path="/design-system" element={<DesignSystemShowcase />} />
         <Route path="/work/:slug" element={<CaseStudyPage />} />
       </Routes>
     </BrowserRouter>

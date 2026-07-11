@@ -7,7 +7,6 @@ import {
   ArrowUpRight,
   Lock,
   X,
-  ZoomIn,
   Workflow,
   Wrench,
   CircleDashed,
@@ -32,6 +31,7 @@ import {
 import { caseStudies, visibleCaseStudySlugs, type Phase, type CaseStudy } from "./data/caseStudies";
 import { useTheme } from "./hooks/useTheme";
 import { ThemeToggle } from "./components/ThemeToggle";
+import { DSImageDialog, DSStaticImageView } from "./design-system";
 
 const SESSION_KEY = "cs_unlocked";
 const revealProps = {
@@ -391,6 +391,9 @@ function ScpArtifactPlaceholders({
               <img
                 src={artifact.src}
                 alt={artifact.caption}
+                loading="lazy"
+                decoding="async"
+                fetchPriority="low"
                 className="w-full h-full object-contain"
               />
             </div>
@@ -582,6 +585,9 @@ function ScpModernLayout({
                     <img
                       src={personaArtifact.src}
                       alt={personaArtifact.caption}
+                      loading="lazy"
+                      decoding="async"
+                      fetchPriority="low"
                       className="w-full h-full object-contain"
                     />
                   </div>
@@ -633,11 +639,12 @@ function ScpModernLayout({
         <section className="bg-background border-t border-border py-12 sm:py-14">
           <div className="grid grid-cols-2 gap-4">
             {study.deliverDirectImages.map((imageSrc, index) => (
-              <img
+              <DSStaticImageView
                 key={`${imageSrc}-${index}`}
                 src={imageSrc}
-                alt={`Database ${index + 1}`}
-                className="w-full h-auto border border-[#D9D9D9]"
+                caption={`Database ${index + 1}`}
+                onImageClick={onImageClick}
+                className="border-[#D9D9D9]"
               />
             ))}
           </div>
@@ -646,10 +653,12 @@ function ScpModernLayout({
 
       {study.deliverFinalImage && (
         <section className="bg-background border-t border-border py-12 sm:py-14">
-          <img
+          <DSImageDialog
             src={study.deliverFinalImage}
-            alt="Databases final image"
-            className="w-full h-auto"
+            caption="Databases final image"
+            onImageClick={onImageClick}
+            variant="plain"
+            imageClassName="w-full h-auto"
           />
         </section>
       )}
@@ -987,6 +996,9 @@ function Lightbox({
         <img
           src={src}
           alt={caption}
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
           className="max-w-full max-h-[75vh] object-contain"
           style={{ boxShadow: "0 32px 80px rgba(0,0,0,0.4)" }}
         />
@@ -1010,24 +1022,15 @@ function ArtifactImage({
   disableHoverScale?: boolean;
 }) {
   return (
-    <motion.button
-      className={`group relative overflow-hidden bg-background ${aspectClass} w-full text-left`}
-      onClick={() => onImageClick(artifact.src, artifact.caption)}
-      aria-label={`View full image: ${artifact.caption}`}
-      {...revealProps}
-    >
-      <img
-        src={artifact.src}
-        alt={artifact.caption}
-        className={`w-full h-full opacity-90 transition-all duration-500 group-hover:opacity-100 ${disableHoverScale ? "" : "group-hover:scale-[1.02]"} ${imageClassName ?? "object-contain"}`}
-      />
-      {/* Zoom hint */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <div className="bg-background/80 backdrop-blur-sm rounded-full p-2">
-          <ZoomIn size={16} className="text-foreground" />
-        </div>
-      </div>
-    </motion.button>
+    <DSImageDialog
+      src={artifact.src}
+      caption={artifact.caption}
+      onImageClick={onImageClick}
+      variant="artifact"
+      aspectClass={aspectClass}
+      imageClassName={imageClassName}
+      disableHoverScale={disableHoverScale}
+    />
   );
 }
 
@@ -1278,10 +1281,10 @@ function KeybankDesignTextOnly({
         {phase.artifacts.length > 0 && (
           <div className="mt-8 sm:mt-10 space-y-3">
             {isDeliverPhase ? (
-              <img
+              <DSStaticImageView
                 src={phase.artifacts[0].src}
-                alt={phase.artifacts[0].caption}
-                className="w-full h-auto block border border-border"
+                caption={phase.artifacts[0].caption}
+                onImageClick={onImageClick}
               />
             ) : (
               <ArtifactImage
@@ -1298,11 +1301,11 @@ function KeybankDesignTextOnly({
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {phase.artifacts.slice(1).map((artifact, index) =>
                   isDeliverPhase ? (
-                    <img
+                    <DSStaticImageView
                       key={`${artifact.caption}-${index}`}
                       src={artifact.src}
-                      alt={artifact.caption}
-                      className="w-full h-auto block border border-border"
+                      caption={artifact.caption}
+                      onImageClick={onImageClick}
                     />
                   ) : (
                     <ArtifactImage
@@ -1414,6 +1417,9 @@ export default function CaseStudyPage() {
         <img
           src={study.image}
           alt={study.title}
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
           className="w-full h-full object-cover object-center opacity-50"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
