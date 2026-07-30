@@ -362,7 +362,7 @@ function ScpArtifactPlaceholders({
   onImageClick: (src: string, caption: string) => void;
 }) {
   return (
-    <section className="bg-background border-t border-border py-12 sm:py-14">
+    <motion.section className="bg-background border-t border-border py-12 sm:py-14" {...revealProps}>
       {showArtifactsLabel && (
         <div className="flex items-center gap-2 mb-6">
           <span className="text-xs tracking-widest uppercase text-muted-foreground">Artifacts</span>
@@ -412,7 +412,7 @@ function ScpArtifactPlaceholders({
           ))}
         </div>
       )}
-    </section>
+    </motion.section>
   );
 }
 
@@ -437,7 +437,7 @@ function ScpModernLayout({
 
   return (
     <>
-      <section className="bg-background border-t border-border py-12 sm:py-14">
+      <motion.section className="bg-background border-t border-border py-12 sm:py-14" {...revealProps}>
         <ScpSectionTitle title="My Role" />
         <div className="max-w-4xl">
           <p className="text-base text-foreground/90 leading-relaxed mb-6">
@@ -457,9 +457,9 @@ function ScpModernLayout({
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="bg-background border-t border-border py-12 sm:py-14">
+      <motion.section className="bg-background border-t border-border py-12 sm:py-14" {...revealProps}>
         <ScpSectionTitle title="The Challenge" />
         <div className="max-w-4xl">
           <p className="text-base text-foreground/90 leading-relaxed mb-5">
@@ -497,7 +497,7 @@ function ScpModernLayout({
             Rather than redesigning a single interface, our challenge was to define a reusable experience strategy that every database product could adopt.
           </p>
         </div>
-      </section>
+      </motion.section>
 
       <ScpArtifactPlaceholders
         title="Understanding the Ecosystem"
@@ -515,7 +515,7 @@ function ScpModernLayout({
         ]}
       />
 
-      <section className="bg-background border-t border-border py-12 sm:py-14">
+      <motion.section className="bg-background border-t border-border py-12 sm:py-14" {...revealProps}>
         <ScpSectionTitle title="Research" />
         <div className="max-w-4xl mb-8">
           <p className="text-base text-foreground/90 leading-relaxed">
@@ -533,7 +533,7 @@ function ScpModernLayout({
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       <ScpArtifactPlaceholders
         title="Research Artifacts"
@@ -542,7 +542,7 @@ function ScpModernLayout({
         showArtifactsLabel={false}
       />
 
-      <section className="bg-background border-t border-border py-12 sm:py-14">
+      <motion.section className="bg-background border-t border-border py-12 sm:py-14" {...revealProps}>
         <ScpSectionTitle title="Primary Personas" />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {SCP_PERSONAS.map((persona) => {
@@ -598,9 +598,9 @@ function ScpModernLayout({
             );
           })}
         </div>
-      </section>
+      </motion.section>
 
-      <section className="bg-background border-t border-border py-12 sm:py-14">
+      <motion.section className="bg-background border-t border-border py-12 sm:py-14" {...revealProps}>
         <ScpSectionTitle title="Defining the Experience Strategy" />
         <div className="max-w-4xl mb-8">
           <p className="text-base text-foreground/90 leading-relaxed">
@@ -616,7 +616,7 @@ function ScpModernLayout({
           ))}
         </div>
 
-      </section>
+      </motion.section>
 
       <ScpArtifactPlaceholders
         title="Strategy Artifacts"
@@ -636,7 +636,7 @@ function ScpModernLayout({
       />
 
       {study.deliverDirectImages && study.deliverDirectImages.length > 0 && (
-        <section className="bg-background border-t border-border py-12 sm:py-14">
+        <motion.section className="bg-background border-t border-border py-12 sm:py-14" {...revealProps}>
           <div className="grid grid-cols-2 gap-4">
             {study.deliverDirectImages.map((imageSrc, index) => (
               <DSStaticImageView
@@ -648,11 +648,11 @@ function ScpModernLayout({
               />
             ))}
           </div>
-        </section>
+        </motion.section>
       )}
 
       {study.deliverFinalImage && (
-        <section className="bg-background border-t border-border py-12 sm:py-14">
+        <motion.section className="bg-background border-t border-border py-12 sm:py-14" {...revealProps}>
           <DSImageDialog
             src={study.deliverFinalImage}
             caption="Databases final image"
@@ -660,7 +660,7 @@ function ScpModernLayout({
             variant="plain"
             imageClassName="w-full h-auto"
           />
-        </section>
+        </motion.section>
       )}
 
       <ScpOutcomes
