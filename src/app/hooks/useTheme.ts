@@ -22,6 +22,12 @@ export function useTheme() {
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);
+
+    const favicon = document.querySelector<HTMLLinkElement>("#app-favicon");
+    if (favicon) {
+      favicon.href = isDark ? "/tab-favicon-darkmode.svg?v=2" : "/tab-favicon-lightmode.svg?v=2";
+    }
+
     try {
       localStorage.setItem(THEME_KEY, theme);
     } catch {

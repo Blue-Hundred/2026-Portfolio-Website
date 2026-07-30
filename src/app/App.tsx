@@ -1,463 +1,389 @@
-import { useState, useRef, useEffect } from "react";
-import { Download, ArrowUpRight, Mail, Send, ChevronDown, Menu, X, Linkedin } from "lucide-react";
-import { BrowserRouter, Routes, Route, Link, useNavigate, useLocation } from "react-router";
-import { motion } from "motion/react";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router";
+import { useEffect, useState } from "react";
 import { caseStudies, visibleCaseStudySlugs } from "./data/caseStudies";
 import CaseStudyPage from "./CaseStudyPage";
 import DesignSystemShowcase from "./design-system/DesignSystemShowcase";
-import { useTheme } from "./hooks/useTheme";
+import { CustomCursor } from "./components/CustomCursor";
 import { ThemeToggle } from "./components/ThemeToggle";
-import { DSButton, DSContainer, DSSectionHeader } from "./design-system";
+import { useTheme } from "./hooks/useTheme";
 import resumePdf from "../assets/Attachments/Tamare_Reese_Resume_2026_Final.pdf";
-
-function scrollToTopInstant() {
-  const html = document.documentElement;
-  const body = document.body;
-  const previousHtmlBehavior = html.style.scrollBehavior;
-  const previousBodyBehavior = body.style.scrollBehavior;
-
-  html.style.scrollBehavior = "auto";
-  body.style.scrollBehavior = "auto";
-  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-
-  requestAnimationFrame(() => {
-    html.style.scrollBehavior = previousHtmlBehavior;
-    body.style.scrollBehavior = previousBodyBehavior;
-  });
-}
+import cfbCoverImage from "../assets/covers/CFB Cover.png";
+import databasesCoverImage from "../assets/covers/Databases cover image.png";
+import tamareLightLogo from "../assets/Favicon/Tamare Light Logo.svg";
+import tamareDarkLogo from "../assets/Favicon/Tamare Dark Logo.svg";
 
 function Portfolio() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "sent">("idle");
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const contactRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  const location = useLocation();
   const { isDark, toggle } = useTheme();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const homepageCaseStudies = caseStudies.filter((study) => visibleCaseStudySlugs.includes(study.slug));
-  const revealProps = {
-    initial: { opacity: 0, y: 40 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.2 },
-    transition: { duration: 0.7, ease: "easeOut" },
-  };
-
-  const scrollToContact = () => {
-    setMenuOpen(false);
-    setTimeout(() => contactRef.current?.scrollIntoView({ behavior: "smooth" }), 10);
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormStatus("sending");
-
-    const recipient = "tamaredesign@outlook.com";
-    const subject = encodeURIComponent(`Portfolio Inquiry from ${formData.name || "Website Visitor"}`);
-    const body = encodeURIComponent(
-      [
-        `Name: ${formData.name}`,
-        `Email: ${formData.email}`,
-        "",
-        "Message:",
-        formData.message,
-      ].join("\n")
-    );
-
-    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
-    setFormStatus("sent");
-    setFormData({ name: "", email: "", message: "" });
-  };
+  const headerLogo = isDark ? tamareLightLogo : tamareDarkLogo;
 
   useEffect(() => {
-    if (!location.hash) return;
+    const revealElements = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+    if (!revealElements.length) {
+      return;
+    }
 
-    const targetId = location.hash.slice(1);
-    const target = document.getElementById(targetId);
-    if (!target) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.02,
+        rootMargin: "0px 0px -2% 0px",
+      }
+    );
 
-    requestAnimationFrame(() => {
-      target.scrollIntoView({ behavior: "auto", block: "start" });
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+    revealElements.forEach((element, index) => {
+      element.style.setProperty("--reveal-delay", `${Math.min(index * 70, 280)}ms`);
+      element.classList.remove("is-visible");
+
+      const elementTop = element.getBoundingClientRect().top;
+      if (elementTop <= viewportHeight * 1.15) {
+        element.classList.add("is-visible");
+        return;
+      }
+
+      observer.observe(element);
     });
-  }, [location.pathname, location.hash]);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    document.body.style.removeProperty("overflow");
+    document.body.style.removeProperty("overflow-y");
+    document.documentElement.style.removeProperty("overflow");
+    document.documentElement.style.removeProperty("overflow-y");
+  }, []);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) {
+      document.documentElement.style.removeProperty("overflow");
+      return;
+    }
+
+    document.documentElement.style.overflow = "hidden";
+
+    return () => {
+      document.documentElement.style.removeProperty("overflow");
+    };
+  }, [isMobileMenuOpen]);
+
+  const featuredCards = [
+    {
+      slug: "chase-first-banking",
+      title: "Family Banking",
+      company: "Chase",
+    },
+    {
+      slug: "shared-control-planes",
+      title: "Database Service Management",
+      company: "Chase",
+    },
+  ].map((card) => {
+    const match = homepageCaseStudies.find((study) => study.slug === card.slug);
+    return {
+      ...card,
+      slug: match?.slug,
+    };
+  });
 
   return (
-    <div
-      className="min-h-screen bg-background text-foreground"
-      style={{ fontFamily: "'Instrument Sans', sans-serif" }}
-    >
-      {/* Nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border backdrop-blur-md bg-background/80">
-        <div className="flex items-center justify-between px-5 sm:px-8 py-5">
-          <span
-            className="text-lg font-bold tracking-tight text-foreground"
-            style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-          >
-            Tamare Reese
-          </span>
+    <main className="min-h-screen w-full overflow-x-hidden bg-background text-foreground" style={{ fontFamily: "var(--font-family-sans)" }}>
+      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border/60">
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-10 py-4 sm:py-6 flex items-center justify-between gap-4">
+          <img src={headerLogo} alt="Tamaré Reese logo" className="h-8 sm:h-9 w-auto" />
 
-          {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-6">
-            <a href="#work" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Work</a>
-            <a href="#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">About</a>
-            <button onClick={scrollToContact} className="text-sm text-muted-foreground hover:text-foreground transition-colors">Contact</button>
+          <nav className="hidden sm:flex items-center gap-4 sm:gap-6 text-xs sm:text-sm text-foreground/80">
+            <a href="#" className="hover:text-foreground transition-colors">Home</a>
+            <a href="#" className="hover:text-foreground transition-colors">About</a>
+            <a href={resumePdf} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Resume</a>
             <ThemeToggle isDark={isDark} toggle={toggle} />
+          </nav>
+
+          <button
+            type="button"
+            className="sm:hidden relative w-10 h-10 flex items-center justify-center text-foreground/90 hover:text-foreground transition-colors"
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-main-nav"
+            onClick={() => setIsMobileMenuOpen((current) => !current)}
+          >
+            <span
+              className={`absolute h-0.5 w-4 rounded-full bg-current transition-transform duration-300 ease-out ${
+                isMobileMenuOpen ? "translate-y-0 rotate-45" : "-translate-y-[5px] rotate-0"
+              }`}
+            />
+            <span
+              className={`absolute h-0.5 w-4 rounded-full bg-current transition-opacity duration-200 ease-out ${
+                isMobileMenuOpen ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`absolute h-0.5 w-4 rounded-full bg-current transition-transform duration-300 ease-out ${
+                isMobileMenuOpen ? "translate-y-0 -rotate-45" : "translate-y-[5px] rotate-0"
+              }`}
+            />
+          </button>
+        </div>
+
+      </header>
+
+      {isMobileMenuOpen && (
+        <div
+          id="mobile-main-nav"
+          className="sm:hidden fixed inset-0 z-[70] bg-white text-zinc-900 opacity-100 pointer-events-auto"
+        >
+          <div className="h-full px-6 pt-6 pb-10 flex flex-col mobile-menu-shell mobile-menu-shell-open">
+          <div className="flex items-center justify-between">
+            <img src={tamareDarkLogo} alt="Tamaré Reese logo" className="h-10 w-auto" />
+            <button
+              type="button"
+              className="relative w-10 h-10 flex items-center justify-center text-zinc-900 hover:opacity-75 transition-opacity"
+              aria-label="Close menu"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <span className="absolute h-0.5 w-4 rounded-full bg-current rotate-45" />
+              <span className="absolute h-0.5 w-4 rounded-full bg-current -rotate-45" />
+            </button>
+          </div>
+
+          <nav className="mt-16 flex flex-col text-zinc-900">
+            <a
+              href="#"
+              className="mobile-menu-link py-3 border-b border-zinc-300 text-[58px] leading-[1.05] font-semibold tracking-tight hover:opacity-80 transition-opacity"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Home
+            </a>
+            <a
+              href="#"
+              className="mobile-menu-link py-3 border-b border-zinc-300 text-[58px] leading-[1.05] font-semibold tracking-tight hover:opacity-80 transition-opacity"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              About
+            </a>
+            <a
+              href={resumePdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mobile-menu-link py-3 border-b border-zinc-300 text-[58px] leading-[1.05] font-semibold tracking-tight hover:opacity-80 transition-opacity"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Resume
+            </a>
+          </nav>
+
+          <div className="mt-8 inline-flex items-center text-zinc-700">
+            <ThemeToggle isDark={isDark} toggle={toggle} />
+          </div>
+        </div>
+        </div>
+      )}
+
+      <section className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-10 pt-16 sm:pt-24 lg:pt-32 pb-8 sm:pb-10 home-load home-load-hero">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-20 items-start">
+          <h1 className="text-[42px] sm:text-[56px] lg:text-[72px] leading-[1.02] font-bold tracking-tight">Tamaré Reese</h1>
+          <div className="pt-2">
+            <p
+              className="text-[18px] sm:text-[22px] lg:text-[26px] font-medium text-foreground max-w-xl leading-[1.45] sm:leading-[1.35] lg:leading-[1.32]"
+              style={{ letterSpacing: "-0.4px" }}
+            >
+              Hello there, my name is Tamaré Reese and I am a Product Designer currently working at JPMorgan Chase & Co.
+            </p>
             <a
               href="https://www.linkedin.com/in/tamarereese/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="inline-flex mt-6 w-10 h-10 items-center justify-center rounded-full border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors"
             >
-              <Linkedin size={16} />
+              <svg viewBox="0 0 24 24" aria-hidden="true" className="w-4 h-4 fill-current">
+                <path d="M20.447 20.452H16.89v-5.569c0-1.328-.027-3.037-1.85-3.037-1.853 0-2.136 1.445-2.136 2.94v5.666H9.347V9h3.414v1.561h.049c.476-.9 1.636-1.85 3.367-1.85 3.6 0 4.265 2.37 4.265 5.455v6.286zM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126zM7.119 20.452H3.555V9h3.564v11.452z" />
+              </svg>
             </a>
-            <a
-              href={resumePdf}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
-              style={{ borderRadius: "var(--radius)" }}
-            >
-              <Download size={14} />
-              Resume
-            </a>
-          </div>
-
-          {/* Mobile controls */}
-          <div className="flex md:hidden items-center gap-3">
-            <ThemeToggle isDark={isDark} toggle={toggle} />
-            <button
-              onClick={() => setMenuOpen((o) => !o)}
-              className="text-muted-foreground hover:text-foreground transition-colors p-1"
-              aria-label="Toggle menu"
-            >
-              {menuOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
           </div>
         </div>
+      </section>
 
-        {/* Mobile menu */}
-        {menuOpen && (
-          <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-md px-5 py-4 flex flex-col gap-4">
-            <a href="#work" onClick={() => setMenuOpen(false)} className="text-sm text-muted-foreground hover:text-foreground transition-colors py-1">Work</a>
-            <a href="#about" onClick={() => setMenuOpen(false)} className="text-sm text-muted-foreground hover:text-foreground transition-colors py-1">About</a>
-            <button onClick={scrollToContact} className="text-sm text-muted-foreground hover:text-foreground transition-colors py-1 text-left">Contact</button>
-            <a
-              href={resumePdf}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-3 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors w-full justify-center mt-1"
-              style={{ borderRadius: "var(--radius)" }}
+      <section className="relative mt-12 sm:mt-20 overflow-x-hidden" data-reveal>
+        <div className="absolute left-1/2 -translate-x-1/2 -top-20 sm:-top-28 h-[31rem] sm:h-[40rem] lg:h-[48rem] w-[150vw] min-w-[1200px] max-w-none pointer-events-none opacity-72 overflow-visible" aria-hidden>
+          <svg viewBox="0 -500 1200 1400" className="w-full h-full overflow-visible hero-ribbon-svg" preserveAspectRatio="none">
+            <path
+              className="hero-ribbon-path"
+              d="M-160 345 C -45 130, 195 -140, 360 72 C 500 255, 625 -115, 790 95 C 940 285, 1045 -35, 1270 215"
+              fill="none"
+              stroke="url(#homepage-ribbon)"
+              strokeWidth="210"
+              strokeLinecap="round"
             >
-              <Download size={14} />
-              Download Resume
-            </a>
-          </div>
-        )}
-      </nav>
+              <animate
+                attributeName="d"
+                dur="28s"
+                repeatCount="indefinite"
+                calcMode="spline"
+                keyTimes="0;0.2;0.4;0.6;0.8;1"
+                keySplines="0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1"
+                values="M-170 338 C -58 156, 176 -162, 358 82 C 512 292, 620 -118, 804 114 C 946 296, 1060 -40, 1280 220;
+M-170 298 C -32 104, 206 -198, 365 114 C 514 352, 673 -66, 818 72 C 960 218, 1096 -110, 1280 252;
+M-170 356 C -80 182, 188 -98, 362 44 C 514 182, 600 -162, 792 136 C 944 348, 1024 4, 1280 182;
+M-170 324 C -48 132, 214 -178, 386 90 C 540 326, 664 -108, 836 104 C 966 266, 1106 -48, 1280 230;
+M-170 370 C -84 204, 164 -124, 346 52 C 500 196, 584 -150, 770 120 C 922 338, 1008 -12, 1280 194;
+M-170 338 C -58 156, 176 -162, 358 82 C 512 292, 620 -118, 804 114 C 946 296, 1060 -40, 1280 220"
+              />
+            </path>
+            <defs>
+              <linearGradient id="homepage-ribbon" x1="0%" y1="0%" x2="100%" y2="0%">
+                <animate attributeName="x1" values="0%;-12%;0%" dur="18s" repeatCount="indefinite" />
+                <animate attributeName="x2" values="100%;112%;100%" dur="18s" repeatCount="indefinite" />
+                <stop offset="0%" stopColor="#ff2247">
+                  <animate attributeName="stop-color" values="#ff2247;#ff6a00;#ffe600;#2cff89;#00d9ff;#3f5bff;#a23dff;#ff2247" dur="18s" repeatCount="indefinite" />
+                </stop>
+                <stop offset="30%" stopColor="#ffe600">
+                  <animate attributeName="stop-color" values="#ffe600;#2cff89;#00d9ff;#3f5bff;#a23dff;#ff2247;#ff6a00;#ffe600" dur="18s" repeatCount="indefinite" />
+                </stop>
+                <stop offset="65%" stopColor="#00d9ff">
+                  <animate attributeName="stop-color" values="#00d9ff;#3f5bff;#a23dff;#ff2247;#ff6a00;#ffe600;#2cff89;#00d9ff" dur="18s" repeatCount="indefinite" />
+                </stop>
+                <stop offset="100%" stopColor="#a23dff">
+                  <animate attributeName="stop-color" values="#a23dff;#ff2247;#ff6a00;#ffe600;#2cff89;#00d9ff;#3f5bff;#a23dff" dur="18s" repeatCount="indefinite" />
+                </stop>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
 
-      {/* Hero */}
-      <motion.section
-        className="min-h-[290px] lg:min-h-screen bg-background flex flex-col justify-start lg:justify-end pb-12 md:pb-16 lg:pb-20 px-5 sm:px-8 pt-24 md:pt-28 lg:pt-32 relative overflow-hidden"
-        {...revealProps}
-      >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(242,240,234,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(242,240,234,0.04) 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
-          }}
-        />
-        <div className="relative z-10 max-w-7xl mx-auto w-full">
-          <div className="mt-6 md:mt-8 lg:mt-0 mb-5 sm:mb-6 flex items-center gap-3">
-            <span className="text-xs font-medium tracking-widest uppercase text-primary">
-              Lead UX Designer, CX Strategist, Service Designer, and AI Developer
-            </span>
-            <div className="h-px flex-1 max-w-[60px] bg-primary opacity-60" />
-          </div>
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8 lg:px-10 pt-10 sm:pt-14 pb-14 sm:pb-20 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          {featuredCards.map((card) => {
+            const isCoverCard = card.slug === "shared-control-planes" || card.slug === "chase-first-banking";
+            const coverImage = card.slug === "chase-first-banking" ? cfbCoverImage : databasesCoverImage;
 
-          <h1
-            className="font-extrabold leading-[0.9] tracking-tight mb-8"
-            style={{
-              fontFamily: "'Bricolage Grotesque', sans-serif",
-              fontSize: "clamp(3.5rem, 10vw, 9rem)",
-            }}
-          >
-            Crafting
-            <br />
-            <span className="text-primary">experiences</span>
-            <br />
-            that matter.
-          </h1>
-
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 sm:gap-8 border-t border-border pt-8">
-            <p className="text-muted-foreground text-base sm:text-lg max-w-xl leading-relaxed">
-              Hi, I&apos;m Tamare 👋🏼
-              <br />
-              A Lead UX Designer and strategist with 10+ years of experience designing products, platforms, and systems that delight customers and drive measurable business outcomes.
-            </p>
-            <div className="flex items-center gap-6 shrink-0">
+            return (
               <button
-                onClick={scrollToContact}
-                className="flex items-center gap-2 text-sm font-semibold text-foreground hover:text-primary transition-colors group"
+                key={card.title}
+                type="button"
+                onClick={() => card.slug && navigate(`/work/${card.slug}`)}
+                data-cursor="magnify"
+                data-reveal
+                className={`group isolate text-left rounded-[30px] flex flex-col hover:-translate-y-0.5 transition-all ${
+                  isCoverCard
+                    ? "relative overflow-hidden min-h-[420px] sm:min-h-[620px] justify-end p-0 border-0 appearance-none"
+                    : "min-h-[280px] sm:min-h-[340px] justify-end p-5 sm:p-6 bg-[rgb(249,250,251)]"
+                }`}
+                style={
+                  isCoverCard
+                    ? {
+                        backgroundImage: `linear-gradient(to top, rgba(24,24,27,0.92) 0%, rgba(24,24,27,0.24) 36%, rgba(24,24,27,0) 62%), url(${coverImage})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
+                      }
+                    : undefined
+                }
               >
-                Get in touch
-                <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </button>
-              <a href="#work" className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                <ChevronDown size={16} />
-                See work
-              </a>
-            </div>
-          </div>
-        </div>
-
-      </motion.section>
-
-      {/* Case Studies */}
-      <motion.section id="work" className="bg-background px-5 sm:px-8 py-16 sm:py-24 border-t border-border" {...revealProps}>
-        <DSContainer>
-          <DSSectionHeader
-            title="Selected Work"
-            right={<span>{homepageCaseStudies.length} case studies</span>}
-            className="mb-10 sm:mb-16"
-          />
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-px bg-background">
-            {homepageCaseStudies.map((study) => (
-              <motion.div
-                key={study.id}
-                className="bg-background group cursor-pointer relative overflow-hidden"
-                onMouseEnter={() => setHoveredCard(study.id)}
-                onMouseLeave={() => setHoveredCard(null)}
-                onClick={() => {
-                  scrollToTopInstant();
-                  navigate(`/work/${study.slug}`);
-                }}
-                {...revealProps}
-              >
-                <div className="relative h-48 sm:h-56 overflow-hidden bg-secondary">
-                  <img
-                    src={study.image}
-                    alt={study.title}
-                    loading="lazy"
-                    decoding="async"
-                    fetchPriority="low"
-                    className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105 opacity-70 group-hover:opacity-90"
-                  />
-                  <div
-                    className="absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-20"
-                    style={{ backgroundColor: study.color }}
-                  />
-                  <div
-                    className={`absolute bottom-4 right-4 w-8 h-8 flex items-center justify-center transition-all duration-300 ${
-                      hoveredCard === study.id ? "opacity-100 translate-x-0 translate-y-0" : "opacity-0 translate-x-1 translate-y-1"
-                    }`}
-                    style={{ backgroundColor: study.color, borderRadius: "50%" }}
-                  >
-                    <ArrowUpRight size={14} color="#0D0E1A" />
-                  </div>
-                </div>
-
-                <div className="p-5 sm:p-6 border-t border-border">
+                <div className={isCoverCard ? "relative z-10 p-5 sm:p-6" : ""}>
+                  <span className={`inline-flex w-fit px-3 py-1 rounded-full text-xs font-medium mb-4 ${
+                    isCoverCard ? "border border-white text-white bg-black/25" : "border border-foreground text-foreground"
+                  }`}>
+                    {card.company}
+                  </span>
                   <h3
-                    className="text-lg sm:text-xl font-bold mb-2 group-hover:text-primary transition-colors"
-                    style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+                    className={`text-[22px] sm:text-[26px] leading-tight font-medium ${isCoverCard ? "text-white" : ""}`}
+                    style={{ letterSpacing: "-0.6px" }}
                   >
-                    {study.title}
+                    {card.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{study.subtitle}</p>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </DSContainer>
-      </motion.section>
-
-      {/* About */}
-      <motion.section id="about" className="bg-background px-5 sm:px-8 py-16 sm:py-24 border-t border-border" {...revealProps}>
-        <DSContainer className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          <div>
-            <span className="text-xs font-medium tracking-widest uppercase text-primary mb-4 block">About</span>
-            <h2
-              className="text-3xl sm:text-4xl font-bold leading-tight mb-8"
-              style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-            >
-              I turn complexity
-              <br />
-              into clarity.
-            </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
-                I&apos;m a Lead Experience Designer, Strategist, Researcher, and AI Developer based in Columbus, Ohio.
-              </p>
-              <p>
-                I’m passionate about solving complex problems through design, technology, and the evolving role of AI. My approach is rooted in systems thinking—I believe the best experiences are built around how people naturally think and work.
-              </p>
-              <p>
-                Over the past 10+ years, including more than six years at JPMorgan Chase and earlier work with KeyBank and First National Bank, I&apos;ve designed customer-facing and enterprise solutions that simplify workflows, improve experiences, and drive measurable business outcomes.
-              </p>
-              <p>
-                I&apos;m currently open to new opportunities and connecting with teams that are passionate about building exceptional products.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 lg:self-center">
-            {[
-              { value: "10+", label: "Years in UX Design & Strategy" },
-              { value: "2+", label: "Years in AI & Front-End Development" },
-              { value: "4+", label: "Years in Product Management" },
-              { value: "6+", label: "Years Leading User Research" },
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                className={`p-6 sm:p-8 h-full ${index % 2 === 0 ? "border-r" : ""} ${index < 2 ? "border-b" : ""} border-border`}
-                {...revealProps}
-              >
-                <div
-                  className="text-4xl sm:text-5xl font-extrabold text-primary mb-2"
-                  style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-                >
-                  {stat.value}
-                </div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </DSContainer>
-
-      </motion.section>
-
-      {/* Contact */}
-      <motion.section
-        ref={contactRef}
-        id="contact"
-        className="bg-background px-5 sm:px-8 py-16 sm:py-24 border-t border-border"
-        {...revealProps}
-      >
-        <DSContainer className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          <div>
-            <span className="text-xs font-medium tracking-widest uppercase text-primary mb-4 block">Contact</span>
-            <h2
-              className="text-3xl sm:text-4xl font-bold leading-tight mb-6"
-              style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-            >
-              Let&apos;s work
-              <br />
-              together.
-            </h2>
-            <p className="text-muted-foreground leading-relaxed mb-8 max-w-sm">
-              Have a project in mind or want to explore working together? Send me a message
-              and I&apos;ll get back to you within 24 hours.
-            </p>
-            <a
-              href="mailto:tamaredesign@outlook.com"
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors group"
-            >
-              <Mail size={14} />
-              tamaredesign@outlook.com
-              <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-            </a>
-          </div>
-
-          <div>
-            {formStatus === "sent" ? (
-              <div className="flex flex-col items-start gap-4 py-12">
-                <div
-                  className="text-3xl sm:text-4xl font-bold text-primary"
-                  style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-                >
-                  Message sent.
-                </div>
-                <p className="text-muted-foreground">Thanks for reaching out — I&apos;ll be in touch soon.</p>
-                <button
-                  onClick={() => setFormStatus("idle")}
-                  className="text-sm text-muted-foreground hover:text-foreground underline transition-colors mt-2"
-                >
-                  Send another message
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit}>
-                <div className="border border-border p-4 sm:p-5 focus-within:border-primary transition-colors">
-                  <label className="block text-xs text-muted-foreground mb-2 tracking-wide uppercase">Name</label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Your name"
-                    className="w-full bg-transparent text-foreground placeholder:text-muted-foreground/40 text-sm outline-none"
-                  />
-                </div>
-                <div className="border border-t-0 border-border p-4 sm:p-5 focus-within:border-primary transition-colors">
-                  <label className="block text-xs text-muted-foreground mb-2 tracking-wide uppercase">Email</label>
-                  <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="your@email.com"
-                    className="w-full bg-transparent text-foreground placeholder:text-muted-foreground/40 text-sm outline-none"
-                  />
-                </div>
-                <div className="border border-t-0 border-border p-4 sm:p-5 focus-within:border-primary transition-colors">
-                  <label className="block text-xs text-muted-foreground mb-2 tracking-wide uppercase">Message</label>
-                  <textarea
-                    required
-                    rows={5}
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Tell me about your project..."
-                    className="w-full bg-transparent text-foreground placeholder:text-muted-foreground/40 text-sm outline-none resize-none"
-                  />
-                </div>
-                <DSButton
-                  type="submit"
-                  disabled={formStatus === "sending"}
-                  fullWidth
-                  size="lg"
-                  className="py-4"
-                >
-                  {formStatus === "sending" ? "Sending..." : <><Send size={14} />Send Message</>}
-                </DSButton>
-              </form>
-            )}
-          </div>
-        </DSContainer>
-      </motion.section>
-
-      {/* Footer */}
-      <footer className="px-5 sm:px-8 py-8 border-t border-border">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span
-            className="text-sm font-bold text-foreground"
-            style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-          >
-            Tamare Reese
-          </span>
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-            <a
-              href="https://www.linkedin.com/in/tamarereese/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-            >
-              LinkedIn
-            </a>
-          </div>
-          <span className="text-xs text-muted-foreground">© 2024 Tamare Reese</span>
+              </button>
+            );
+          })}
         </div>
-      </footer>
-    </div>
+      </section>
+
+      <section className="relative mt-12 sm:mt-20 pb-14 sm:pb-24 overflow-x-hidden">
+        <div className="absolute left-1/2 -translate-x-1/2 -top-10 sm:-top-14 h-[24rem] sm:h-[30rem] w-[145vw] min-w-[1100px] max-w-none pointer-events-none opacity-70 overflow-visible" aria-hidden>
+          <svg viewBox="0 -300 1200 980" className="w-full h-full overflow-visible cta-ribbon-svg" preserveAspectRatio="none">
+            <path
+              className="cta-ribbon-path"
+              d="M-160 340 C -40 120, 200 -150, 360 70 C 500 260, 620 -120, 790 90 C 940 280, 1050 -40, 1270 210"
+              fill="none"
+              stroke="url(#cta-ribbon-gradient)"
+              strokeWidth="150"
+              strokeLinecap="round"
+            >
+              <animate
+                attributeName="d"
+                dur="26s"
+                repeatCount="indefinite"
+                calcMode="spline"
+                keyTimes="0;0.2;0.4;0.6;0.8;1"
+                keySplines="0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1"
+                values="M-164 336 C -50 132, 198 -162, 366 82 C 512 286, 620 -122, 796 106 C 940 290, 1050 -46, 1274 216;
+M-164 304 C -20 94, 204 -198, 370 108 C 516 338, 668 -74, 810 78 C 944 228, 1084 -98, 1274 246;
+M-164 364 C -74 170, 190 -122, 360 52 C 504 208, 594 -156, 784 128 C 932 336, 1026 -2, 1274 188;
+M-164 322 C -40 124, 214 -180, 388 96 C 530 320, 662 -108, 834 106 C 968 268, 1100 -50, 1274 228;
+M-164 350 C -62 148, 176 -150, 350 72 C 494 256, 610 -136, 776 114 C 924 312, 1034 -20, 1274 202;
+M-164 336 C -50 132, 198 -162, 366 82 C 512 286, 620 -122, 796 106 C 940 290, 1050 -46, 1274 216"
+              />
+            </path>
+            <defs>
+              <linearGradient id="cta-ribbon-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <animate attributeName="x1" values="0%;-10%;0%" dur="17s" repeatCount="indefinite" />
+                <animate attributeName="x2" values="100%;110%;100%" dur="17s" repeatCount="indefinite" />
+                <stop offset="0%" stopColor="#ff2750">
+                  <animate attributeName="stop-color" values="#ff2750;#ff7f2a;#ffe95b;#3ef2ab;#25d6ff;#5a66ff;#b25cff;#ff2750" dur="17s" repeatCount="indefinite" />
+                </stop>
+                <stop offset="34%" stopColor="#ffe95b">
+                  <animate attributeName="stop-color" values="#ffe95b;#3ef2ab;#25d6ff;#5a66ff;#b25cff;#ff2750;#ff7f2a;#ffe95b" dur="17s" repeatCount="indefinite" />
+                </stop>
+                <stop offset="68%" stopColor="#25d6ff">
+                  <animate attributeName="stop-color" values="#25d6ff;#5a66ff;#b25cff;#ff2750;#ff7f2a;#ffe95b;#3ef2ab;#25d6ff" dur="17s" repeatCount="indefinite" />
+                </stop>
+                <stop offset="100%" stopColor="#b25cff">
+                  <animate attributeName="stop-color" values="#b25cff;#ff2750;#ff7f2a;#ffe95b;#3ef2ab;#25d6ff;#5a66ff;#b25cff" dur="17s" repeatCount="indefinite" />
+                </stop>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8 lg:px-10">
+          <div className="rounded-[28px] sm:rounded-[34px] bg-black text-white px-5 sm:px-12 py-14 sm:py-24 flex flex-col items-center text-center">
+          <h2
+            className="text-[42px] sm:text-[58px] lg:text-[72px] font-semibold max-w-[520px] pb-1 text-white leading-[1.08]"
+            style={{ letterSpacing: "-1.8px" }}
+          >
+            Let’s work together!
+          </h2>
+          <a
+            href="mailto:tamaredesign@outlook.com"
+            className="mt-8 sm:mt-10 inline-flex bg-white text-black rounded-full px-5 sm:px-7 py-2.5 sm:py-3 text-xs sm:text-sm font-medium hover:opacity-90 transition-opacity"
+          >
+            Tamaredesign@outlook.com
+          </a>
+          <span className="mt-4 text-xs text-white/70">© Tamaré Reese</span>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
 
 export default function App() {
   return (
     <BrowserRouter>
+      <CustomCursor />
       <Routes>
         <Route path="/" element={<Portfolio />} />
         <Route path="/design-system" element={<DesignSystemShowcase />} />

@@ -44,7 +44,7 @@ export default function DesignSystemShowcase() {
   const shadowTokens = Object.entries(designTokens.shadow);
 
   return (
-    <main className="min-h-screen bg-background text-foreground px-5 sm:px-8 py-14" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>
+    <main className="min-h-screen bg-background text-foreground px-5 sm:px-8 py-14" style={{ fontFamily: "var(--font-family-sans)" }}>
       <DSContainer>
         <DSSectionHeader
           eyebrow="Design System"
@@ -108,14 +108,14 @@ export default function DesignSystemShowcase() {
           <div className="space-y-4">
             <div className="space-y-1">
               <p className="text-xs tracking-widest uppercase text-muted-foreground">H1</p>
-              <h1 className="font-extrabold leading-tight tracking-tight text-4xl sm:text-5xl" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+              <h1 className="font-extrabold leading-tight tracking-tight text-4xl sm:text-5xl" style={{ fontFamily: "var(--font-family-sans)" }}>
                 Heading Level One
               </h1>
             </div>
 
             <div className="space-y-1">
               <p className="text-xs tracking-widest uppercase text-muted-foreground">H2</p>
-              <h2 className="font-extrabold tracking-tight text-2xl sm:text-3xl" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+              <h2 className="font-extrabold tracking-tight text-2xl sm:text-3xl" style={{ fontFamily: "var(--font-family-sans)" }}>
                 Heading Level Two
               </h2>
             </div>
@@ -123,7 +123,7 @@ export default function DesignSystemShowcase() {
             <div className="space-y-1">
               <p className="text-xs tracking-widest uppercase text-muted-foreground">H2 + Rule</p>
               <div className="flex items-baseline gap-4 sm:gap-6">
-                <h2 className="font-extrabold tracking-tight text-2xl sm:text-3xl" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+                <h2 className="font-extrabold tracking-tight text-2xl sm:text-3xl" style={{ fontFamily: "var(--font-family-sans)" }}>
                   Heading Level Two
                 </h2>
                 <div className="flex-1 h-px bg-border ml-2 sm:ml-4" />
@@ -132,7 +132,7 @@ export default function DesignSystemShowcase() {
 
             <div className="space-y-1">
               <p className="text-xs tracking-widest uppercase text-muted-foreground">H3</p>
-              <h3 className="text-xl sm:text-2xl font-extrabold" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+              <h3 className="text-xl sm:text-2xl font-extrabold" style={{ fontFamily: "var(--font-family-sans)" }}>
                 Heading Level Three
               </h3>
             </div>

@@ -24,7 +24,7 @@
 
 @layer utilities {
   .ds-heading-xl {
-    font-family: 'Bricolage Grotesque', sans-serif;
+    font-family: var(--font-family-sans);
     font-size: clamp(2.25rem, 6vw, 4.5rem);
     font-weight: 800;
     line-height: 0.95;
@@ -32,7 +32,7 @@
   }
 
   .ds-heading-lg {
-    font-family: 'Bricolage Grotesque', sans-serif;
+    font-family: var(--font-family-sans);
     font-size: clamp(1.75rem, 4vw, 2.25rem);
     font-weight: 800;
     line-height: 1.05;

@@ -84,6 +84,7 @@ export function DSImageDialog({
           type="button"
           className={cn("group relative overflow-hidden bg-background w-full text-left", aspectClass, className)}
           onClick={handleOpen}
+          data-cursor="magnify"
           aria-label={`View full image: ${caption}`}
         >
           {renderImage()}
@@ -98,6 +99,7 @@ export function DSImageDialog({
             className
           )}
           onClick={handleOpen}
+          data-cursor="magnify"
           aria-label={`View full image: ${caption}`}
         >
           {renderImage()}

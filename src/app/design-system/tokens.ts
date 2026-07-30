@@ -7,8 +7,8 @@ export const designTokens = {
     border: "var(--border)",
   },
   typography: {
-    displayFont: "'Bricolage Grotesque', sans-serif",
-    bodyFont: "'Instrument Sans', sans-serif",
+    displayFont: "var(--font-family-sans)",
+    bodyFont: "var(--font-family-sans)",
   },
   radius: {
     sm: "0.25rem",

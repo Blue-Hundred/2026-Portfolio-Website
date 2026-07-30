@@ -41,7 +41,7 @@ const revealProps = {
   transition: { duration: 0.7, ease: "easeOut" },
 };
 
-const CASE_STUDY_HEADING_FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
+const CASE_STUDY_HEADING_FONT = { fontFamily: "var(--font-family-sans)" } as const;
 const CASE_STUDY_HEADING_CLASSES = {
   h1: "font-extrabold leading-tight tracking-tight",
   h2: "text-2xl sm:text-3xl font-extrabold tracking-tight",
@@ -84,7 +84,7 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col items-center justify-center px-5 sm:px-8 py-8"
-      style={{ fontFamily: "'Instrument Sans', sans-serif" }}
+      style={{ fontFamily: "var(--font-family-sans)" }}
     >
       <div
         className={`w-full max-w-sm ${shaking ? "animate-shake" : ""}`}
@@ -98,7 +98,7 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
 
         <h1
           className="text-2xl font-extrabold text-center mb-2"
-          style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+          style={{ fontFamily: "var(--font-family-sans)" }}
         >
           Password protected
         </h1>
@@ -923,7 +923,7 @@ function ScpOutcomes({
           <motion.div key={m.label} className="bg-background p-5 sm:p-8" {...revealProps}>
             <div
               className="text-3xl sm:text-4xl font-extrabold mb-2"
-              style={{ fontFamily: "'Bricolage Grotesque', sans-serif", color: accent }}
+              style={{ fontFamily: "var(--font-family-sans)", color: accent }}
             >
               {m.value}
             </div>
@@ -1382,7 +1382,7 @@ export default function CaseStudyPage() {
     <div
       key={slug}
       className="min-h-screen bg-background text-foreground"
-      style={{ fontFamily: "'Instrument Sans', sans-serif" }}
+      style={{ fontFamily: "var(--font-family-sans)" }}
     >
       {lightbox && (
         <Lightbox
@@ -1403,7 +1403,7 @@ export default function CaseStudyPage() {
         </Link>
         <span
           className="text-base sm:text-lg font-bold tracking-tight text-foreground"
-          style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+          style={{ fontFamily: "var(--font-family-sans)" }}
         >
           Tamare Reese
         </span>
@@ -1489,7 +1489,7 @@ export default function CaseStudyPage() {
                     <motion.div key={m.label} className="bg-background p-5 sm:p-8" {...revealProps}>
                       <div
                         className="text-3xl sm:text-4xl font-extrabold mb-2"
-                        style={{ fontFamily: "'Bricolage Grotesque', sans-serif", color: accent }}
+                        style={{ fontFamily: "var(--font-family-sans)", color: accent }}
                       >
                         {m.value}
                       </div>
@@ -1563,7 +1563,7 @@ export default function CaseStudyPage() {
               >
                 <span
                   className="text-xl sm:text-2xl font-extrabold shrink-0"
-                  style={{ fontFamily: "'Bricolage Grotesque', sans-serif", color: accent }}
+                  style={{ fontFamily: "var(--font-family-sans)", color: accent }}
                 >
                   {m.value}
                 </span>
@@ -1594,7 +1594,7 @@ export default function CaseStudyPage() {
               </div>
               <div
                 className="text-base sm:text-lg font-bold group-hover:text-primary transition-colors"
-                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+                style={{ fontFamily: "var(--font-family-sans)" }}
               >
                 {prev.title}
               </div>
@@ -1620,7 +1620,7 @@ export default function CaseStudyPage() {
               </div>
               <div
                 className="text-base sm:text-lg font-bold group-hover:text-primary transition-colors"
-                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+                style={{ fontFamily: "var(--font-family-sans)" }}
               >
                 {next.title}
               </div>
@@ -1639,7 +1639,7 @@ export default function CaseStudyPage() {
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <span
             className="text-sm font-bold text-foreground"
-            style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+            style={{ fontFamily: "var(--font-family-sans)" }}
           >
             Tamare Reese
           </span>
