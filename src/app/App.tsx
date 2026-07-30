@@ -17,6 +17,7 @@ function Portfolio() {
   const { isDark, toggle } = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const homepageCaseStudies = caseStudies.filter((study) => visibleCaseStudySlugs.includes(study.slug));
+  const availableHomepageSlugs = new Set(homepageCaseStudies.map((study) => study.slug));
   const headerLogo = isDark ? tamareLightLogo : tamareDarkLogo;
 
   useEffect(() => {
@@ -85,19 +86,15 @@ function Portfolio() {
       slug: "chase-first-banking",
       title: "Family Banking",
       company: "Chase",
+      coverImage: cfbCoverImage,
     },
     {
       slug: "shared-control-planes",
       title: "Database Service Management",
       company: "Chase",
+      coverImage: databasesCoverImage,
     },
-  ].map((card) => {
-    const match = homepageCaseStudies.find((study) => study.slug === card.slug);
-    return {
-      ...card,
-      slug: match?.slug,
-    };
-  });
+  ];
 
   return (
     <main className="min-h-screen w-full overflow-x-hidden bg-background text-foreground" style={{ fontFamily: "var(--font-family-sans)" }}>
@@ -266,40 +263,29 @@ M-170 338 C -58 156, 176 -162, 358 82 C 512 292, 620 -118, 804 114 C 946 296, 10
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8 lg:px-10 pt-10 sm:pt-14 pb-14 sm:pb-20 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {featuredCards.map((card) => {
-            const isCoverCard = card.slug === "shared-control-planes" || card.slug === "chase-first-banking";
-            const coverImage = card.slug === "chase-first-banking" ? cfbCoverImage : databasesCoverImage;
+            const canNavigate = availableHomepageSlugs.has(card.slug);
 
             return (
               <button
                 key={card.title}
                 type="button"
-                onClick={() => card.slug && navigate(`/work/${card.slug}`)}
+                onClick={() => canNavigate && navigate(`/work/${card.slug}`)}
                 data-cursor="magnify"
                 data-reveal
-                className={`group isolate text-left rounded-[30px] flex flex-col hover:-translate-y-0.5 transition-all ${
-                  isCoverCard
-                    ? "relative overflow-hidden min-h-[420px] sm:min-h-[620px] justify-end p-0 border-0 appearance-none"
-                    : "min-h-[280px] sm:min-h-[340px] justify-end p-5 sm:p-6 bg-[rgb(249,250,251)]"
-                }`}
-                style={
-                  isCoverCard
-                    ? {
-                        backgroundImage: `linear-gradient(to top, rgba(24,24,27,0.92) 0%, rgba(24,24,27,0.24) 36%, rgba(24,24,27,0) 62%), url(${coverImage})`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                        backgroundRepeat: "no-repeat",
-                      }
-                    : undefined
-                }
+                className="group isolate text-left rounded-[30px] flex flex-col hover:-translate-y-0.5 transition-all relative overflow-hidden min-h-[420px] sm:min-h-[620px] justify-end p-0 border-0 appearance-none"
+                style={{
+                  backgroundImage: `linear-gradient(to top, rgba(24,24,27,0.92) 0%, rgba(24,24,27,0.24) 36%, rgba(24,24,27,0) 62%), url(${card.coverImage})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                }}
               >
-                <div className={isCoverCard ? "relative z-10 p-5 sm:p-6" : ""}>
-                  <span className={`inline-flex w-fit px-3 py-1 rounded-full text-xs font-medium mb-4 ${
-                    isCoverCard ? "border border-white text-white bg-black/25" : "border border-foreground text-foreground"
-                  }`}>
+                <div className="relative z-10 p-5 sm:p-6">
+                  <span className="inline-flex w-fit px-3 py-1 rounded-full text-xs font-medium mb-4 border border-white text-white bg-black/25">
                     {card.company}
                   </span>
                   <h3
-                    className={`text-[22px] sm:text-[26px] leading-tight font-medium ${isCoverCard ? "text-white" : ""}`}
+                    className="text-[22px] sm:text-[26px] leading-tight font-medium text-white"
                     style={{ letterSpacing: "-0.6px" }}
                   >
                     {card.title}
