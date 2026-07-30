@@ -6,11 +6,12 @@ import DesignSystemShowcase from "./design-system/DesignSystemShowcase";
 import { CustomCursor } from "./components/CustomCursor";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { useTheme } from "./hooks/useTheme";
-import resumePdf from "../assets/Attachments/Tamare_Reese_Resume_2026_Final.pdf";
 import cfbCoverImage from "../assets/covers/CFB Cover.png";
 import databasesCoverImage from "../assets/covers/Databases cover image.png";
 import tamareLightLogo from "../assets/Favicon/Tamare Light Logo.svg";
 import tamareDarkLogo from "../assets/Favicon/Tamare Dark Logo.svg";
+
+const RESUME_PDF_URL = "/Tamare_Reese_Resume_2026_Final.pdf";
 
 function Portfolio() {
   const navigate = useNavigate();
@@ -105,7 +106,7 @@ function Portfolio() {
           <nav className="hidden sm:flex items-center gap-4 sm:gap-6 text-xs sm:text-sm text-foreground/80">
             <a href="#" className="hover:text-foreground transition-colors">Home</a>
             <a href="#" className="hover:text-foreground transition-colors">About</a>
-            <a href={resumePdf} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Resume</a>
+            <a href={RESUME_PDF_URL} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Resume</a>
             <ThemeToggle isDark={isDark} toggle={toggle} />
           </nav>
 
@@ -172,7 +173,7 @@ function Portfolio() {
               About
             </a>
             <a
-              href={resumePdf}
+              href={RESUME_PDF_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="mobile-menu-link py-3 border-b border-zinc-300 text-[58px] leading-[1.05] font-semibold tracking-tight hover:opacity-80 transition-opacity"
