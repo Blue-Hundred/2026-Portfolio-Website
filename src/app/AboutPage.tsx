@@ -5,7 +5,7 @@ import { useTheme } from "./hooks/useTheme";
 const tamareLightLogo = new URL("../assets/Favicon/Tamare Light Logo.svg", import.meta.url).href;
 const tamareDarkLogo = new URL("../assets/Favicon/Tamare Dark Logo.svg", import.meta.url).href;
 
-const tamarePortrait = new URL("../assets/Attachments/Tamare Reese 2026.jpeg", import.meta.url).href;
+const tamarePortrait = new URL("../assets/Attachments/Tamare Reese 2026.optimized.jpg", import.meta.url).href;
 
 const RESUME_PDF_URL = "/Tamare_Reese_Resume_2026_Final.pdf";
 
@@ -176,6 +176,9 @@ export default function AboutPage() {
               <img
                 src={tamarePortrait}
                 alt="Tamaré Reese portrait"
+                width={1400}
+                height={1050}
+                decoding="async"
                 className="w-full h-full object-cover"
               />
             </div>
