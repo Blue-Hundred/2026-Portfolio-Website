@@ -225,7 +225,7 @@
   }
 
   h3 {
-    color: #000;
+    color: hsl(var(--foreground));
     font-family: Inter;
     font-size: 24px;
     font-style: normal;

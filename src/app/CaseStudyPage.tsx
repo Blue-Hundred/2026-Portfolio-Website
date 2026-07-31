@@ -121,7 +121,7 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
 
         <DSButton
           onClick={attempt}
-          className="mt-3"
+          className="mt-3 !bg-white !text-black !border-white hover:!bg-white/90"
           variant="primary"
           size="lg"
           fullWidth

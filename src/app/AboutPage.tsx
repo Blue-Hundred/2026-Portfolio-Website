@@ -173,9 +173,7 @@ export default function AboutPage() {
           </div>
 
           <div className="lg:col-span-5">
-            <div className="relative h-[340px] sm:h-[500px] lg:h-[560px] rounded-[32px] sm:rounded-[36px] bg-zinc-100 border border-zinc-100 overflow-hidden">
-              <span className="absolute -left-6 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border border-foreground/25 bg-background flex items-center justify-center text-sm">‹</span>
-              <span className="absolute -right-6 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border border-foreground/25 bg-background flex items-center justify-center text-sm">›</span>
+            <div className="relative h-[340px] sm:h-[500px] lg:h-[560px] rounded-[32px] sm:rounded-[36px] bg-card border border-border overflow-hidden">
               <img
                 src={tamarePortrait}
                 alt="Tamaré Reese portrait"
@@ -236,7 +234,7 @@ M-170 344 C -68 122, 170 -190, 350 78 C 502 312, 628 -136, 810 124 C 954 322, 10
         </div>
 
         <div className="relative z-10 max-w-[1200px] mx-auto px-4 sm:px-8">
-          <div className="rounded-[30px] sm:rounded-[34px] bg-zinc-100 border border-zinc-100 px-6 sm:px-10 lg:px-12 py-8 sm:py-10">
+          <div className="rounded-[30px] sm:rounded-[34px] bg-card px-6 sm:px-10 lg:px-12 py-8 sm:py-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start lg:items-stretch">
             <div className="lg:col-span-5 flex flex-col">
               <h3>Experience</h3>
@@ -245,7 +243,7 @@ M-170 344 C -68 122, 170 -190, 350 78 C 502 312, 628 -136, 810 124 C 954 322, 10
                   href={RESUME_PDF_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-full bg-black text-white px-4 py-2 text-[11px] font-medium leading-none hover:opacity-90 transition-opacity"
+                  className="inline-flex items-center justify-center rounded-full bg-black text-white dark:bg-white dark:text-black px-4 py-2 text-[11px] font-medium leading-none hover:opacity-90 transition-opacity"
                 >
                   Download Resume
                 </a>

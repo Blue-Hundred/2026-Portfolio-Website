@@ -51,6 +51,7 @@ import sparkCoverFull from "@/assets/covers/Spark_Cover_Full.jpg";
 import databasesCoverFull from "@/assets/covers/Databases_Cover_Full.jpg";
 import arrCoverFull from "@/assets/covers/ARR_Cover_Full.jpg";
 import kycCoverFull from "@/assets/covers/KYC_Cover_Full.jpg";
+import keyBankCoverImage from "@/assets/covers/Key Bank Cover Image.png";
 
 export type Artifact = {
   src: string;
@@ -98,7 +99,6 @@ export type CaseStudy = {
 export const visibleCaseStudySlugs = [
   "chase-first-banking",
   "shared-control-planes",
-  "keybank-counterfeit-disputes",
 ] as const;
 
 export const caseStudies: CaseStudy[] = [
@@ -482,7 +482,7 @@ export const caseStudies: CaseStudy[] = [
     subtitle: "Enhancing the ease-of-use of the Counterfeit Item Dispute Experience.",
     year: "2018",
     tags: ["UX Strategy", "Journey Mapping", "Information Architecture", "Prototyping"],
-    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1400&h=800&fit=crop&auto=format",
+    image: keyBankCoverImage,
     color: "#F13560",
     lightColor: "#C0002E",
     client: "KeyBank",
