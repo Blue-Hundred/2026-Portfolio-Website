@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { useTheme } from "./hooks/useTheme";
-import tamareLightLogo from "../assets/Favicon/Tamare Light Logo.svg";
-import tamareDarkLogo from "../assets/Favicon/Tamare Dark Logo.svg";
+const tamareLightLogo = new URL("../assets/Favicon/Tamare Light Logo.svg", import.meta.url).href;
+const tamareDarkLogo = new URL("../assets/Favicon/Tamare Dark Logo.svg", import.meta.url).href;
 
 const tamarePortrait = new URL("../assets/Attachments/Tamare Reese 2026.jpeg", import.meta.url).href;
 
