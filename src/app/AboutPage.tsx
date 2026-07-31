@@ -163,8 +163,8 @@ export default function AboutPage() {
               {aboutNarrative.map((paragraph) => (
                 <p
                   key={paragraph}
-                  className="text-[14px] sm:text-[14px] leading-[1.6] text-foreground/90"
-                  style={{ letterSpacing: "-0.2px" }}
+                  className="text-[16px] font-normal leading-[26px] tracking-normal [font-family:Inter,sans-serif] [font-feature-settings:normal] [font-variation-settings:normal]"
+                  style={{ color: "rgb(13, 14, 26)" }}
                 >
                   {paragraph}
                 </p>
@@ -184,7 +184,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="relative mt-16 sm:mt-[100px] overflow-hidden">
+      <section className="relative mt-[104px] sm:mt-[140px] overflow-hidden">
         <div className="absolute left-1/2 -translate-x-1/2 top-2 sm:top-4 h-[18rem] sm:h-[24rem] w-screen max-w-none pointer-events-none opacity-75 overflow-visible" aria-hidden>
           <svg viewBox="0 -300 1200 980" className="w-full h-full overflow-visible cta-ribbon-svg" preserveAspectRatio="none">
             <path
@@ -278,7 +278,7 @@ M-170 344 C -68 122, 170 -190, 350 78 C 502 312, 628 -136, 810 124 C 954 322, 10
         </div>
       </section>
 
-      <section className="max-w-[1200px] mx-auto px-4 sm:px-8 mt-16 sm:mt-[100px]">
+      <section className="max-w-[1200px] mx-auto px-4 sm:px-8 mt-[104px] sm:mt-[140px]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
           <div className="lg:col-span-5">
             <h3>How I Work</h3>
@@ -287,8 +287,8 @@ M-170 344 C -68 122, 170 -190, 350 78 C 502 312, 628 -136, 810 124 C 954 322, 10
             {howIWorkNarrative.map((paragraph) => (
               <p
                 key={`why-${paragraph}`}
-                className="text-[14px] sm:text-[14px] leading-[1.6] text-foreground/90"
-                style={{ letterSpacing: "-0.2px" }}
+                className="text-[16px] font-normal leading-[26px] tracking-normal [font-family:Inter,sans-serif] [font-feature-settings:normal] [font-variation-settings:normal]"
+                style={{ color: "rgb(13, 14, 26)" }}
               >
                 {paragraph}
               </p>
@@ -297,7 +297,7 @@ M-170 344 C -68 122, 170 -190, 350 78 C 502 312, 628 -136, 810 124 C 954 322, 10
         </div>
       </section>
 
-      <section className="relative mt-12 sm:mt-20 pb-14 sm:pb-24 overflow-x-hidden">
+      <section className="relative mt-[88px] sm:mt-[120px] pb-14 sm:pb-24 overflow-x-hidden">
         <div className="relative z-10 max-w-[1200px] mx-auto px-4 sm:px-8">
           <div className="rounded-[28px] sm:rounded-[34px] bg-black text-white px-5 sm:px-12 py-14 sm:py-24 flex flex-col items-center text-center">
             <h2
