@@ -39,6 +39,14 @@
     letter-spacing: -0.01em;
   }
 
+  .ds-heading-md {
+    font-family: var(--font-family-sans);
+    font-size: var(--font-subtitle-1-size);
+    font-weight: var(--font-subtitle-1-weight);
+    line-height: var(--font-subtitle-1-line-height);
+    letter-spacing: var(--font-subtitle-1-letter-spacing);
+  }
+
   .ds-surface-card {
     border: 1px solid var(--border);
     border-radius: var(--radius);

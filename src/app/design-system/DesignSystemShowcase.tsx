@@ -139,6 +139,13 @@ export default function DesignSystemShowcase() {
             </div>
 
             <div className="space-y-1">
+              <p className="text-xs tracking-widest uppercase text-muted-foreground">H4</p>
+              <h4 className="ds-heading-md">
+                Heading Level Four
+              </h4>
+            </div>
+
+            <div className="space-y-1">
               <p className="text-xs tracking-widest uppercase text-muted-foreground">p</p>
               <p className="text-base leading-relaxed text-foreground/90">
                 This is a paragraph style sample used for narrative case-study copy and supporting content.

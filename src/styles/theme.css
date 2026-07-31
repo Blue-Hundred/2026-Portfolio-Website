@@ -230,7 +230,7 @@
     font-size: 24px;
     font-style: normal;
     font-weight: 600;
-    letter-spacing: -0.96px;
+    letter-spacing: normal;
   }
 
   h4 {
@@ -512,12 +512,19 @@
 @media (hover: hover) and (pointer: fine) {
   body.custom-cursor-enabled,
   body.custom-cursor-enabled a,
+  body.custom-cursor-enabled a[href],
   body.custom-cursor-enabled button,
+  body.custom-cursor-enabled summary,
   body.custom-cursor-enabled [role="button"],
+  body.custom-cursor-enabled [role="link"],
+  body.custom-cursor-enabled [onclick],
+  body.custom-cursor-enabled [tabindex]:not([tabindex="-1"]),
+  body.custom-cursor-enabled [contenteditable="true"],
   body.custom-cursor-enabled input,
   body.custom-cursor-enabled textarea,
   body.custom-cursor-enabled select,
-  body.custom-cursor-enabled label {
+  body.custom-cursor-enabled label,
+  body.custom-cursor-enabled label[for] {
     cursor: none !important;
   }
 }

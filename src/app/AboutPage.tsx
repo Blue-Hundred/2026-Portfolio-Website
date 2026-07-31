@@ -176,41 +176,100 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="max-w-[1200px] mx-auto px-4 sm:px-8 mt-14 sm:mt-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12">
-          <div className="lg:col-span-12 h-[420px] sm:h-[460px] rounded-[36px] bg-zinc-100 border border-zinc-100" />
+      <section className="relative mt-14 sm:mt-16 overflow-x-hidden">
+        <div className="absolute left-1/2 -translate-x-1/2 -top-14 sm:-top-18 h-[22rem] sm:h-[28rem] w-[155vw] min-w-[1200px] max-w-none pointer-events-none opacity-70 overflow-visible" aria-hidden>
+          <svg viewBox="0 -320 1200 980" className="w-full h-full overflow-visible hero-ribbon-svg" preserveAspectRatio="none">
+            <path
+              className="hero-ribbon-path"
+              d="M-170 344 C -68 122, 170 -190, 350 78 C 502 312, 628 -136, 810 124 C 954 322, 1082 -72, 1282 224"
+              fill="none"
+              stroke="url(#about-center-ribbon)"
+              strokeWidth="145"
+              strokeLinecap="round"
+            >
+              <animate
+                attributeName="d"
+                dur="31s"
+                repeatCount="indefinite"
+                calcMode="spline"
+                keyTimes="0;0.15;0.31;0.48;0.66;0.82;0.92;1"
+                keySplines="0.55 0 0.25 1;0.45 0 0.25 1;0.5 0 0.2 1;0.4 0 0.25 1;0.5 0 0.2 1;0.44 0 0.25 1;0.5 0 0.2 1"
+                values="M-170 344 C -68 122, 170 -190, 350 78 C 502 312, 628 -136, 810 124 C 954 322, 1082 -72, 1282 224;
+M-170 290 C -12 92, 222 -220, 390 128 C 536 384, 702 -56, 832 62 C 970 188, 1122 -140, 1282 260;
+M-170 372 C -104 228, 142 -78, 326 34 C 488 132, 564 -178, 754 150 C 906 386, 1002 22, 1282 172;
+M-170 318 C -42 116, 236 -198, 418 110 C 566 360, 694 -100, 862 120 C 996 292, 1132 -50, 1282 238;
+M-170 384 C -120 258, 124 -46, 312 42 C 474 132, 548 -194, 738 160 C 896 414, 992 40, 1282 160;
+M-170 330 C -54 126, 218 -184, 400 100 C 550 336, 670 -122, 842 132 C 988 326, 1118 -70, 1282 216;
+M-170 352 C -82 184, 164 -126, 346 68 C 500 254, 602 -154, 786 138 C 934 352, 1046 -2, 1282 198;
+M-170 344 C -68 122, 170 -190, 350 78 C 502 312, 628 -136, 810 124 C 954 322, 1082 -72, 1282 224"
+              />
+            </path>
+            <defs>
+              <linearGradient id="about-center-ribbon" x1="0%" y1="0%" x2="100%" y2="0%">
+                <animate attributeName="x1" values="0%;-12%;0%" dur="18s" repeatCount="indefinite" />
+                <animate attributeName="x2" values="100%;112%;100%" dur="18s" repeatCount="indefinite" />
+                <stop offset="0%" stopColor="#ff2247">
+                  <animate attributeName="stop-color" values="#ff2247;#ff6a00;#ffe600;#2cff89;#00d9ff;#3f5bff;#a23dff;#ff2247" dur="18s" repeatCount="indefinite" />
+                </stop>
+                <stop offset="30%" stopColor="#ffe600">
+                  <animate attributeName="stop-color" values="#ffe600;#2cff89;#00d9ff;#3f5bff;#a23dff;#ff2247;#ff6a00;#ffe600" dur="18s" repeatCount="indefinite" />
+                </stop>
+                <stop offset="65%" stopColor="#00d9ff">
+                  <animate attributeName="stop-color" values="#00d9ff;#3f5bff;#a23dff;#ff2247;#ff6a00;#ffe600;#2cff89;#00d9ff" dur="18s" repeatCount="indefinite" />
+                </stop>
+                <stop offset="100%" stopColor="#a23dff">
+                  <animate attributeName="stop-color" values="#a23dff;#ff2247;#ff6a00;#ffe600;#2cff89;#00d9ff;#3f5bff;#a23dff" dur="18s" repeatCount="indefinite" />
+                </stop>
+              </linearGradient>
+            </defs>
+          </svg>
         </div>
-      </section>
 
-      <section className="max-w-[1200px] mx-auto px-4 sm:px-8 mt-16 sm:mt-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10">
-          <h3 className="lg:col-span-6">Experience</h3>
-          <div className="lg:col-span-6 space-y-0">
-            {experiences.map((item) => (
-              <div key={item.title} className="grid grid-cols-[170px_1fr] gap-6 py-4 border-b border-border/70 text-[14px] sm:text-[15px] text-foreground/90">
-                <span className="text-foreground/75">{item.range}</span>
-                <span>
-                  {item.title} — {item.company}
-                </span>
-              </div>
-            ))}
+        <div className="relative z-10 max-w-[1200px] mx-auto px-4 sm:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12">
+            <div className="lg:col-span-12 rounded-[36px] bg-zinc-100 border border-zinc-100 px-6 sm:px-10 lg:px-14 py-10 sm:py-12 lg:py-14 text-zinc-900">
+              <p
+                className="text-[18px] sm:text-[22px] lg:text-[26px] font-medium text-foreground leading-[1.45] sm:leading-[1.35] lg:leading-[1.32]"
+                style={{ letterSpacing: "-0.4px" }}
+              >
+                I solve complex problems, improve experiences, and build products that create meaningful business results. My career has taken me from agency work designing financial products for KeyBank and First National Bank to enterprise roles at Bath &amp; Body Works and JPMorgan Chase, where I’ve worked across customer experiences, internal platforms, and developer tools.
+              </p>
+              <p
+                className="mt-8 sm:mt-10 text-[18px] sm:text-[22px] lg:text-[26px] font-medium text-foreground leading-[1.45] sm:leading-[1.35] lg:leading-[1.32]"
+                style={{ letterSpacing: "-0.4px" }}
+              >
+                At JPMorgan Chase, I’ve learned to look beyond the interface and understand how customer needs, business strategy, technology, architecture, operations, and data connect. I’m also fascinated by the shift toward faster experimentation, machine learning, and AI, and I enjoy thoughtful conversations about the future of technology, modern design, and design philosophy.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="max-w-[1200px] mx-auto px-4 sm:px-8 mt-20 sm:mt-24 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10">
-          <h3 className="lg:col-span-4">Design Principles</h3>
-          <div className="lg:col-span-8">
-            <h5>Design that ships, at scale, with engineering.</h5>
+      <section className="max-w-[1200px] mx-auto px-4 sm:px-8 mt-16 sm:mt-20 pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10">
+          <div className="lg:col-span-6">
+            <h3>Experience</h3>
+            <div className="mt-10 space-y-0">
+              {experiences.map((item) => (
+                <div key={item.title} className="grid grid-cols-[190px_1fr] gap-6 py-4 border-b border-border/70 text-[14px] sm:text-[15px] text-foreground/90">
+                  <span className="text-foreground/75">{item.range}</span>
+                  <span>
+                    {item.title} — {item.company}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
 
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8">
+          <div className="lg:col-span-6">
+            <h3>Design Principles</h3>
+            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8">
               {valueProps.map((item) => (
                 <article key={item.title} className="max-w-[360px]">
                   <div className="w-7 h-7 rounded-full bg-zinc-100 border border-zinc-200 flex items-center justify-center text-[12px] font-semibold text-zinc-700">
                     {item.icon}
                   </div>
-                  <h4 className="mt-3 text-[26px] font-semibold leading-tight">{item.title}</h4>
+                  <h4 className="mt-3">{item.title}</h4>
                   <p className="mt-2 text-[14px] sm:text-[15px] leading-[1.6] text-foreground/65">{item.body}</p>
                 </article>
               ))}

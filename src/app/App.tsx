@@ -101,7 +101,7 @@ function Portfolio() {
   return (
     <main className="min-h-screen w-full overflow-x-hidden bg-background text-foreground" style={{ fontFamily: "var(--font-family-sans)" }}>
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border/60">
-        <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-10 py-4 sm:py-6 flex items-center justify-between gap-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-10 py-4 sm:py-6 flex items-center justify-between gap-4">
           <Link to="/" aria-label="Go to home" className="inline-flex">
             <img src={headerLogo} alt="Tamaré Reese logo" className="h-8 sm:h-9 w-auto" />
           </Link>
@@ -185,7 +185,7 @@ function Portfolio() {
         </div>
       )}
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-10 pt-16 sm:pt-24 lg:pt-32 pb-8 sm:pb-10 home-load home-load-hero">
+      <section className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-10 pt-16 sm:pt-24 lg:pt-32 pb-8 sm:pb-10 home-load home-load-hero">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-20 items-start">
           <h1 className="text-[42px] sm:text-[56px] lg:text-[72px] leading-[1.02] font-bold tracking-tight">Tamaré Reese</h1>
           <div className="pt-2">
@@ -223,17 +223,19 @@ function Portfolio() {
             >
               <animate
                 attributeName="d"
-                dur="28s"
+                dur="34s"
                 repeatCount="indefinite"
                 calcMode="spline"
-                keyTimes="0;0.2;0.4;0.6;0.8;1"
-                keySplines="0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1"
-                values="M-170 338 C -58 156, 176 -162, 358 82 C 512 292, 620 -118, 804 114 C 946 296, 1060 -40, 1280 220;
-M-170 298 C -32 104, 206 -198, 365 114 C 514 352, 673 -66, 818 72 C 960 218, 1096 -110, 1280 252;
-M-170 356 C -80 182, 188 -98, 362 44 C 514 182, 600 -162, 792 136 C 944 348, 1024 4, 1280 182;
-M-170 324 C -48 132, 214 -178, 386 90 C 540 326, 664 -108, 836 104 C 966 266, 1106 -48, 1280 230;
-M-170 370 C -84 204, 164 -124, 346 52 C 500 196, 584 -150, 770 120 C 922 338, 1008 -12, 1280 194;
-M-170 338 C -58 156, 176 -162, 358 82 C 512 292, 620 -118, 804 114 C 946 296, 1060 -40, 1280 220"
+                keyTimes="0;0.14;0.29;0.45;0.62;0.79;0.9;1"
+                keySplines="0.55 0 0.25 1;0.45 0 0.25 1;0.5 0 0.2 1;0.4 0 0.25 1;0.52 0 0.2 1;0.44 0 0.25 1;0.5 0 0.2 1"
+                values="M-176 348 C -78 128, 158 -198, 346 78 C 500 324, 628 -142, 812 126 C 956 334, 1090 -78, 1288 232;
+M-176 286 C -18 86, 220 -228, 386 132 C 534 398, 706 -54, 842 52 C 980 180, 1128 -152, 1288 268;
+M-176 378 C -112 236, 134 -82, 320 28 C 486 128, 560 -186, 754 156 C 910 402, 1008 28, 1288 166;
+M-176 314 C -46 108, 236 -212, 424 116 C 572 384, 708 -96, 874 122 C 1002 300, 1142 -46, 1288 248;
+M-176 392 C -130 274, 114 -52, 304 38 C 466 120, 542 -206, 730 166 C 896 430, 992 42, 1288 154;
+M-176 326 C -56 118, 218 -194, 404 102 C 558 346, 678 -124, 848 136 C 994 334, 1122 -70, 1288 224;
+M-176 356 C -88 188, 164 -132, 340 64 C 496 254, 596 -162, 786 140 C 936 362, 1044 0, 1288 198;
+M-176 348 C -78 128, 158 -198, 346 78 C 500 324, 628 -142, 812 126 C 956 334, 1090 -78, 1288 232"
               />
             </path>
             <defs>
@@ -257,7 +259,7 @@ M-170 338 C -58 156, 176 -162, 358 82 C 512 292, 620 -118, 804 114 C 946 296, 10
           </svg>
         </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8 lg:px-10 pt-10 sm:pt-14 pb-14 sm:pb-20 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-10 pt-12 sm:pt-16 pb-16 sm:pb-24 grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-7 lg:gap-8">
           {featuredCards.map((card) => {
             const canNavigate = availableHomepageSlugs.has(card.slug);
 
@@ -268,7 +270,7 @@ M-170 338 C -58 156, 176 -162, 358 82 C 512 292, 620 -118, 804 114 C 946 296, 10
                 onClick={() => canNavigate && navigate(`/work/${card.slug}`)}
                 data-cursor="magnify"
                 data-reveal
-                className="group isolate text-left rounded-[30px] flex flex-col hover:-translate-y-0.5 transition-all relative overflow-hidden min-h-[420px] sm:min-h-[620px] justify-end p-0 border-0 appearance-none"
+                className="group isolate w-full aspect-square text-left rounded-[32px] flex flex-col hover:-translate-y-0.5 transition-all relative overflow-hidden justify-end p-0 border-0 appearance-none"
                 style={{
                   backgroundImage: `linear-gradient(to top, rgba(24,24,27,0.92) 0%, rgba(24,24,27,0.24) 36%, rgba(24,24,27,0) 62%), url(${card.coverImage})`,
                   backgroundSize: "cover",
@@ -306,17 +308,19 @@ M-170 338 C -58 156, 176 -162, 358 82 C 512 292, 620 -118, 804 114 C 946 296, 10
             >
               <animate
                 attributeName="d"
-                dur="26s"
+                dur="31s"
                 repeatCount="indefinite"
                 calcMode="spline"
-                keyTimes="0;0.2;0.4;0.6;0.8;1"
-                keySplines="0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1"
-                values="M-164 336 C -50 132, 198 -162, 366 82 C 512 286, 620 -122, 796 106 C 940 290, 1050 -46, 1274 216;
-M-164 304 C -20 94, 204 -198, 370 108 C 516 338, 668 -74, 810 78 C 944 228, 1084 -98, 1274 246;
-M-164 364 C -74 170, 190 -122, 360 52 C 504 208, 594 -156, 784 128 C 932 336, 1026 -2, 1274 188;
-M-164 322 C -40 124, 214 -180, 388 96 C 530 320, 662 -108, 834 106 C 968 268, 1100 -50, 1274 228;
-M-164 350 C -62 148, 176 -150, 350 72 C 494 256, 610 -136, 776 114 C 924 312, 1034 -20, 1274 202;
-M-164 336 C -50 132, 198 -162, 366 82 C 512 286, 620 -122, 796 106 C 940 290, 1050 -46, 1274 216"
+                keyTimes="0;0.15;0.31;0.48;0.66;0.82;0.92;1"
+                keySplines="0.55 0 0.25 1;0.45 0 0.25 1;0.5 0 0.2 1;0.4 0 0.25 1;0.5 0 0.2 1;0.44 0 0.25 1;0.5 0 0.2 1"
+                values="M-170 344 C -68 122, 170 -190, 350 78 C 502 312, 628 -136, 810 124 C 954 322, 1082 -72, 1282 224;
+M-170 290 C -12 92, 222 -220, 390 128 C 536 384, 702 -56, 832 62 C 970 188, 1122 -140, 1282 260;
+M-170 372 C -104 228, 142 -78, 326 34 C 488 132, 564 -178, 754 150 C 906 386, 1002 22, 1282 172;
+M-170 318 C -42 116, 236 -198, 418 110 C 566 360, 694 -100, 862 120 C 996 292, 1132 -50, 1282 238;
+M-170 384 C -120 258, 124 -46, 312 42 C 474 132, 548 -194, 738 160 C 896 414, 992 40, 1282 160;
+M-170 330 C -54 126, 218 -184, 400 100 C 550 336, 670 -122, 842 132 C 988 326, 1118 -70, 1282 216;
+M-170 352 C -82 184, 164 -126, 346 68 C 500 254, 602 -154, 786 138 C 934 352, 1046 -2, 1282 198;
+M-170 344 C -68 122, 170 -190, 350 78 C 502 312, 628 -136, 810 124 C 954 322, 1082 -72, 1282 224"
               />
             </path>
             <defs>
@@ -340,7 +344,7 @@ M-164 336 C -50 132, 198 -162, 366 82 C 512 286, 620 -122, 796 106 C 940 290, 10
           </svg>
         </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8 lg:px-10">
+        <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-10">
           <div className="rounded-[28px] sm:rounded-[34px] bg-black text-white px-5 sm:px-12 py-14 sm:py-24 flex flex-col items-center text-center">
           <h2
             className="text-[42px] sm:text-[58px] lg:text-[72px] font-semibold max-w-[520px] pb-1 text-white leading-[1.08]"

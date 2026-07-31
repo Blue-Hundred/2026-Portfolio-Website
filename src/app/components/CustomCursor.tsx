@@ -1,7 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 
-const INTERACTIVE_SELECTOR = "a, button, [role='button'], [data-cursor='interactive']";
-const LINK_SELECTOR = "a[href]";
+const INTERACTIVE_SELECTOR = [
+  "a[href]",
+  "button",
+  "summary",
+  "label[for]",
+  "input:not([type='hidden'])",
+  "select",
+  "textarea",
+  "[role='button']",
+  "[role='link']",
+  "[onclick]",
+  "[tabindex]:not([tabindex='-1'])",
+  "[contenteditable='true']",
+  "[data-cursor='interactive']",
+].join(", ");
 const MAGNIFY_SELECTOR = "[data-cursor='magnify']";
 
 export function CustomCursor() {
@@ -61,12 +74,12 @@ export function CustomCursor() {
         return;
       }
 
-      const isInteractive = Boolean(target.closest(INTERACTIVE_SELECTOR));
-      const linkElement = target.closest<HTMLAnchorElement>(LINK_SELECTOR);
+      const interactiveElement = target.closest<HTMLElement>(INTERACTIVE_SELECTOR);
+      const isInteractive = Boolean(
+        interactiveElement && !interactiveElement.matches(":disabled, [aria-disabled='true'], [inert]")
+      );
       const magnifyElement = target.closest(MAGNIFY_SELECTOR);
-      const href = linkElement?.getAttribute("href")?.trim() ?? "";
-      const isLink = Boolean(linkElement && href.length > 0);
-      const isMagnifyTarget = Boolean(magnifyElement) || isLink;
+      const isMagnifyTarget = Boolean(magnifyElement) || isInteractive;
 
       outer.classList.toggle("is-hover", isInteractive);
       inner.classList.toggle("is-hover", isInteractive);

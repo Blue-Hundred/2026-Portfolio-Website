@@ -49,3 +49,9 @@ Global utility classes and DS CSS tokens live in:
 
 - `src/styles/design-system.css`
 - Imported by `src/styles/index.css`
+
+Typography utility classes include:
+
+- `ds-heading-xl` – display heading
+- `ds-heading-lg` – section heading
+- `ds-heading-md` – heading level four (`h4`)
