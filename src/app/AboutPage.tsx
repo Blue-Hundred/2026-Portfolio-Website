@@ -163,8 +163,7 @@ export default function AboutPage() {
               {aboutNarrative.map((paragraph) => (
                 <p
                   key={paragraph}
-                  className="text-[16px] font-normal leading-[26px] tracking-normal [font-family:Inter,sans-serif] [font-feature-settings:normal] [font-variation-settings:normal]"
-                  style={{ color: "rgb(13, 14, 26)" }}
+                  className="text-[16px] font-normal leading-[26px] tracking-normal text-foreground/90 [font-family:Inter,sans-serif] [font-feature-settings:normal] [font-variation-settings:normal]"
                 >
                   {paragraph}
                 </p>
@@ -287,8 +286,7 @@ M-170 344 C -68 122, 170 -190, 350 78 C 502 312, 628 -136, 810 124 C 954 322, 10
             {howIWorkNarrative.map((paragraph) => (
               <p
                 key={`why-${paragraph}`}
-                className="text-[16px] font-normal leading-[26px] tracking-normal [font-family:Inter,sans-serif] [font-feature-settings:normal] [font-variation-settings:normal]"
-                style={{ color: "rgb(13, 14, 26)" }}
+                className="text-[16px] font-normal leading-[26px] tracking-normal text-foreground/90 [font-family:Inter,sans-serif] [font-feature-settings:normal] [font-variation-settings:normal]"
               >
                 {paragraph}
               </p>
