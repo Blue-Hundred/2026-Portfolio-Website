@@ -303,7 +303,7 @@ M-170 330 C -20 170, 170 170, 320 330 C 470 490, 650 490, 800 330 C 960 160, 113
       <section className="relative mt-12 sm:mt-20 pb-14 sm:pb-24 overflow-x-hidden">
 
         <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-10">
-          <div className="rounded-[28px] sm:rounded-[34px] bg-black text-white px-5 sm:px-12 py-14 sm:py-24 flex flex-col items-center text-center">
+          <div className="rounded-[28px] sm:rounded-[34px] bg-[rgb(19,21,42)] text-white px-5 sm:px-12 py-14 sm:py-24 flex flex-col items-center text-center">
           <h2
             className="text-[34px] sm:text-[58px] lg:text-[72px] font-semibold max-w-[520px] pb-1 text-white leading-[1.08]"
             style={{ letterSpacing: "-1.8px" }}
