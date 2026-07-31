@@ -1,4 +1,4 @@
-import { ArrowRight, ExternalLink, Home, Printer } from "lucide-react";
+import { ArrowRight, BriefcaseBusiness, ExternalLink, Home, Printer } from "lucide-react";
 import { Link } from "react-router";
 import {
   DSArtifactImageView,
@@ -45,6 +45,7 @@ export default function DesignSystemShowcase() {
 
   return (
     <main className="min-h-screen bg-background text-foreground px-5 sm:px-8 py-14" style={{ fontFamily: "var(--font-family-sans)" }}>
+      <h1 className="sr-only">Design System Visual Documentation</h1>
       <DSContainer>
         <DSSectionHeader
           eyebrow="Design System"
@@ -108,31 +109,31 @@ export default function DesignSystemShowcase() {
           <div className="space-y-4">
             <div className="space-y-1">
               <p className="text-xs tracking-widest uppercase text-muted-foreground">H1</p>
-              <h1 className="font-extrabold leading-tight tracking-tight text-4xl sm:text-5xl" style={{ fontFamily: "var(--font-family-sans)" }}>
+              <p className="font-extrabold leading-tight tracking-tight text-4xl sm:text-5xl" style={{ fontFamily: "var(--font-family-sans)" }}>
                 Heading Level One
-              </h1>
+              </p>
             </div>
 
             <div className="space-y-1">
               <p className="text-xs tracking-widest uppercase text-muted-foreground">H2</p>
-              <h2 className="font-extrabold tracking-tight text-2xl sm:text-3xl" style={{ fontFamily: "var(--font-family-sans)" }}>
+              <p className="font-extrabold tracking-tight text-2xl sm:text-3xl" style={{ fontFamily: "var(--font-family-sans)" }}>
                 Heading Level Two
-              </h2>
+              </p>
             </div>
 
             <div className="space-y-1">
               <p className="text-xs tracking-widest uppercase text-muted-foreground">H2 + Rule</p>
               <div className="flex items-baseline gap-4 sm:gap-6">
-                <h2 className="font-extrabold tracking-tight text-2xl sm:text-3xl" style={{ fontFamily: "var(--font-family-sans)" }}>
+                <p className="font-extrabold tracking-tight text-2xl sm:text-3xl" style={{ fontFamily: "var(--font-family-sans)" }}>
                   Heading Level Two
-                </h2>
+                </p>
                 <div className="flex-1 h-px bg-border ml-2 sm:ml-4" />
               </div>
             </div>
 
             <div className="space-y-1">
               <p className="text-xs tracking-widest uppercase text-muted-foreground">H3</p>
-              <h3 className="text-xl sm:text-2xl font-extrabold" style={{ fontFamily: "var(--font-family-sans)" }}>
+              <h3>
                 Heading Level Three
               </h3>
             </div>
@@ -223,12 +224,12 @@ export default function DesignSystemShowcase() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           <DSCard className="p-6 space-y-4">
             <h3 className="ds-heading-lg">Buttons</h3>
-            <div className="flex flex-wrap gap-3">
-              <DSButton>Primary</DSButton>
-              <DSButton variant="secondary">Secondary</DSButton>
-              <DSButton variant="ghost">Ghost</DSButton>
-              <DSButton size="lg">
-                Explore
+            <div className="flex flex-wrap items-center gap-4">
+              <DSButton size="lg">Primary</DSButton>
+              <DSButton variant="secondary" size="lg">Secondary</DSButton>
+              <DSButton variant="tertiary" size="lg">Tertiary</DSButton>
+              <DSButton variant="icon" size="lg" className="gap-5">
+                Icon Button
                 <ArrowRight size={14} />
               </DSButton>
             </div>
@@ -243,6 +244,19 @@ export default function DesignSystemShowcase() {
             </div>
           </DSCard>
         </div>
+
+        <DSCard className="p-6 space-y-4 mb-6">
+          <h3 className="ds-heading-lg">Icon Styles</h3>
+          <div className="flex flex-wrap items-center gap-6">
+            <div className="rounded-full bg-zinc-100 text-zinc-900 flex items-center justify-center p-[10px]">
+              <BriefcaseBusiness size={20} strokeWidth={2.25} />
+            </div>
+            <div className="space-y-1">
+              <p className="text-sm font-medium text-foreground">Soft Circle Icon</p>
+              <p className="text-xs text-muted-foreground">80 × 80 circle, muted surface, Lucide icon centered</p>
+            </div>
+          </div>
+        </DSCard>
 
         <DSCard id="usage" className="p-6 space-y-4">
           <h3 className="ds-heading-lg">Usage Snippets</h3>

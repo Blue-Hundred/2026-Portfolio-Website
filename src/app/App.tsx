@@ -1,7 +1,8 @@
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router";
+import { BrowserRouter, Link, Routes, Route, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { caseStudies, visibleCaseStudySlugs } from "./data/caseStudies";
 import CaseStudyPage from "./CaseStudyPage";
+import AboutPage from "./AboutPage";
 import DesignSystemShowcase from "./design-system/DesignSystemShowcase";
 import { CustomCursor } from "./components/CustomCursor";
 import { ThemeToggle } from "./components/ThemeToggle";
@@ -101,11 +102,12 @@ function Portfolio() {
     <main className="min-h-screen w-full overflow-x-hidden bg-background text-foreground" style={{ fontFamily: "var(--font-family-sans)" }}>
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border/60">
         <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-10 py-4 sm:py-6 flex items-center justify-between gap-4">
-          <img src={headerLogo} alt="Tamaré Reese logo" className="h-8 sm:h-9 w-auto" />
+          <Link to="/" aria-label="Go to home" className="inline-flex">
+            <img src={headerLogo} alt="Tamaré Reese logo" className="h-8 sm:h-9 w-auto" />
+          </Link>
 
           <nav className="hidden sm:flex items-center gap-4 sm:gap-6 text-xs sm:text-sm text-foreground/80">
-            <a href="#" className="hover:text-foreground transition-colors">Home</a>
-            <a href="#" className="hover:text-foreground transition-colors">About</a>
+            <Link to="/" className="hover:text-foreground transition-colors">Home</Link>
             <a href={RESUME_PDF_URL} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Resume</a>
             <ThemeToggle isDark={isDark} toggle={toggle} />
           </nav>
@@ -158,20 +160,13 @@ function Portfolio() {
           </div>
 
           <nav className="mt-16 flex flex-col text-zinc-900">
-            <a
-              href="#"
+            <Link
+              to="/"
               className="mobile-menu-link py-3 border-b border-zinc-300 text-[58px] leading-[1.05] font-semibold tracking-tight hover:opacity-80 transition-opacity"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Home
-            </a>
-            <a
-              href="#"
-              className="mobile-menu-link py-3 border-b border-zinc-300 text-[58px] leading-[1.05] font-semibold tracking-tight hover:opacity-80 transition-opacity"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              About
-            </a>
+            </Link>
             <a
               href={RESUME_PDF_URL}
               target="_blank"
@@ -198,7 +193,7 @@ function Portfolio() {
               className="text-[18px] sm:text-[22px] lg:text-[26px] font-medium text-foreground max-w-xl leading-[1.45] sm:leading-[1.35] lg:leading-[1.32]"
               style={{ letterSpacing: "-0.4px" }}
             >
-              Hello there, my name is Tamaré Reese and I am a Product Designer currently working at JPMorgan Chase & Co.
+              I solve complex problems, improve experiences, and ship successful products.
             </p>
             <a
               href="https://www.linkedin.com/in/tamarereese/"
@@ -285,12 +280,12 @@ M-170 338 C -58 156, 176 -162, 358 82 C 512 292, 620 -118, 804 114 C 946 296, 10
                   <span className="inline-flex w-fit px-3 py-1 rounded-full text-xs font-medium mb-4 border border-white text-white bg-black/25">
                     {card.company}
                   </span>
-                  <h3
+                  <h4
                     className="text-[22px] sm:text-[26px] leading-tight font-medium text-white"
                     style={{ letterSpacing: "-0.6px" }}
                   >
                     {card.title}
-                  </h3>
+                  </h4>
                 </div>
               </button>
             );
@@ -351,7 +346,7 @@ M-164 336 C -50 132, 198 -162, 366 82 C 512 286, 620 -122, 796 106 C 940 290, 10
             className="text-[42px] sm:text-[58px] lg:text-[72px] font-semibold max-w-[520px] pb-1 text-white leading-[1.08]"
             style={{ letterSpacing: "-1.8px" }}
           >
-            Let’s work together!
+            Let's Connect!
           </h2>
           <a
             href="mailto:tamaredesign@outlook.com"
@@ -373,6 +368,7 @@ export default function App() {
       <CustomCursor />
       <Routes>
         <Route path="/" element={<Portfolio />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/design-system" element={<DesignSystemShowcase />} />
         <Route path="/work/:slug" element={<CaseStudyPage />} />
       </Routes>

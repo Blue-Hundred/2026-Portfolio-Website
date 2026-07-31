@@ -5,7 +5,7 @@ import {
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
-  Lock,
+  LockKeyhole,
   X,
   Workflow,
   Wrench,
@@ -31,7 +31,7 @@ import {
 import { caseStudies, visibleCaseStudySlugs, type Phase, type CaseStudy } from "./data/caseStudies";
 import { useTheme } from "./hooks/useTheme";
 import { ThemeToggle } from "./components/ThemeToggle";
-import { DSImageDialog, DSStaticImageView } from "./design-system";
+import { DSButton, DSImageDialog, DSStaticImageView } from "./design-system";
 
 const SESSION_KEY = "cs_unlocked";
 const revealProps = {
@@ -91,18 +91,15 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
         style={shaking ? { animation: "shake 0.4s ease" } : {}}
       >
         <div className="flex items-center justify-center mb-8">
-          <div className="w-12 h-12 border border-border flex items-center justify-center text-muted-foreground">
-            <Lock size={18} />
+          <div className="w-20 h-20 rounded-full bg-secondary/40 text-foreground flex items-center justify-center">
+            <LockKeyhole size={30} strokeWidth={2.25} />
           </div>
         </div>
 
-        <h1
-          className="text-2xl font-extrabold text-center mb-2"
-          style={{ fontFamily: "var(--font-family-sans)" }}
-        >
+        <h3 className="text-center mb-2">
           Password protected
-        </h1>
-        <p className="text-sm text-muted-foreground text-center mb-8">
+        </h3>
+        <p className="text-center text-muted-foreground mb-8">
           This case study is available on request.
         </p>
 
@@ -122,12 +119,15 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
           <p className="text-xs text-red-500 mt-2 px-1">Incorrect password. Try again.</p>
         )}
 
-        <button
+        <DSButton
           onClick={attempt}
-          className="w-full mt-3 py-4 text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+          className="mt-3"
+          variant="primary"
+          size="lg"
+          fullWidth
         >
           Unlock
-        </button>
+        </DSButton>
 
         <div className="mt-8 text-center">
           <Link
@@ -444,7 +444,7 @@ function ScpModernLayout({
             As the Lead Product Designer, I partnered with product managers, engineers, architects, and UX researchers to define the experience strategy for a unified database management platform. My work spanned the full product design lifecycle—from synthesizing research and mapping complex service ecosystems to establishing information architecture, interaction patterns, and scalable design principles. While the platform encompassed numerous database products and workflows, I led the design of the onboarding and provisioning experience as a representative use case, creating reusable patterns that informed the broader platform strategy. Through iterative design, usability testing, and cross-functional collaboration, I helped align teams around a shared vision that balanced customer needs, technical feasibility, and long-term scalability.
           </p>
 
-          <p className="text-base font-semibold text-foreground/90 leading-relaxed mb-3">Responsibilities</p>
+          <h4 className="text-base font-semibold text-foreground/90 leading-relaxed mb-3">Responsibilities</h4>
 
           <div className="flex flex-wrap gap-2.5">
             {SCP_RESPONSIBILITIES.map((item) => (
@@ -523,7 +523,7 @@ function ScpModernLayout({
           </p>
         </div>
 
-        <p className="text-base font-semibold text-foreground/90 leading-relaxed mb-3">Research Methods</p>
+        <h4 className="text-base font-semibold text-foreground/90 leading-relaxed mb-3">Research Methods</h4>
         <div className="max-w-4xl">
           <div className="flex flex-wrap gap-2.5">
             {SCP_RESEARCH_METHODS.map((item) => (
@@ -1239,9 +1239,9 @@ function KeybankDefineCoreProblems({
                   >
                     <Icon size={16} style={{ color }} />
                   </div>
-                  <h3 className="text-base font-semibold leading-tight text-foreground" style={CASE_STUDY_HEADING_FONT}>
+                  <h4 className="text-base font-semibold leading-tight text-foreground" style={CASE_STUDY_HEADING_FONT}>
                     {title}
-                  </h3>
+                  </h4>
                 </div>
                 <p className="text-sm leading-relaxed text-foreground/80">{detail}</p>
               </motion.div>
@@ -1592,12 +1592,12 @@ export default function CaseStudyPage() {
                 <ArrowLeft size={12} className="group-hover:-translate-x-0.5 transition-transform" />
                 Previous
               </div>
-              <div
+              <h4
                 className="text-base sm:text-lg font-bold group-hover:text-primary transition-colors"
                 style={{ fontFamily: "var(--font-family-sans)" }}
               >
                 {prev.title}
-              </div>
+              </h4>
               <div className="text-xs sm:text-sm text-muted-foreground mt-1 line-clamp-2">
                 {prev.subtitle}
               </div>
@@ -1618,12 +1618,12 @@ export default function CaseStudyPage() {
                 Next
                 <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
               </div>
-              <div
+              <h4
                 className="text-base sm:text-lg font-bold group-hover:text-primary transition-colors"
                 style={{ fontFamily: "var(--font-family-sans)" }}
               >
                 {next.title}
-              </div>
+              </h4>
               <div className="text-xs sm:text-sm text-muted-foreground mt-1 line-clamp-2">
                 {next.subtitle}
               </div>

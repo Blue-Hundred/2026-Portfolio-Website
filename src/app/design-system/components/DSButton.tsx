@@ -3,18 +3,22 @@ import { type ButtonHTMLAttributes, type ReactNode } from "react";
 import { cn } from "../../components/ui/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 text-sm font-semibold transition-colors disabled:opacity-60 disabled:pointer-events-none",
+  "inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full text-[14px] font-medium leading-5 [font-family:Inter,-apple-system,system-ui,\"Segoe_UI\",Roboto,sans-serif] [font-feature-settings:normal] [font-variation-settings:normal] transition-colors disabled:opacity-60 disabled:pointer-events-none",
   {
     variants: {
       variant: {
-        primary: "bg-primary text-primary-foreground hover:bg-primary/90",
-        secondary: "bg-secondary text-foreground hover:bg-secondary/80 border border-border",
-        ghost: "text-muted-foreground hover:text-foreground",
+        primary: "bg-black text-white border border-black hover:bg-black/90",
+        secondary: "bg-white text-black border border-black hover:bg-black/5",
+        tertiary: "bg-transparent text-black border border-transparent hover:opacity-70",
+        ghost: "bg-transparent text-black border border-transparent hover:opacity-70",
+        icon: "bg-white text-black border border-black hover:bg-black/5",
+        iconButton: "bg-white text-black border border-black hover:bg-black/5",
       },
       size: {
-        sm: "px-3 py-2",
-        md: "px-4 py-2.5",
-        lg: "px-5 py-3",
+        sm: "px-5",
+        md: "px-8",
+        lg: "px-10",
+        icon: "size-11 p-0",
       },
       fullWidth: {
         true: "w-full",
@@ -45,7 +49,6 @@ export function DSButton({
   return (
     <button
       className={cn(buttonVariants({ variant, size, fullWidth }), className)}
-      style={{ borderRadius: "var(--radius)" }}
       {...props}
     >
       {children}

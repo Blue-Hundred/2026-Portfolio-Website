@@ -3,20 +3,40 @@
 :root {
   --font-size: 16px;
   --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-hero-h1-size: clamp(72px, 7vw, 80px);
-  --font-h2-size: 48px;
-  --font-h3-size: 22px;
-  --font-h4-size: 24px;
+  --font-header-1-size: 72px;
+  --font-header-1-weight: 700;
+  --font-header-1-line-height: 1.375;
+  --font-header-1-letter-spacing: -2.88px;
+  --font-header-2-size: 32px;
+  --font-header-2-weight: 600;
+  --font-header-2-line-height: 1.35;
+  --font-header-2-letter-spacing: -1.28px;
+  --font-header-3-size: 24px;
+  --font-header-3-weight: 600;
+  --font-header-3-line-height: 1.35;
+  --font-header-3-letter-spacing: -0.96px;
+  --font-subtitle-1-size: 24px;
+  --font-subtitle-1-weight: 400;
+  --font-subtitle-1-line-height: 1.35;
+  --font-subtitle-1-letter-spacing: -0.96px;
+  --font-paragraph-family: Inter, sans-serif;
+  --font-paragraph-size: 16px;
+  --font-paragraph-style: normal;
+  --font-paragraph-weight: 400;
+  --font-paragraph-line-height: 26px;
+  --font-paragraph-letter-spacing: normal;
+  --font-paragraph-feature-settings: normal;
+  --font-paragraph-variation-settings: normal;
   --font-body-large-size: 20px;
-  --font-body-size: 18px;
+  --font-body-size: var(--font-paragraph-size);
   --font-small-size: 16px;
   --font-navigation-size: 16px;
   --font-button-size: 16px;
-  --font-weight-hero: 700;
-  --font-weight-h2: 700;
-  --font-weight-h3: 600;
-  --font-weight-h4: 600;
-  --font-weight-body: 400;
+  --font-weight-hero: var(--font-header-1-weight);
+  --font-weight-h2: var(--font-header-2-weight);
+  --font-weight-h3: var(--font-header-3-weight);
+  --font-weight-h4: var(--font-subtitle-1-weight);
+  --font-weight-body: var(--font-paragraph-weight);
   --font-weight-small: 400;
   --font-weight-navigation: 500;
   --font-weight-button: 500;
@@ -191,33 +211,55 @@
   }
 
   h1 {
-    font-size: var(--font-hero-h1-size);
-    font-weight: var(--font-weight-hero);
-    line-height: 1.1;
+    font-size: var(--font-header-1-size);
+    font-weight: var(--font-header-1-weight);
+    line-height: var(--font-header-1-line-height);
+    letter-spacing: var(--font-header-1-letter-spacing);
   }
 
   h2 {
-    font-size: var(--font-h2-size);
-    font-weight: var(--font-weight-h2);
-    line-height: 1.15;
+    font-size: var(--font-header-2-size);
+    font-weight: var(--font-header-2-weight);
+    line-height: var(--font-header-2-line-height);
+    letter-spacing: var(--font-header-2-letter-spacing);
   }
 
   h3 {
-    font-size: var(--font-h3-size);
-    font-weight: var(--font-weight-h3);
-    line-height: 1.2;
+    color: #000;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: -0.96px;
   }
 
   h4 {
-    font-size: var(--font-h4-size);
-    font-weight: var(--font-weight-h4);
-    line-height: 1.25;
+    font-size: var(--font-subtitle-1-size);
+    font-weight: var(--font-subtitle-1-weight);
+    line-height: var(--font-subtitle-1-line-height);
+    letter-spacing: var(--font-subtitle-1-letter-spacing);
   }
 
   p {
-    font-size: var(--font-body-size);
-    font-weight: var(--font-weight-body);
-    line-height: 1.5;
+    font-family: var(--font-paragraph-family);
+    font-size: var(--font-paragraph-size);
+    font-style: var(--font-paragraph-style);
+    font-weight: var(--font-paragraph-weight);
+    line-height: var(--font-paragraph-line-height);
+    letter-spacing: var(--font-paragraph-letter-spacing);
+    font-feature-settings: var(--font-paragraph-feature-settings);
+    font-variation-settings: var(--font-paragraph-variation-settings);
+  }
+
+  .paragraph-fixed-height {
+    height: 104px;
+  }
+
+  .subtitle-1 {
+    font-size: var(--font-subtitle-1-size);
+    font-weight: var(--font-subtitle-1-weight);
+    line-height: var(--font-subtitle-1-line-height);
+    letter-spacing: var(--font-subtitle-1-letter-spacing);
   }
 
   small,
