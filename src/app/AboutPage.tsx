@@ -83,41 +83,44 @@ export default function AboutPage() {
             <ThemeToggle isDark={isDark} toggle={toggle} />
           </nav>
 
-          <button
-            type="button"
-            className="sm:hidden relative w-10 h-10 flex items-center justify-center text-foreground/90 hover:text-foreground transition-colors"
-            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isMobileMenuOpen}
-            aria-controls="mobile-main-nav"
-            onClick={() => setIsMobileMenuOpen((current) => !current)}
-          >
-            <span
-              className={`absolute h-0.5 w-4 rounded-full bg-current transition-transform duration-300 ease-out ${
-                isMobileMenuOpen ? "translate-y-0 rotate-45" : "-translate-y-[5px] rotate-0"
-              }`}
-            />
-            <span
-              className={`absolute h-0.5 w-4 rounded-full bg-current transition-opacity duration-200 ease-out ${
-                isMobileMenuOpen ? "opacity-0" : "opacity-100"
-              }`}
-            />
-            <span
-              className={`absolute h-0.5 w-4 rounded-full bg-current transition-transform duration-300 ease-out ${
-                isMobileMenuOpen ? "translate-y-0 -rotate-45" : "translate-y-[5px] rotate-0"
-              }`}
-            />
-          </button>
+          <div className="sm:hidden flex items-center gap-2">
+            <ThemeToggle isDark={isDark} toggle={toggle} />
+            <button
+              type="button"
+              className="relative w-10 h-10 flex items-center justify-center text-foreground/90 hover:text-foreground transition-colors"
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-main-nav"
+              onClick={() => setIsMobileMenuOpen((current) => !current)}
+            >
+              <span
+                className={`absolute h-0.5 w-4 rounded-full bg-current transition-transform duration-300 ease-out ${
+                  isMobileMenuOpen ? "translate-y-0 rotate-45" : "-translate-y-[5px] rotate-0"
+                }`}
+              />
+              <span
+                className={`absolute h-0.5 w-4 rounded-full bg-current transition-opacity duration-200 ease-out ${
+                  isMobileMenuOpen ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <span
+                className={`absolute h-0.5 w-4 rounded-full bg-current transition-transform duration-300 ease-out ${
+                  isMobileMenuOpen ? "translate-y-0 -rotate-45" : "translate-y-[5px] rotate-0"
+                }`}
+              />
+            </button>
+          </div>
         </div>
       </header>
 
       {isMobileMenuOpen && (
-        <div id="mobile-main-nav" className="sm:hidden fixed inset-0 z-[70] bg-white text-zinc-900 opacity-100 pointer-events-auto">
+        <div id="mobile-main-nav" className="sm:hidden fixed inset-0 z-[70] bg-background text-foreground opacity-100 pointer-events-auto">
           <div className="h-full px-6 pt-6 pb-10 flex flex-col mobile-menu-shell mobile-menu-shell-open">
             <div className="flex items-center justify-between">
-              <img src={tamareDarkLogo} alt="Tamaré Reese logo" className="h-10 w-auto" />
+              <img src={headerLogo} alt="Tamaré Reese logo" className="h-10 w-auto" />
               <button
                 type="button"
-                className="relative w-10 h-10 flex items-center justify-center text-zinc-900 hover:opacity-75 transition-opacity"
+                className="relative w-10 h-10 flex items-center justify-center text-foreground hover:opacity-75 transition-opacity"
                 aria-label="Close menu"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -126,17 +129,17 @@ export default function AboutPage() {
               </button>
             </div>
 
-            <nav className="mt-16 flex flex-col text-zinc-900">
+            <nav className="mt-16 flex flex-col text-foreground">
               <Link
                 to="/"
-                className="mobile-menu-link py-3 border-b border-zinc-300 hover:opacity-80 transition-opacity"
+                className="mobile-menu-link py-3 border-b border-border hover:opacity-80 transition-opacity"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Typography variant="mobileMenuLink" component="span">Home</Typography>
               </Link>
               <Link
                 to="/about"
-                className="mobile-menu-link py-3 border-b border-zinc-300 hover:opacity-80 transition-opacity"
+                className="mobile-menu-link py-3 border-b border-border hover:opacity-80 transition-opacity"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Typography variant="mobileMenuLink" component="span">About</Typography>
@@ -145,16 +148,12 @@ export default function AboutPage() {
                 href={RESUME_PDF_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mobile-menu-link py-3 border-b border-zinc-300 hover:opacity-80 transition-opacity"
+                className="mobile-menu-link py-3 border-b border-border hover:opacity-80 transition-opacity"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Typography variant="mobileMenuLink" component="span">Resume</Typography>
               </a>
             </nav>
-
-            <div className="mt-8 inline-flex items-center text-zinc-700">
-              <ThemeToggle isDark={isDark} toggle={toggle} />
-            </div>
           </div>
         </div>
       )}
@@ -275,8 +274,13 @@ M-170 344 C -68 122, 170 -190, 350 78 C 502 312, 628 -136, 810 124 C 954 322, 10
 
             <div className="lg:col-span-7">
               <div className="space-y-0">
-                {experiences.map((item) => (
-                  <div key={item.title} className="grid grid-cols-1 sm:grid-cols-[160px_1fr] gap-1 sm:gap-6 py-4 border-b border-border/70 text-foreground/90">
+                {experiences.map((item, index) => (
+                  <div
+                    key={item.title}
+                    className={`grid grid-cols-1 sm:grid-cols-[160px_1fr] gap-1 sm:gap-6 py-4 text-foreground/90 ${
+                      index === experiences.length - 1 ? "" : "border-b border-border/70"
+                    }`}
+                  >
                     <Typography variant="timelineRow" component="span" className="text-foreground/75">{item.range}</Typography>
                     <Typography variant="timelineRow" component="span">
                       {item.title} — {item.company}
