@@ -90,13 +90,13 @@ function Portfolio() {
     {
       slug: "chase-first-banking",
       title: "Family Banking",
-      company: "Chase",
+      company: "Financial Institution",
       coverImage: cfbCoverImage,
     },
     {
       slug: "shared-control-planes",
       title: "Database Service Management",
-      company: "Chase",
+      company: "Financial Institution",
       coverImage: databasesCoverImage,
     },
   ];
