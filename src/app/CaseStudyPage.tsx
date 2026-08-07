@@ -1413,7 +1413,7 @@ export default function CaseStudyPage() {
       </nav>
 
       {/* Hero image */}
-      <div className="pt-[72px] relative h-[34vh] sm:h-[55vh] min-h-[220px] sm:min-h-[400px] bg-secondary overflow-hidden">
+      <div className="pt-[72px] relative h-[46svh] sm:h-[55vh] min-h-[300px] sm:min-h-[400px] bg-secondary overflow-hidden">
         <img
           src={study.image}
           alt={study.title}
@@ -1426,7 +1426,7 @@ export default function CaseStudyPage() {
       </div>
 
       {/* Header */}
-      <div className="px-5 sm:px-8 pb-12 sm:pb-16 -mt-16 relative z-10 max-w-6xl mx-auto">
+      <div className="px-5 sm:px-8 pb-12 sm:pb-16 mt-0 sm:-mt-16 relative z-10 max-w-6xl mx-auto">
         <div className="max-w-3xl">
           <h1
             className={`${CASE_STUDY_HEADING_CLASSES.h1} mb-4`}
