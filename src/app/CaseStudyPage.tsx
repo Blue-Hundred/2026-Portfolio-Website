@@ -378,14 +378,14 @@ function ScpArtifactPlaceholders({
           ))}
         </div>
       )}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-4 sm:grid-cols-4 gap-4">
         {artifacts.map((artifact) => (
           <button
             key={artifact.caption}
             type="button"
             onClick={() => onImageClick(artifact.src, artifact.caption)}
             aria-label={`Open image: ${artifact.caption}`}
-            className="rounded-2xl border border-border bg-secondary/20 overflow-hidden text-left transition-all hover:-translate-y-0.5 hover:border-foreground/20"
+            className="col-span-4 sm:col-span-2 rounded-2xl border border-border bg-secondary/20 overflow-hidden text-left transition-all hover:-translate-y-0.5 hover:border-foreground/20"
           >
             <div className="aspect-[16/9] bg-background/50">
               <img
@@ -469,13 +469,13 @@ function ScpModernLayout({
           <p className="text-base text-foreground/90 leading-relaxed mb-3">Customers encountered:</p>
 
           <div className="mb-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
+            <div className="grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-3 xl:grid-cols-5 gap-3">
               {SCP_PAIN_POINTS.map((item) => {
                 const Icon = item.icon;
                 return (
                 <div
                   key={item.label}
-                  className="rounded-xl border border-border bg-secondary/25 px-4 py-5 text-center"
+                  className="col-span-2 lg:col-span-1 xl:col-span-1 rounded-xl border border-border bg-secondary/25 px-4 py-5 text-center"
                 >
                   <div className="flex justify-center mb-3">
                     <div className="inline-flex w-9 h-9 items-center justify-center rounded-full border border-border bg-background">
@@ -544,19 +544,19 @@ function ScpModernLayout({
 
       <motion.section className="bg-background border-t border-border py-12 sm:py-14" {...revealProps}>
         <ScpSectionTitle title="Primary Personas" />
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="grid grid-cols-4 lg:grid-cols-2 gap-4">
           {SCP_PERSONAS.map((persona) => {
             const personaArtifact =
               persona.name === "Application Owner" ? appOwnerArtifact : engineerArtifact;
 
             return (
-            <div key={persona.name} className="rounded-2xl border border-border bg-secondary/25 p-6">
+            <div key={persona.name} className="col-span-4 lg:col-span-1 rounded-2xl border border-border bg-secondary/25 p-6">
               <h4 className={`${CASE_STUDY_HEADING_CLASSES.h4} mb-2`} style={CASE_STUDY_HEADING_FONT}>
                 {persona.name}
               </h4>
               <p className="text-sm text-foreground/80 mb-4">{persona.description}</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
+              <div className="grid grid-cols-4 sm:grid-cols-4 gap-4">
+                <div className="col-span-4 sm:col-span-2">
                   <div className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Goals</div>
                   <div className="space-y-1.5 text-sm text-foreground/85">
                     {persona.goals.map((goal) => (
@@ -564,7 +564,7 @@ function ScpModernLayout({
                     ))}
                   </div>
                 </div>
-                <div>
+                <div className="col-span-4 sm:col-span-2">
                   <div className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Pain Points</div>
                   <div className="space-y-1.5 text-sm text-foreground/85">
                     {persona.painPoints.map((pain) => (
@@ -607,9 +607,9 @@ function ScpModernLayout({
             Rather than redesigning individual interfaces, I focused on defining a scalable experience strategy that could be applied consistently across every database product. Guided by research insights, I established a set of experience principles that standardized navigation, workflows, terminology, and interaction patterns—creating a flexible foundation that improved consistency while supporting future platform growth.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-4 md:grid-cols-4 xl:grid-cols-6 gap-4 mb-8">
           {SCP_DESIGN_PRINCIPLES.map((principle) => (
-            <div key={principle.title} className="rounded-xl border border-border bg-secondary/25 p-5">
+            <div key={principle.title} className="col-span-4 md:col-span-2 xl:col-span-2 rounded-xl border border-border bg-secondary/25 p-5">
               <h4 className={`${CASE_STUDY_HEADING_CLASSES.h4} mb-2`} style={CASE_STUDY_HEADING_FONT}>{principle.title}</h4>
               <p className="text-sm text-foreground/80 leading-relaxed">{principle.body}</p>
             </div>
@@ -637,14 +637,14 @@ function ScpModernLayout({
 
       {study.deliverDirectImages && study.deliverDirectImages.length > 0 && (
         <motion.section className="bg-background border-t border-border py-12 sm:py-14" {...revealProps}>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-4 gap-4">
             {study.deliverDirectImages.map((imageSrc, index) => (
               <DSStaticImageView
                 key={`${imageSrc}-${index}`}
                 src={imageSrc}
                 caption={`Database ${index + 1}`}
                 onImageClick={onImageClick}
-                className="border-[#D9D9D9]"
+                className="col-span-2 border-[#D9D9D9]"
               />
             ))}
           </div>
@@ -764,11 +764,11 @@ function ScpIconCardRow({
       >
         {title}
       </h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+      <div className="grid grid-cols-4 md:grid-cols-4 xl:grid-cols-6 gap-4">
         {items.map((item) => {
           const Icon = item.icon;
           return (
-            <div key={item.title} className="rounded-xl border border-border bg-secondary/40 p-5 transition-all hover:-translate-y-0.5 hover:border-foreground/20">
+            <div key={item.title} className="col-span-4 md:col-span-2 xl:col-span-2 rounded-xl border border-border bg-secondary/40 p-5 transition-all hover:-translate-y-0.5 hover:border-foreground/20">
               <div className="mb-3 inline-flex w-9 h-9 items-center justify-center rounded-full bg-background border border-border">
                 <Icon size={16} />
               </div>
@@ -829,12 +829,12 @@ function ScpStrategicPriorities({ accent }: { accent: string }) {
 
               {isActive && (
                 <div className="border-t border-border/60 bg-background/50 px-4 sm:px-5 py-4 sm:py-5">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div>
+                  <div className="grid grid-cols-4 md:grid-cols-4 gap-5">
+                    <div className="col-span-4 md:col-span-2">
                       <div className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Why this mattered</div>
                       <p className="text-sm leading-relaxed text-foreground/80">{priority.painPoint}</p>
                     </div>
-                    <div>
+                    <div className="col-span-4 md:col-span-2">
                       <div className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Product decision</div>
                       <p className="text-sm leading-relaxed text-foreground/80">{priority.response}</p>
                     </div>
@@ -885,9 +885,9 @@ function ScpContributions({ accent }: { accent: string }) {
             My Contributions
           </h3>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="grid grid-cols-4 md:grid-cols-4 gap-3">
           {SCP_CONTRIBUTIONS.map((item) => (
-            <div key={item} className="rounded-lg border border-border bg-background/70 p-4 text-sm leading-relaxed text-foreground/85">
+            <div key={item} className="col-span-4 md:col-span-2 rounded-lg border border-border bg-background/70 p-4 text-sm leading-relaxed text-foreground/85">
               {item}
             </div>
           ))}
@@ -918,9 +918,9 @@ function ScpOutcomes({
 
       <p className="text-base leading-relaxed text-foreground/90 mb-10">{summary}</p>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-background mb-10">
+      <div className="grid grid-cols-4 lg:grid-cols-4 gap-px bg-background mb-10">
         {metrics.map((m) => (
-          <motion.div key={m.label} className="bg-background p-5 sm:p-8" {...revealProps}>
+          <motion.div key={m.label} className="col-span-2 lg:col-span-1 bg-background p-5 sm:p-8" {...revealProps}>
             <div
               className="text-3xl sm:text-4xl font-extrabold mb-2"
               style={{ fontFamily: "var(--font-family-sans)", color: accent }}
@@ -932,9 +932,9 @@ function ScpOutcomes({
         ))}
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 mb-4">
+      <div className="grid grid-cols-4 xl:grid-cols-6 gap-4 mb-4">
         {sections.map(({ title, items, icon: Icon }) => (
-          <div key={title} className="rounded-xl border border-border bg-secondary/40 p-5 transition-all hover:-translate-y-0.5 hover:border-foreground/20">
+          <div key={title} className="col-span-4 xl:col-span-2 rounded-xl border border-border bg-secondary/40 p-5 transition-all hover:-translate-y-0.5 hover:border-foreground/20">
             <div className="flex items-center gap-2 mb-4">
               <div className="inline-flex w-9 h-9 items-center justify-center rounded-full bg-background border border-border">
                 <Icon size={16} />
@@ -1084,14 +1084,15 @@ function PhaseSection({
                   aspectClass="aspect-[16/9]"
                   onImageClick={onImageClick}
                 />
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="grid grid-cols-4 sm:grid-cols-4 gap-3">
                   {phase.artifacts.slice(1).map((artifact, i) => (
-                    <ArtifactImage
-                      key={i}
-                      artifact={artifact}
-                      aspectClass="aspect-[4/3]"
-                      onImageClick={onImageClick}
-                    />
+                    <div key={i} className="col-span-4 sm:col-span-2">
+                      <ArtifactImage
+                        artifact={artifact}
+                        aspectClass="aspect-[4/3]"
+                        onImageClick={onImageClick}
+                      />
+                    </div>
                   ))}
                 </div>
               </div>
@@ -1102,22 +1103,23 @@ function PhaseSection({
                 onImageClick={onImageClick}
               />
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-4 sm:grid-cols-4 gap-3">
                 {phase.artifacts.map((artifact, i) => (
-                  <ArtifactImage
-                    key={i}
-                    artifact={artifact}
-                    aspectClass="aspect-[4/3]"
-                    onImageClick={onImageClick}
-                  />
+                  <div key={i} className="col-span-4 sm:col-span-2">
+                    <ArtifactImage
+                      artifact={artifact}
+                      aspectClass="aspect-[4/3]"
+                      onImageClick={onImageClick}
+                    />
+                  </div>
                 ))}
               </div>
             )}
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12">
-          <div className="lg:col-span-4 lg:sticky lg:top-28">
+        <div className="grid grid-cols-4 lg:grid-cols-12 gap-8 sm:gap-12">
+          <div className="col-span-4 lg:col-span-4 lg:sticky lg:top-28">
             {phase.body.split("\n\n").map((para, i) => (
               <p key={i} className={`text-base leading-relaxed text-foreground/80 ${i > 0 ? "mt-4" : ""}`}>
                 {para}
@@ -1125,7 +1127,7 @@ function PhaseSection({
             ))}
           </div>
 
-          <div className="lg:col-span-8">
+          <div className="col-span-4 lg:col-span-8">
             {hasThreeArtifacts ? (
               <div className="space-y-3">
                 <ArtifactImage
@@ -1133,14 +1135,15 @@ function PhaseSection({
                   aspectClass="aspect-[16/9]"
                   onImageClick={onImageClick}
                 />
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="grid grid-cols-4 sm:grid-cols-4 gap-3">
                   {phase.artifacts.slice(1).map((artifact, i) => (
-                    <ArtifactImage
-                      key={i}
-                      artifact={artifact}
-                      aspectClass="aspect-[4/3]"
-                      onImageClick={onImageClick}
-                    />
+                    <div key={i} className="col-span-4 sm:col-span-2">
+                      <ArtifactImage
+                        artifact={artifact}
+                        aspectClass="aspect-[4/3]"
+                        onImageClick={onImageClick}
+                      />
+                    </div>
                   ))}
                 </div>
               </div>
@@ -1151,14 +1154,15 @@ function PhaseSection({
                 onImageClick={onImageClick}
               />
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-4 sm:grid-cols-4 gap-3">
                 {phase.artifacts.map((artifact, i) => (
-                  <ArtifactImage
-                    key={i}
-                    artifact={artifact}
-                    aspectClass="aspect-[4/3]"
-                    onImageClick={onImageClick}
-                  />
+                  <div key={i} className="col-span-4 sm:col-span-2">
+                    <ArtifactImage
+                      artifact={artifact}
+                      aspectClass="aspect-[4/3]"
+                      onImageClick={onImageClick}
+                    />
+                  </div>
                 ))}
               </div>
             )}
@@ -1208,8 +1212,8 @@ function KeybankDefineCoreProblems({
         <div className="flex-1 h-px bg-border ml-2 sm:ml-4 hidden sm:block" />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12">
-        <div className="lg:col-span-4 lg:sticky lg:top-28">
+      <div className="grid grid-cols-4 lg:grid-cols-12 gap-8 sm:gap-12">
+        <div className="col-span-4 lg:col-span-4 lg:sticky lg:top-28">
           {phase.body.split("\n\n").map((para, i) => (
             <p key={i} className={`text-base leading-relaxed text-foreground/80 ${i > 0 ? "mt-4" : ""}`}>
               {para}
@@ -1217,7 +1221,7 @@ function KeybankDefineCoreProblems({
           ))}
         </div>
 
-        <div className="lg:col-span-8">
+        <div className="col-span-4 lg:col-span-8">
           <div className="rounded-xl border border-border bg-secondary/25 p-5 sm:p-6 mb-4">
             <p className="text-xs tracking-widest uppercase text-muted-foreground mb-2">Core Problem Areas</p>
             <p className="text-base text-foreground/85 leading-relaxed">
@@ -1225,11 +1229,11 @@ function KeybankDefineCoreProblems({
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-4 sm:grid-cols-4 gap-3">
             {problemAreas.map(({ title, detail, icon: Icon }) => (
               <motion.div
                 key={title}
-                className="rounded-xl border border-border bg-background p-5 sm:p-6 transition-all hover:-translate-y-0.5 hover:border-foreground/20"
+                className="col-span-4 sm:col-span-2 rounded-xl border border-border bg-background p-5 sm:p-6 transition-all hover:-translate-y-0.5 hover:border-foreground/20"
                 {...revealProps}
               >
                 <div className="flex items-start gap-3 mb-3">
@@ -1298,25 +1302,25 @@ function KeybankDesignTextOnly({
             )}
 
             {phase.artifacts.length > 1 && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-6 gap-4">
                 {phase.artifacts.slice(1).map((artifact, index) =>
-                  isDeliverPhase ? (
-                    <DSStaticImageView
-                      key={`${artifact.caption}-${index}`}
-                      src={artifact.src}
-                      caption={artifact.caption}
-                      onImageClick={onImageClick}
-                    />
-                  ) : (
-                    <ArtifactImage
-                      key={`${artifact.caption}-${index}`}
-                      artifact={artifact}
-                      aspectClass="aspect-square"
-                      onImageClick={onImageClick}
-                      imageClassName="object-contain"
-                      disableHoverScale
-                    />
-                  )
+                  <div key={`${artifact.caption}-${index}`} className="col-span-4 sm:col-span-2 lg:col-span-2">
+                    {isDeliverPhase ? (
+                      <DSStaticImageView
+                        src={artifact.src}
+                        caption={artifact.caption}
+                        onImageClick={onImageClick}
+                      />
+                    ) : (
+                      <ArtifactImage
+                        artifact={artifact}
+                        aspectClass="aspect-square"
+                        onImageClick={onImageClick}
+                        imageClassName="object-contain"
+                        disableHoverScale
+                      />
+                    )}
+                  </div>
                 )}
               </div>
             )}
@@ -1427,7 +1431,7 @@ export default function CaseStudyPage() {
           <p className="text-base sm:text-xl text-muted-foreground leading-relaxed mb-8">
             {study.subtitle}
           </p>
-          <div className="flex flex-wrap gap-6 sm:gap-8 border-t border-border pt-8">
+          <div className="grid grid-cols-4 gap-5 sm:gap-8 border-t border-border pt-8">
             {[
               { label: "Client", value: study.client },
               { label: "Role", value: study.role },
@@ -1435,7 +1439,7 @@ export default function CaseStudyPage() {
               { label: "Year", value: study.year },
               ...(study.team ? [{ label: "Team", value: study.team }] : []),
             ].map((item) => (
-              <div key={item.label}>
+              <div key={item.label} className="col-span-2 sm:col-span-1">
                 <div className="text-xs text-muted-foreground tracking-widest uppercase mb-1">{item.label}</div>
                 <div className="text-sm font-medium text-foreground">{item.value}</div>
               </div>
@@ -1446,13 +1450,13 @@ export default function CaseStudyPage() {
 
       {/* Overview */}
       <div className="px-5 sm:px-8 max-w-6xl mx-auto">
-        <motion.section className="bg-background border-t border-border py-12 sm:py-16 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-12" {...revealProps}>
-          <div className="lg:col-span-3">
+        <motion.section className="bg-background border-t border-border py-12 sm:py-16 grid grid-cols-4 lg:grid-cols-12 gap-6 sm:gap-12" {...revealProps}>
+          <div className="col-span-4 lg:col-span-3">
             <span className="text-xs text-muted-foreground tracking-widest uppercase">
               {usesExecutiveSummaryTitle ? "Executive Summary" : "Overview"}
             </span>
           </div>
-          <div className="lg:col-span-7">
+          <div className="col-span-4 lg:col-span-7">
             {study.overview.split("\n\n").map((paragraph, i) => (
               <p key={i} className={`text-base leading-relaxed text-foreground/90 ${i > 0 ? "mt-4" : ""}`}>
                 {paragraph}
@@ -1471,9 +1475,9 @@ export default function CaseStudyPage() {
           <>
             {showOverviewMetrics && (
               <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-background">
+                <div className="grid grid-cols-4 lg:grid-cols-4 gap-px bg-background">
                   {study.metrics.map((m) => (
-                    <motion.div key={m.label} className="bg-background p-5 sm:p-8" {...revealProps}>
+                    <motion.div key={m.label} className="col-span-2 lg:col-span-1 bg-background p-5 sm:p-8" {...revealProps}>
                       <div
                         className="text-3xl sm:text-4xl font-extrabold mb-2"
                         style={{ fontFamily: "var(--font-family-sans)", color: accent }}
@@ -1527,13 +1531,13 @@ export default function CaseStudyPage() {
             <div className="flex-1 h-px bg-border ml-2 sm:ml-4 hidden sm:block" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-background">
+          <div className="grid grid-cols-4 lg:grid-cols-6 gap-px bg-background">
             {[
               { label: "Summary", body: study.outcome.summary },
               { label: "Business Impact", body: study.outcome.impact },
               { label: "Reflection", body: study.outcome.reflection },
             ].map(({ label, body }) => (
-              <div key={label} className="bg-background p-6 sm:p-8 flex flex-col gap-4">
+              <div key={label} className="col-span-4 lg:col-span-2 bg-background p-6 sm:p-8 flex flex-col gap-4">
                 <span className="text-xs text-muted-foreground tracking-widest uppercase">{label}</span>
                 <p className="text-sm leading-relaxed text-foreground/80">{body}</p>
               </div>
@@ -1541,11 +1545,11 @@ export default function CaseStudyPage() {
           </div>
 
           {/* Metrics reprise */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-background mt-px">
+          <div className="grid grid-cols-4 lg:grid-cols-4 gap-px bg-background mt-px">
             {study.metrics.map((m) => (
               <motion.div
                 key={m.label}
-                className="bg-background px-5 sm:px-8 py-5 sm:py-6 flex items-baseline gap-3 sm:gap-4"
+                className="col-span-2 lg:col-span-1 bg-background px-5 sm:px-8 py-5 sm:py-6 flex items-baseline gap-3 sm:gap-4"
                 {...revealProps}
               >
                 <span
