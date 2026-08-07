@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { X, ZoomIn } from "lucide-react";
 import { motion } from "motion/react";
+import { Typography } from "@mui/material";
 import { cn } from "../../components/ui/utils";
 
 export type DSImageDialogVariant = "artifact" | "plain";
@@ -193,7 +194,7 @@ export function DSCaptionImageView({
         />
       </div>
       <div className="p-4">
-        <p className="text-sm text-foreground/85 leading-relaxed">{caption}</p>
+        <Typography variant="bodySmall" component="p" className="text-foreground/85">{caption}</Typography>
       </div>
     </div>
   );

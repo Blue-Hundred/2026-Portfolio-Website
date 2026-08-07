@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
+import { Typography } from "@mui/material";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { useTheme } from "./hooks/useTheme";
 const tamareLightLogo = new URL("../assets/Favicon/Tamare Light Logo.svg", import.meta.url).href;
@@ -61,14 +62,21 @@ export default function AboutPage() {
   }, [isMobileMenuOpen]);
 
   return (
-    <main className="min-h-screen w-full overflow-x-hidden bg-background text-foreground" style={{ fontFamily: "var(--font-family-sans)" }}>
+    <main className="min-h-screen w-full overflow-x-hidden bg-background text-foreground">
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border/60">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-10 py-4 sm:py-6 flex items-center justify-between gap-4">
           <Link to="/" aria-label="Go to home" className="inline-flex">
             <img src={headerLogo} alt="Tamaré Reese logo" className="h-8 sm:h-9 w-auto" />
           </Link>
 
-          <nav className="hidden sm:flex items-center gap-4 sm:gap-6 text-xs sm:text-sm text-foreground/80">
+          <nav
+            className="hidden sm:flex items-center gap-4 sm:gap-6 text-[16px] font-medium text-foreground/80"
+            style={{
+              fontFamily: 'Inter, -apple-system, system-ui, "Segoe UI", Roboto, sans-serif',
+              fontFeatureSettings: "normal",
+              fontVariationSettings: "normal",
+            }}
+          >
             <Link to="/" className="hover:text-foreground transition-colors">Home</Link>
             <Link to="/about" className="hover:text-foreground transition-colors">About</Link>
             <a href={RESUME_PDF_URL} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Resume</a>
@@ -121,26 +129,26 @@ export default function AboutPage() {
             <nav className="mt-16 flex flex-col text-zinc-900">
               <Link
                 to="/"
-                className="mobile-menu-link py-3 border-b border-zinc-300 text-[44px] sm:text-[58px] leading-[1.05] font-semibold tracking-tight hover:opacity-80 transition-opacity"
+                className="mobile-menu-link py-3 border-b border-zinc-300 hover:opacity-80 transition-opacity"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Home
+                <Typography variant="mobileMenuLink" component="span">Home</Typography>
               </Link>
               <Link
                 to="/about"
-                className="mobile-menu-link py-3 border-b border-zinc-300 text-[44px] sm:text-[58px] leading-[1.05] font-semibold tracking-tight hover:opacity-80 transition-opacity"
+                className="mobile-menu-link py-3 border-b border-zinc-300 hover:opacity-80 transition-opacity"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                About
+                <Typography variant="mobileMenuLink" component="span">About</Typography>
               </Link>
               <a
                 href={RESUME_PDF_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mobile-menu-link py-3 border-b border-zinc-300 text-[44px] sm:text-[58px] leading-[1.05] font-semibold tracking-tight hover:opacity-80 transition-opacity"
+                className="mobile-menu-link py-3 border-b border-zinc-300 hover:opacity-80 transition-opacity"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Resume
+                <Typography variant="mobileMenuLink" component="span">Resume</Typography>
               </a>
             </nav>
 
@@ -154,19 +162,21 @@ export default function AboutPage() {
       <section className="max-w-[1200px] mx-auto px-4 sm:px-8 pt-12 sm:pt-20 lg:pt-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-start">
           <div className="lg:col-span-7">
-            <h1 className="mt-8 sm:mt-12 text-[44px] sm:text-[76px] leading-[0.98] font-bold tracking-tight">
+            <Typography variant="display" component="h1" className="mt-8 sm:mt-12">
               Hi, I’m
               <br />
               Tamaré Reese.
-            </h1>
+            </Typography>
             <div className="mt-8 max-w-[640px] space-y-4">
               {aboutNarrative.map((paragraph) => (
-                <p
+                <Typography
                   key={paragraph}
-                  className="text-[16px] font-normal leading-[26px] tracking-normal text-foreground/90 [font-family:Inter,sans-serif] [font-feature-settings:normal] [font-variation-settings:normal]"
+                  variant="body1"
+                  component="p"
+                  className="text-foreground/90"
                 >
                   {paragraph}
-                </p>
+                </Typography>
               ))}
             </div>
           </div>
@@ -239,7 +249,7 @@ M-170 344 C -68 122, 170 -190, 350 78 C 502 312, 628 -136, 810 124 C 954 322, 10
           <div className="rounded-[30px] sm:rounded-[34px] bg-card px-6 sm:px-10 lg:px-12 py-8 sm:py-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start lg:items-stretch">
             <div className="lg:col-span-5 flex flex-col">
-              <h3>Experience</h3>
+              <Typography variant="h2" component="h2">Experience</Typography>
               <div className="mt-10 lg:mt-auto flex items-center gap-3">
                 <a
                   href={RESUME_PDF_URL}
@@ -266,11 +276,11 @@ M-170 344 C -68 122, 170 -190, 350 78 C 502 312, 628 -136, 810 124 C 954 322, 10
             <div className="lg:col-span-7">
               <div className="space-y-0">
                 {experiences.map((item) => (
-                  <div key={item.title} className="grid grid-cols-1 sm:grid-cols-[160px_1fr] gap-1 sm:gap-6 py-4 border-b border-border/70 text-[14px] sm:text-[15px] text-foreground/90">
-                    <span className="text-foreground/75">{item.range}</span>
-                    <span>
+                  <div key={item.title} className="grid grid-cols-1 sm:grid-cols-[160px_1fr] gap-1 sm:gap-6 py-4 border-b border-border/70 text-foreground/90">
+                    <Typography variant="timelineRow" component="span" className="text-foreground/75">{item.range}</Typography>
+                    <Typography variant="timelineRow" component="span">
                       {item.title} — {item.company}
-                    </span>
+                    </Typography>
                   </div>
                 ))}
               </div>
@@ -283,51 +293,46 @@ M-170 344 C -68 122, 170 -190, 350 78 C 502 312, 628 -136, 810 124 C 954 322, 10
       <section className="max-w-[1200px] mx-auto px-4 sm:px-8 mt-[104px] sm:mt-[140px]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
           <div className="lg:col-span-5">
-            <h3>How I Work</h3>
+            <Typography variant="h2" component="h2">How I Work</Typography>
           </div>
           <div className="lg:col-span-7 space-y-5">
             {howIWorkNarrative.map((paragraph) => (
-              <p
+              <Typography
                 key={`why-${paragraph}`}
-                className="text-[16px] font-normal leading-[26px] tracking-normal text-foreground/90 [font-family:Inter,sans-serif] [font-feature-settings:normal] [font-variation-settings:normal]"
+                variant="body1"
+                component="p"
+                className="text-foreground/90"
               >
                 {paragraph}
-              </p>
+              </Typography>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="relative mt-[88px] sm:mt-[120px] pb-14 sm:pb-24 overflow-x-hidden">
-        <div className="relative z-10 max-w-[1200px] mx-auto px-4 sm:px-8">
-          <div className="rounded-[28px] sm:rounded-[34px] bg-[rgb(19,21,42)] text-white px-5 sm:px-12 py-14 sm:py-24 flex flex-col items-center text-center">
-            <h2
-              className="text-[34px] sm:text-[58px] lg:text-[72px] font-semibold max-w-[520px] pb-1 text-white leading-[1.08]"
-              style={{ letterSpacing: "-1.8px" }}
-            >
-              Let's Connect!
-            </h2>
-            <a
-              href="mailto:tamaredesign@outlook.com"
-              className="mt-8 sm:mt-10 inline-flex bg-white text-black rounded-full px-5 sm:px-7 py-2.5 sm:py-3 text-xs sm:text-sm font-medium hover:opacity-90 transition-opacity"
-            >
-              Tamaredesign@outlook.com
-            </a>
-            <a
-              href="https://www.linkedin.com/in/tamarereese/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="mt-4 inline-flex w-10 h-10 items-center justify-center rounded-full border border-white/70 text-white hover:bg-white hover:text-black transition-colors"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true" className="w-4 h-4 fill-current">
-                <path d="M20.447 20.452H16.89v-5.569c0-1.328-.027-3.037-1.85-3.037-1.853 0-2.136 1.445-2.136 2.94v5.666H9.347V9h3.414v1.561h.049c.476-.9 1.636-1.85 3.367-1.85 3.6 0 4.265 2.37 4.265 5.455v6.286zM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126zM7.119 20.452H3.555V9h3.564v11.452z" />
-              </svg>
-            </a>
-            <span className="mt-4 text-xs text-white/70">© Tamaré Reese</span>
-          </div>
-        </div>
-      </section>
+      <footer className="mt-[88px] sm:mt-[120px] bg-[rgb(19,21,42)] text-white px-5 sm:px-8 py-14 sm:py-24 flex flex-col items-center text-center">
+        <Typography variant="display" component="h2" className="max-w-[520px] pb-1 text-white text-center">
+          Let's Connect!
+        </Typography>
+        <a
+          href="mailto:tamaredesign@outlook.com"
+          className="mt-8 sm:mt-10 inline-flex bg-white text-black rounded-full px-5 sm:px-7 py-2.5 sm:py-3 text-xs sm:text-sm font-medium hover:opacity-90 transition-opacity"
+        >
+          Tamaredesign@outlook.com
+        </a>
+        <a
+          href="https://www.linkedin.com/in/tamarereese/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+          className="mt-4 inline-flex w-10 h-10 items-center justify-center rounded-full border border-white/70 text-white hover:bg-white hover:text-black transition-colors"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" className="w-4 h-4 fill-current">
+            <path d="M20.447 20.452H16.89v-5.569c0-1.328-.027-3.037-1.85-3.037-1.853 0-2.136 1.445-2.136 2.94v5.666H9.347V9h3.414v1.561h.049c.476-.9 1.636-1.85 3.367-1.85 3.6 0 4.265 2.37 4.265 5.455v6.286zM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126zM7.119 20.452H3.555V9h3.564v11.452z" />
+          </svg>
+        </a>
+        <span className="mt-4 text-xs text-white/70">© Tamaré Reese</span>
+      </footer>
     </main>
   );
 }

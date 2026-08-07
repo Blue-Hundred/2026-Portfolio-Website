@@ -1,6 +1,7 @@
 import { useParams, Link, useNavigate } from "react-router";
 import { useState, useEffect, useLayoutEffect } from "react";
 import { motion } from "motion/react";
+import { Typography } from "@mui/material";
 import {
   ArrowLeft,
   ArrowRight,
@@ -32,6 +33,8 @@ import { caseStudies, visibleCaseStudySlugs, type Phase, type CaseStudy } from "
 import { useTheme } from "./hooks/useTheme";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { DSButton, DSImageDialog, DSStaticImageView } from "./design-system";
+import tamareLightLogo from "../assets/Favicon/Tamare Light Logo.svg";
+import tamareDarkLogo from "../assets/Favicon/Tamare Dark Logo.svg";
 
 const SESSION_KEY = "cs_unlocked";
 const revealProps = {
@@ -41,12 +44,11 @@ const revealProps = {
   transition: { duration: 0.7, ease: "easeOut" },
 };
 
-const CASE_STUDY_HEADING_FONT = { fontFamily: "var(--font-family-sans)" } as const;
 const CASE_STUDY_HEADING_CLASSES = {
-  h1: "font-extrabold leading-tight tracking-tight",
-  h2: "text-2xl sm:text-3xl font-extrabold tracking-tight",
-  h3: "text-xl sm:text-2xl font-extrabold",
-  h4: "text-base sm:text-lg font-bold tracking-tight",
+  h1: "",
+  h2: "",
+  h3: "",
+  h4: "",
 } as const;
 
 function scrollToTopInstant() {
@@ -83,9 +85,7 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col items-center justify-center px-5 sm:px-8 py-8"
-      style={{ fontFamily: "var(--font-family-sans)" }}
-    >
+    <div className="min-h-screen bg-background text-foreground flex flex-col items-center justify-center px-5 sm:px-8 py-8">
       <div
         className={`w-full max-w-sm ${shaking ? "animate-shake" : ""}`}
         style={shaking ? { animation: "shake 0.4s ease" } : {}}
@@ -96,12 +96,12 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
           </div>
         </div>
 
-        <h3 className="text-center mb-2">
+        <Typography variant="h3" component="h3" className="text-center mb-2">
           Password protected
-        </h3>
-        <p className="text-center text-muted-foreground mb-8">
+        </Typography>
+        <Typography variant="body1" component="p" className="text-center text-muted-foreground mb-8">
           This case study is available on request.
-        </p>
+        </Typography>
 
         <div className={`border ${error ? "border-red-500" : "border-border"} transition-colors`}>
           <input
@@ -116,7 +116,7 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
         </div>
 
         {error && (
-          <p className="text-xs text-red-500 mt-2 px-1">Incorrect password. Try again.</p>
+          <Typography variant="caption" component="p" className="text-red-500 mt-2 px-1">Incorrect password. Try again.</Typography>
         )}
 
         <DSButton
@@ -335,12 +335,13 @@ const SCP_DESIGN_PRINCIPLES = [
 function ScpSectionTitle({ title }: { title: string }) {
   return (
     <div className="flex items-baseline gap-4 sm:gap-6 mb-5">
-      <h2
+      <Typography
+        variant="h2"
+        component="h2"
         className={CASE_STUDY_HEADING_CLASSES.h2}
-        style={CASE_STUDY_HEADING_FONT}
       >
         {title}
-      </h2>
+      </Typography>
       <div className="flex-1 h-px bg-border ml-2 sm:ml-4 hidden sm:block" />
     </div>
   );
@@ -372,9 +373,9 @@ function ScpArtifactPlaceholders({
       {intro && intro.length > 0 && (
         <div className="max-w-4xl mb-6">
           {intro.map((paragraph) => (
-            <p key={paragraph} className="text-base text-foreground/90 leading-relaxed mb-4 last:mb-0">
+            <Typography key={paragraph} variant="body1" component="p" className="text-foreground/90 mb-4 last:mb-0">
               {paragraph}
-            </p>
+            </Typography>
           ))}
         </div>
       )}
@@ -398,7 +399,7 @@ function ScpArtifactPlaceholders({
               />
             </div>
             <div className="p-4">
-              <p className="text-sm text-foreground/85 leading-relaxed">{artifact.caption}</p>
+              <Typography variant="bodySmall" component="p" className="text-foreground/85">{artifact.caption}</Typography>
             </div>
           </button>
         ))}
@@ -406,9 +407,9 @@ function ScpArtifactPlaceholders({
       {outro && outro.length > 0 && (
         <div className="max-w-4xl mt-6">
           {outro.map((paragraph) => (
-            <p key={paragraph} className="text-base text-foreground/90 leading-relaxed mb-4 last:mb-0">
+            <Typography key={paragraph} variant="body1" component="p" className="text-foreground/90 mb-4 last:mb-0">
               {paragraph}
-            </p>
+            </Typography>
           ))}
         </div>
       )}
@@ -440,11 +441,13 @@ function ScpModernLayout({
       <motion.section className="bg-background border-t border-border py-12 sm:py-14" {...revealProps}>
         <ScpSectionTitle title="My Role" />
         <div className="max-w-4xl">
-          <p className="text-base text-foreground/90 leading-relaxed mb-6">
+          <Typography variant="body1" component="p" className="text-foreground/90 mb-6">
             As the Lead Product Designer, I partnered with product managers, engineers, architects, and UX researchers to define the experience strategy for a unified database management platform. My work spanned the full product design lifecycle—from synthesizing research and mapping complex service ecosystems to establishing information architecture, interaction patterns, and scalable design principles. While the platform encompassed numerous database products and workflows, I led the design of the onboarding and provisioning experience as a representative use case, creating reusable patterns that informed the broader platform strategy. Through iterative design, usability testing, and cross-functional collaboration, I helped align teams around a shared vision that balanced customer needs, technical feasibility, and long-term scalability.
-          </p>
+          </Typography>
 
-          <h4 className="text-base font-semibold text-foreground/90 leading-relaxed mb-3">Responsibilities</h4>
+          <Typography variant="h3" component="h3" className="text-foreground/90 pt-4 pb-3">
+            Responsibilities
+          </Typography>
 
           <div className="flex flex-wrap gap-2.5">
             {SCP_RESPONSIBILITIES.map((item) => (
@@ -462,11 +465,11 @@ function ScpModernLayout({
       <motion.section className="bg-background border-t border-border py-12 sm:py-14" {...revealProps}>
         <ScpSectionTitle title="The Challenge" />
         <div className="max-w-4xl">
-          <p className="text-base text-foreground/90 leading-relaxed mb-5">
+          <Typography variant="body1" component="p" className="text-foreground/90 mb-5">
             Although every database product supported similar customer goals, each control plane exposed those capabilities differently.
-          </p>
+          </Typography>
 
-          <p className="text-base text-foreground/90 leading-relaxed mb-3">Customers encountered:</p>
+          <Typography variant="body1" component="p" className="text-foreground/90 pt-4 pb-3">Customers encountered:</Typography>
 
           <div className="mb-6">
             <div className="grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-3 xl:grid-cols-5 gap-3">
@@ -482,20 +485,20 @@ function ScpModernLayout({
                       <Icon size={16} style={{ color: accent }} />
                     </div>
                   </div>
-                  <p className="text-sm sm:text-[15px] leading-relaxed text-foreground/90">{item.label}</p>
+                  <Typography variant="bodySmall" component="p" className="text-foreground/90">{item.label}</Typography>
                 </div>
                 );
               })}
             </div>
           </div>
 
-          <p className="text-base text-foreground/90 leading-relaxed mb-4">
+          <Typography variant="body1" component="p" className="text-foreground/90 mb-4">
             The inconsistency increased onboarding time, slowed provisioning, and made the platform difficult to scale.
-          </p>
+          </Typography>
 
-          <p className="text-base text-foreground/90 leading-relaxed">
+          <Typography variant="body1" component="p" className="text-foreground/90">
             Rather than redesigning a single interface, our challenge was to define a reusable experience strategy that every database product could adopt.
-          </p>
+          </Typography>
         </div>
       </motion.section>
 
@@ -518,12 +521,14 @@ function ScpModernLayout({
       <motion.section className="bg-background border-t border-border py-12 sm:py-14" {...revealProps}>
         <ScpSectionTitle title="Research" />
         <div className="max-w-4xl mb-8">
-          <p className="text-base text-foreground/90 leading-relaxed">
+          <Typography variant="body1" component="p" className="text-foreground/90">
             To understand the complexity of the database management experience, I conducted a comprehensive discovery effort that combined existing platform knowledge with new qualitative research. Working closely with product managers, engineers, architects, and UX researchers, I analyzed how customers navigated onboarding, provisioning, and service management across multiple database control planes. Through stakeholder interviews, journey mapping, service blueprinting, workflow analysis, persona development, and usability testing, I identified recurring patterns that extended beyond individual products. Rather than isolated usability issues, the research revealed systemic challenges—including fragmented workflows, inconsistent terminology, unclear ownership, and limited visibility into provisioning status. These insights became the foundation for a scalable experience strategy that could be applied consistently across the broader platform.
-          </p>
+          </Typography>
         </div>
 
-        <h4 className="text-base font-semibold text-foreground/90 leading-relaxed mb-3">Research Methods</h4>
+        <Typography variant="h3" component="h3" className="text-foreground/90 pb-3">
+          Research Methods
+        </Typography>
         <div className="max-w-4xl">
           <div className="flex flex-wrap gap-2.5">
             {SCP_RESEARCH_METHODS.map((item) => (
@@ -551,10 +556,17 @@ function ScpModernLayout({
 
             return (
             <div key={persona.name} className="col-span-4 lg:col-span-1 rounded-2xl border border-border bg-secondary/25 p-6">
-              <h4 className={`${CASE_STUDY_HEADING_CLASSES.h4} mb-2`} style={CASE_STUDY_HEADING_FONT}>
+              <Typography variant="h4" component="h4" className={`${CASE_STUDY_HEADING_CLASSES.h4} mb-2`}>
                 {persona.name}
-              </h4>
-              <p className="text-sm text-foreground/80 mb-4">{persona.description}</p>
+              </Typography>
+              <Typography
+                variant="bodySmall"
+                component="p"
+                className="text-foreground/80"
+                sx={{ marginBottom: "16px" }}
+              >
+                {persona.description}
+              </Typography>
               <div className="grid grid-cols-4 sm:grid-cols-4 gap-4">
                 <div className="col-span-4 sm:col-span-2">
                   <div className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Goals</div>
@@ -603,15 +615,15 @@ function ScpModernLayout({
       <motion.section className="bg-background border-t border-border py-12 sm:py-14" {...revealProps}>
         <ScpSectionTitle title="Defining the Experience Strategy" />
         <div className="max-w-4xl mb-8">
-          <p className="text-base text-foreground/90 leading-relaxed">
+          <Typography variant="body1" component="p" className="text-foreground/90">
             Rather than redesigning individual interfaces, I focused on defining a scalable experience strategy that could be applied consistently across every database product. Guided by research insights, I established a set of experience principles that standardized navigation, workflows, terminology, and interaction patterns—creating a flexible foundation that improved consistency while supporting future platform growth.
-          </p>
+          </Typography>
         </div>
         <div className="grid grid-cols-4 md:grid-cols-4 xl:grid-cols-6 gap-4 mb-8">
           {SCP_DESIGN_PRINCIPLES.map((principle) => (
             <div key={principle.title} className="col-span-4 md:col-span-2 xl:col-span-2 rounded-xl border border-border bg-secondary/25 p-5">
-              <h4 className={`${CASE_STUDY_HEADING_CLASSES.h4} mb-2`} style={CASE_STUDY_HEADING_FONT}>{principle.title}</h4>
-              <p className="text-sm text-foreground/80 leading-relaxed">{principle.body}</p>
+              <Typography variant="h4" component="h4" className={`${CASE_STUDY_HEADING_CLASSES.h4} mb-2`}>{principle.title}</Typography>
+              <Typography variant="bodySmall" component="p" className="text-foreground/80">{principle.body}</Typography>
             </div>
           ))}
         </div>
@@ -685,12 +697,9 @@ function ScpInsightBanner({ text, accent }: { text: string; accent: string }) {
           </div>
           <span className="text-xs tracking-widest uppercase text-muted-foreground">Key Insight</span>
         </div>
-        <p
-          className={`${CASE_STUDY_HEADING_CLASSES.h3} leading-relaxed`}
-          style={CASE_STUDY_HEADING_FONT}
-        >
+        <Typography variant="blockQuote" component="p" className="leading-relaxed">
           {text}
-        </p>
+        </Typography>
       </div>
     </motion.section>
   );
@@ -700,12 +709,13 @@ function ScpStrategyFlow({ accent }: { accent: string }) {
   return (
     <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
       <div className="mb-8">
-        <h3
+        <Typography
+          variant="h3"
+          component="h3"
           className={`${CASE_STUDY_HEADING_CLASSES.h3} mb-2`}
-          style={CASE_STUDY_HEADING_FONT}
         >
           Representative Workflow
-        </h3>
+        </Typography>
       </div>
 
       <div className="w-full">
@@ -758,12 +768,13 @@ function ScpIconCardRow({
 }) {
   return (
     <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
-      <h3
+      <Typography
+        variant="h3"
+        component="h3"
         className={`${CASE_STUDY_HEADING_CLASSES.h3} mb-8`}
-        style={CASE_STUDY_HEADING_FONT}
       >
         {title}
-      </h3>
+      </Typography>
       <div className="grid grid-cols-4 md:grid-cols-4 xl:grid-cols-6 gap-4">
         {items.map((item) => {
           const Icon = item.icon;
@@ -772,8 +783,8 @@ function ScpIconCardRow({
               <div className="mb-3 inline-flex w-9 h-9 items-center justify-center rounded-full bg-background border border-border">
                 <Icon size={16} />
               </div>
-              <h4 className={`${CASE_STUDY_HEADING_CLASSES.h4} mb-2`} style={CASE_STUDY_HEADING_FONT}>{item.title}</h4>
-              <p className="text-sm text-foreground/80 leading-relaxed">{item.body}</p>
+              <Typography variant="h4" component="h4" className={`${CASE_STUDY_HEADING_CLASSES.h4} mb-2`}>{item.title}</Typography>
+              <Typography variant="bodySmall" component="p" className="text-foreground/80">{item.body}</Typography>
             </div>
           );
         })}
@@ -787,15 +798,16 @@ function ScpStrategicPriorities({ accent }: { accent: string }) {
 
   return (
     <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
-      <h3
+      <Typography
+        variant="h3"
+        component="h3"
         className={`${CASE_STUDY_HEADING_CLASSES.h3} mb-8`}
-        style={CASE_STUDY_HEADING_FONT}
       >
         Product Decisions
-      </h3>
-      <p className="text-base text-foreground/80 leading-relaxed mb-6">
+      </Typography>
+      <Typography variant="body1" component="p" className="text-foreground/80 mb-6">
         Research continuously informed product decisions throughout the project.
-      </p>
+      </Typography>
 
       <div className="space-y-3">
         {SCP_STRATEGIC_PRIORITIES.map((priority, i) => {
@@ -832,11 +844,11 @@ function ScpStrategicPriorities({ accent }: { accent: string }) {
                   <div className="grid grid-cols-4 md:grid-cols-4 gap-5">
                     <div className="col-span-4 md:col-span-2">
                       <div className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Why this mattered</div>
-                      <p className="text-sm leading-relaxed text-foreground/80">{priority.painPoint}</p>
+                      <Typography variant="bodySmall" component="p" className="text-foreground/80">{priority.painPoint}</Typography>
                     </div>
                     <div className="col-span-4 md:col-span-2">
                       <div className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Product decision</div>
-                      <p className="text-sm leading-relaxed text-foreground/80">{priority.response}</p>
+                      <Typography variant="bodySmall" component="p" className="text-foreground/80">{priority.response}</Typography>
                     </div>
                   </div>
                 </div>
@@ -854,12 +866,13 @@ function ScpChipSection({ title, chips, icon: Icon }: { title: string; chips: st
     <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
       <div className="flex items-center gap-2 mb-6">
         <Icon size={16} />
-        <h3
+        <Typography
+          variant="h3"
+          component="h3"
           className={CASE_STUDY_HEADING_CLASSES.h3}
-          style={CASE_STUDY_HEADING_FONT}
         >
           {title}
-        </h3>
+        </Typography>
       </div>
       <div className="flex flex-wrap gap-3">
         {chips.map((chip) => (
@@ -878,12 +891,13 @@ function ScpContributions({ accent }: { accent: string }) {
       <div className="rounded-2xl border border-border bg-gradient-to-br from-secondary/70 to-background p-6 sm:p-8">
         <div className="flex items-center gap-2 mb-6">
           <WandSparkles size={16} style={{ color: accent }} />
-          <h3
+          <Typography
+            variant="h3"
+            component="h3"
             className={CASE_STUDY_HEADING_CLASSES.h3}
-            style={CASE_STUDY_HEADING_FONT}
           >
             My Contributions
-          </h3>
+          </Typography>
         </div>
         <div className="grid grid-cols-4 md:grid-cols-4 gap-3">
           {SCP_CONTRIBUTIONS.map((item) => (
@@ -916,17 +930,14 @@ function ScpOutcomes({
     <motion.section id="phase-outcome" className="bg-background border-t border-border py-12 sm:py-20" {...revealProps}>
       <ScpSectionTitle title="Strategic Outcomes" />
 
-      <p className="text-base leading-relaxed text-foreground/90 mb-10">{summary}</p>
+      <Typography variant="body1" component="p" className="text-foreground/90 mb-10">{summary}</Typography>
 
       <div className="grid grid-cols-4 lg:grid-cols-4 gap-px bg-background mb-10">
         {metrics.map((m) => (
           <motion.div key={m.label} className="col-span-2 lg:col-span-1 bg-background p-5 sm:p-8" {...revealProps}>
-            <div
-              className="text-3xl sm:text-4xl font-extrabold mb-2"
-              style={{ fontFamily: "var(--font-family-sans)", color: accent }}
-            >
+            <Typography variant="kpiValue" component="div" className="mb-2" style={{ color: accent }}>
               {m.value}
-            </div>
+            </Typography>
             <div className="text-xs sm:text-sm text-muted-foreground leading-snug">{m.label}</div>
           </motion.div>
         ))}
@@ -939,7 +950,7 @@ function ScpOutcomes({
               <div className="inline-flex w-9 h-9 items-center justify-center rounded-full bg-background border border-border">
                 <Icon size={16} />
               </div>
-              <h4 className={CASE_STUDY_HEADING_CLASSES.h4} style={CASE_STUDY_HEADING_FONT}>{title}</h4>
+              <Typography variant="h4" component="h4" className={CASE_STUDY_HEADING_CLASSES.h4}>{title}</Typography>
             </div>
             <div className="space-y-2">
               {items.map((item) => (
@@ -1039,6 +1050,7 @@ function PhaseSection({
   index,
   color,
   isLast,
+  compactHeadingSpacing = false,
   stackOnDesktop = false,
   onImageClick,
 }: {
@@ -1046,6 +1058,7 @@ function PhaseSection({
   index: number;
   color: string;
   isLast: boolean;
+  compactHeadingSpacing?: boolean;
   stackOnDesktop?: boolean;
   onImageClick: (src: string, caption: string) => void;
 }) {
@@ -1055,13 +1068,14 @@ function PhaseSection({
   return (
     <motion.section className="bg-background border-t border-border py-12 sm:py-20" {...revealProps}>
       {/* Phase header */}
-      <div className="flex items-baseline gap-4 sm:gap-6 mb-8 sm:mb-14">
-        <h2
+      <div className={`flex items-baseline gap-4 sm:gap-6 ${compactHeadingSpacing ? "mb-5" : "mb-8 sm:mb-14"}`}>
+        <Typography
+          variant="h2"
+          component="h2"
           className={CASE_STUDY_HEADING_CLASSES.h2}
-          style={CASE_STUDY_HEADING_FONT}
         >
           {phase.title}
-        </h2>
+        </Typography>
         <div className="flex-1 h-px bg-border ml-2 sm:ml-4 hidden sm:block" />
       </div>
 
@@ -1070,9 +1084,9 @@ function PhaseSection({
         <div>
           <div className="max-w-5xl">
             {phase.body.split("\n\n").map((para, i) => (
-              <p key={i} className={`text-base leading-relaxed text-foreground/80 ${i > 0 ? "mt-4" : ""}`}>
+              <Typography key={i} variant="body1" component="p" className={`text-foreground/80 ${i > 0 ? "mt-4" : ""}`}>
                 {para}
-              </p>
+              </Typography>
             ))}
           </div>
 
@@ -1121,9 +1135,9 @@ function PhaseSection({
         <div className="grid grid-cols-4 lg:grid-cols-12 gap-8 sm:gap-12">
           <div className="col-span-4 lg:col-span-4 lg:sticky lg:top-28">
             {phase.body.split("\n\n").map((para, i) => (
-              <p key={i} className={`text-base leading-relaxed text-foreground/80 ${i > 0 ? "mt-4" : ""}`}>
+              <Typography key={i} variant="body1" component="p" className={`text-foreground/80 ${i > 0 ? "mt-4" : ""}`}>
                 {para}
-              </p>
+              </Typography>
             ))}
           </div>
 
@@ -1206,27 +1220,27 @@ function KeybankDefineCoreProblems({
   return (
     <motion.section className="bg-background border-t border-border py-12 sm:py-20" {...revealProps}>
       <div className="flex items-baseline gap-4 sm:gap-6 mb-8 sm:mb-14">
-        <h2 className={CASE_STUDY_HEADING_CLASSES.h2} style={CASE_STUDY_HEADING_FONT}>
+        <Typography variant="h2" component="h2" className={CASE_STUDY_HEADING_CLASSES.h2}>
           {phase.title}
-        </h2>
+        </Typography>
         <div className="flex-1 h-px bg-border ml-2 sm:ml-4 hidden sm:block" />
       </div>
 
       <div className="grid grid-cols-4 lg:grid-cols-12 gap-8 sm:gap-12">
         <div className="col-span-4 lg:col-span-4 lg:sticky lg:top-28">
           {phase.body.split("\n\n").map((para, i) => (
-            <p key={i} className={`text-base leading-relaxed text-foreground/80 ${i > 0 ? "mt-4" : ""}`}>
+            <Typography key={i} variant="body1" component="p" className={`text-foreground/80 ${i > 0 ? "mt-4" : ""}`}>
               {para}
-            </p>
+            </Typography>
           ))}
         </div>
 
         <div className="col-span-4 lg:col-span-8">
           <div className="rounded-xl border border-border bg-secondary/25 p-5 sm:p-6 mb-4">
-            <p className="text-xs tracking-widest uppercase text-muted-foreground mb-2">Core Problem Areas</p>
-            <p className="text-base text-foreground/85 leading-relaxed">
+            <Typography variant="eyebrow" component="p" className="text-muted-foreground mb-2">Core Problem Areas</Typography>
+            <Typography variant="body1" component="p" className="text-foreground/85">
               Strategic focus centered on cost efficiency, self-service guidance, dispute quality, and compliance-aligned consistency.
-            </p>
+            </Typography>
           </div>
 
           <div className="grid grid-cols-4 sm:grid-cols-4 gap-3">
@@ -1243,11 +1257,11 @@ function KeybankDefineCoreProblems({
                   >
                     <Icon size={16} style={{ color }} />
                   </div>
-                  <h4 className="text-base font-semibold leading-tight text-foreground" style={CASE_STUDY_HEADING_FONT}>
+                  <Typography variant="h4" component="h4" className="text-foreground">
                     {title}
-                  </h4>
+                  </Typography>
                 </div>
-                <p className="text-sm leading-relaxed text-foreground/80">{detail}</p>
+                <Typography variant="bodySmall" component="p" className="text-foreground/80">{detail}</Typography>
               </motion.div>
             ))}
           </div>
@@ -1269,17 +1283,17 @@ function KeybankDesignTextOnly({
   return (
     <motion.section className="bg-background border-t border-border py-12 sm:py-20" {...revealProps}>
       <div className="flex items-baseline gap-4 sm:gap-6 mb-8 sm:mb-14">
-        <h2 className={CASE_STUDY_HEADING_CLASSES.h2} style={CASE_STUDY_HEADING_FONT}>
+        <Typography variant="h2" component="h2" className={CASE_STUDY_HEADING_CLASSES.h2}>
           {phase.title}
-        </h2>
+        </Typography>
         <div className="flex-1 h-px bg-border ml-2 sm:ml-4 hidden sm:block" />
       </div>
 
       <div className="w-full max-w-5xl">
         {phase.body.split("\n\n").map((para, i) => (
-          <p key={i} className={`text-base leading-relaxed text-foreground/85 ${i > 0 ? "mt-4" : ""}`}>
+          <Typography key={i} variant="body1" component="p" className={`text-foreground/85 ${i > 0 ? "mt-4" : ""}`}>
             {para}
-          </p>
+          </Typography>
         ))}
 
         {phase.artifacts.length > 0 && (
@@ -1356,7 +1370,7 @@ export default function CaseStudyPage() {
     return (
       <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
         <div className="text-center">
-          <p className="text-muted-foreground mb-4">Case study not found.</p>
+          <Typography variant="body1" component="p" className="text-muted-foreground mb-4">Case study not found.</Typography>
           <Link to="/#work" className="text-primary underline text-sm">
             Back to portfolio
           </Link>
@@ -1375,6 +1389,8 @@ export default function CaseStudyPage() {
 
   const phases = [study.discover, study.define, study.design, study.deliver];
   const isSharedControlPlanes = study.slug === "shared-control-planes";
+  const isModernizingFamilyBanking = study.slug === "chase-first-banking";
+  const usesScreenshotHeaderLayout = isModernizingFamilyBanking || isSharedControlPlanes;
   const usesExecutiveSummaryTitle =
     isSharedControlPlanes || study.slug === "chase-first-banking" || study.slug === "keybank-counterfeit-disputes";
   const showOverviewMetrics = study.slug !== "keybank-counterfeit-disputes";
@@ -1386,7 +1402,6 @@ export default function CaseStudyPage() {
     <div
       key={slug}
       className="min-h-screen bg-background text-foreground"
-      style={{ fontFamily: "var(--font-family-sans)" }}
     >
       {lightbox && (
         <Lightbox
@@ -1396,61 +1411,89 @@ export default function CaseStudyPage() {
         />
       )}
       {/* Nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 sm:px-8 py-5 border-b border-border backdrop-blur-md bg-background/80">
+      <nav
+        className="fixed top-0 left-0 right-0 z-50 h-16 sm:h-[68px] flex items-center justify-between px-5 sm:px-8 border-b border-border backdrop-blur-md bg-background/80"
+        style={{
+          fontFamily: 'Inter, -apple-system, system-ui, "Segoe UI", Roboto, sans-serif',
+          fontFeatureSettings: "normal",
+          fontVariationSettings: "normal",
+        }}
+      >
         <Link
           to="/#work"
-          className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group shrink-0"
+          className="flex items-center gap-2 text-sm sm:text-[16px] sm:font-medium text-muted-foreground hover:text-foreground transition-colors group shrink-0"
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
           <span className="hidden sm:inline">Back to portfolio</span>
           <span className="sm:hidden">Back</span>
         </Link>
-        <span
-          className="text-base sm:text-lg font-bold tracking-tight text-foreground"
-          style={{ fontFamily: "var(--font-family-sans)" }}
+        <Link
+          to="/"
+          aria-label="Go to home"
+          className="absolute left-1/2 -translate-x-1/2 inline-flex items-center justify-center"
         >
-          Tamare Reese
-        </span>
+          <img
+            src={isDark ? tamareLightLogo : tamareDarkLogo}
+            alt="Tamaré Reese"
+            className="h-7 sm:h-8 w-auto"
+          />
+        </Link>
         <div className="flex items-center gap-1 sm:gap-2">
           <ThemeToggle isDark={isDark} toggle={toggle} />
         </div>
       </nav>
 
       {/* Header */}
-      <div className="px-5 sm:px-8 pt-24 sm:pt-28 pb-12 sm:pb-16 relative z-10 max-w-6xl mx-auto">
-        <div className="max-w-3xl">
-          <h1
-            className={`${CASE_STUDY_HEADING_CLASSES.h1} mb-4`}
-            style={{
-              ...CASE_STUDY_HEADING_FONT,
-              fontSize: "clamp(2rem, 5vw, 4.5rem)",
-            }}
-          >
-            {study.title}
-          </h1>
-          <p className="text-base sm:text-xl text-muted-foreground leading-relaxed mb-8">
-            {study.subtitle}
-          </p>
-          <div className="grid grid-cols-4 gap-5 sm:gap-8 border-t border-border pt-8">
-            {[
-              { label: "Client", value: study.client },
-              { label: "Role", value: study.role },
-              { label: "Duration", value: study.duration },
-              { label: "Year", value: study.year },
-              ...(study.team ? [{ label: "Team", value: study.team }] : []),
-            ].map((item) => (
-              <div key={item.label} className="col-span-2 sm:col-span-1">
-                <div className="text-xs text-muted-foreground tracking-widest uppercase mb-1">{item.label}</div>
-                <div className="text-sm font-medium text-foreground">{item.value}</div>
-              </div>
-            ))}
+      <div className="relative overflow-hidden mt-16 sm:mt-[68px]">
+        <div
+          className={`px-5 sm:px-8 relative z-10 mx-auto max-w-6xl ${
+            usesScreenshotHeaderLayout ? "pb-12 sm:pb-16" : "pb-8 sm:pb-10"
+          }`}
+          style={{ paddingTop: "100px" }}
+        >
+          <div className="max-w-3xl">
+            <Typography
+              variant="display"
+              component="h1"
+              className={`${CASE_STUDY_HEADING_CLASSES.h1} ${
+                usesScreenshotHeaderLayout ? "" : "mb-2 sm:mb-3"
+              }`}
+              sx={usesScreenshotHeaderLayout ? { marginBottom: { xs: "20px", sm: "24px" } } : undefined}
+            >
+              {study.title}
+            </Typography>
+            <Typography
+              variant="bodyLarge"
+              component="p"
+              className={`text-muted-foreground ${
+                usesScreenshotHeaderLayout ? "" : "mb-3 sm:mb-4"
+              }`}
+              sx={usesScreenshotHeaderLayout ? { marginBottom: { xs: "28px", sm: "32px" } } : undefined}
+            >
+              {study.subtitle}
+            </Typography>
+            <div className="border-t border-border mb-5 sm:mb-6" />
+            <div className="grid grid-cols-4 gap-5 sm:gap-8">
+              {[
+                { label: "Client", value: study.client },
+                { label: "Role", value: study.role },
+                { label: "Duration", value: study.duration },
+                { label: "Year", value: study.year },
+                ...(study.team ? [{ label: "Team", value: study.team }] : []),
+              ].map((item) => (
+                <div key={item.label} className="col-span-2 sm:col-span-1">
+                  <div className="text-xs text-muted-foreground tracking-widest uppercase mb-1">{item.label}</div>
+                  <div className="text-sm font-medium text-foreground">{item.value}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Overview */}
       <div className="px-5 sm:px-8 max-w-6xl mx-auto">
-        <motion.section className="bg-background border-t border-border py-12 sm:py-16 grid grid-cols-4 lg:grid-cols-12 gap-6 sm:gap-12" {...revealProps}>
+        <motion.section className="bg-background border-t border-border pt-8 sm:pt-10 pb-12 sm:pb-14 grid grid-cols-4 lg:grid-cols-12 gap-6 sm:gap-12" {...revealProps}>
           <div className="col-span-4 lg:col-span-3">
             <span className="text-xs text-muted-foreground tracking-widest uppercase">
               {usesExecutiveSummaryTitle ? "Executive Summary" : "Overview"}
@@ -1458,9 +1501,9 @@ export default function CaseStudyPage() {
           </div>
           <div className="col-span-4 lg:col-span-7">
             {study.overview.split("\n\n").map((paragraph, i) => (
-              <p key={i} className={`text-base leading-relaxed text-foreground/90 ${i > 0 ? "mt-4" : ""}`}>
+              <Typography key={i} variant="body1" component="p" className={`text-foreground/90 ${i > 0 ? "mt-4" : ""}`}>
                 {paragraph}
-              </p>
+              </Typography>
             ))}
           </div>
         </motion.section>
@@ -1478,12 +1521,14 @@ export default function CaseStudyPage() {
                 <div className="grid grid-cols-4 lg:grid-cols-4 gap-px bg-background">
                   {study.metrics.map((m) => (
                     <motion.div key={m.label} className="col-span-2 lg:col-span-1 bg-background p-5 sm:p-8" {...revealProps}>
-                      <div
-                        className="text-3xl sm:text-4xl font-extrabold mb-2"
-                        style={{ fontFamily: "var(--font-family-sans)", color: accent }}
+                      <Typography
+                        variant="kpiValue"
+                        component="div"
+                        className="mb-2"
+                        style={{ color: accent }}
                       >
                         {m.value}
-                      </div>
+                      </Typography>
                       <div className="text-xs sm:text-sm text-muted-foreground leading-snug">{m.label}</div>
                     </motion.div>
                   ))}
@@ -1514,6 +1559,7 @@ export default function CaseStudyPage() {
                     index={i}
                     color={accent}
                     isLast={i === phases.length - 1}
+                    compactHeadingSpacing={isModernizingFamilyBanking}
                     onImageClick={(src, caption) => setLightbox({ src, caption })}
                   />
                 )}
@@ -1521,13 +1567,14 @@ export default function CaseStudyPage() {
             ))}
 
         <motion.section id="phase-outcome" className="bg-background border-t border-border py-12 sm:py-20" {...revealProps}>
-          <div className="flex items-baseline gap-4 sm:gap-6 mb-8 sm:mb-14">
-            <h2
+          <div className={`flex items-baseline gap-4 sm:gap-6 ${isModernizingFamilyBanking ? "mb-5" : "mb-8 sm:mb-14"}`}>
+            <Typography
+              variant="h2"
+              component="h2"
               className={CASE_STUDY_HEADING_CLASSES.h2}
-              style={CASE_STUDY_HEADING_FONT}
             >
               Outcome
-            </h2>
+            </Typography>
             <div className="flex-1 h-px bg-border ml-2 sm:ml-4 hidden sm:block" />
           </div>
 
@@ -1539,7 +1586,7 @@ export default function CaseStudyPage() {
             ].map(({ label, body }) => (
               <div key={label} className="col-span-4 lg:col-span-2 bg-background p-6 sm:p-8 flex flex-col gap-4">
                 <span className="text-xs text-muted-foreground tracking-widest uppercase">{label}</span>
-                <p className="text-sm leading-relaxed text-foreground/80">{body}</p>
+                <Typography variant="bodySmall" component="p" className="text-foreground/80">{body}</Typography>
               </div>
             ))}
           </div>
@@ -1553,10 +1600,12 @@ export default function CaseStudyPage() {
                 {...revealProps}
               >
                 <span
-                  className="text-xl sm:text-2xl font-extrabold shrink-0"
-                  style={{ fontFamily: "var(--font-family-sans)", color: accent }}
+                  className="shrink-0"
+                  style={{ color: accent }}
                 >
-                  {m.value}
+                  <Typography variant="kpiInlineValue" component="span" style={{ color: accent }}>
+                    {m.value}
+                  </Typography>
                 </span>
                 <span className="text-xs text-muted-foreground leading-snug">{m.label}</span>
               </motion.div>
@@ -1583,12 +1632,13 @@ export default function CaseStudyPage() {
                 <ArrowLeft size={12} className="group-hover:-translate-x-0.5 transition-transform" />
                 Previous
               </div>
-              <h4
+              <Typography
+                variant="h4"
+                component="h4"
                 className="text-base sm:text-lg font-bold group-hover:text-primary transition-colors"
-                style={{ fontFamily: "var(--font-family-sans)" }}
               >
                 {prev.title}
-              </h4>
+              </Typography>
               <div className="text-xs sm:text-sm text-muted-foreground mt-1 line-clamp-2">
                 {prev.subtitle}
               </div>
@@ -1609,12 +1659,13 @@ export default function CaseStudyPage() {
                 Next
                 <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
               </div>
-              <h4
+              <Typography
+                variant="h4"
+                component="h4"
                 className="text-base sm:text-lg font-bold group-hover:text-primary transition-colors"
-                style={{ fontFamily: "var(--font-family-sans)" }}
               >
                 {next.title}
-              </h4>
+              </Typography>
               <div className="text-xs sm:text-sm text-muted-foreground mt-1 line-clamp-2">
                 {next.subtitle}
               </div>
@@ -1630,7 +1681,6 @@ export default function CaseStudyPage() {
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <span
             className="text-sm font-bold text-foreground"
-            style={{ fontFamily: "var(--font-family-sans)" }}
           >
             Tamare Reese
           </span>

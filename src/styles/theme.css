@@ -167,9 +167,6 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-family-sans);
-    font-size: var(--font-body-size);
-    font-weight: var(--font-weight-body);
-    line-height: 1.5;
     transition: background-color 0.2s ease, color 0.2s ease;
   }
 
@@ -210,100 +207,24 @@
     overflow-y: auto;
   }
 
-  h1 {
-    font-size: var(--font-header-1-size);
-    font-weight: var(--font-header-1-weight);
-    line-height: var(--font-header-1-line-height);
-    letter-spacing: var(--font-header-1-letter-spacing);
-  }
-
-  h2 {
-    font-size: var(--font-header-2-size);
-    font-weight: var(--font-header-2-weight);
-    line-height: var(--font-header-2-line-height);
-    letter-spacing: var(--font-header-2-letter-spacing);
-  }
-
-  h3 {
-    color: hsl(var(--foreground));
-    font-family: Inter;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 600;
-    letter-spacing: normal;
-  }
-
-  h4 {
-    font-size: var(--font-subtitle-1-size);
-    font-weight: var(--font-subtitle-1-weight);
-    line-height: var(--font-subtitle-1-line-height);
-    letter-spacing: var(--font-subtitle-1-letter-spacing);
-  }
-
+  h1,
+  h2,
+  h3,
+  h4,
   p {
-    font-family: var(--font-paragraph-family);
-    font-size: var(--font-paragraph-size);
-    font-style: var(--font-paragraph-style);
-    font-weight: var(--font-paragraph-weight);
-    line-height: var(--font-paragraph-line-height);
-    letter-spacing: var(--font-paragraph-letter-spacing);
-    font-feature-settings: var(--font-paragraph-feature-settings);
-    font-variation-settings: var(--font-paragraph-variation-settings);
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
   }
 
   .paragraph-fixed-height {
     height: 104px;
   }
 
-  .subtitle-1 {
-    font-size: var(--font-subtitle-1-size);
-    font-weight: var(--font-subtitle-1-weight);
-    line-height: var(--font-subtitle-1-line-height);
-    letter-spacing: var(--font-subtitle-1-letter-spacing);
-  }
-
-  small,
-  .small-text {
-    font-size: var(--font-small-size);
-    font-weight: var(--font-weight-small);
-    line-height: 1.5;
-  }
-
-  nav,
-  nav a {
-    font-size: var(--font-navigation-size);
-    font-weight: var(--font-weight-navigation);
-    line-height: 1.5;
-  }
-
-  nav button {
-    font-size: var(--font-navigation-size);
-    font-weight: var(--font-weight-navigation);
-    line-height: 1.5;
-  }
-
-  label {
-    font-size: var(--font-small-size);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
-  }
-
-  button {
-    font-size: var(--font-button-size);
-    font-weight: var(--font-weight-button);
-    line-height: 1.5;
-  }
-
-  input {
-    font-size: var(--font-small-size);
-    font-weight: var(--font-weight-normal);
-    line-height: 1.5;
-  }
-
-  .body-large {
-    font-size: var(--font-body-large-size);
-    font-weight: var(--font-weight-body);
-    line-height: 1.5;
+  input,
+  textarea,
+  select {
+    font-size: 16px;
   }
 }
 
@@ -526,21 +447,6 @@
   body.custom-cursor-enabled label,
   body.custom-cursor-enabled label[for] {
     cursor: none !important;
-  }
-}
-
-@media (max-width: 640px) {
-  :root {
-    --font-size: 15px;
-    --font-hero-h1-size: 42px;
-    --font-h2-size: 34px;
-    --font-h3-size: 20px;
-    --font-h4-size: 20px;
-    --font-body-large-size: 18px;
-    --font-body-size: 16px;
-    --font-small-size: 14px;
-    --font-navigation-size: 14px;
-    --font-button-size: 14px;
   }
 }
 

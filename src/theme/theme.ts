@@ -1,4 +1,5 @@
-import { createTheme, responsiveFontSizes, type PaletteMode } from "@mui/material/styles";
+import { createTheme, type PaletteMode } from "@mui/material/styles";
+import type { CSSProperties } from "react";
 
 type CaseStudyThemeTokens = {
   prototypeCanvas: string;
@@ -14,12 +15,50 @@ type CaseStudyThemeTokens = {
 };
 
 declare module "@mui/material/styles" {
+  interface TypographyVariants {
+    display: CSSProperties;
+    bodyLarge: CSSProperties;
+    bodySmall: CSSProperties;
+    eyebrow: CSSProperties;
+    blockQuote: CSSProperties;
+    mobileMenuLink: CSSProperties;
+    timelineRow: CSSProperties;
+    kpiValue: CSSProperties;
+    kpiInlineValue: CSSProperties;
+  }
+
+  interface TypographyVariantsOptions {
+    display?: CSSProperties;
+    bodyLarge?: CSSProperties;
+    bodySmall?: CSSProperties;
+    eyebrow?: CSSProperties;
+    blockQuote?: CSSProperties;
+    mobileMenuLink?: CSSProperties;
+    timelineRow?: CSSProperties;
+    kpiValue?: CSSProperties;
+    kpiInlineValue?: CSSProperties;
+  }
+
   interface Theme {
     caseStudy: CaseStudyThemeTokens;
   }
 
   interface ThemeOptions {
     caseStudy?: CaseStudyThemeTokens;
+  }
+}
+
+declare module "@mui/material/Typography" {
+  interface TypographyPropsVariantOverrides {
+    display: true;
+    bodyLarge: true;
+    bodySmall: true;
+    eyebrow: true;
+    blockQuote: true;
+    mobileMenuLink: true;
+    timelineRow: true;
+    kpiValue: true;
+    kpiInlineValue: true;
   }
 }
 
@@ -56,8 +95,7 @@ export function createPortfolioTheme(mode: PaletteMode = "light") {
   const isDark = mode === "dark";
   const caseStudy = isDark ? darkCaseStudyTokens : lightCaseStudyTokens;
 
-  return responsiveFontSizes(
-    createTheme({
+  return createTheme({
       palette: {
         mode,
         primary: {
@@ -93,47 +131,85 @@ export function createPortfolioTheme(mode: PaletteMode = "light") {
       },
       typography: {
         fontFamily,
+        display: {
+          fontFamily,
+          fontSize: "2.625rem",
+          fontWeight: 700,
+          lineHeight: "50px",
+          letterSpacing: "-1px",
+          "@media (min-width:600px)": {
+            fontSize: "3.5rem",
+            lineHeight: "64px",
+            letterSpacing: "-1.5px",
+          },
+          "@media (min-width:900px)": {
+            fontSize: "4.5rem",
+            lineHeight: "80px",
+            letterSpacing: "-2px",
+          },
+        },
         h1: {
           fontFamily,
           fontSize: "4.5rem",
           fontWeight: 700,
-          lineHeight: 1.04,
-          letterSpacing: "-0.04em",
+          lineHeight: "80px",
+          letterSpacing: "-2px",
         },
         h2: {
           fontFamily,
-          fontSize: "3.5rem",
+          fontSize: "1.875rem",
           fontWeight: 700,
-          lineHeight: 1.08,
-          letterSpacing: "-0.035em",
+          lineHeight: "46px",
+          letterSpacing: "0px",
         },
         h3: {
           fontFamily,
-          fontSize: "2.5rem",
-          fontWeight: 700,
-          lineHeight: 1.12,
-          letterSpacing: "-0.025em",
+          fontSize: "1.125rem",
+          fontWeight: 600,
+          lineHeight: "28px",
+          letterSpacing: "0px",
         },
         h4: {
           fontFamily,
-          fontSize: "2rem",
+          fontSize: "1rem",
           fontWeight: 650,
-          lineHeight: 1.2,
-          letterSpacing: "-0.02em",
+          lineHeight: 1.45,
+          letterSpacing: "-0.01em",
+          "@media (min-width:600px)": {
+            fontSize: "1.05rem",
+            lineHeight: 1.45,
+          },
+          "@media (min-width:900px)": {
+            fontSize: "1.125rem",
+            lineHeight: 1.5,
+          },
         },
         h5: {
           fontFamily,
-          fontSize: "1.5rem",
+          fontSize: "1.1rem",
           fontWeight: 650,
-          lineHeight: 1.28,
+          lineHeight: 1.35,
           letterSpacing: "-0.015em",
+          "@media (min-width:900px)": {
+            fontSize: "1.25rem",
+          },
         },
         h6: {
           fontFamily,
-          fontSize: "1.25rem",
+          fontSize: "1rem",
           fontWeight: 650,
-          lineHeight: 1.32,
+          lineHeight: 1.4,
           letterSpacing: "-0.01em",
+          "@media (min-width:900px)": {
+            fontSize: "1.125rem",
+          },
+        },
+        bodyLarge: {
+          fontFamily,
+          fontSize: "1.25rem",
+          fontWeight: 400,
+          lineHeight: "32px",
+          letterSpacing: "0px",
         },
         subtitle1: {
           fontFamily,
@@ -153,8 +229,8 @@ export function createPortfolioTheme(mode: PaletteMode = "light") {
           fontFamily,
           fontSize: "1rem",
           fontWeight: 400,
-          lineHeight: 1.625,
-          letterSpacing: "0em",
+          lineHeight: "26px",
+          letterSpacing: "0px",
         },
         body2: {
           fontFamily,
@@ -162,6 +238,16 @@ export function createPortfolioTheme(mode: PaletteMode = "light") {
           fontWeight: 400,
           lineHeight: 1.55,
           letterSpacing: "0em",
+        },
+        bodySmall: {
+          fontFamily,
+          fontSize: "0.875rem",
+          fontWeight: 400,
+          lineHeight: 1.55,
+          letterSpacing: "0em",
+          "@media (min-width:900px)": {
+            fontSize: "0.9375rem",
+          },
         },
         button: {
           fontFamily,
@@ -180,11 +266,73 @@ export function createPortfolioTheme(mode: PaletteMode = "light") {
         },
         overline: {
           fontFamily,
-          fontSize: "0.75rem",
+          fontSize: "0.6875rem",
           fontWeight: 700,
           lineHeight: 1.4,
           letterSpacing: "0.08em",
           textTransform: "uppercase",
+        },
+        eyebrow: {
+          fontFamily,
+          fontSize: "0.6875rem",
+          fontWeight: 700,
+          lineHeight: 1.4,
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+          "@media (min-width:900px)": {
+            fontSize: "0.75rem",
+          },
+        },
+        blockQuote: {
+          fontFamily,
+          fontSize: "1.625rem",
+          fontWeight: 500,
+          lineHeight: "36px",
+          letterSpacing: "0px",
+        },
+        mobileMenuLink: {
+          fontFamily,
+          fontSize: "2.75rem",
+          fontWeight: 600,
+          lineHeight: 1.05,
+          letterSpacing: "-0.02em",
+          "@media (min-width:600px)": {
+            fontSize: "3.625rem",
+            lineHeight: 1.05,
+          },
+        },
+        timelineRow: {
+          fontFamily,
+          fontSize: "0.875rem",
+          fontWeight: 400,
+          lineHeight: 1.45,
+          letterSpacing: "0px",
+          "@media (min-width:600px)": {
+            fontSize: "0.9375rem",
+            lineHeight: 1.45,
+          },
+        },
+        kpiValue: {
+          fontFamily,
+          fontSize: "1.875rem",
+          fontWeight: 800,
+          lineHeight: 1.2,
+          letterSpacing: "-0.01em",
+          "@media (min-width:600px)": {
+            fontSize: "2.25rem",
+            lineHeight: 1.2,
+          },
+        },
+        kpiInlineValue: {
+          fontFamily,
+          fontSize: "1.25rem",
+          fontWeight: 800,
+          lineHeight: 1.2,
+          letterSpacing: "-0.01em",
+          "@media (min-width:600px)": {
+            fontSize: "1.5rem",
+            lineHeight: 1.2,
+          },
         },
       },
       shape: {
@@ -202,6 +350,21 @@ export function createPortfolioTheme(mode: PaletteMode = "light") {
               textRendering: "optimizeLegibility",
               WebkitFontSmoothing: "antialiased",
               MozOsxFontSmoothing: "grayscale",
+            },
+          },
+        },
+        MuiTypography: {
+          defaultProps: {
+            variantMapping: {
+              display: "h1",
+              bodyLarge: "p",
+              bodySmall: "p",
+              eyebrow: "span",
+              blockQuote: "blockquote",
+              mobileMenuLink: "span",
+              timelineRow: "span",
+              kpiValue: "span",
+              kpiInlineValue: "span",
             },
           },
         },
@@ -264,8 +427,7 @@ export function createPortfolioTheme(mode: PaletteMode = "light") {
           },
         },
       },
-    })
-  );
+    });
 }
 
 export const theme = createPortfolioTheme("light");

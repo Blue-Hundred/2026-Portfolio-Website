@@ -3,7 +3,7 @@ import { type ButtonHTMLAttributes, type ReactNode } from "react";
 import { cn } from "../../components/ui/utils";
 
 const buttonVariants = cva(
-  "inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full text-[14px] font-medium leading-5 [font-family:Inter,-apple-system,system-ui,\"Segoe_UI\",Roboto,sans-serif] [font-feature-settings:normal] [font-variation-settings:normal] transition-colors disabled:opacity-60 disabled:pointer-events-none",
+  "inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full text-sm font-semibold leading-5 transition-colors disabled:opacity-60 disabled:pointer-events-none",
   {
     variants: {
       variant: {
