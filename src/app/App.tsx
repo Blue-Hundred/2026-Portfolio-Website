@@ -10,8 +10,8 @@ import { useTheme } from "./hooks/useTheme";
 import { CaseStudyPresentationPage } from "../components/case-study/CaseStudyPresentationPage";
 import { CaseStudyRoutedPage } from "../components/case-study/CaseStudyRoutedPage";
 import DesignSystemPage from "./DesignSystemPage";
-import cfbCoverImage from "../assets/covers/CFB Cover.png";
-import databasesCoverImage from "../assets/covers/Databases cover image.png";
+import cfbCoverImage from "../assets/covers/FB Cover 2.png";
+import databasesCoverImage from "../assets/Project images/Databases_4.png";
 import tamareLightLogo from "../assets/Favicon/Tamare Light Logo.svg";
 import tamareDarkLogo from "../assets/Favicon/Tamare Dark Logo.svg";
 
