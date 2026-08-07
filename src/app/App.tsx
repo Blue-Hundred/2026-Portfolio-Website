@@ -11,7 +11,7 @@ import { CaseStudyPresentationPage } from "../components/case-study/CaseStudyPre
 import { CaseStudyRoutedPage } from "../components/case-study/CaseStudyRoutedPage";
 import DesignSystemPage from "./DesignSystemPage";
 import cfbCoverImage from "../assets/covers/FB Cover 2.png";
-import databasesCoverImage from "../assets/Project images/Databases_4.png";
+import databasesCoverImage from "../assets/covers/Databases_Cover_4.png";
 import tamareLightLogo from "../assets/Favicon/Tamare Light Logo.svg";
 import tamareDarkLogo from "../assets/Favicon/Tamare Dark Logo.svg";
 

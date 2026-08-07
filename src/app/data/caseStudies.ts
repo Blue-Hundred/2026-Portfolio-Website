@@ -48,7 +48,7 @@ import key12 from "@/assets/Project images/Key_12.png";
 import key13 from "@/assets/Project images/Key_13.png";
 import key14 from "@/assets/Project images/Key_14.png";
 import sparkCoverFull from "@/assets/covers/Spark_Cover_Full.jpg";
-import databasesCoverFull from "@/assets/Project images/Databases_4.png";
+import databasesCoverFull from "@/assets/covers/Databases_Cover_4.png";
 import arrCoverFull from "@/assets/covers/ARR_Cover_Full.jpg";
 import kycCoverFull from "@/assets/covers/KYC_Cover_Full.jpg";
 import keyBankCoverImage from "@/assets/covers/Key Bank Cover Image.png";

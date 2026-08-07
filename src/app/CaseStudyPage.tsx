@@ -1677,7 +1677,7 @@ export default function CaseStudyPage() {
       </div>
 
       {/* Footer */}
-      <footer className="mt-12 sm:mt-20 bg-[rgb(19,21,42)] text-white px-5 sm:px-8 lg:px-10 py-14 sm:py-24 flex flex-col items-center text-center">
+      <footer className="bg-[rgb(19,21,42)] text-white px-5 sm:px-8 lg:px-10 py-14 sm:py-24 flex flex-col items-center text-center">
         <Typography variant="display" component="h2" className="max-w-[520px] pb-1 text-white text-center">
           Let's Connect!
         </Typography>
