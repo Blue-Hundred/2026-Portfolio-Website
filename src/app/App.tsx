@@ -208,7 +208,15 @@ function Portfolio() {
             Tamaré Reese
           </Typography>
           <div className="pt-2">
-            <Typography variant="blockQuote" component="p" className="text-foreground max-w-xl">
+            <Typography
+              variant="blockQuote"
+              component="p"
+              className="text-foreground max-w-xl"
+              sx={{
+                fontSize: { xs: "1.25rem", sm: "1.625rem" },
+                lineHeight: { xs: "30px", sm: "36px" },
+              }}
+            >
               I'm a Product Designer based in Columbus, Ohio, solving complex problems, improving experiences, and shipping successful products.
             </Typography>
             <a

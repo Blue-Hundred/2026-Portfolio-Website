@@ -286,7 +286,7 @@ export function createPortfolioTheme(mode: PaletteMode = "light") {
         blockQuote: {
           fontFamily,
           fontSize: "1.625rem",
-          fontWeight: 500,
+          fontWeight: 600,
           lineHeight: "36px",
           letterSpacing: "0px",
         },
