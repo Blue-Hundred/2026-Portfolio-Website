@@ -1413,14 +1413,14 @@ export default function CaseStudyPage() {
       </nav>
 
       {/* Hero image */}
-      <div className="pt-[72px] relative h-[40vh] sm:h-[55vh] min-h-[280px] sm:min-h-[400px] bg-secondary overflow-hidden">
+      <div className="pt-[72px] relative h-[34vh] sm:h-[55vh] min-h-[220px] sm:min-h-[400px] bg-secondary overflow-hidden">
         <img
           src={study.image}
           alt={study.title}
           loading="eager"
           decoding="async"
           fetchPriority="high"
-          className="w-full h-full object-cover object-center opacity-50"
+          className="w-full h-full object-contain sm:object-cover object-center opacity-50"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
       </div>
