@@ -293,17 +293,17 @@ M-170 330 C -20 170, 170 170, 320 330 C 470 490, 650 490, 800 330 C 960 160, 113
                 data-reveal
                 className="group isolate w-full aspect-square text-left rounded-[32px] flex flex-col hover:-translate-y-0.5 transition-all relative overflow-hidden justify-end p-0 border-0 appearance-none"
                 style={{
-                  backgroundImage: `linear-gradient(to top, rgba(24,24,27,0.92) 0%, rgba(24,24,27,0.24) 36%, rgba(24,24,27,0) 62%), url(${card.coverImage})`,
+                  backgroundImage: `url(${card.coverImage})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
                 }}
               >
                 <div className="relative z-10 p-5 sm:p-6">
-                  <span className="inline-flex w-fit px-3 py-1 rounded-full text-xs font-medium mb-4 border border-white text-white bg-black/25">
+                  <span className="inline-flex w-fit px-3 py-1 rounded-full text-xs font-medium mb-4 border border-black text-black bg-white/80">
                     {card.company}
                   </span>
-                  <Typography variant="h4" component="h4" className="text-white">
+                  <Typography variant="h4" component="h4" className="text-black">
                     {card.title}
                   </Typography>
                 </div>
