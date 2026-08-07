@@ -1344,11 +1344,19 @@ export default function CaseStudyPage() {
 
   useLayoutEffect(() => {
     const previousRestoration = window.history.scrollRestoration;
+    const previousHtmlOverflowX = document.documentElement.style.overflowX;
+    const previousBodyOverflowX = document.body.style.overflowX;
     window.history.scrollRestoration = "manual";
+    document.documentElement.style.overflowX = "hidden";
+    document.body.style.overflowX = "hidden";
+    document.documentElement.scrollLeft = 0;
+    document.body.scrollLeft = 0;
     scrollToTopInstant();
     requestAnimationFrame(() => scrollToTopInstant());
     return () => {
       window.history.scrollRestoration = previousRestoration;
+      document.documentElement.style.overflowX = previousHtmlOverflowX;
+      document.body.style.overflowX = previousBodyOverflowX;
     };
   }, [slug]);
 
