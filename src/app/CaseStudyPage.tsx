@@ -73,7 +73,7 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
   const [shaking, setShaking] = useState(false);
 
   const attempt = () => {
-    if (value === "tamare2026") {
+    if (value === "tamarereese") {
       sessionStorage.setItem(SESSION_KEY, "1");
       onUnlock();
     } else {
