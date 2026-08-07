@@ -1385,7 +1385,7 @@ export default function CaseStudyPage() {
   return (
     <div
       key={slug}
-      className="min-h-screen bg-background text-foreground"
+      className="min-h-screen w-full overflow-x-hidden bg-background text-foreground"
       style={{ fontFamily: "var(--font-family-sans)" }}
     >
       {lightbox && (

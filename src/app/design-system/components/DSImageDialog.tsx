@@ -214,10 +214,10 @@ export function DSStaticImageView({
       src={src}
       caption={caption}
       variant="plain"
-      fullWidth={false}
+      fullWidth
       onImageClick={onImageClick}
-      className={cn("inline-block self-start h-fit shrink-0 border border-border leading-none", className)}
-      imageClassName={cn("block align-top w-auto h-auto max-w-full", imageClassName)}
+      className={cn("block w-full min-w-0 border border-border leading-none", className)}
+      imageClassName={cn("block w-full h-auto max-w-full", imageClassName)}
     />
   );
 }
