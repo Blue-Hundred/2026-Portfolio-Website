@@ -1412,21 +1412,8 @@ export default function CaseStudyPage() {
         </div>
       </nav>
 
-      {/* Hero image */}
-      <div className="pt-[72px] relative h-[46svh] sm:h-[55vh] min-h-[300px] sm:min-h-[400px] bg-secondary overflow-hidden">
-        <img
-          src={study.image}
-          alt={study.title}
-          loading="eager"
-          decoding="async"
-          fetchPriority="high"
-          className="w-full h-full object-contain sm:object-cover object-center opacity-50"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-      </div>
-
       {/* Header */}
-      <div className="px-5 sm:px-8 pb-12 sm:pb-16 mt-0 sm:-mt-16 relative z-10 max-w-6xl mx-auto">
+      <div className="px-5 sm:px-8 pt-24 sm:pt-28 pb-12 sm:pb-16 relative z-10 max-w-6xl mx-auto">
         <div className="max-w-3xl">
           <h1
             className={`${CASE_STUDY_HEADING_CLASSES.h1} mb-4`}
