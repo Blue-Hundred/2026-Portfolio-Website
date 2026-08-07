@@ -10,7 +10,7 @@ import { useTheme } from "./hooks/useTheme";
 import { CaseStudyPresentationPage } from "../components/case-study/CaseStudyPresentationPage";
 import { CaseStudyRoutedPage } from "../components/case-study/CaseStudyRoutedPage";
 import DesignSystemPage from "./DesignSystemPage";
-import cfbCoverImage from "../assets/covers/FB Cover 2.png";
+import cfbCoverImage from "../assets/covers/FB_Cover_1.png";
 import databasesCoverImage from "../assets/covers/Databases_Cover_4.png";
 import tamareLightLogo from "../assets/Favicon/Tamare Light Logo.svg";
 import tamareDarkLogo from "../assets/Favicon/Tamare Dark Logo.svg";
