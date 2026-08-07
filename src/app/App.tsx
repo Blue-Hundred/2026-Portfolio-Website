@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { caseStudies, visibleCaseStudySlugs } from "./data/caseStudies";
 import CaseStudyPage from "./CaseStudyPage";
 import AboutPage from "./AboutPage";
-import DesignSystemShowcase from "./design-system/DesignSystemShowcase";
 import { CustomCursor } from "./components/CustomCursor";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { useTheme } from "./hooks/useTheme";
+import { CaseStudyPresentationPage } from "../components/case-study/CaseStudyPresentationPage";
+import { CaseStudyRoutedPage } from "../components/case-study/CaseStudyRoutedPage";
 import cfbCoverImage from "../assets/covers/CFB Cover.png";
 import databasesCoverImage from "../assets/covers/Databases cover image.png";
 import tamareLightLogo from "../assets/Favicon/Tamare Light Logo.svg";
@@ -113,30 +114,33 @@ function Portfolio() {
             <ThemeToggle isDark={isDark} toggle={toggle} />
           </nav>
 
-          <button
-            type="button"
-            className="sm:hidden relative w-10 h-10 flex items-center justify-center text-foreground/90 hover:text-foreground transition-colors"
-            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isMobileMenuOpen}
-            aria-controls="mobile-main-nav"
-            onClick={() => setIsMobileMenuOpen((current) => !current)}
-          >
-            <span
-              className={`absolute h-0.5 w-4 rounded-full bg-current transition-transform duration-300 ease-out ${
-                isMobileMenuOpen ? "translate-y-0 rotate-45" : "-translate-y-[5px] rotate-0"
-              }`}
-            />
-            <span
-              className={`absolute h-0.5 w-4 rounded-full bg-current transition-opacity duration-200 ease-out ${
-                isMobileMenuOpen ? "opacity-0" : "opacity-100"
-              }`}
-            />
-            <span
-              className={`absolute h-0.5 w-4 rounded-full bg-current transition-transform duration-300 ease-out ${
-                isMobileMenuOpen ? "translate-y-0 -rotate-45" : "translate-y-[5px] rotate-0"
-              }`}
-            />
-          </button>
+          <div className="sm:hidden flex items-center gap-2">
+            <ThemeToggle isDark={isDark} toggle={toggle} />
+            <button
+              type="button"
+              className="relative w-10 h-10 flex items-center justify-center text-foreground/90 hover:text-foreground transition-colors"
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-main-nav"
+              onClick={() => setIsMobileMenuOpen((current) => !current)}
+            >
+              <span
+                className={`absolute h-0.5 w-4 rounded-full bg-current transition-transform duration-300 ease-out ${
+                  isMobileMenuOpen ? "translate-y-0 rotate-45" : "-translate-y-[5px] rotate-0"
+                }`}
+              />
+              <span
+                className={`absolute h-0.5 w-4 rounded-full bg-current transition-opacity duration-200 ease-out ${
+                  isMobileMenuOpen ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <span
+                className={`absolute h-0.5 w-4 rounded-full bg-current transition-transform duration-300 ease-out ${
+                  isMobileMenuOpen ? "translate-y-0 -rotate-45" : "translate-y-[5px] rotate-0"
+                }`}
+              />
+            </button>
+          </div>
         </div>
 
       </header>
@@ -144,14 +148,14 @@ function Portfolio() {
       {isMobileMenuOpen && (
         <div
           id="mobile-main-nav"
-          className="sm:hidden fixed inset-0 z-[70] bg-white text-zinc-900 opacity-100 pointer-events-auto"
+          className="sm:hidden fixed inset-0 z-[70] bg-background text-foreground opacity-100 pointer-events-auto"
         >
           <div className="h-full px-6 pt-6 pb-10 flex flex-col mobile-menu-shell mobile-menu-shell-open">
           <div className="flex items-center justify-between">
-            <img src={tamareDarkLogo} alt="Tamaré Reese logo" className="h-10 w-auto" />
+            <img src={headerLogo} alt="Tamaré Reese logo" className="h-10 w-auto" />
             <button
               type="button"
-              className="relative w-10 h-10 flex items-center justify-center text-zinc-900 hover:opacity-75 transition-opacity"
+              className="relative w-10 h-10 flex items-center justify-center text-foreground hover:opacity-75 transition-opacity"
               aria-label="Close menu"
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -160,17 +164,17 @@ function Portfolio() {
             </button>
           </div>
 
-          <nav className="mt-16 flex flex-col text-zinc-900">
+          <nav className="mt-16 flex flex-col text-foreground">
             <Link
               to="/"
-              className="mobile-menu-link py-3 border-b border-zinc-300 text-[58px] leading-[1.05] font-semibold tracking-tight hover:opacity-80 transition-opacity"
+              className="mobile-menu-link py-3 border-b border-border text-[58px] leading-[1.05] font-semibold tracking-tight hover:opacity-80 transition-opacity"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Home
             </Link>
             <Link
               to="/about"
-              className="mobile-menu-link py-3 border-b border-zinc-300 text-[58px] leading-[1.05] font-semibold tracking-tight hover:opacity-80 transition-opacity"
+              className="mobile-menu-link py-3 border-b border-border text-[58px] leading-[1.05] font-semibold tracking-tight hover:opacity-80 transition-opacity"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               About
@@ -179,16 +183,12 @@ function Portfolio() {
               href={RESUME_PDF_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mobile-menu-link py-3 border-b border-zinc-300 text-[58px] leading-[1.05] font-semibold tracking-tight hover:opacity-80 transition-opacity"
+              className="mobile-menu-link py-3 border-b border-border text-[58px] leading-[1.05] font-semibold tracking-tight hover:opacity-80 transition-opacity"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Resume
             </a>
           </nav>
-
-          <div className="mt-8 inline-flex items-center text-zinc-700">
-            <ThemeToggle isDark={isDark} toggle={toggle} />
-          </div>
         </div>
         </div>
       )}
@@ -342,7 +342,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Portfolio />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/design-system" element={<DesignSystemShowcase />} />
+        <Route path="/case-study-presentation" element={<CaseStudyPresentationPage />} />
+        <Route path="/work/:caseStudyId/:flowId" element={<CaseStudyRoutedPage />} />
         <Route path="/work/:slug" element={<CaseStudyPage />} />
       </Routes>
     </BrowserRouter>
