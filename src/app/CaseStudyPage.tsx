@@ -1677,21 +1677,28 @@ export default function CaseStudyPage() {
       </div>
 
       {/* Footer */}
-      <footer className="px-5 sm:px-8 py-8 border-t border-border">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span
-            className="text-sm font-bold text-foreground"
-          >
-            Tamare Reese
-          </span>
-          <Link
-            to="/"
-            className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors"
-          >
-            Get in touch <ArrowUpRight size={12} />
-          </Link>
-          <span className="text-xs text-muted-foreground">© 2024 Tamare Reese</span>
-        </div>
+      <footer className="mt-12 sm:mt-20 bg-[rgb(19,21,42)] text-white px-5 sm:px-8 lg:px-10 py-14 sm:py-24 flex flex-col items-center text-center">
+        <Typography variant="display" component="h2" className="max-w-[520px] pb-1 text-white text-center">
+          Let's Connect!
+        </Typography>
+        <a
+          href="mailto:tamaredesign@outlook.com"
+          className="mt-8 sm:mt-10 inline-flex bg-white text-black rounded-full px-5 sm:px-7 py-2.5 sm:py-3 text-xs sm:text-sm font-medium hover:opacity-90 transition-opacity"
+        >
+          Tamaredesign@outlook.com
+        </a>
+        <a
+          href="https://www.linkedin.com/in/tamarereese/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+          className="mt-4 inline-flex w-10 h-10 items-center justify-center rounded-full border border-white/70 text-white hover:bg-white hover:text-black transition-colors"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" className="w-4 h-4 fill-current">
+            <path d="M20.447 20.452H16.89v-5.569c0-1.328-.027-3.037-1.85-3.037-1.853 0-2.136 1.445-2.136 2.94v5.666H9.347V9h3.414v1.561h.049c.476-.9 1.636-1.85 3.367-1.85 3.6 0 4.265 2.37 4.265 5.455v6.286zM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126zM7.119 20.452H3.555V9h3.564v11.452z" />
+          </svg>
+        </a>
+        <span className="mt-4 text-xs text-white/70">© Tamaré Reese</span>
       </footer>
     </div>
   );
