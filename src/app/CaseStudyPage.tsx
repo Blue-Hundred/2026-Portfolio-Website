@@ -111,7 +111,7 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
             onKeyDown={(e) => e.key === "Enter" && attempt()}
             placeholder="Enter password"
             autoFocus
-            className="w-full bg-transparent px-5 py-4 text-base text-foreground placeholder:text-muted-foreground/40 outline-none"
+            className="w-full bg-transparent px-5 py-4 text-[16px] text-foreground placeholder:text-muted-foreground/40 outline-none"
           />
         </div>
 
@@ -1344,19 +1344,11 @@ export default function CaseStudyPage() {
 
   useLayoutEffect(() => {
     const previousRestoration = window.history.scrollRestoration;
-    const previousHtmlOverflowX = document.documentElement.style.overflowX;
-    const previousBodyOverflowX = document.body.style.overflowX;
     window.history.scrollRestoration = "manual";
-    document.documentElement.style.overflowX = "hidden";
-    document.body.style.overflowX = "hidden";
-    document.documentElement.scrollLeft = 0;
-    document.body.scrollLeft = 0;
     scrollToTopInstant();
     requestAnimationFrame(() => scrollToTopInstant());
     return () => {
       window.history.scrollRestoration = previousRestoration;
-      document.documentElement.style.overflowX = previousHtmlOverflowX;
-      document.body.style.overflowX = previousBodyOverflowX;
     };
   }, [slug]);
 
@@ -1393,7 +1385,7 @@ export default function CaseStudyPage() {
   return (
     <div
       key={slug}
-      className="min-h-screen w-full overflow-x-hidden bg-background text-foreground"
+      className="min-h-screen bg-background text-foreground"
       style={{ fontFamily: "var(--font-family-sans)" }}
     >
       {lightbox && (
