@@ -217,7 +217,7 @@ function Portfolio() {
                 lineHeight: { xs: "30px", sm: "36px" },
               }}
             >
-              I'm a Product Designer based in Columbus, Ohio, solving complex problems, improving experiences, and shipping successful products.
+              I'm a Product Designer based in Columbus, Ohio, turning complex problems into intuitive experiences and successful products.
             </Typography>
             <a
               href="https://www.linkedin.com/in/tamarereese/"
