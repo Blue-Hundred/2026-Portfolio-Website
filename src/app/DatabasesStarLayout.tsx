@@ -41,11 +41,10 @@ const CUSTOMER_IMPACT = [
 
 function SectionTitle({ title }: { title: string }) {
   return (
-    <div className="flex items-baseline gap-4 sm:gap-6 mb-6">
+    <div className="mb-6">
       <Typography variant="h2" component="h2" className="text-foreground">
         {title}
       </Typography>
-      <div className="flex-1 h-px bg-border ml-2 sm:ml-4 hidden sm:block" />
     </div>
   );
 }
