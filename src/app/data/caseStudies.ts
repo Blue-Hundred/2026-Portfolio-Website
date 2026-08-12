@@ -189,8 +189,8 @@ export const caseStudies: CaseStudy[] = [
     color: "#F135C6",
     lightColor: "#9C0068",
     client: "JPMorgan Chase & Co.",
-    role: "Lead Product Designer (Vice President)",
-    duration: "2025–2026",
+    role: "Lead Experience Designer / Lead Experience Researcher",
+    duration: "1 Year",
     overview:
       "Enterprise engineers relied on more than ten independent database control planes to provision and manage database services. Each product had evolved independently, resulting in inconsistent workflows, terminology, navigation patterns, and operational experiences. Engineers frequently switched between systems, searched multiple documentation sources, and relied on tribal knowledge to complete routine tasks.\n\nThe long-term vision was to create a shared experience that could scale across database products while providing a consistent foundation for the Integrated Engineers Portal (IEP).\n\nThis case study focuses on one representative workflow—database onboarding and provisioning—to illustrate the broader experience strategy developed for the platform. Although the platform supports many database management capabilities, this workflow best demonstrates the research, systems thinking, and product design decisions that established reusable patterns across the ecosystem.",
     metrics: [

@@ -33,6 +33,7 @@ import { caseStudies, visibleCaseStudySlugs, type Phase, type CaseStudy } from "
 import { useTheme } from "./hooks/useTheme";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { DSButton, DSImageDialog, DSStaticImageView } from "./design-system";
+import { DatabasesStarLayout } from "./DatabasesStarLayout";
 import tamareLightLogo from "../assets/Favicon/Tamare Light Logo.svg";
 import tamareDarkLogo from "../assets/Favicon/Tamare Dark Logo.svg";
 
@@ -154,7 +155,7 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
 
 const SCP_RESPONSIBILITIES = [
   "Experience Strategy",
-  "Research Synthesis",
+  "Experience Research",
   "Information Architecture",
   "Service Design",
   "Interaction Design",
@@ -1801,9 +1802,8 @@ export default function CaseStudyPage() {
         )}
 
         {isSharedControlPlanes ? (
-          <ScpModernLayout
+          <DatabasesStarLayout
             study={study}
-            accent={accent}
             onImageClick={(src, caption) => setLightbox({ src, caption })}
           />
         ) : (
