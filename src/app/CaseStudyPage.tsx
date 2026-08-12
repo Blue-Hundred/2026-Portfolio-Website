@@ -1727,7 +1727,7 @@ export default function CaseStudyPage() {
           }`}
           style={{ paddingTop: "100px" }}
         >
-          <div className="max-w-3xl">
+          <div className={isSharedControlPlanes ? "" : "max-w-3xl"}>
             <Typography
               variant="display"
               component="h1"
