@@ -196,54 +196,6 @@ export default function AboutPage() {
       </section>
 
       <section className="relative mt-[104px] sm:mt-[140px] overflow-hidden">
-        <div className="absolute left-1/2 -translate-x-1/2 top-2 sm:top-4 h-[18rem] sm:h-[24rem] w-screen max-w-none pointer-events-none opacity-75 overflow-visible" aria-hidden>
-          <svg viewBox="0 -300 1200 980" className="w-full h-full overflow-visible cta-ribbon-svg" preserveAspectRatio="none">
-            <path
-              className="cta-ribbon-path"
-              d="M-160 340 C -40 120, 200 -150, 360 70 C 500 260, 620 -120, 790 90 C 940 280, 1050 -40, 1270 210"
-              fill="none"
-              stroke="url(#about-experience-ribbon)"
-              strokeWidth="135"
-              strokeLinecap="round"
-            >
-              <animate
-                attributeName="d"
-                dur="31s"
-                repeatCount="indefinite"
-                calcMode="spline"
-                keyTimes="0;0.15;0.31;0.48;0.66;0.82;0.92;1"
-                keySplines="0.55 0 0.25 1;0.45 0 0.25 1;0.5 0 0.2 1;0.4 0 0.25 1;0.5 0 0.2 1;0.44 0 0.25 1;0.5 0 0.2 1"
-                values="M-170 344 C -68 122, 170 -190, 350 78 C 502 312, 628 -136, 810 124 C 954 322, 1082 -72, 1282 224;
-M-170 290 C -12 92, 222 -220, 390 128 C 536 384, 702 -56, 832 62 C 970 188, 1122 -140, 1282 260;
-M-170 372 C -104 228, 142 -78, 326 34 C 488 132, 564 -178, 754 150 C 906 386, 1002 22, 1282 172;
-M-170 318 C -42 116, 236 -198, 418 110 C 566 360, 694 -100, 862 120 C 996 292, 1132 -50, 1282 238;
-M-170 384 C -120 258, 124 -46, 312 42 C 474 132, 548 -194, 738 160 C 896 414, 992 40, 1282 160;
-M-170 330 C -54 126, 218 -184, 400 100 C 550 336, 670 -122, 842 132 C 988 326, 1118 -70, 1282 216;
-M-170 352 C -82 184, 164 -126, 346 68 C 500 254, 602 -154, 786 138 C 934 352, 1046 -2, 1282 198;
-M-170 344 C -68 122, 170 -190, 350 78 C 502 312, 628 -136, 810 124 C 954 322, 1082 -72, 1282 224"
-              />
-            </path>
-            <defs>
-              <linearGradient id="about-experience-ribbon" x1="0%" y1="0%" x2="100%" y2="0%">
-                <animate attributeName="x1" values="0%;-12%;0%" dur="18s" repeatCount="indefinite" />
-                <animate attributeName="x2" values="100%;112%;100%" dur="18s" repeatCount="indefinite" />
-                <stop offset="0%" stopColor="#ff2247">
-                  <animate attributeName="stop-color" values="#ff2247;#ff6a00;#ffe600;#2cff89;#00d9ff;#3f5bff;#a23dff;#ff2247" dur="18s" repeatCount="indefinite" />
-                </stop>
-                <stop offset="30%" stopColor="#ffe600">
-                  <animate attributeName="stop-color" values="#ffe600;#2cff89;#00d9ff;#3f5bff;#a23dff;#ff2247;#ff6a00;#ffe600" dur="18s" repeatCount="indefinite" />
-                </stop>
-                <stop offset="65%" stopColor="#00d9ff">
-                  <animate attributeName="stop-color" values="#00d9ff;#3f5bff;#a23dff;#ff2247;#ff6a00;#ffe600;#2cff89;#00d9ff" dur="18s" repeatCount="indefinite" />
-                </stop>
-                <stop offset="100%" stopColor="#a23dff">
-                  <animate attributeName="stop-color" values="#a23dff;#ff2247;#ff6a00;#ffe600;#2cff89;#00d9ff;#3f5bff;#a23dff" dur="18s" repeatCount="indefinite" />
-                </stop>
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-
         <div className="relative z-10 max-w-[1200px] mx-auto px-4 sm:px-8">
           <div className="rounded-[30px] sm:rounded-[34px] bg-card px-6 sm:px-10 lg:px-12 py-8 sm:py-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start lg:items-stretch">

@@ -134,7 +134,7 @@ export function createPortfolioTheme(mode: PaletteMode = "light") {
         display: {
           fontFamily,
           fontSize: "2.625rem",
-          fontWeight: 700,
+          fontWeight: 600,
           lineHeight: "50px",
           letterSpacing: "-1px",
           "@media (min-width:600px)": {
@@ -151,7 +151,7 @@ export function createPortfolioTheme(mode: PaletteMode = "light") {
         h1: {
           fontFamily,
           fontSize: "4.5rem",
-          fontWeight: 700,
+          fontWeight: 600,
           lineHeight: "80px",
           letterSpacing: "-2px",
         },

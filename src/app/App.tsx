@@ -204,7 +204,7 @@ function Portfolio() {
 
       <section className="relative z-20 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-10 pt-12 sm:pt-20 lg:pt-32 pb-2 sm:pb-3 home-load home-load-hero">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-20 items-start">
-          <Typography variant="display" component="h1">
+          <Typography variant="display" component="h1" sx={{ fontWeight: 600 }}>
             Tamaré Reese
           </Typography>
           <div className="pt-2">
@@ -213,11 +213,12 @@ function Portfolio() {
               component="p"
               className="text-foreground max-w-xl"
               sx={{
+                fontWeight: 500,
                 fontSize: { xs: "1.25rem", sm: "1.625rem" },
                 lineHeight: { xs: "30px", sm: "36px" },
               }}
             >
-              I'm a Product Designer based in Columbus, Ohio, turning complex problems into intuitive experiences and successful products.
+              Product Designer shaping strategies and crafting experiences that simplify complexity. Based in Columbus, OH—born and raised.
             </Typography>
             <a
               href="https://www.linkedin.com/in/tamarereese/"
@@ -234,52 +235,7 @@ function Portfolio() {
         </div>
       </section>
 
-      <section className="relative -mt-8 sm:-mt-12 overflow-x-hidden" data-reveal>
-        <div className="absolute left-1/2 -translate-x-1/2 -top-6 sm:-top-10 h-[24rem] sm:h-[40rem] lg:h-[48rem] w-[150vw] min-w-[900px] sm:min-w-[1200px] max-w-none pointer-events-none opacity-72 overflow-visible" aria-hidden>
-          <svg viewBox="0 -120 1200 1400" className="w-full h-full overflow-visible hero-ribbon-svg" preserveAspectRatio="none">
-            <path
-              className="hero-ribbon-path"
-              d="M-170 330 C -20 170, 170 170, 320 330 C 470 490, 650 490, 800 330 C 960 160, 1130 160, 1290 330"
-              fill="none"
-              stroke="url(#homepage-ribbon)"
-              strokeWidth="210"
-              strokeLinecap="round"
-            >
-              <animate
-                attributeName="d"
-                dur="30s"
-                repeatCount="indefinite"
-                calcMode="spline"
-                keyTimes="0;0.25;0.5;0.75;1"
-                keySplines="0.45 0 0.2 1;0.45 0 0.2 1;0.45 0 0.2 1;0.45 0 0.2 1"
-                values="M-170 330 C -20 170, 170 170, 320 330 C 470 490, 650 490, 800 330 C 960 160, 1130 160, 1290 330;
-M-170 300 C -10 140, 180 140, 330 300 C 480 460, 660 460, 810 300 C 965 145, 1135 145, 1290 300;
-M-170 350 C -15 190, 175 190, 325 350 C 475 510, 655 510, 805 350 C 970 185, 1140 185, 1290 350;
-M-170 315 C -25 155, 165 155, 315 315 C 465 475, 645 475, 795 315 C 955 150, 1125 150, 1290 315;
-M-170 330 C -20 170, 170 170, 320 330 C 470 490, 650 490, 800 330 C 960 160, 1130 160, 1290 330"
-              />
-            </path>
-            <defs>
-              <linearGradient id="homepage-ribbon" x1="0%" y1="0%" x2="100%" y2="0%">
-                <animate attributeName="x1" values="0%;-12%;0%" dur="18s" repeatCount="indefinite" />
-                <animate attributeName="x2" values="100%;112%;100%" dur="18s" repeatCount="indefinite" />
-                <stop offset="0%" stopColor="#ff2247">
-                  <animate attributeName="stop-color" values="#ff2247;#ff6a00;#ffe600;#2cff89;#00d9ff;#3f5bff;#a23dff;#ff2247" dur="18s" repeatCount="indefinite" />
-                </stop>
-                <stop offset="30%" stopColor="#ffe600">
-                  <animate attributeName="stop-color" values="#ffe600;#2cff89;#00d9ff;#3f5bff;#a23dff;#ff2247;#ff6a00;#ffe600" dur="18s" repeatCount="indefinite" />
-                </stop>
-                <stop offset="65%" stopColor="#00d9ff">
-                  <animate attributeName="stop-color" values="#00d9ff;#3f5bff;#a23dff;#ff2247;#ff6a00;#ffe600;#2cff89;#00d9ff" dur="18s" repeatCount="indefinite" />
-                </stop>
-                <stop offset="100%" stopColor="#a23dff">
-                  <animate attributeName="stop-color" values="#a23dff;#ff2247;#ff6a00;#ffe600;#2cff89;#00d9ff;#3f5bff;#a23dff" dur="18s" repeatCount="indefinite" />
-                </stop>
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-
+      <section className="relative mt-[28px] sm:mt-[12px] overflow-x-hidden" data-reveal>
         <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-10 pt-20 sm:pt-[120px] lg:pt-[160px] pb-16 sm:pb-24 grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-7 lg:gap-8">
           {featuredCards.map((card) => {
             const canNavigate = availableHomepageSlugs.has(card.slug);

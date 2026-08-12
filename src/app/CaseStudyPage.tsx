@@ -152,134 +152,15 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
   );
 }
 
-const SCP_STRATEGY_FLOW = [
-  "Learn",
-  "Complete Prerequisites",
-  "Provision Database",
-  "Configure Service",
-  "Monitor Health",
-  "Manage Lifecycle",
-];
-
-const SCP_PAIN_POINTS: { label: string; icon: LucideIcon }[] = [
-  { label: "Different navigation structures", icon: Compass },
-  { label: "Different provisioning workflows", icon: Workflow },
-  { label: "Different terminology", icon: CircleDashed },
-  { label: "Different approval processes", icon: ShieldCheck },
-  { label: "Different operational experiences", icon: Activity },
-];
-
-const SCP_STRATEGIC_PRIORITIES: {
-  title: string;
-  painPoint: string;
-  response: string;
-  icon: LucideIcon;
-}[] = [
-  {
-    title: "Standardize Provisioning",
-    painPoint:
-      "Every database product followed a different provisioning model.",
-    response:
-      "Every database product followed one consistent provisioning model.",
-    icon: Sparkles,
-  },
-  {
-    title: "Separate Governance from Provisioning",
-    painPoint:
-      "Customers confused onboarding requirements with provisioning tasks.",
-    response:
-      "Separating these workflows reduced cognitive load.",
-    icon: UserRoundPlus,
-  },
-  {
-    title: "Surface Operational Health",
-    painPoint:
-      "Provisioning isn't complete when infrastructure is created.",
-    response:
-      "Customers need confidence that services remain healthy.",
-    icon: Bot,
-  },
-  {
-    title: "Embed Documentation",
-    painPoint:
-      "Documentation was outside the workflow.",
-    response:
-      "Documentation became part of the workflow rather than a separate destination.",
-    icon: BarChart3,
-  },
-  {
-    title: "Build for Scale",
-    painPoint:
-      "Patterns needed to scale beyond a single use case.",
-    response:
-      "Evaluate every interaction pattern for reuse across additional database products and workflows.",
-    icon: MessageSquareWarning,
-  },
-];
-
-const SCP_CONTRIBUTIONS = [
-  "Synthesized existing UX audit findings into a unified experience strategy",
-  "Led stakeholder interviews and qualitative research",
-  "Facilitated service blueprint, design consistency, and stakeholder alignment workshops",
-  "Defined interface capabilities and functionality for high-priority user flows",
-  "Led prototype usability testing and design validation",
-  "Conducted post-launch customer research to prioritize enhancements and roadmap investments",
-];
-
-const SCP_RESEARCH_METHODS = [
-  "Stakeholder Interviews",
-  "UX Audit",
-  "Customer Journey Mapping",
-  "Service Blueprinting",
-  "Workflow Analysis",
-  "Persona Development",
-  "Usability Testing",
-];
-
-const SCP_VALIDATION_ACTIVITIES = [
-  "Discoverability",
-  "Navigation",
-  "Onboarding",
-  "Provisioning",
-  "Service Management",
-  "Iterative Validation",
-];
-
-const SCP_CUSTOMER_OUTCOMES = [
-  "Unified experience strategy across multiple database products",
-  "Standardized onboarding and provisioning workflows",
-  "Shared navigation and interaction patterns",
-  "Improved usability through iterative validation",
-];
-
-const SCP_ORG_OUTCOMES = [
-  "Reusable design patterns for future database products",
-  "Foundation for Integrated Engineers Portal",
-  "Reduced onboarding time and provisioning friction",
-  "Scalable platform model for future capabilities",
-];
-
-const SCP_DESIGN_OUTCOMES = [
-  "Design once, scale everywhere",
-  "Progressive disclosure",
-  "Context-first guidance",
-  "Operational transparency",
-  "Consistency across products",
-];
-
-const SHOW_SCP_CONTRIBUTIONS = false;
-
 const SCP_RESPONSIBILITIES = [
   "Experience Strategy",
-  "Product Design",
-  "UX Research & Synthesis",
-  "Service Design",
+  "Research Synthesis",
   "Information Architecture",
+  "Service Design",
   "Interaction Design",
-  "Design Systems",
+  "Prototyping",
   "Usability Testing",
-  "Cross-functional Leadership",
-  "Executive Storytelling",
+  "Cross-functional Alignment",
 ];
 
 const SCP_PERSONAS = [
@@ -347,76 +228,6 @@ function ScpSectionTitle({ title }: { title: string }) {
   );
 }
 
-function ScpArtifactPlaceholders({
-  title,
-  artifacts,
-  intro,
-  outro,
-  showArtifactsLabel = true,
-  onImageClick,
-}: {
-  title: string;
-  artifacts: { src: string; caption: string }[];
-  intro?: string[];
-  outro?: string[];
-  showArtifactsLabel?: boolean;
-  onImageClick: (src: string, caption: string) => void;
-}) {
-  return (
-    <motion.section className="bg-background border-t border-border py-12 sm:py-14" {...revealProps}>
-      {showArtifactsLabel && (
-        <div className="flex items-center gap-2 mb-6">
-          <span className="text-xs tracking-widest uppercase text-muted-foreground">Artifacts</span>
-        </div>
-      )}
-      <ScpSectionTitle title={title} />
-      {intro && intro.length > 0 && (
-        <div className="max-w-4xl mb-6">
-          {intro.map((paragraph) => (
-            <Typography key={paragraph} variant="body1" component="p" className="text-foreground/90 mb-4 last:mb-0">
-              {paragraph}
-            </Typography>
-          ))}
-        </div>
-      )}
-      <div className="grid grid-cols-4 sm:grid-cols-4 gap-4">
-        {artifacts.map((artifact) => (
-          <button
-            key={artifact.caption}
-            type="button"
-            onClick={() => onImageClick(artifact.src, artifact.caption)}
-            aria-label={`Open image: ${artifact.caption}`}
-            className="col-span-4 sm:col-span-2 rounded-2xl border border-border bg-secondary/20 overflow-hidden text-left transition-all hover:-translate-y-0.5 hover:border-foreground/20"
-          >
-            <div className="aspect-[16/9] bg-background/50">
-              <img
-                src={artifact.src}
-                alt={artifact.caption}
-                loading="lazy"
-                decoding="async"
-                fetchPriority="low"
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <div className="p-4">
-              <Typography variant="bodySmall" component="p" className="text-foreground/85">{artifact.caption}</Typography>
-            </div>
-          </button>
-        ))}
-      </div>
-      {outro && outro.length > 0 && (
-        <div className="max-w-4xl mt-6">
-          {outro.map((paragraph) => (
-            <Typography key={paragraph} variant="body1" component="p" className="text-foreground/90 mb-4 last:mb-0">
-              {paragraph}
-            </Typography>
-          ))}
-        </div>
-      )}
-    </motion.section>
-  );
-}
-
 function ScpModernLayout({
   study,
   accent,
@@ -432,254 +243,718 @@ function ScpModernLayout({
   const engineerArtifact = study.define.artifacts.find((artifact) =>
     artifact.caption.toLowerCase().includes("engineer")
   );
-  const researchArtifacts = study.define.artifacts.filter(
-    (artifact) => artifact !== appOwnerArtifact && artifact !== engineerArtifact
+  const researchSynthesisArtifact = study.define.artifacts.find((artifact) =>
+    artifact.caption.toLowerCase().includes("research synthesis")
   );
+  const journeyMapArtifact = study.define.artifacts.find((artifact) =>
+    artifact.caption.toLowerCase().includes("journey")
+  );
+  const strategyArtifact = study.discover.artifacts[0];
+  const discoveryArtifact = study.discover.artifacts[1] ?? study.discover.artifacts[0];
+  const principlesArtifact = study.design.artifacts[0];
+  const infoArchitectureArtifact = study.design.artifacts.find((artifact) =>
+    artifact.caption.toLowerCase().includes("information architecture")
+  );
+  const userFlowArtifact = study.deliver.artifacts[0];
+  const wireframeArtifact = study.deliver.artifacts[1];
+  const directImages = study.deliverDirectImages ?? [];
+  const sharedNavigationArtifact = directImages[0];
+  const dashboardAfterArtifact = directImages[1];
+  const provisioningArtifact = directImages[2];
+  const relationalFutureArtifact = directImages[3];
+  const graphLaunchArtifact = directImages[4];
+  const sideBySideArtifact = directImages[5] ?? directImages[6];
+  const transformationArtifact = study.deliverFinalImage ?? directImages[7] ?? directImages[6];
+
+  const researchMetrics = [
+    { value: "73%", label: "Needed SRE support to complete onboarding and provisioning" },
+    { value: "85%", label: "Wanted stronger observability and monitoring" },
+    { value: "85%", label: "Had concerns about cost transparency" },
+    { value: "69%", label: "Were uncertain when choosing database service sizes" },
+  ];
+
+  const strategicObjectives = [
+    {
+      title: "01 — Create Consistency",
+      body: "Standardize shared control-plane experiences to reduce duplicated design and engineering effort.",
+    },
+    {
+      title: "02 — Build for Scale",
+      body: "Create reusable experiences that could extend across relational, non-relational, and graph products.",
+    },
+    {
+      title: "03 — Improve Operational Awareness",
+      body: "Surface urgent service issues, pricing, developer support, and platform health within a more centralized experience.",
+    },
+  ];
+
+  const actionJourneySteps = [
+    "Learn & Prepare",
+    "Complete Onboarding",
+    "Provision Database",
+    "Configure Service",
+    "Operate & Monitor",
+  ];
 
   return (
     <>
-      <motion.section className="bg-background border-t border-border py-12 sm:py-14" {...revealProps}>
-        <ScpSectionTitle title="My Role" />
-        <div className="max-w-4xl">
-          <Typography variant="body1" component="p" className="text-foreground/90 mb-6">
-            As the Lead Product Designer, I partnered with product managers, engineers, architects, and UX researchers to define the experience strategy for a unified database management platform. My work spanned the full product design lifecycle—from synthesizing research and mapping complex service ecosystems to establishing information architecture, interaction patterns, and scalable design principles. While the platform encompassed numerous database products and workflows, I led the design of the onboarding and provisioning experience as a representative use case, creating reusable patterns that informed the broader platform strategy. Through iterative design, usability testing, and cross-functional collaboration, I helped align teams around a shared vision that balanced customer needs, technical feasibility, and long-term scalability.
-          </Typography>
-
-          <Typography variant="h3" component="h3" className="text-foreground/90 pt-4 pb-3">
-            Responsibilities
-          </Typography>
-
-          <div className="flex flex-wrap gap-2.5">
-            {SCP_RESPONSIBILITIES.map((item) => (
-              <span
-                key={item}
-                className="px-3 py-1.5 rounded-full border border-border bg-secondary/25 text-sm sm:text-[15px] text-foreground/90"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-        </div>
+      <motion.section className="bg-background py-8 sm:py-10" {...revealProps}>
+        <DSImageDialog
+          src={study.image}
+          caption="Databases case study hero"
+          onImageClick={onImageClick}
+          variant="plain"
+          className="w-full border border-border"
+          imageClassName="w-full h-auto object-contain"
+        />
       </motion.section>
 
-      <motion.section className="bg-background border-t border-border py-12 sm:py-14" {...revealProps}>
-        <ScpSectionTitle title="The Challenge" />
+      <motion.section className="bg-background py-12 sm:py-14" {...revealProps}>
+        <ScpSectionTitle title="Situation" />
         <div className="max-w-4xl">
-          <Typography variant="body1" component="p" className="text-foreground/90 mb-5">
-            Although every database product supported similar customer goals, each control plane exposed those capabilities differently.
+          <Typography variant="h3" component="h3" className="mb-4 text-foreground">
+            10+ database products had evolved into disconnected experiences.
           </Typography>
-
-          <Typography variant="body1" component="p" className="text-foreground/90 pt-4 pb-3">Customers encountered:</Typography>
-
-          <div className="mb-6">
-            <div className="grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-3 xl:grid-cols-5 gap-3">
-              {SCP_PAIN_POINTS.map((item) => {
-                const Icon = item.icon;
-                return (
-                <div
-                  key={item.label}
-                  className="col-span-2 lg:col-span-1 xl:col-span-1 rounded-xl border border-border bg-secondary/25 px-4 py-5 text-center"
-                >
-                  <div className="flex justify-center mb-3">
-                    <div className="inline-flex w-9 h-9 items-center justify-center rounded-full border border-border bg-background">
-                      <Icon size={16} style={{ color: accent }} />
-                    </div>
-                  </div>
-                  <Typography variant="bodySmall" component="p" className="text-foreground/90">{item.label}</Typography>
-                </div>
-                );
-              })}
-            </div>
-          </div>
-
           <Typography variant="body1" component="p" className="text-foreground/90 mb-4">
-            The inconsistency increased onboarding time, slowed provisioning, and made the platform difficult to scale.
+            Enterprise engineers relied on more than 10 independent database control planes across relational, non-relational, and graph technologies.
           </Typography>
-
-          <Typography variant="body1" component="p" className="text-foreground/90">
-            Rather than redesigning a single interface, our challenge was to define a reusable experience strategy that every database product could adopt.
-          </Typography>
-        </div>
-      </motion.section>
-
-      <ScpArtifactPlaceholders
-        title="Understanding the Ecosystem"
-        artifacts={study.discover.artifacts}
-        showArtifactsLabel={false}
-        onImageClick={onImageClick}
-        intro={[
-          "Before designing solutions, I needed to understand how customers, internal teams, enterprise systems, and infrastructure interacted throughout the service lifecycle.",
-          "Working closely with stakeholders, I mapped the complete ecosystem—from initial learning and onboarding through provisioning, operations, and ongoing service management.",
-          "This systems-level perspective revealed organizational, technical, and process challenges that individual interface designs alone could not solve.",
-        ]}
-        outro={[
-          "The service blueprint documented multiple customer journeys across the platform.",
-          "From this analysis, onboarding and provisioning emerged as the highest-impact workflow to redesign first because it represented the greatest concentration of customer friction while establishing reusable patterns for future experiences.",
-        ]}
-      />
-
-      <motion.section className="bg-background border-t border-border py-12 sm:py-14" {...revealProps}>
-        <ScpSectionTitle title="Research" />
-        <div className="max-w-4xl mb-8">
-          <Typography variant="body1" component="p" className="text-foreground/90">
-            To understand the complexity of the database management experience, I conducted a comprehensive discovery effort that combined existing platform knowledge with new qualitative research. Working closely with product managers, engineers, architects, and UX researchers, I analyzed how customers navigated onboarding, provisioning, and service management across multiple database control planes. Through stakeholder interviews, journey mapping, service blueprinting, workflow analysis, persona development, and usability testing, I identified recurring patterns that extended beyond individual products. Rather than isolated usability issues, the research revealed systemic challenges—including fragmented workflows, inconsistent terminology, unclear ownership, and limited visibility into provisioning status. These insights became the foundation for a scalable experience strategy that could be applied consistently across the broader platform.
+          <Typography variant="body1" component="p" className="text-foreground/90 mb-8">
+            Although engineers performed many of the same tasks across products, each control plane had different navigation, terminology, provisioning workflows, documentation, and operational experiences.
           </Typography>
         </div>
 
-        <Typography variant="h3" component="h3" className="text-foreground/90 pb-3">
-          Research Methods
-        </Typography>
-        <div className="max-w-4xl">
-          <div className="flex flex-wrap gap-2.5">
-            {SCP_RESEARCH_METHODS.map((item) => (
-              <span key={item} className="px-3 py-1.5 rounded-full border border-border bg-secondary/25 text-sm sm:text-[15px]">
-                {item}
-              </span>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      <ScpArtifactPlaceholders
-        title="Research Artifacts"
-        artifacts={researchArtifacts}
-        onImageClick={onImageClick}
-        showArtifactsLabel={false}
-      />
-
-      <motion.section className="bg-background border-t border-border py-12 sm:py-14" {...revealProps}>
-        <ScpSectionTitle title="Primary Personas" />
-        <div className="grid grid-cols-4 lg:grid-cols-2 gap-4">
-          {SCP_PERSONAS.map((persona) => {
-            const personaArtifact =
-              persona.name === "Application Owner" ? appOwnerArtifact : engineerArtifact;
-
-            return (
-            <div key={persona.name} className="col-span-4 lg:col-span-1 rounded-2xl border border-border bg-secondary/25 p-6">
-              <Typography variant="h4" component="h4" className={`${CASE_STUDY_HEADING_CLASSES.h4} mb-2`}>
-                {persona.name}
-              </Typography>
-              <Typography
-                variant="bodySmall"
-                component="p"
-                className="text-foreground/80"
-                sx={{ marginBottom: "16px" }}
-              >
-                {persona.description}
-              </Typography>
-              <div className="grid grid-cols-4 sm:grid-cols-4 gap-4">
-                <div className="col-span-4 sm:col-span-2">
-                  <div className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Goals</div>
-                  <div className="space-y-1.5 text-sm text-foreground/85">
-                    {persona.goals.map((goal) => (
-                      <div key={goal}>• {goal}</div>
-                    ))}
-                  </div>
-                </div>
-                <div className="col-span-4 sm:col-span-2">
-                  <div className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Pain Points</div>
-                  <div className="space-y-1.5 text-sm text-foreground/85">
-                    {persona.painPoints.map((pain) => (
-                      <div key={pain}>• {pain}</div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {personaArtifact && (
-                <button
-                  type="button"
-                  onClick={() => onImageClick(personaArtifact.src, personaArtifact.caption)}
-                  aria-label={`Open image: ${personaArtifact.caption}`}
-                  className="mt-5 w-full rounded-xl border border-border bg-background/60 overflow-hidden text-left transition-all hover:-translate-y-0.5 hover:border-foreground/20"
-                >
-                  <div className="aspect-[16/10] bg-background">
-                    <img
-                      src={personaArtifact.src}
-                      alt={personaArtifact.caption}
-                      loading="lazy"
-                      decoding="async"
-                      fetchPriority="low"
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                  <div className="px-4 py-3 text-sm text-foreground/85">{personaArtifact.caption}</div>
-                </button>
-              )}
-            </div>
-            );
-          })}
-        </div>
-      </motion.section>
-
-      <motion.section className="bg-background border-t border-border py-12 sm:py-14" {...revealProps}>
-        <ScpSectionTitle title="Defining the Experience Strategy" />
-        <div className="max-w-4xl mb-8">
-          <Typography variant="body1" component="p" className="text-foreground/90">
-            Rather than redesigning individual interfaces, I focused on defining a scalable experience strategy that could be applied consistently across every database product. Guided by research insights, I established a set of experience principles that standardized navigation, workflows, terminology, and interaction patterns—creating a flexible foundation that improved consistency while supporting future platform growth.
-          </Typography>
-        </div>
-        <div className="grid grid-cols-4 md:grid-cols-4 xl:grid-cols-6 gap-4 mb-8">
-          {SCP_DESIGN_PRINCIPLES.map((principle) => (
-            <div key={principle.title} className="col-span-4 md:col-span-2 xl:col-span-2 rounded-xl border border-border bg-secondary/25 p-5">
-              <Typography variant="h4" component="h4" className={`${CASE_STUDY_HEADING_CLASSES.h4} mb-2`}>{principle.title}</Typography>
-              <Typography variant="bodySmall" component="p" className="text-foreground/80">{principle.body}</Typography>
+        <div className="grid grid-cols-4 lg:grid-cols-6 gap-4 mb-8">
+          {[
+            {
+              title: "Customer Friction",
+              body: "Engineers had to relearn workflows across database products and frequently relied on support.",
+            },
+            {
+              title: "Duplicated Investment",
+              body: "Teams independently designed and engineered similar capabilities, increasing development and maintenance costs.",
+            },
+            {
+              title: "Limited Scalability",
+              body: "Fragmented experiences made it difficult to create a unified experience that could eventually integrate into the broader Integrated Engineers Portal.",
+            },
+          ].map((item) => (
+            <div key={item.title} className="col-span-4 lg:col-span-2 rounded-xl border border-border bg-secondary/25 p-5">
+              <Typography variant="eyebrow" component="p" className="text-muted-foreground mb-2">{item.title}</Typography>
+              <Typography variant="bodySmall" component="p" className="text-foreground/85">{item.body}</Typography>
             </div>
           ))}
         </div>
 
+        <div className="rounded-xl border border-border bg-secondary/20 p-6 mb-10">
+          <Typography variant="bodyLarge" component="p" className="text-foreground/90">
+            We needed to launch the first shared control plane while establishing an experience framework that could scale across the database ecosystem.
+          </Typography>
+        </div>
+
+        <Typography variant="h3" component="h3" className="mb-4 text-foreground">Strategic objectives</Typography>
+        <div className="grid grid-cols-4 lg:grid-cols-6 gap-4 mb-8">
+          {strategicObjectives.map((objective) => (
+            <div key={objective.title} className="col-span-4 lg:col-span-2 rounded-xl border border-border bg-background p-5">
+              <Typography variant="h4" component="h4" className="mb-2 text-foreground">{objective.title}</Typography>
+              <Typography variant="bodySmall" component="p" className="text-foreground/80">{objective.body}</Typography>
+            </div>
+          ))}
+        </div>
+
+        {strategyArtifact && (
+          <div className="mb-10">
+            <Typography variant="eyebrow" component="p" className="text-muted-foreground mb-2">Artifact</Typography>
+            <Typography variant="h4" component="h4" className="mb-3">Context & Strategic Objectives</Typography>
+            <DSImageDialog
+              src={strategyArtifact.src}
+              caption="Context & Strategic Objectives"
+              onImageClick={onImageClick}
+              variant="plain"
+              className="w-full border border-border"
+              imageClassName="w-full h-auto object-contain"
+            />
+            <Typography variant="bodySmall" component="p" className="mt-3 text-foreground/75">
+              10+ independent control planes → shared UX framework → Graph Shared Control Plane → future Relational and Non-relational experiences → Integrated Engineers Portal.
+            </Typography>
+          </div>
+        )}
+
+        <Typography variant="h3" component="h3" className="mb-4 text-foreground">Research confirmed the problem.</Typography>
+        <div className="max-w-4xl mb-6">
+          <Typography variant="body1" component="p" className="text-foreground/90 mb-4">
+            The initiative began with an audit of existing control planes and expanded through multiple rounds of research to understand the customer and operational challenges behind the fragmented experience.
+          </Typography>
+        </div>
+
+        <div className="grid grid-cols-4 lg:grid-cols-6 gap-4 mb-8">
+          {[
+            "Round 1 — Stakeholder interviews and UX audits across 9+ control planes",
+            "Round 2 — 13 proof-of-concept usability tests and feedback sessions",
+            "Round 3 — 14 qualitative customer interviews",
+          ].map((round) => (
+            <div key={round} className="col-span-4 lg:col-span-2 rounded-xl border border-border bg-background p-4">
+              <Typography variant="bodySmall" component="p" className="text-foreground/85">{round}</Typography>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-4 lg:grid-cols-4 gap-px bg-background mb-8">
+          {researchMetrics.map((metric) => (
+            <div key={metric.label} className="col-span-2 lg:col-span-1 bg-background p-5 sm:p-8 border border-border">
+              <Typography variant="kpiValue" component="div" className="mb-2" style={{ color: accent }}>
+                {metric.value}
+              </Typography>
+              <Typography variant="bodySmall" component="p" className="text-muted-foreground">{metric.label}</Typography>
+            </div>
+          ))}
+        </div>
+
+        <Typography variant="body1" component="p" className="text-foreground/90 mb-8 max-w-4xl">
+          These findings shifted the problem from modernizing individual interfaces to creating a platform experience that enabled engineers to operate more independently.
+        </Typography>
+
+        {discoveryArtifact && (
+          <div className="mb-10">
+            <Typography variant="eyebrow" component="p" className="text-muted-foreground mb-2">Artifact</Typography>
+            <Typography variant="h4" component="h4" className="mb-3">Discovery Research</Typography>
+            <DSImageDialog
+              src={discoveryArtifact.src}
+              caption="Discovery Research"
+              onImageClick={onImageClick}
+              variant="plain"
+              className="w-full border border-border"
+              imageClassName="w-full h-auto object-contain"
+            />
+          </div>
+        )}
+
+        <Typography variant="h3" component="h3" className="mb-4 text-foreground">Fragmentation created inconsistent mental models.</Typography>
+        <Typography variant="body1" component="p" className="text-foreground/90 mb-4 max-w-4xl">
+          Existing products used different navigation structures, terminology, information architectures, and interaction patterns for similar customer tasks.
+        </Typography>
+        <Typography variant="body1" component="p" className="text-foreground/90 mb-8 max-w-4xl">
+          Engineers moving between database technologies had to repeatedly learn where capabilities lived and how each product worked.
+        </Typography>
+
+        {sharedNavigationArtifact && (
+          <div>
+            <Typography variant="eyebrow" component="p" className="text-muted-foreground mb-2">Artifact</Typography>
+            <Typography variant="h4" component="h4" className="mb-3">Navigation Before Modernization</Typography>
+            <DSImageDialog
+              src={sharedNavigationArtifact}
+              caption="Navigation Before Modernization"
+              onImageClick={onImageClick}
+              variant="plain"
+              className="w-full border border-border"
+              imageClassName="w-full h-auto object-contain"
+            />
+          </div>
+        )}
       </motion.section>
 
-      <ScpArtifactPlaceholders
-        title="Strategy Artifacts"
-        artifacts={study.design.artifacts}
-        onImageClick={onImageClick}
-        showArtifactsLabel={false}
-      />
+      <motion.section className="bg-background py-12 sm:py-14" {...revealProps}>
+        <ScpSectionTitle title="Task" />
+        <Typography variant="h3" component="h3" className="mb-4 text-foreground">
+          Define what should be shared—and what should remain product-specific.
+        </Typography>
+        <Typography variant="body1" component="p" className="text-foreground/90 mb-5 max-w-4xl">
+          As Lead Product Designer, I was responsible for translating fragmented research and product experiences into a scalable UX strategy.
+        </Typography>
+        <div className="rounded-xl border border-border bg-secondary/20 p-6 mb-6 max-w-4xl">
+          <Typography variant="h4" component="p" className="text-foreground/90">
+            “What should be standardized across database products, and what needed to remain technology-specific?”
+          </Typography>
+        </div>
+        <Typography variant="body1" component="p" className="text-foreground/90 mb-6 max-w-4xl">
+          I partnered with Product Management, Engineering, Architecture, Operations, UX, and technology leadership to establish the experience strategy for the first shared control plane and create reusable patterns that could scale to future Relational and Non-relational experiences.
+        </Typography>
 
-      <ScpArtifactPlaceholders
-        title="Design Exploration & Validation"
-        artifacts={study.deliver.artifacts}
-        onImageClick={onImageClick}
-        showArtifactsLabel={false}
-        intro={[
-          "With the platform strategy established, I translated research insights into a series of design concepts focused on the onboarding and provisioning experience. Through iterative sketching, wireframing, and high-fidelity prototyping, I explored ways to simplify complex workflows, standardize interactions, and improve visibility throughout the customer journey. I conducted usability testing with enterprise users to evaluate key workflows, identify usability issues, and validate design decisions before implementation. Insights from testing, combined with ongoing collaboration with product managers, engineers, and architects, informed multiple iterations, ensuring the final experience was intuitive, scalable, and aligned with both customer needs and technical constraints.",
-        ]}
-      />
+        <Typography variant="h3" component="h3" className="mb-3 text-foreground">Responsibilities</Typography>
+        <div className="flex flex-wrap gap-2.5 mb-8">
+          {SCP_RESPONSIBILITIES.map((item) => (
+            <span
+              key={item}
+              className="px-3 py-1.5 rounded-full border border-border bg-secondary/25 text-sm sm:text-[15px] text-foreground/90"
+            >
+              {item}
+            </span>
+          ))}
+        </div>
 
-      {study.deliverDirectImages && study.deliverDirectImages.length > 0 && (
-        <motion.section className="bg-background border-t border-border py-12 sm:py-14" {...revealProps}>
-          <div className="grid grid-cols-4 gap-4">
-            {study.deliverDirectImages.map((imageSrc, index) => (
-              <DSStaticImageView
-                key={`${imageSrc}-${index}`}
-                src={imageSrc}
-                caption={`Database ${index + 1}`}
-                onImageClick={onImageClick}
-                className="col-span-2 border-[#D9D9D9]"
-              />
+        {researchSynthesisArtifact && (
+          <div>
+            <Typography variant="eyebrow" component="p" className="text-muted-foreground mb-2">Artifact</Typography>
+            <Typography variant="h4" component="h4" className="mb-3">Platform Model / My Scope</Typography>
+            <DSImageDialog
+              src={researchSynthesisArtifact.src}
+              caption="Platform Model / My Scope"
+              onImageClick={onImageClick}
+              variant="plain"
+              className="w-full border border-border"
+              imageClassName="w-full h-auto object-contain"
+            />
+          </div>
+        )}
+      </motion.section>
+
+      <motion.section className="bg-background py-12 sm:py-14" {...revealProps}>
+        <ScpSectionTitle title="Action" />
+        <Typography variant="h3" component="h3" className="mb-4 text-foreground">
+          I shifted the organization from designing individual products to designing a shared platform.
+        </Typography>
+        <Typography variant="body1" component="p" className="text-foreground/90 mb-10 max-w-4xl">
+          Rather than redesigning each control plane independently, I focused on identifying the customer needs, workflows, and interaction patterns that could be standardized across the ecosystem.
+        </Typography>
+
+        <Typography variant="h3" component="h3" className="mb-4">01 — Shared customer journey</Typography>
+        <Typography variant="h4" component="h4" className="mb-3">I identified the shared customer journey.</Typography>
+        <div className="grid grid-cols-4 lg:grid-cols-2 gap-4 mb-6">
+          {SCP_PERSONAS.map((persona) => (
+            <div key={persona.name} className="col-span-4 lg:col-span-1 rounded-xl border border-border bg-secondary/25 p-5">
+              <Typography variant="h4" component="h4" className="mb-2">{persona.name}</Typography>
+              <Typography variant="bodySmall" component="p" className="text-foreground/85">{persona.description}</Typography>
+            </div>
+          ))}
+        </div>
+
+        <div className="rounded-xl border border-border bg-background p-5 mb-6">
+          <div className="flex flex-wrap items-center gap-2.5">
+            {actionJourneySteps.map((step, index) => (
+              <div key={step} className="flex items-center gap-2.5">
+                <span className="px-3 py-1.5 rounded-full border border-border bg-secondary/20 text-sm">{step}</span>
+                {index < actionJourneySteps.length - 1 && <ArrowRight size={14} className="text-muted-foreground" />}
+              </div>
             ))}
           </div>
-        </motion.section>
-      )}
+        </div>
 
-      {study.deliverFinalImage && (
-        <motion.section className="bg-background border-t border-border py-12 sm:py-14" {...revealProps}>
+        <Typography variant="body1" component="p" className="text-foreground/90 mb-6 max-w-4xl">
+          The journey revealed that the greatest friction occurred when customers moved between disconnected systems, encountered unclear ownership, or lacked visibility into what needed to happen next.
+        </Typography>
+
+        <div className="grid grid-cols-4 lg:grid-cols-2 gap-4 mb-10">
+          {appOwnerArtifact && (
+            <div className="col-span-4 lg:col-span-1">
+              <Typography variant="eyebrow" component="p" className="text-muted-foreground mb-2">Artifact</Typography>
+              <Typography variant="h4" component="h4" className="mb-3">Primary Personas</Typography>
+              <DSImageDialog
+                src={appOwnerArtifact.src}
+                caption="Primary Personas"
+                onImageClick={onImageClick}
+                variant="plain"
+                className="w-full border border-border"
+                imageClassName="w-full h-auto object-contain"
+              />
+            </div>
+          )}
+          {journeyMapArtifact && (
+            <div className="col-span-4 lg:col-span-1">
+              <Typography variant="eyebrow" component="p" className="text-muted-foreground mb-2">Artifact</Typography>
+              <Typography variant="h4" component="h4" className="mb-3">Customer Journey Map</Typography>
+              <DSImageDialog
+                src={journeyMapArtifact.src}
+                caption="Customer Journey Map"
+                onImageClick={onImageClick}
+                variant="plain"
+                className="w-full border border-border"
+                imageClassName="w-full h-auto object-contain"
+              />
+            </div>
+          )}
+        </div>
+
+        <Typography variant="h3" component="h3" className="mb-4">02 — Shared experience strategy</Typography>
+        <Typography variant="h4" component="h4" className="mb-3">I turned research into a shared experience strategy.</Typography>
+        <Typography variant="body1" component="p" className="text-foreground/90 mb-4">Research revealed recurring customer needs:</Typography>
+        <div className="flex flex-wrap gap-2.5 mb-6">
+          {["Consistency", "Self-service", "Operational visibility", "Cost transparency", "Contextual support"].map((item) => (
+            <span key={item} className="px-3 py-1.5 rounded-full border border-border bg-secondary/25 text-sm sm:text-[15px]">
+              {item}
+            </span>
+          ))}
+        </div>
+        <div className="grid grid-cols-4 xl:grid-cols-6 gap-4 mb-6">
+          {SCP_DESIGN_PRINCIPLES.map((principle) => (
+            <div key={principle.title} className="col-span-4 xl:col-span-2 rounded-xl border border-border bg-background p-5">
+              <Typography variant="h4" component="h4" className="mb-2">{principle.title.toUpperCase()}</Typography>
+              <Typography variant="bodySmall" component="p" className="text-foreground/80">{principle.body}</Typography>
+            </div>
+          ))}
+        </div>
+        {principlesArtifact && (
+          <div className="mb-10">
+            <Typography variant="eyebrow" component="p" className="text-muted-foreground mb-2">Artifact</Typography>
+            <Typography variant="h4" component="h4" className="mb-3">Research Synthesis</Typography>
+            <DSImageDialog
+              src={principlesArtifact.src}
+              caption="Research Synthesis"
+              onImageClick={onImageClick}
+              variant="plain"
+              className="w-full border border-border"
+              imageClassName="w-full h-auto object-contain"
+            />
+            <Typography variant="bodySmall" component="p" className="mt-3 text-foreground/75">
+              I synthesized findings across products to separate technology-specific requirements from customer needs that could be standardized.
+            </Typography>
+          </div>
+        )}
+
+        <Typography variant="h3" component="h3" className="mb-4">03 — Information architecture</Typography>
+        <Typography variant="h4" component="h4" className="mb-3">I created a shared information architecture.</Typography>
+        <Typography variant="body1" component="p" className="text-foreground/90 mb-4 max-w-4xl">
+          Database products organized similar capabilities differently, forcing engineers to develop a new mental model for each technology.
+        </Typography>
+        <Typography variant="body1" component="p" className="text-foreground/90 mb-6 max-w-4xl">
+          I established a common architecture organized around customer tasks: My Databases, Database Services, Database Pricing, Subscriptions, Create Database Service, and Preferences.
+        </Typography>
+
+        <div className="grid grid-cols-4 lg:grid-cols-2 gap-4 mb-10">
+          {sharedNavigationArtifact && (
+            <div className="col-span-4 lg:col-span-1">
+              <Typography variant="eyebrow" component="p" className="text-muted-foreground mb-2">Before</Typography>
+              <Typography variant="h4" component="h4" className="mb-3">Legacy Navigation</Typography>
+              <DSImageDialog
+                src={sharedNavigationArtifact}
+                caption="Legacy Navigation"
+                onImageClick={onImageClick}
+                variant="plain"
+                className="w-full border border-border"
+                imageClassName="w-full h-auto object-contain"
+              />
+            </div>
+          )}
+          {infoArchitectureArtifact && (
+            <div className="col-span-4 lg:col-span-1">
+              <Typography variant="eyebrow" component="p" className="text-muted-foreground mb-2">After</Typography>
+              <Typography variant="h4" component="h4" className="mb-3">Shared Information Architecture</Typography>
+              <DSImageDialog
+                src={infoArchitectureArtifact.src}
+                caption="Shared Information Architecture"
+                onImageClick={onImageClick}
+                variant="plain"
+                className="w-full border border-border"
+                imageClassName="w-full h-auto object-contain"
+              />
+            </div>
+          )}
+        </div>
+
+        <Typography variant="h3" component="h3" className="mb-4">04 — Reusable platform patterns</Typography>
+        <Typography variant="h4" component="h4" className="mb-3">I established reusable patterns for the next shared control planes.</Typography>
+        <Typography variant="body1" component="p" className="text-foreground/90 mb-4 max-w-4xl">
+          Using the Integrated Engineers Portal design system, I established shared experience patterns that could be reused beyond the initial implementation.
+        </Typography>
+        <div className="flex flex-wrap gap-2.5 mb-6">
+          {[
+            "Navigation and information architecture",
+            "Component styling",
+            "Service cards",
+            "Service-detail layouts",
+            "Dashboard patterns",
+            "Branding",
+            "Operational states",
+          ].map((item) => (
+            <span key={item} className="px-3 py-1.5 rounded-full border border-border bg-secondary/25 text-sm sm:text-[15px]">
+              {item}
+            </span>
+          ))}
+        </div>
+
+        {graphLaunchArtifact && (
+          <div className="mb-10">
+            <Typography variant="eyebrow" component="p" className="text-muted-foreground mb-2">Artifact</Typography>
+            <Typography variant="h4" component="h4" className="mb-3">Graph + Relational Shared Navigation</Typography>
+            <DSImageDialog
+              src={graphLaunchArtifact}
+              caption="Graph + Relational Shared Navigation"
+              onImageClick={onImageClick}
+              variant="plain"
+              className="w-full border border-border"
+              imageClassName="w-full h-auto object-contain"
+            />
+            <Typography variant="bodySmall" component="p" className="mt-3 text-foreground/75">
+              The Graph Shared Control Plane launched first, while the same navigation and interaction standards were designed to extend to future shared control planes.
+            </Typography>
+          </div>
+        )}
+
+        <Typography variant="h3" component="h3" className="mb-4">05 — Dashboard redesign</Typography>
+        <Typography variant="h4" component="h4" className="mb-3">I redesigned dashboards around customer decisions.</Typography>
+        <Typography variant="body1" component="p" className="text-foreground/90 mb-4 max-w-4xl">
+          Existing dashboards surfaced different information depending on the database technology and often prioritized available system data over what engineers actually needed to know.
+        </Typography>
+        <Typography variant="body1" component="p" className="text-foreground/90 mb-6 max-w-4xl">
+          Research showed customers needed faster answers to: What needs my attention? Are my services healthy? What am I spending? Where can I get help?
+        </Typography>
+
+        <div className="grid grid-cols-4 lg:grid-cols-2 gap-4 mb-6">
+          {sharedNavigationArtifact && (
+            <div className="col-span-4 lg:col-span-1">
+              <Typography variant="eyebrow" component="p" className="text-muted-foreground mb-2">Before</Typography>
+              <Typography variant="h4" component="h4" className="mb-3">Legacy MySQL + Cassandra dashboards</Typography>
+              <DSImageDialog
+                src={sharedNavigationArtifact}
+                caption="Legacy dashboards"
+                onImageClick={onImageClick}
+                variant="plain"
+                className="w-full border border-border"
+                imageClassName="w-full h-auto object-contain"
+              />
+            </div>
+          )}
+          {dashboardAfterArtifact && (
+            <div className="col-span-4 lg:col-span-1">
+              <Typography variant="eyebrow" component="p" className="text-muted-foreground mb-2">After</Typography>
+              <Typography variant="h4" component="h4" className="mb-3">Final My Databases dashboard</Typography>
+              <DSImageDialog
+                src={dashboardAfterArtifact}
+                caption="Final My Databases dashboard"
+                onImageClick={onImageClick}
+                variant="plain"
+                className="w-full border border-border"
+                imageClassName="w-full h-auto object-contain"
+              />
+            </div>
+          )}
+        </div>
+        <div className="flex flex-wrap gap-2.5 mb-10">
+          {["Recent Services", "Performance & Health", "Applications", "Pricing", "Product Knowledge Base"].map((item) => (
+            <span key={item} className="px-3 py-1.5 rounded-full border border-border bg-secondary/25 text-sm sm:text-[15px]">
+              {item}
+            </span>
+          ))}
+        </div>
+
+        <Typography variant="h3" component="h3" className="mb-4">06 — Provisioning workflow</Typography>
+        <Typography variant="h4" component="h4" className="mb-3">I applied the strategy to a complex provisioning workflow.</Typography>
+        <Typography variant="body1" component="p" className="text-foreground/90 mb-6 max-w-4xl">
+          I used Create Database Service as a representative workflow to demonstrate how the shared framework could support technically complex database experiences.
+        </Typography>
+        <div className="flex flex-wrap gap-2.5 mb-6">
+          {[
+            "Simplifying configuration",
+            "Reducing unnecessary complexity",
+            "Providing contextual guidance",
+            "Surfacing dependencies",
+            "Improving provisioning-status visibility",
+            "Creating reusable patterns for additional database products",
+          ].map((item) => (
+            <span key={item} className="px-3 py-1.5 rounded-full border border-border bg-secondary/25 text-sm sm:text-[15px]">
+              {item}
+            </span>
+          ))}
+        </div>
+
+        {userFlowArtifact && (
+          <div className="mb-8">
+            <Typography variant="eyebrow" component="p" className="text-muted-foreground mb-2">Artifact</Typography>
+            <Typography variant="h4" component="h4" className="mb-3">Create Database Service User Flow</Typography>
+            <DSImageDialog
+              src={userFlowArtifact.src}
+              caption="Create Database Service User Flow"
+              onImageClick={onImageClick}
+              variant="plain"
+              className="w-full border border-border"
+              imageClassName="w-full h-auto object-contain"
+            />
+          </div>
+        )}
+
+        <Typography variant="h4" component="h4" className="mb-3">From flow to interface.</Typography>
+        <Typography variant="body1" component="p" className="text-foreground/90 mb-6 max-w-4xl">
+          I translated the workflow into wireframes and high-fidelity prototypes, iterating with Product, Engineering, Architecture, and customers. Usability testing helped identify friction and validate design decisions before implementation.
+        </Typography>
+
+        <div className="grid grid-cols-4 lg:grid-cols-2 gap-4 mb-10">
+          {wireframeArtifact && (
+            <div className="col-span-4 lg:col-span-1">
+              <Typography variant="eyebrow" component="p" className="text-muted-foreground mb-2">Artifact</Typography>
+              <Typography variant="h4" component="h4" className="mb-3">Provisioning Wireframes</Typography>
+              <DSImageDialog
+                src={wireframeArtifact.src}
+                caption="Provisioning Wireframes"
+                onImageClick={onImageClick}
+                variant="plain"
+                className="w-full border border-border"
+                imageClassName="w-full h-auto object-contain"
+              />
+            </div>
+          )}
+          {relationalFutureArtifact && (
+            <div className="col-span-4 lg:col-span-1">
+              <Typography variant="eyebrow" component="p" className="text-muted-foreground mb-2">Artifact</Typography>
+              <Typography variant="h4" component="h4" className="mb-3">Relational Shared Control Plane Future-State Designs</Typography>
+              <DSImageDialog
+                src={relationalFutureArtifact}
+                caption="Relational Shared Control Plane Future-State Designs"
+                onImageClick={onImageClick}
+                variant="plain"
+                className="w-full border border-border"
+                imageClassName="w-full h-auto object-contain"
+              />
+              <Typography variant="bodySmall" component="p" className="mt-3 text-foreground/75">
+                These Relational Shared Control Plane designs applied the reusable framework established by the program and represented the intended future-state experience.
+              </Typography>
+            </div>
+          )}
+        </div>
+
+        <Typography variant="h3" component="h3" className="mb-4">Design validation</Typography>
+        <Typography variant="body1" component="p" className="text-foreground/90 max-w-4xl">
+          Validation focused on discoverability, navigation, onboarding, provisioning, and service management. Findings were used to refine patterns before implementation and confirm that the shared framework reduced friction across critical workflows.
+        </Typography>
+      </motion.section>
+
+      <motion.section className="bg-background py-12 sm:py-14" {...revealProps}>
+        <ScpSectionTitle title="Result" />
+        <Typography variant="h3" component="h3" className="mb-4 text-foreground">
+          We launched the first shared control plane and established the foundation for the rest.
+        </Typography>
+        <Typography variant="body1" component="p" className="text-foreground/90 mb-8 max-w-4xl">
+          The work resulted in the launch of the Graph Shared Control Plane, consolidating previously fragmented graph database experiences into a more consistent management experience.
+        </Typography>
+        <Typography variant="body1" component="p" className="text-foreground/90 mb-10 max-w-4xl">
+          At the same time, we created reusable navigation, information architecture, interaction patterns, and UI components intended to accelerate development of future Relational and Non-relational Shared Control Planes and support eventual integration into the Integrated Engineers Portal.
+        </Typography>
+
+        <Typography variant="h3" component="h3" className="mb-4">Customer impact</Typography>
+        <div className="grid grid-cols-4 lg:grid-cols-4 gap-px bg-background mb-8">
+          {study.metrics.map((m) => (
+            <motion.div key={m.label} className="col-span-2 lg:col-span-1 bg-background p-5 sm:p-8 border border-border" {...revealProps}>
+              <Typography variant="kpiValue" component="div" className="mb-2" style={{ color: accent }}>
+                {m.value}
+              </Typography>
+              <Typography variant="bodySmall" component="p" className="text-muted-foreground">{m.label}</Typography>
+            </motion.div>
+          ))}
+        </div>
+
+        {dashboardAfterArtifact && (
+          <div className="mb-10">
+            <Typography variant="eyebrow" component="p" className="text-muted-foreground mb-2">Artifact</Typography>
+            <Typography variant="h4" component="h4" className="mb-3">Usability Validation / Results</Typography>
+            <DSImageDialog
+              src={dashboardAfterArtifact}
+              caption="Usability Validation / Results"
+              onImageClick={onImageClick}
+              variant="plain"
+              className="w-full border border-border"
+              imageClassName="w-full h-auto object-contain"
+            />
+          </div>
+        )}
+
+        <Typography variant="h3" component="h3" className="mb-3">Launched the Graph Shared Control Plane</Typography>
+        <Typography variant="body1" component="p" className="text-foreground/90 mb-6 max-w-4xl">
+          The Graph Shared Control Plane became the first production implementation of the shared-control-plane strategy.
+        </Typography>
+
+        {graphLaunchArtifact && (
+          <div className="mb-10">
+            <Typography variant="eyebrow" component="p" className="text-muted-foreground mb-2">Artifact</Typography>
+            <Typography variant="h4" component="h4" className="mb-3">Launched Graph Shared Control Plane</Typography>
+            <DSImageDialog
+              src={graphLaunchArtifact}
+              caption="Launched Graph Shared Control Plane"
+              onImageClick={onImageClick}
+              variant="plain"
+              className="w-full border border-border"
+              imageClassName="w-full h-auto object-contain"
+            />
+          </div>
+        )}
+
+        <Typography variant="h3" component="h3" className="mb-3">Established reusable patterns for future control planes</Typography>
+        <div className="flex flex-wrap gap-2.5 mb-8">
+          {[
+            "Navigation and information architecture",
+            "Dashboard structures",
+            "Service cards and service-detail layouts",
+            "Onboarding and provisioning",
+            "Operational status and health",
+            "Contextual documentation and support",
+            "Shared design-system components",
+          ].map((item) => (
+            <span key={item} className="px-3 py-1.5 rounded-full border border-border bg-secondary/25 text-sm sm:text-[15px]">
+              {item}
+            </span>
+          ))}
+        </div>
+
+        <Typography variant="h3" component="h3" className="mb-3">Extended the framework into future-state Relational designs</Typography>
+        <Typography variant="body1" component="p" className="text-foreground/90 mb-6 max-w-4xl">
+          Using the shared framework, I designed future-state experiences for the Relational Shared Control Plane, including dashboard, service discovery, service detail, pricing visibility, and provisioning.
+        </Typography>
+
+        {sideBySideArtifact && (
+          <div className="mb-10">
+            <Typography variant="eyebrow" component="p" className="text-muted-foreground mb-2">Artifact</Typography>
+            <Typography variant="h4" component="h4" className="mb-3">Graph + Relational Experiences Side-by-Side</Typography>
+            <DSImageDialog
+              src={sideBySideArtifact}
+              caption="Graph + Relational Experiences Side-by-Side"
+              onImageClick={onImageClick}
+              variant="plain"
+              className="w-full border border-border"
+              imageClassName="w-full h-auto object-contain"
+            />
+            <Typography variant="bodySmall" component="p" className="mt-3 text-foreground/75">
+              The same experience framework could support different database technologies without forcing every product into an identical interface.
+            </Typography>
+          </div>
+        )}
+
+        <Typography variant="h3" component="h3" className="mb-4">Platform transformation</Typography>
+        <div className="rounded-xl border border-border bg-secondary/20 p-6 mb-8">
+          <div className="space-y-2">
+            <Typography variant="h4" component="p">10+ Independent Control Planes</Typography>
+            <Typography variant="bodySmall" component="p" className="text-muted-foreground">↓</Typography>
+            <Typography variant="h4" component="p">Shared UX Framework</Typography>
+            <Typography variant="bodySmall" component="p" className="text-muted-foreground">↓</Typography>
+            <Typography variant="h4" component="p">Graph Shared Control Plane — Launched</Typography>
+            <Typography variant="bodySmall" component="p" className="text-muted-foreground">↓</Typography>
+            <Typography variant="h4" component="p">Relational + Non-relational Shared Control Planes</Typography>
+            <Typography variant="bodySmall" component="p" className="text-muted-foreground">Reusable patterns / future-state designs</Typography>
+            <Typography variant="bodySmall" component="p" className="text-muted-foreground">↓</Typography>
+            <Typography variant="h4" component="p">Integrated Engineers Portal</Typography>
+            <Typography variant="bodySmall" component="p" className="text-muted-foreground">Long-term platform vision</Typography>
+          </div>
+        </div>
+
+        {transformationArtifact && (
+          <div className="mb-8">
+            <Typography variant="eyebrow" component="p" className="text-muted-foreground mb-2">Artifact</Typography>
+            <Typography variant="h4" component="h4" className="mb-3">Final Platform Transformation</Typography>
+            <DSImageDialog
+              src={transformationArtifact}
+              caption="Final Platform Transformation"
+              onImageClick={onImageClick}
+              variant="plain"
+              className="w-full border border-border"
+              imageClassName="w-full h-auto object-contain"
+            />
+          </div>
+        )}
+
+        <div className="rounded-xl border border-border bg-secondary/20 p-6">
+          <Typography variant="blockQuote" component="p" className="text-foreground">
+            I helped move the organization from independently designed database experiences toward a shared platform model—launching the Graph Shared Control Plane while establishing reusable UX patterns for the control planes that would follow.
+          </Typography>
+        </div>
+      </motion.section>
+
+      {engineerArtifact && (
+        <motion.section className="bg-background py-4" {...revealProps}>
           <DSImageDialog
-            src={study.deliverFinalImage}
-            caption="Databases final image"
+            src={engineerArtifact.src}
+            caption="Supplemental Persona Artifact"
             onImageClick={onImageClick}
             variant="plain"
-            imageClassName="w-full h-auto"
+            className="w-full border border-border"
+            imageClassName="w-full h-auto object-contain"
           />
         </motion.section>
       )}
-
-      <ScpOutcomes
-        accent={accent}
-        summary={study.outcome.summary}
-        metrics={study.metrics}
-      />
     </>
   );
 }
@@ -687,7 +962,7 @@ function ScpModernLayout({
 function ScpInsightBanner({ text, accent }: { text: string; accent: string }) {
   return (
     <motion.section
-      className="bg-background border-t border-border py-10 sm:py-14"
+      className="bg-background py-10 sm:py-14"
       {...revealProps}
     >
       <div className="rounded-2xl border border-border bg-gradient-to-br from-secondary/70 to-background px-6 sm:px-10 py-8 sm:py-10">
@@ -707,7 +982,7 @@ function ScpInsightBanner({ text, accent }: { text: string; accent: string }) {
 
 function ScpStrategyFlow({ accent }: { accent: string }) {
   return (
-    <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
+    <motion.section className="bg-background py-12 sm:py-16" {...revealProps}>
       <div className="mb-8">
         <Typography
           variant="h3"
@@ -767,7 +1042,7 @@ function ScpIconCardRow({
   items: { title: string; body: string; icon: LucideIcon }[];
 }) {
   return (
-    <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
+    <motion.section className="bg-background py-12 sm:py-16" {...revealProps}>
       <Typography
         variant="h3"
         component="h3"
@@ -797,7 +1072,7 @@ function ScpStrategicPriorities({ accent }: { accent: string }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
+    <motion.section className="bg-background py-12 sm:py-16" {...revealProps}>
       <Typography
         variant="h3"
         component="h3"
@@ -863,7 +1138,7 @@ function ScpStrategicPriorities({ accent }: { accent: string }) {
 
 function ScpChipSection({ title, chips, icon: Icon }: { title: string; chips: string[]; icon: LucideIcon }) {
   return (
-    <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
+    <motion.section className="bg-background py-12 sm:py-16" {...revealProps}>
       <div className="flex items-center gap-2 mb-6">
         <Icon size={16} />
         <Typography
@@ -887,7 +1162,7 @@ function ScpChipSection({ title, chips, icon: Icon }: { title: string; chips: st
 
 function ScpContributions({ accent }: { accent: string }) {
   return (
-    <motion.section className="bg-background border-t border-border py-12 sm:py-16" {...revealProps}>
+    <motion.section className="bg-background py-12 sm:py-16" {...revealProps}>
       <div className="rounded-2xl border border-border bg-gradient-to-br from-secondary/70 to-background p-6 sm:p-8">
         <div className="flex items-center gap-2 mb-6">
           <WandSparkles size={16} style={{ color: accent }} />
@@ -927,7 +1202,7 @@ function ScpOutcomes({
   ];
 
   return (
-    <motion.section id="phase-outcome" className="bg-background border-t border-border py-12 sm:py-20" {...revealProps}>
+    <motion.section id="phase-outcome" className="bg-background py-12 sm:py-20" {...revealProps}>
       <ScpSectionTitle title="Strategic Outcomes" />
 
       <Typography variant="body1" component="p" className="text-foreground/90 mb-10">{summary}</Typography>
@@ -1487,26 +1762,43 @@ export default function CaseStudyPage() {
                 </div>
               ))}
             </div>
+            {isSharedControlPlanes && (
+              <div className="mt-6">
+                <div className="text-xs text-muted-foreground tracking-widest uppercase mb-3">Responsibilities</div>
+                <div className="flex flex-wrap gap-2.5">
+                  {SCP_RESPONSIBILITIES.map((item) => (
+                    <span
+                      key={`hero-${item}`}
+                      className="px-3 py-1.5 rounded-full border border-border bg-secondary/25 text-sm sm:text-[15px] text-foreground/90"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
 
       {/* Overview */}
       <div className="px-5 sm:px-8 max-w-6xl mx-auto">
-        <motion.section className="bg-background border-t border-border pt-8 sm:pt-10 pb-12 sm:pb-14 grid grid-cols-4 lg:grid-cols-12 gap-6 sm:gap-12" {...revealProps}>
-          <div className="col-span-4 lg:col-span-3">
-            <span className="text-xs text-muted-foreground tracking-widest uppercase">
-              {usesExecutiveSummaryTitle ? "Executive Summary" : "Overview"}
-            </span>
-          </div>
-          <div className="col-span-4 lg:col-span-7">
-            {study.overview.split("\n\n").map((paragraph, i) => (
-              <Typography key={i} variant="body1" component="p" className={`text-foreground/90 ${i > 0 ? "mt-4" : ""}`}>
-                {paragraph}
-              </Typography>
-            ))}
-          </div>
-        </motion.section>
+        {!isSharedControlPlanes && (
+          <motion.section className="bg-background border-t border-border pt-8 sm:pt-10 pb-12 sm:pb-14 grid grid-cols-4 lg:grid-cols-12 gap-6 sm:gap-12" {...revealProps}>
+            <div className="col-span-4 lg:col-span-3">
+              <span className="text-xs text-muted-foreground tracking-widest uppercase">
+                {usesExecutiveSummaryTitle ? "Executive Summary" : "Overview"}
+              </span>
+            </div>
+            <div className="col-span-4 lg:col-span-7">
+              {study.overview.split("\n\n").map((paragraph, i) => (
+                <Typography key={i} variant="body1" component="p" className={`text-foreground/90 ${i > 0 ? "mt-4" : ""}`}>
+                  {paragraph}
+                </Typography>
+              ))}
+            </div>
+          </motion.section>
+        )}
 
         {isSharedControlPlanes ? (
           <ScpModernLayout
