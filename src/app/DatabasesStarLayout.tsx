@@ -110,7 +110,12 @@ export function DatabasesStarLayout({
           </Typography>
         </div>
 
-        <Typography variant="h3" component="h3" className="text-foreground mb-5 sm:mb-6">
+        <Typography
+          variant="h3"
+          component="h3"
+          className="text-foreground"
+          sx={{ mb: { xs: 4, sm: 5 } }}
+        >
           Business Problems
         </Typography>
         <div className="grid grid-cols-4 lg:grid-cols-6 gap-4">
