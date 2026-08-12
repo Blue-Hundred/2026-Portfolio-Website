@@ -41,7 +41,7 @@ const CUSTOMER_IMPACT = [
 
 function SectionTitle({ title }: { title: string }) {
   return (
-    <div className="mb-6">
+    <div className="mb-4">
       <Typography variant="h2" component="h2" className="text-foreground">
         {title}
       </Typography>
