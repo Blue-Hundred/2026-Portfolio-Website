@@ -1753,6 +1753,7 @@ export default function CaseStudyPage() {
                       fontSize: "26px",
                       lineHeight: "42px",
                       letterSpacing: "-0.02em",
+                      maxWidth: "48rem",
                     }
                   : {}),
               }}
