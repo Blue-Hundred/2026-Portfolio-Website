@@ -6,9 +6,9 @@ import { useTheme } from "./hooks/useTheme";
 const tamareLightLogo = new URL("../assets/Favicon/Tamare Light Logo.svg", import.meta.url).href;
 const tamareDarkLogo = new URL("../assets/Favicon/Tamare Dark Logo.svg", import.meta.url).href;
 
-const tamarePortrait = new URL("../assets/Attachments/Tamare Reese 2026.optimized.jpg", import.meta.url).href;
+const tamarePortrait = new URL("../assets/Attachments/Tamare Reese 2026.about.jpg", import.meta.url).href;
 
-const RESUME_PDF_URL = "/Tamare_Reese_Resume_2026_Final.pdf";
+const RESUME_PDF_URL = new URL("../assets/Attachments/Tamare Reese_Resume_2026_PNB.pdf", import.meta.url).href;
 
 const experiences = [
   {

@@ -15,7 +15,7 @@ import databasesCoverImage from "../assets/covers/Databases_Cover_4.png";
 import tamareLightLogo from "../assets/Favicon/Tamare Light Logo.svg";
 import tamareDarkLogo from "../assets/Favicon/Tamare Dark Logo.svg";
 
-const RESUME_PDF_URL = "/Tamare_Reese_Resume_2026_Final.pdf";
+const RESUME_PDF_URL = new URL("../assets/Attachments/Tamare Reese_Resume_2026_PNB.pdf", import.meta.url).href;
 
 function Portfolio() {
   const navigate = useNavigate();
