@@ -244,7 +244,7 @@ export function DatabasesStarLayout({
           {CUSTOMER_IMPACT.map((item) => (
             <div
               key={item.label}
-              className="col-span-3 sm:col-span-1 rounded-xl border border-border bg-secondary/25 p-6 sm:p-8"
+              className="col-span-3 sm:col-span-1 rounded-xl border border-border bg-secondary/25 p-6 sm:p-8 text-center"
             >
               <Typography variant="kpiValue" component="div" className="text-foreground mb-2">
                 {item.value}
