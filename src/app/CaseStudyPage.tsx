@@ -1744,7 +1744,18 @@ export default function CaseStudyPage() {
               className={`text-muted-foreground ${
                 usesScreenshotHeaderLayout ? "" : "mb-3 sm:mb-4"
               }`}
-              sx={usesScreenshotHeaderLayout ? { marginBottom: { xs: "28px", sm: "32px" } } : undefined}
+              sx={{
+                ...(usesScreenshotHeaderLayout ? { marginBottom: { xs: "28px", sm: "32px" } } : {}),
+                ...(isSharedControlPlanes
+                  ? {
+                      fontFamily: "Inter, sans-serif",
+                      fontWeight: 300,
+                      fontSize: "26px",
+                      lineHeight: "42px",
+                      letterSpacing: "-0.02em",
+                    }
+                  : {}),
+              }}
             >
               {study.subtitle}
             </Typography>
