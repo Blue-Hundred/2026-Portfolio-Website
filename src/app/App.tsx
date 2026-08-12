@@ -5,6 +5,7 @@ import { caseStudies, visibleCaseStudySlugs } from "./data/caseStudies";
 import CaseStudyPage from "./CaseStudyPage";
 import AboutPage from "./AboutPage";
 import { CustomCursor } from "./components/CustomCursor";
+import { BrandRibbon } from "./components/BrandRibbon";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { useTheme } from "./hooks/useTheme";
 import { CaseStudyPresentationPage } from "../components/case-study/CaseStudyPresentationPage";
@@ -233,6 +234,14 @@ function Portfolio() {
             </a>
           </div>
         </div>
+      </section>
+
+      <section
+        className="relative z-20 mt-10 sm:mt-14 lg:mt-20 border-y border-border/60 py-8 sm:py-10"
+        data-reveal
+        aria-hidden="true"
+      >
+        <BrandRibbon />
       </section>
 
       <section className="relative mt-[28px] sm:mt-[12px] overflow-x-hidden" data-reveal>

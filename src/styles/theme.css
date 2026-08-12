@@ -562,11 +562,36 @@
   will-change: transform, opacity;
 }
 
+@keyframes brand-ribbon-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.brand-ribbon-track {
+  animation: brand-ribbon-scroll 48s linear infinite;
+  will-change: transform;
+}
+
+.brand-ribbon:hover .brand-ribbon-track {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hamburger-load,
   .mobile-menu-shell-open,
   .mobile-menu-shell-open .mobile-menu-link {
     animation: none;
+  }
+
+  .brand-ribbon-track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
   }
 
   .mobile-menu-link {
