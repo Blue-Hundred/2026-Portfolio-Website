@@ -221,7 +221,12 @@ export function DatabasesStarLayout({
       <motion.section className="bg-background border-t border-border pt-12 sm:pt-16 pb-12 sm:pb-16" {...revealProps}>
         <SectionTitle title="Results" />
         <div className="max-w-4xl mb-10 sm:mb-12">
-          <Typography variant="body1" component="p" className="text-foreground/90">
+          <Typography
+            variant="body1"
+            component="p"
+            className="text-foreground/90"
+            sx={{ fontFamily: "Inter, sans-serif", fontWeight: 300, fontSize: "26px", lineHeight: "42px", letterSpacing: "-0.02em" }}
+          >
             We launched Cloud Relational Databases and established the foundation for future control planes,
             consolidating previously fragmented experience into a consistent and scaleable product.
           </Typography>
