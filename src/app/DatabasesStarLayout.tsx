@@ -114,7 +114,7 @@ export function DatabasesStarLayout({
           variant="h3"
           component="h3"
           className="text-foreground"
-          sx={{ mb: 1 }}
+          sx={{ mb: 1.5 }}
         >
           Business Problems
         </Typography>
