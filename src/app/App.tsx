@@ -236,7 +236,7 @@ function Portfolio() {
       </section>
 
       <section className="relative mt-[28px] sm:mt-[12px] overflow-x-hidden" data-reveal>
-        <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-10 pt-20 sm:pt-[120px] lg:pt-[160px] pb-16 sm:pb-24 grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-7 lg:gap-8">
+        <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-10 pt-4 sm:pt-6 lg:pt-8 pb-16 sm:pb-24 grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-7 lg:gap-8">
           {featuredCards.map((card) => {
             const canNavigate = availableHomepageSlugs.has(card.slug);
 
