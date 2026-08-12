@@ -134,7 +134,12 @@ export function DatabasesStarLayout({
       <motion.section className="bg-background border-t border-border pt-12 sm:pt-16 pb-12 sm:pb-16" {...revealProps}>
         <SectionTitle title="Task" />
         <div className="max-w-4xl mb-8 sm:mb-10">
-          <Typography variant="body1" component="p" className="text-foreground/90">
+          <Typography
+            variant="body1"
+            component="p"
+            className="text-foreground/90"
+            sx={{ fontFamily: "Inter, sans-serif", fontWeight: 300, fontSize: "26px", lineHeight: "42px", letterSpacing: "-0.02em" }}
+          >
             The initiative began with an audit of existing control planes and expanded through multiple rounds of
             research to understand the customer and operational challenges behind the fragmented experience.
           </Typography>
