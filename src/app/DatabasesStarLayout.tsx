@@ -181,7 +181,12 @@ export function DatabasesStarLayout({
       <motion.section className="bg-background border-t border-border pt-12 sm:pt-16 pb-12 sm:pb-16" {...revealProps}>
         <SectionTitle title="Action" />
         <div className="max-w-4xl mb-10 sm:mb-12">
-          <Typography variant="body1" component="p" className="text-foreground/90">
+          <Typography
+            variant="body1"
+            component="p"
+            className="text-foreground/90"
+            sx={{ fontFamily: "Inter, sans-serif", fontWeight: 300, fontSize: "26px", lineHeight: "42px", letterSpacing: "-0.02em" }}
+          >
             One of the clearest manifestations of fragmentation was navigation. Database products organized similar
             capabilities differently, forcing engineers to develop a new mental model for each technology. I established
             a common information architecture organized around customer tasks.
