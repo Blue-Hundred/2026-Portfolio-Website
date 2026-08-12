@@ -202,7 +202,7 @@ function Portfolio() {
         </div>
       )}
 
-      <section className="relative z-20 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-10 pt-12 sm:pt-20 lg:pt-32 pb-2 sm:pb-3 home-load home-load-hero">
+      <section className="relative z-20 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-10 pt-12 sm:pt-20 lg:pt-32 pb-12 sm:pb-20 lg:pb-32 home-load home-load-hero">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-20 items-start">
           <Typography variant="display" component="h1" sx={{ fontWeight: 600 }}>
             Tamaré Reese
