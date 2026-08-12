@@ -97,7 +97,12 @@ export function DatabasesStarLayout({
       <motion.section className="bg-background border-t border-border pt-12 sm:pt-16 pb-12 sm:pb-16" {...revealProps}>
         <SectionTitle title="Situation" />
         <div className="max-w-4xl mb-10 sm:mb-12">
-          <Typography variant="body1" component="p" className="text-foreground/90">
+          <Typography
+            variant="body1"
+            component="p"
+            className="text-foreground/90"
+            sx={{ fontFamily: "Inter, sans-serif", fontWeight: 300, fontSize: "26px", lineHeight: "42px", letterSpacing: "-0.02em" }}
+          >
             Enterprise engineers relied on more than 10 independent database control planes across relational,
             non-relational, and graph technologies. Although engineers performed many of the same tasks across products,
             each control plane had different navigation, terminology, provisioning workflows, documentation, and
