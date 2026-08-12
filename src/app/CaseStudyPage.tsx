@@ -99,7 +99,7 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
         <Typography variant="h3" component="h3" className="text-center mb-2">
           Password protected
         </Typography>
-        <Typography variant="body1" component="p" className="text-center text-muted-foreground mb-4">
+        <Typography variant="body1" component="p" className="text-center text-muted-foreground mb-12">
           This case study is available on request.
         </Typography>
 
